@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!ELEMENT obavestenje_o_uvidu  (zaglavlje_obavestenja, telo_obavestenja) >
+<!ATTLIST obavestenje_o_uvidu obavestenjeID ID #REQUIRED >
+
+<!-- POCETAK ZAGLAVLJA -->
+<!ELEMENT zaglavlje_obavestenja (podaci_o_organu, podaci_o_predmetu, podaci_o_podnosiocu) >
+
+<!ELEMENT podaci_o_organu (naziv_organa, sediste_organa) >
+<!ELEMENT naziv_organa (#PCDATA) >
+<!ATTLIST naziv_organa organID ID #REQUIRED >
+<!ELEMENT sediste_organa (#PCDATA) >
+
+<!ELEMENT podaci_o_predmetu (broj_predmeta, datum_nastanka_predmeta) >
+<!ELEMENT broj_predmeta  (#PCDATA)>
+<!ATTLIST broj_predmeta brojPredmetaID ID #REQUIRED >
+<!ELEMENT datum_nastanka_predmeta (#PCDATA) >
+
+<!ELEMENT podaci_o_podnosiocu (((ime_podnosioca, prezime_podnosioca) | naziv_podnosioca), adresa_podnosioca) >
+<!ELEMENT ime_podnosioca (#PCDATA) >
+<!ELEMENT prezime_podnosioca (#PCDATA) >
+<!ELEMENT naziv_podnosioca (#PCDATA) >
+<!ELEMENT adresa_podnosioca (postanski_broj, mesto, ulica, ulicni_broj) >
+<!ELEMENT postanski_broj (#PCDATA) >
+<!ELEMENT mesto (#PCDATA) >
+<!ELEMENT ulica (#PCDATA) >
+<!ELEMENT ulicni_broj (#PCDATA) >
+<!-- KRAJ ZAGLAVLJA -->
+
+<!-- POCETAK TELA  -->
+<!ELEMENT telo_obavestenja (naslov, sadrzaj_obavestenja) >
+
+<!ELEMENT naslov (tip_dokumenta, opis_dokumenta) >
+<!ELEMENT tip_dokumenta (#PCDATA) >
+<!ELEMENT opis_dokumenta (#PCDATA) >
+
+<!ELEMENT sadrzaj_obavestenja (uvid_u_dokument, kopiranje_dokumenta, dostavljeno) >
+
+<!ELEMENT uvid_u_dokument (#PCDATA | zakon | datum_potrazivanja |
+                            opis_trazene_informacije | podaci_o_uvidu)* >
+
+<!ELEMENT zakon (#PCDATA | clan)* >
+<!ELEMENT clan (#PCDATA | stav)* >
+<!ELEMENT stav (#PCDATA) >
+
+<!ELEMENT datum_potrazivanja (#PCDATA) >
+<!ELEMENT opis_trazene_informacije (#PCDATA) >
+
+<!ELEMENT podaci_o_uvidu (#PCDATA | datum | vreme | 
+                            pocetno_vreme | krajnje_vreme | 
+                            mesto_uvida | ulica_uvida | ulicni_broj_uvida | 
+                            kancelarijski_broj_uvida)* >
+<!ELEMENT datum (#PCDATA) >
+<!ELEMENT vreme (#PCDATA) >
+<!ELEMENT pocetno_vreme (#PCDATA) >
+<!ELEMENT krajnje_vreme (#PCDATA) >
+<!ELEMENT mesto_uvida (#PCDATA) >
+<!ELEMENT ulica_uvida (#PCDATA) >
+<!ELEMENT ulicni_broj_uvida (#PCDATA) >
+<!ELEMENT kancelarijski_broj_uvida (#PCDATA) >
+
+<!ELEMENT kopiranje_dokumenta (#PCDATA | ukupan_trosak_kopija)* >
+<!ELEMENT ukupan_trosak_kopija (#PCDATA) >
+<!ATTLIST ukupan_trosak_kopija valuta CDATA #FIXED "RSD" >
+<!ATTLIST ukupan_trosak_kopija ziro_racun CDATA #FIXED "840-742328-843-30" >
+<!ATTLIST ukupan_trosak_kopija poziv_na_broj CDATA #FIXED "97" >
+
+<!ELEMENT dostavljeno (#PCDATA) >
+<!-- KRAJ TELA -->
