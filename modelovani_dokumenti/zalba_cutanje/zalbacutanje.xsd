@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://www.ftn.uns.ac.rs/zalbacutanje"
+    xmlns:zalcut="http://www.ftn.uns.ac.rs/zalbacutanje">
+    <xs:element name="Zalba_cutanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="zalcut:Primalac_zalbe"/>
+                <xs:element ref="zalcut:Zalba"/>
+            </xs:sequence>
+            <xs:attribute name="Datum" type="xs:date"/>
+            <xs:attribute name="Mesto" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Primalac_zalbe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Naziv_primaoca"
+                    fixed="&quot;Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti&quot;"
+                    type="xs:string"/>
+                <xs:element ref="zalcut:Adresa"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Adresa">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Mesto" type="xs:string"/>
+                <xs:element name="Postanski_broj">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="11000"/>
+                            <xs:maxInclusive value="39000"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Ulica" type="xs:string"/>
+                <xs:element name="Broj">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Zalba">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Clan">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:int">
+                            <xs:minInclusive value="1"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Zakon" type="xs:string"/>
+                <xs:element name="Naziv_organa" type="xs:string"/>
+                <xs:element name="Razlog_zalbe">
+                    <xs:complexType>
+                        <xs:choice>
+                            <xs:element name="Nije_postupio" type="xs:string" minOccurs="0"/>
+                            <xs:element name="Nije_postupio_u_celosti" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence minOccurs="0">
+                                        <xs:element name="Referenca_odgovor_organa_vlasti"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="U_zakonskom_roku" minOccurs="0" type="xs:string"/>
+                        </xs:choice>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Podaci_o_zahtevu" type="xs:string"/>
+                <xs:element name="Datum" type="xs:date"/>
+                <xs:element name="Referenca_na_kopiju_zahteva"/>
+                <xs:element name="Detalji_o_predaji" type="xs:string"/>
+                <xs:element ref="zalcut:Podnosilac_zalbe"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Podnosilac_zalbe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Ime" type="xs:string"/>
+                <xs:element name="Prezime" type="xs:string"/>
+                <xs:element ref="zalcut:Adresa"/>
+                <xs:element name="Drugi_podaci" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
