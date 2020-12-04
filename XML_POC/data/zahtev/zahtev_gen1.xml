@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Zahtev_za_pristup_informacijama xmlns="http://zahtev"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://zahtev file:/C:/Users/Ksenija/Desktop/Trudim%20se/XML/data/zahtev.xsd" 
+    mesto="Sremska Mitrovica" 
+    datum="2022-04-06">
+    <Organ_vlasti>
+        <Naziv_organa>Fakultet tehnickih nauka</Naziv_organa>
+        <Sediste_organa>Novi Sad</Sediste_organa>
+    </Organ_vlasti>
+    <Telo_zahteva>
+        <Zakonska_osnova>
+            <Clan>15</Clan>
+            <Stav>1</Stav>
+            <Zakon>Zakon o slobodnom pristupu informacijama od javnog značaja</Zakon>
+            <Sluzbeni_glasnik>
+                <Naziv>Službeni glasnik RS</Naziv>
+                <Brojevi>
+                    <Broj>120/04</Broj>
+                    <Broj>54/07</Broj>
+                    <Broj>104/09</Broj>
+                    <Broj>36/10</Broj>
+                </Brojevi>
+            </Sluzbeni_glasnik>
+        </Zakonska_osnova>
+        <Zahtevi>
+            <Obavestenje>
+            </Obavestenje>
+            <Kopija>
+            </Kopija>
+            <Dostavljanje_kopije>
+                <Nacin_dostave>
+                    <Posebna_dostava>
+                        <Nacin_posebne_dostave>Golubom pismonosom</Nacin_posebne_dostave>
+                    </Posebna_dostava>
+                </Nacin_dostave>
+            </Dostavljanje_kopije>
+        </Zahtevi>
+        <Zahtevane_informacije>Informacije o polozenim predmetima</Zahtevane_informacije>
+    </Telo_zahteva>
+    <Trazilac>
+        <Ime>Vlastislav</Ime>
+        <Prezime>Jakovljevic</Prezime>
+        <Adresa>Zeleznicka 23, Novi Sad</Adresa>
+        <Kontakt_podaci>063/452498506</Kontakt_podaci>
+    </Trazilac>
+</Zahtev_za_pristup_informacijama>
