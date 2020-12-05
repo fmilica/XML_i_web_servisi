@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zalba_odbijen_zahtev xmlns="http://zalba_odluka"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://zalba_odluka zalbanaodlukucir%20V2%20Bez%20Teksta%20sema.xsd"
+ mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01">
+    
+	<podaci_o_primaocu>
+		<naziv_primaoca>Primaoc</naziv_primaoca>
+		<adresa_primaoca>Adresa Primaoca 1</adresa_primaoca>
+	</podaci_o_primaocu>
+ 
+    <podaci_o_zaliocu>
+        <ime_i_prezime>Zalioc Zaliocic</ime_i_prezime>
+        <adresa_zalioca>Adresa Zalioca 1</adresa_zalioca>
+    </podaci_o_zaliocu>
+    
+    <podaci_o_odluci broj_odluke="0" godina="0">
+        <naziv_donosioca_odluke>Donosioc odluke</naziv_donosioca_odluke>
+    </podaci_o_odluci>
+    
+    <telo_zalbe>
+        <razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</razlog_zalbe>
+        <clan>1</clan>
+		<zakon>1</zakon>
+    </telo_zalbe>
+     
+	<podaci_o_podnosiocu_zalbe>
+		<ime_i_prezime>Podnosioc Podnosiocic</ime_i_prezime>
+		<adresa_podnosioca>Adresa Podnosioca 1</adresa_podnosioca>
+		<drugi_podaci_za_kontakt></drugi_podaci_za_kontakt>
+	</podaci_o_podnosiocu_zalbe>
+ 
+</zalba_odbijen_zahtev>
