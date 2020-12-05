@@ -133,6 +133,7 @@ public class ObavestenjeTest {
 			test.printObavestenje(obavestenje);
 			test.marshall(context, obavestenje);
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
 		
 

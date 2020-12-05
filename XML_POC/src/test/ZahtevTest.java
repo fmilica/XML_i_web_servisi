@@ -56,8 +56,9 @@ public class ZahtevTest {
 	
 	private void printZahtev(ZahtevZaPristupInformacijama zahtev) {
 		
-		System.out.println("-Mesto zahteva: " + zahtev.getMesto());
-		System.out.println("-Datum zahteva: " + zahtev.getDatum());
+		System.out.println("Mesto zahteva: " + zahtev.getMesto());
+		System.out.println("Datum zahteva: " + zahtev.getDatum());
+		System.out.println();
 		
 		printOrganVlasti(zahtev.getOrganVlasti());
 		printTeloZahteva(zahtev.getTeloZahteva());
@@ -67,43 +68,47 @@ public class ZahtevTest {
 	
 	private void printOrganVlasti(TOrganVlasti organVlasti) {
 		System.out.println("\t Podaci o organu kom se upucuje zahtev: ");
-		System.out.println("\t\t- Naziv organa: " + organVlasti.getNazivOrgana() + ", sediste organa: " + organVlasti.getSedisteOrgana());
+		System.out.println("\t\t Naziv: " + organVlasti.getNazivOrgana());
+		System.out.println("\t\t Sediste: " + organVlasti.getSedisteOrgana());
+		System.out.println();
 		
 	}
 	
 	private void printTeloZahteva(TeloZahteva teloZahteva) {
 		printZakonskaOsnova(teloZahteva.getZakonskaOsnova());
 		printZahtevi(teloZahteva.getZahtevi());
-		System.out.println("\t -Zahtevane informacije: " + teloZahteva.getZahtevaneInformacije());
+		System.out.println("\t Zahtevane informacije: " + teloZahteva.getZahtevaneInformacije());
+		System.out.println();
 	}
 	
 	private void printZakonskaOsnova(TZakonskaOsnova zakonskaOsnova) {
-		System.out.println("\t -Na osnovu clana " + zakonskaOsnova.getClan() + ". st. " + zakonskaOsnova.getStav() + 
+		System.out.println("\t Na osnovu clana " + zakonskaOsnova.getClan() + ". st. " + zakonskaOsnova.getStav() + 
 				". " + zakonskaOsnova.getZakon());
 		printSluzbeniGlasnik(zakonskaOsnova.getSluzbeniGlasnik());
 	}
 	
 	private void printSluzbeniGlasnik(SluzbeniGlasnik sluzbeniGlasnik) {
-		System.out.println("\t -Naziv sluzbenog glasnika: " + sluzbeniGlasnik.getNaziv());
+		System.out.println("\t Naziv sluzbenog glasnika: " + sluzbeniGlasnik.getNaziv());
 		printBrojevi(sluzbeniGlasnik.getBrojevi());
 	}
 	
 	private void printBrojevi(Brojevi brojevi) {
 		for (String broj : brojevi.getBroj()) {
-			System.out.println("\t\t -Broj: " + broj);
+			System.out.println("\t\t Broj: " + broj);
 		}
+		System.out.println();
 	}
 	
 	private void printZahtevi(Zahtevi zahtevi) {
 		System.out.println("\t Od gore navedenog organa zahtevam: ");
 		if (zahtevi.getObavestenje() != null) {
-			System.out.println("\t\t -Obavestenje da li poseduje trazenu informaciju");
+			System.out.println("\t\t Obavestenje da li poseduje trazenu informaciju");
 		}
 		if (zahtevi.getUvid() != null) {
-			System.out.println("\t\t -Uvid u dokument koji sadrzi trazenu informaciju");
+			System.out.println("\t\t Uvid u dokument koji sadrzi trazenu informaciju");
 		}
 		if (zahtevi.getKopija() != null) {
-			System.out.println("\t\t -Kopiju dokumenta koji sadrzi trazenu informaciju");
+			System.out.println("\t\t Kopiju dokumenta koji sadrzi trazenu informaciju");
 		}
 		printDostavljanjeKopije(zahtevi.getDostavljanjeKopije().getNacinDostave());
 	}
@@ -122,15 +127,15 @@ public class ZahtevTest {
 		if (nacinDostave.getPosebnaDostava() != null) {
 			nacin = nacinDostave.getPosebnaDostava().getNacinPosebneDostave();
 		}
-		System.out.println("\t\t -Dostavljanje kopije dokumenta koji sadrzi trazenu informaciju: " + nacin);
+		System.out.println("\t\t Dostavljanje kopije dokumenta koji sadrzi trazenu informaciju: " + nacin);
 	}
 	
 	public void printTrazilac(TTrazilac trazilac) {
 		System.out.println("\t Informacije o traziocu: ");
-		System.out.println("\t\t -Ime: " + trazilac.getIme());
-		System.out.println("\t\t -Prezime: " + trazilac.getPrezime());
-		System.out.println("\t\t -Adresa: " + trazilac.getAdresa());
-		System.out.println("\t\t -Kontakt podaci: " +trazilac.getKontaktPodaci());
+		System.out.println("\t\t Ime: " + trazilac.getIme());
+		System.out.println("\t\t Prezime: " + trazilac.getPrezime());
+		System.out.println("\t\t Adresa: " + trazilac.getAdresa());
+		System.out.println("\t\t Kontakt podaci: " +trazilac.getKontaktPodaci());
 	}
 
 	public static void main(String[] args) {
