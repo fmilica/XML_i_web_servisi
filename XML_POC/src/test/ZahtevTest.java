@@ -51,7 +51,7 @@ public class ZahtevTest {
 		
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
-		marshaller.marshal(zahtev, new FileOutputStream(new File("./data/marshalled/zahtev_new.xml")));
+		marshaller.marshal(zahtev, new FileOutputStream(new File("./data/marshalled/zahtev_marsh.xml")));
 	}
 	
 	private void printZahtev(ZahtevZaPristupInformacijama zahtev) {
@@ -141,8 +141,6 @@ public class ZahtevTest {
 			ZahtevZaPristupInformacijama zahtev = test.unmarshall(context);
 			test.marshall(context, zahtev);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			//e.printStackTrace();
 		}
 		
 

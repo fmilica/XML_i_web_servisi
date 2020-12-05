@@ -75,7 +75,7 @@
                 <xs:element name="Podaci_o_zahtevu" type="xs:string"/>
                 <xs:element name="Datum" type="xs:date"/>
                 <xs:element name="Referenca_na_kopiju_zahteva"/>
-                <xs:element name="Detalji_o_predaji" type="xs:string"/>
+                <xs:element name="Dokaz_o_predaji" type="xs:string"/>
                 <xs:element ref="zalcut:Podnosilac_zalbe"/>
             </xs:sequence>
         </xs:complexType>

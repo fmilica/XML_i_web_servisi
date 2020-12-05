@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://" xmlns:obv="http://">
+    targetNamespace="http://obavestenje" xmlns:obv="http://obavestenje">
     <xs:element name="Obavestenje">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Organ_vlasti" type="obv:TOrgan_vlasti"> </xs:element>
                 <xs:element name="Broj_predmeta" type="xs:string"> </xs:element>
                 <xs:element name="Podnosilac" type="obv:TLice"/>
-                <xs:element name="Uvid_u_dokument">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element name="Zakonska_osnova" type="obv:TZakon"> </xs:element>
-                            <xs:element name="Datum_potrazivanja" type="xs:date"/>
-                            <xs:element name="Opis_trazene_informacije" type="xs:string"/>
-                            <xs:element name="Podaci_o_uvidu" type="obv:TVremeMesto"> </xs:element>
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
+                <xs:element ref="obv:Uvid_u_dokument"/>
                 <xs:element name="Ukupan_trosak_kopija">
                     <xs:complexType>
                         <xs:simpleContent>
@@ -46,6 +37,16 @@
             </xs:sequence>
             <xs:attribute name="dostavljeno" type="obv:TDostavljeno" use="required"/>
             <xs:attribute name="datum" type="xs:date" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Uvid_u_dokument">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Zakonska_osnova" type="obv:TZakon"> </xs:element>
+                <xs:element name="Datum_potrazivanja" type="xs:date"/>
+                <xs:element name="Opis_trazene_informacije" type="xs:string"/>
+                <xs:element name="Podaci_o_uvidu" type="obv:TVremeMesto"> </xs:element>
+            </xs:sequence>
         </xs:complexType>
     </xs:element>
     <xs:complexType name="TAdresa">
