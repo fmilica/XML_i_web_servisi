@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://zalba_odluka" xmlns:zoz="http://zalba_odluka">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://zalba_odbijen" xmlns:zoz="http://zalba_odbijen">
     
     <xs:element name="zalba_odbijen_zahtev">
         <xs:complexType>
@@ -35,7 +35,7 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element name="ime_i_prezime" type="xs:string"> </xs:element>
-                <xs:element name="naziv_primaoca" type="xs:string"> </xs:element>
+                <xs:element name="naziv_zalioca" type="xs:string"> </xs:element>
             </xs:choice>
             <xs:element name="adresa_zalioca" type="xs:string"> </xs:element>
         </xs:sequence>

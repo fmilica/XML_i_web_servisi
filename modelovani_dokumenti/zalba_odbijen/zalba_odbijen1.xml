@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<zalba_odbijen_zahtev xmlns="http://zalba_odluka"
+<zalba_odbijen_zahtev xmlns="http://zalba_odbijen"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://zalba_odluka zalbanaodlukucir%20V2%20Bez%20Teksta%20sema.xsd"
+ xsi:schemaLocation="http://zalba_odbijen zalba_odbijen.xsd"
  mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01">
     
 	<podaci_o_primaocu>
