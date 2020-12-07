@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Zalba_cutanje xmlns="http://zalbacutanje"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://zalbacutanje file:/C:/Users/admin/Desktop/xmlproj/XML_i_web_servisi/modelovani_dokumenti/zalba_cutanje/zalbacutanje.xsd"
+    xsi:schemaLocation="http://zalbacutanje zalbacutanje.xsd"
     mesto="Novi Sad" datum="2020-12-07" id="ID005">
     <Primalac_zalbe>
         <Naziv_primaoca>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</Naziv_primaoca>

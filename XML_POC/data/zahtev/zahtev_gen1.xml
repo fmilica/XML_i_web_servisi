@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Zahtev_za_pristup_informacijama xmlns="http://zahtev"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://zahtev file:/C:/Users/Ksenija/Desktop/Trudim%20se/XML/data/zahtev.xsd" 
+    xsi:schemaLocation="http://zahtev zahtev.xsd" 
     mesto="Sremska Mitrovica" 
     datum="2022-04-06"
     id="ID003">
