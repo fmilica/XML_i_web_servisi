@@ -9,6 +9,7 @@
                 <xs:element ref="zahtev:Telo_zahteva"> </xs:element>
                 <xs:element name="Trazilac" type="zahtev:TTrazilac"> </xs:element>
             </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
             <xs:attribute name="mesto">
                 <xs:simpleType>
                     <xs:restriction base="xs:string">

@@ -50,6 +50,9 @@ public class ZalbaCutanjeTest {
 	
 	private void printZalbaCutanje(ZalbaCutanje zalbaCutanje) {
 		
+		System.out.println("ID dokumenta: " + zalbaCutanje.getId());
+		System.out.println();
+		
 		System.out.println("Mesto zahteva: " + zalbaCutanje.getMesto());
 		System.out.println("Datum zahteva: " + zalbaCutanje.getDatum());
 		System.out.println();

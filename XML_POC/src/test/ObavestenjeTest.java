@@ -54,6 +54,9 @@ public class ObavestenjeTest {
 	
 	private void printObavestenje(Obavestenje obavestenje) {
 		
+		System.out.println("ID dokumenta: " + obavestenje.getId());
+		System.out.println();
+		
 		System.out.println("Broj predmeta: " + obavestenje.getBrojPredmeta());
 		System.out.println("Primerak dostavljen: " + obavestenje.getDostavljeno());
 		System.out.println("Datum kreiranja obavestenja: " + obavestenje.getDatum());

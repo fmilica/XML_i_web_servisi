@@ -2,15 +2,13 @@
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://zalbacutanje" xmlns:obavestenje="http://obavestenje"
     xmlns:zalbacutanje="http://zalbacutanje" xmlns:zhtv="http://zahtev">
-
-    <xs:import namespace="http://zahtev" schemaLocation="../zahtev/zahtev.xsd"/>
-    <xs:import namespace="http://obavestenje" schemaLocation="../obavestenje/obavestenje.xsd"/>
     <xs:element name="Zalba_cutanje">
         <xs:complexType>
             <xs:sequence>
                 <xs:element ref="zalbacutanje:Primalac_zalbe"/>
                 <xs:element ref="zalbacutanje:Zalba"/>
             </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
             <xs:attribute name="datum" type="xs:date"/>
             <xs:attribute name="mesto" type="xs:string"/>
         </xs:complexType>

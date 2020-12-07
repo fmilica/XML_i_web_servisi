@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Obavestenje xmlns="http://obavestenje" dostavljeno="imenovanom" datum="2006-05-04">
+<Obavestenje xmlns="http://obavestenje" id="ID002" dostavljeno="imenovanom" datum="2006-05-04">
     <Organ_vlasti>
         <Naziv>Fakultet tehnickih nauka</Naziv>
         <Sediste>Novi Sad</Sediste>

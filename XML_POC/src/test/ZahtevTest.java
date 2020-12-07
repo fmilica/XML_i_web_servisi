@@ -56,6 +56,9 @@ public class ZahtevTest {
 	
 	private void printZahtev(ZahtevZaPristupInformacijama zahtev) {
 		
+		System.out.println("ID dokumenta: " + zahtev.getId());
+		System.out.println();
+		
 		System.out.println("Mesto zahteva: " + zahtev.getMesto());
 		System.out.println("Datum zahteva: " + zahtev.getDatum());
 		System.out.println();

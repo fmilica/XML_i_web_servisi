@@ -42,6 +42,10 @@ public class ZalbaOdbijenTest {
 	}
 
 	private void printZalba(ZalbaOdbijenZahtev zalba) {
+		
+		System.out.println("ID dokumenta: " + zalba.getId());
+		System.out.println();
+		
 		System.out.println("Mesto podnosenja zalbe: " + zalba.getMestoPodnosenjaZalbe());
 		System.out.println("Datum podnosenja zalbe: " + zalba.getDatumPodnosenjaZalbe());
 		System.out.println("Datum podnosenja zahteva: " + zalba.getDatumPodnosenjaZahteva());
