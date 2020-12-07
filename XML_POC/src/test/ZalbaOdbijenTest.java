@@ -96,9 +96,9 @@ public class ZalbaOdbijenTest {
 	}
 
 	private void printPrimaoc(TPrimalac primalac) {
-		System.out.println("\tPodaci o zaliocu:");
+		System.out.println("\tPodaci o primaocu:");
 		System.out.println("\t\tIme i prezime: " + primalac.getNazivPrimaoca());
-		System.out.println("\t\tAdresa zalioca: " + primalac.getAdresaPrimaoca());
+		System.out.println("\t\tAdresa primaoca: " + primalac.getAdresaPrimaoca());
 		System.out.println();
 	}
 
