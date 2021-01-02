@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://zalbacutanje" xmlns:obavestenje="http://obavestenje"
-    xmlns:zalbacutanje="http://zalbacutanje" xmlns:zhtv="http://zahtev">
+    xmlns:zalbacutanje="http://zalbacutanje" xmlns:zhtv="http://zahtev" xmlns:tipovi="http://tipovi">
+    <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
     <xs:element name="Zalba_cutanje">
         <xs:complexType>
             <xs:sequence>
-                <xs:element ref="zalbacutanje:Primalac_zalbe"/>
+                <xs:element name="Primalac_zalbe" type="tipovi:TPoverenik"/>
                 <xs:element ref="zalbacutanje:Zalba"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID"/>
@@ -13,50 +14,10 @@
             <xs:attribute name="mesto" type="xs:string"/>
         </xs:complexType>
     </xs:element>
-    <xs:element name="Primalac_zalbe">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Naziv_primaoca"
-                    fixed="Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti"
-                    type="xs:string"/>
-                <xs:element ref="zalbacutanje:Adresa"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
-    <xs:element name="Adresa">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Mesto" type="xs:string"/>
-                <xs:element name="Postanski_broj">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:int">
-                            <xs:minInclusive value="11000"/>
-                            <xs:maxInclusive value="39000"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="Ulica" type="xs:string"/>
-                <xs:element name="Broj">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:int">
-                            <xs:minInclusive value="1"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
     <xs:element name="Zalba">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Clan">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:int">
-                            <xs:minInclusive value="1"/>
-                        </xs:restriction>
-                    </xs:simpleType>
-                </xs:element>
-                <xs:element name="Zakon" type="xs:string"/>
+                <xs:element name="Osnova_zalbe" type="zalbacutanje:TZakonska_osnova"/>
                 <xs:element name="Naziv_organa" type="xs:string"/>
                 <xs:element name="Razlog_zalbe">
                     <xs:simpleType>
@@ -69,18 +30,15 @@
                 </xs:element>
                 <xs:element name="Datum" type="xs:date"/>
                 <xs:element name="Podaci_o_zahtevu" type="xs:string"/>
-                <xs:element ref="zalbacutanje:Podnosilac_zalbe"/>
+                <xs:element name="Podnosilac_zalbe" type="tipovi:TLice_kontakt"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:element name="Podnosilac_zalbe">
-        <xs:complexType>
-            <xs:sequence>
-                <xs:element name="Ime" type="xs:string"/>
-                <xs:element name="Prezime" type="xs:string"/>
-                <xs:element ref="zalbacutanje:Adresa"/>
-                <xs:element name="Drugi_podaci" type="xs:string"/>
-            </xs:sequence>
-        </xs:complexType>
-    </xs:element>
+    <xs:complexType name="TZakonska_osnova">
+        <xs:sequence>
+            <xs:element fixed="22" name="Clan" type="xs:positiveInteger"/>
+            <xs:element name="Zakon" type="xs:string"
+                fixed="Закон о слободном приступу информацијама од јавног значаја"/>
+        </xs:sequence>
+    </xs:complexType>
 </xs:schema>

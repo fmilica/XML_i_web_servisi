@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Zahtev_za_pristup_informacijama xmlns="http://zahtev" mesto="Sremska Mitrovica" datum="2022-04-06">
+<Zahtev_za_pristup_informacijama xmlns="http://zahtev" id="ID003" mesto="Sremska Mitrovica" datum="2022-04-06">
     <Organ_vlasti>
         <Naziv_organa>Fakultet tehnickih nauka</Naziv_organa>
         <Sediste_organa>Novi Sad</Sediste_organa>

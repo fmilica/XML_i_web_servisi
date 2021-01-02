@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<Zalba_cutanje xmlns="http://zalbacutanje" datum="2020-12-07" mesto="Novi Sad">
+<Zalba_cutanje xmlns="http://zalbacutanje" id="ID005" datum="2020-12-07" mesto="Novi Sad">
     <Primalac_zalbe>
         <Naziv_primaoca>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</Naziv_primaoca>
         <Adresa>

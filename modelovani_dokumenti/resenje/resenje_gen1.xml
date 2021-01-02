@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Resenje xmlns="http://resenje"
- xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
- xsi:schemaLocation="http://resenje file:/C:/Users/Ksenija/Downloads/resenje.xsd" 
- broj_resenja="000-00-0000/0000-00" 
- datum_resenja="2006-05-04" 
- id="ID001">
+    xmlns:tipovi="http://tipovi"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://resenje resenje.xsd" 
+    broj_resenja="000-00-0000/0000-00" 
+    datum_resenja="2006-05-04" 
+    id="ID001">
     <Opis_zalbe razlog_zalbe="nepostupanje" datum_zahteva="2006-05-04">
         Повереник за информације од јавног значаја и заштиту података о личности, 
         у поступку по алби коју је изјавио AA, због непоступања Учитељског факултета 
@@ -22,12 +23,12 @@
             <Prezime>Grujic</Prezime>
         </Podnosilac_zalbe>
         <Organ_vlasti>
-            <Naziv_organa>Uciteljski fakultet u Prizrenu</Naziv_organa>
-            <Sediste_organa>
-                <Mesto>Leposavic</Mesto>
-                <Ulica>Nemanjina</Ulica>
-                <Ulicni_broj>bb</Ulicni_broj>
-            </Sediste_organa>
+            <tipovi:Naziv>Uciteljski fakultet u Prizrenu</tipovi:Naziv>
+            <tipovi:Sediste>
+                <tipovi:Mesto>Leposavic</tipovi:Mesto>
+                <tipovi:Ulica>Nemanjina</tipovi:Ulica>
+                <tipovi:Ulicni_broj>bb</tipovi:Ulicni_broj>
+            </tipovi:Sediste>
         </Organ_vlasti>
         <Zakonska_osnova_resenja>
             <Zakonska_osnova>
@@ -36,13 +37,13 @@
                 <Tacka>5</Tacka>
                 <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
                 <Sluzbeni_glasnik>
-                    <Naziv>Službeni glasnik RS</Naziv>
-                    <Brojevi>
-                        <Broj>120/04</Broj>
-                        <Broj>54/07</Broj>
-                        <Broj>104/09</Broj>
-                        <Broj>36/10</Broj>
-                    </Brojevi>
+                    <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
+                    <tipovi:Brojevi>
+                        <tipovi:Broj>120/04</tipovi:Broj>
+                        <tipovi:Broj>54/07</tipovi:Broj>
+                        <tipovi:Broj>104/09</tipovi:Broj>
+                        <tipovi:Broj>36/10</tipovi:Broj>
+                    </tipovi:Brojevi>
                 </Sluzbeni_glasnik>
             </Zakonska_osnova>
             <Zakonska_osnova>
@@ -50,10 +51,10 @@
                 <Tacka>22</Tacka>
                 <Zakon>Закона о заштити података о личности</Zakon>
                 <Sluzbeni_glasnik>
-                    <Naziv>Službeni glasnik RS</Naziv>
-                    <Brojevi>
-                        <Broj>87/18</Broj>
-                    </Brojevi>
+                    <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
+                    <tipovi:Brojevi>
+                        <tipovi:Broj>87/18</tipovi:Broj>
+                    </tipovi:Brojevi>
                 </Sluzbeni_glasnik>
             </Zakonska_osnova>
             <Zakonska_osnova>
@@ -70,11 +71,11 @@
                 <Stav>2</Stav>
                 <Zakon>Закона о општем управном поступку</Zakon>
                 <Sluzbeni_glasnik>
-                    <Naziv>Službeni glasnik RS</Naziv>
-                    <Brojevi>
-                        <Broj>18/16</Broj>
-                        <Broj>95/18</Broj>
-                    </Brojevi>
+                    <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
+                    <tipovi:Brojevi>
+                        <tipovi:Broj>18/16</tipovi:Broj>
+                        <tipovi:Broj>95/18</tipovi:Broj>
+                    </tipovi:Brojevi>
                 </Sluzbeni_glasnik>
             </Zakonska_osnova>
         </Zakonska_osnova_resenja>

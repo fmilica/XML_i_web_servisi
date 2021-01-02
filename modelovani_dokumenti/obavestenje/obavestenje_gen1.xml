@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Obavestenje xmlns="http://obavestenje"
+    xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://obavestenje obavestenje.xsd" 
     dostavljeno="imenovanom" 
     datum="2006-05-04"
     id="ID002">
     <Organ_vlasti>
-        <Naziv>Fakultet tehnickih nauka</Naziv>
-        <Sediste>Novi Sad</Sediste>
+        <tipovi:Naziv>Fakultet tehnickih nauka</tipovi:Naziv>
+        <tipovi:Sediste>Novi Sad</tipovi:Sediste>
     </Organ_vlasti>
     <Broj_predmeta>SIIT-1</Broj_predmeta>
     <Podnosilac>
-        <Ime>Vlastislav</Ime>
-        <Prezime>Jakovljevic</Prezime>
-        <Adresa>
-            <Mesto>Novi Sad</Mesto>
-            <Ulica>Zeleznicka</Ulica>
-            <Ulicni_broj>23</Ulicni_broj>
-        </Adresa>
+        <tipovi:Ime>Vlastislav</tipovi:Ime>
+        <tipovi:Prezime>Jakovljevic</tipovi:Prezime>
+        <tipovi:Adresa>
+            <tipovi:Mesto>Novi Sad</tipovi:Mesto>
+            <tipovi:Ulica>Zeleznicka</tipovi:Ulica>
+            <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>
+        </tipovi:Adresa>
     </Podnosilac>
     <Uvid_u_dokument>
         <Zakonska_osnova>
@@ -33,9 +34,9 @@
             <Pocetno_vreme>12</Pocetno_vreme>
             <Krajnje_vreme>17</Krajnje_vreme>
             <Mesto_uvida>
-                <Mesto>Novi Sad</Mesto>
-                <Ulica>Trg Dositeja Obradovica</Ulica>
-                <Ulicni_broj>4</Ulicni_broj>
+                <tipovi:Mesto>Novi Sad</tipovi:Mesto>
+                <tipovi:Ulica>Trg Dositeja Obradovica</tipovi:Ulica>
+                <tipovi:Ulicni_broj>4</tipovi:Ulicni_broj>
                 <Kancelarijski_broj>F-13</Kancelarijski_broj>
             </Mesto_uvida>
         </Podaci_o_uvidu>

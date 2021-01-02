@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Zahtev_za_pristup_informacijama xmlns="http://zahtev"
+    xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://zahtev file:/C:/Users/Ksenija/Desktop/Trudim%20se/XML/data/zahtev.xsd" 
+    xsi:schemaLocation="http://zahtev zahtev.xsd" 
     mesto="Sremska Mitrovica" 
     datum="2022-04-06"
     id="ID003">
     <Organ_vlasti>
-        <Naziv_organa>Fakultet tehnickih nauka</Naziv_organa>
-        <Sediste_organa>Novi Sad</Sediste_organa>
+        <tipovi:Naziv>Fakultet tehnickih nauka</tipovi:Naziv>
+        <tipovi:Sediste>Novi Sad</tipovi:Sediste>
     </Organ_vlasti>
     <Telo_zahteva>
         <Zakonska_osnova>
@@ -15,13 +16,13 @@
             <Stav>1</Stav>
             <Zakon>Zakon o slobodnom pristupu informacijama od javnog značaja</Zakon>
             <Sluzbeni_glasnik>
-                <Naziv>Službeni glasnik RS</Naziv>
-                <Brojevi>
-                    <Broj>120/04</Broj>
-                    <Broj>54/07</Broj>
-                    <Broj>104/09</Broj>
-                    <Broj>36/10</Broj>
-                </Brojevi>
+                <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
+                <tipovi:Brojevi>
+                    <tipovi:Broj>120/04</tipovi:Broj>
+                    <tipovi:Broj>54/07</tipovi:Broj>
+                    <tipovi:Broj>104/09</tipovi:Broj>
+                    <tipovi:Broj>36/10</tipovi:Broj>
+                </tipovi:Brojevi>
             </Sluzbeni_glasnik>
         </Zakonska_osnova>
         <Zahtevi>
@@ -40,9 +41,13 @@
         <Zahtevane_informacije>Informacije o polozenim predmetima</Zahtevane_informacije>
     </Telo_zahteva>
     <Trazilac>
-        <Ime>Vlastislav</Ime>
-        <Prezime>Jakovljevic</Prezime>
-        <Adresa>Zeleznicka 23, Novi Sad</Adresa>
-        <Kontakt_podaci>063/452498506</Kontakt_podaci>
+        <tipovi:Ime>Vlastislav</tipovi:Ime>
+        <tipovi:Prezime>Jakovljevic</tipovi:Prezime>
+        <tipovi:Adresa>
+            <tipovi:Mesto>Novi Sad</tipovi:Mesto>
+            <tipovi:Ulica>Zeleznicka</tipovi:Ulica>
+            <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>
+        </tipovi:Adresa>
+        <tipovi:Kontakt_podaci>063/452498506</tipovi:Kontakt_podaci>
     </Trazilac>
 </Zahtev_za_pristup_informacijama>

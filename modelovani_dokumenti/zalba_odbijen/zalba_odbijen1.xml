@@ -1,17 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zalba_odbijen_zahtev xmlns="http://zalba_odbijen"
+    xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://zalba_odbijen zalba_odbijen.xsd"
     mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01" id="ID004">
     
     <podaci_o_primaocu>
-        <naziv_primaoca>Primaoc</naziv_primaoca>
-        <adresa_primaoca>Adresa Primaoca 1</adresa_primaoca>
+        <tipovi:Naziv>Primaoc</tipovi:Naziv>
+        <tipovi:Sediste>
+            <tipovi:Mesto>Mesto Primaoca</tipovi:Mesto>
+            <tipovi:Ulica>Ulica primaoca</tipovi:Ulica>
+            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>
+        </tipovi:Sediste>
     </podaci_o_primaocu>
     
     <podaci_o_zaliocu>
-        <ime_i_prezime>Zalioc Zaliocic</ime_i_prezime>
-        <adresa_zalioca>Adresa Zalioca 1</adresa_zalioca>
+        <tipovi:Ime>Zalioc</tipovi:Ime>
+        <tipovi:Prezime>Zaliocic</tipovi:Prezime>
+        <tipovi:Adresa>
+            <tipovi:Mesto>Mesto Zalioca</tipovi:Mesto>
+            <tipovi:Ulica>Ulica zalioca</tipovi:Ulica>
+            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>
+        </tipovi:Adresa>
     </podaci_o_zaliocu>
     
     <podaci_o_odluci broj_odluke="0" godina="0">
@@ -20,14 +30,22 @@
     
     <telo_zalbe>
         <razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</razlog_zalbe>
-        <clan>1</clan>
-        <zakon>1</zakon>
+        <osnova_zalbe>
+            <Clan></Clan>
+            <Stav></Stav>
+            <Zakon></Zakon>
+        </osnova_zalbe>
     </telo_zalbe>
     
     <podaci_o_podnosiocu_zalbe>
-        <ime_i_prezime>Podnosioc Podnosiocic</ime_i_prezime>
-        <adresa_podnosioca>Adresa Podnosioca 1</adresa_podnosioca>
-        <drugi_podaci_za_kontakt></drugi_podaci_za_kontakt>
+        <tipovi:Ime>Podnosioc</tipovi:Ime>
+        <tipovi:Prezime>Podnosiocic</tipovi:Prezime>
+        <tipovi:Adresa>
+            <tipovi:Mesto>Mesto Podnosioca</tipovi:Mesto>
+            <tipovi:Ulica>Adresa podnosioca</tipovi:Ulica>
+            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>
+        </tipovi:Adresa>
+        <tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>
     </podaci_o_podnosiocu_zalbe>
     
 </zalba_odbijen_zahtev>

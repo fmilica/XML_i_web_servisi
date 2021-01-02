@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<zalba_odbijen_zahtev xmlns="http://zalba_odbijen" mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01">
+<zalba_odbijen_zahtev xmlns="http://zalba_odbijen" id="ID004" mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01">
     <podaci_o_primaocu>
         <naziv_primaoca>Primaoc</naziv_primaoca>
         <adresa_primaoca>Adresa Primaoca 1</adresa_primaoca>
