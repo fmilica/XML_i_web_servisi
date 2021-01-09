@@ -3,7 +3,7 @@
     targetNamespace="http://zalba_odbijen" xmlns:zoz="http://zalba_odbijen"
     xmlns:tipovi="http://tipovi">
     <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
-    <xs:element name="zalba_odbijen_zahtev">
+    <xs:element name="Zalba_odbijanje">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="podaci_o_primaocu" type="tipovi:TPoverenik"> </xs:element>

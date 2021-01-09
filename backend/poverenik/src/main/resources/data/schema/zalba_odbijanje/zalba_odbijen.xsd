@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://zalba_odbijen" xmlns:zoz="http://zalba_odbijen">
+
+    <xs:element name="Zalba_odbijanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="podaci_o_primaocu" type="zoz:TPrimalac"> </xs:element>
+                <xs:element name="podaci_o_zaliocu" type="zoz:TZalilac"> </xs:element>
+                <xs:element name="podaci_o_odluci">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="naziv_donosioca_odluke" type="xs:string">
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="broj_odluke" type="xs:int"> </xs:attribute>
+                        <xs:attribute name="godina" type="xs:int"> </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="telo_zalbe" type="zoz:TTelo"> </xs:element>
+                <xs:element name="podaci_o_podnosiocu_zalbe" type="zoz:TPodnosilac"> </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+            <xs:attribute name="mesto_podnosenja_zalbe" type="xs:string"> </xs:attribute>
+            <xs:attribute name="datum_podnosenja_zalbe" type="xs:date"> </xs:attribute>
+            <xs:attribute name="datum_podnosenja_zahteva" type="xs:date"> </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="TPrimalac">
+        <xs:sequence>
+            <xs:element name="naziv_primaoca" type="xs:string"> </xs:element>
+            <xs:element name="adresa_primaoca" type="xs:string"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TZalilac">
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="ime_i_prezime" type="xs:string"> </xs:element>
+                <xs:element name="naziv_zalioca" type="xs:string"> </xs:element>
+            </xs:choice>
+            <xs:element name="adresa_zalioca" type="xs:string"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TTelo">
+        <xs:sequence>
+            <xs:element name="razlog_zalbe" type="xs:string"> </xs:element>
+            <xs:element name="clan" type="xs:string"> </xs:element>
+            <xs:element name="zakon" type="xs:string"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TPodnosilac">
+
+        <xs:sequence>
+            <xs:choice>
+                <xs:element name="ime_i_prezime" type="xs:string"> </xs:element>
+                <xs:element name="naziv_podnosioca" type="xs:string"> </xs:element>
+            </xs:choice>
+            <xs:element name="adresa_podnosioca" type="xs:string"> </xs:element>
+            <xs:element name="drugi_podaci_za_kontakt" type="xs:string"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

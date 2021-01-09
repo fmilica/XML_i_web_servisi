@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Zalba_cutanje xmlns="http://zalbacutanje"
+    xmlns:tipovi="http://tipovi"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://zalbacutanje zalbacutanje.xsd"
+    mesto="Novi Sad" datum="2020-12-07" id="ID005">
+    <Primalac_zalbe>
+        <tipovi:Naziv>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</tipovi:Naziv>
+        <tipovi:Sediste>
+            <tipovi:Mesto>Beograd</tipovi:Mesto>
+            <tipovi:Ulica>Bulevar kralja Aleksandra</tipovi:Ulica>
+            <tipovi:Ulicni_broj>15</tipovi:Ulicni_broj>
+        </tipovi:Sediste>
+    </Primalac_zalbe>
+    <Zalba>
+        <Osnova_zalbe>
+            <Clan></Clan>
+            <Zakon></Zakon>
+        </Osnova_zalbe>
+        <Naziv_organa>Fakultet tehnickih nauka</Naziv_organa>
+        <Razlog_zalbe>Nije postupio</Razlog_zalbe>
+        <Datum>2020-11-13</Datum>
+        <Podaci_o_zahtevu>Zahtevane informacije o polozenim predmetima Vlastislava Jakovljevica</Podaci_o_zahtevu>
+        <Podnosilac_zalbe>
+            <tipovi:Ime>Vlastislav</tipovi:Ime>
+            <tipovi:Prezime>Jakovljevic</tipovi:Prezime>
+            <tipovi:Adresa>
+                <tipovi:Mesto>Novi Sad</tipovi:Mesto>
+                <tipovi:Ulica>Zeleznicka</tipovi:Ulica>
+                <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>
+            </tipovi:Adresa>
+            <tipovi:Kontakt_podaci>Kontakt telefon: 063/452498506</tipovi:Kontakt_podaci>
+        </Podnosilac_zalbe>
+    </Zalba>
+</Zalba_cutanje>

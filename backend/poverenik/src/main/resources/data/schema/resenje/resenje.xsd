@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://resenje" xmlns:res="http://resenje" xmlns:tipovi="http://tipovi">
+    <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
+    <xs:element name="Resenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="res:Opis_zalbe"/>
+                <xs:element ref="res:Odluka"/>
+                <xs:element ref="res:Obrazlozenje"/>
+                <xs:element name="Poverenik" type="res:TOsoba"/>
+            </xs:sequence>
+            <xs:attribute name="broj_resenja" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="\d{3}-\d{2}-\d{4}\/\d{4}-\d{2}"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="datum_resenja" type="xs:date" use="required"/>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Opis_zalbe">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="Podnosilac_zalbe" type="res:TOsoba"/>
+                <xs:element name="Organ_vlasti" type="tipovi:TOrgan_vlasti_adresa"/>
+                <xs:element name="Zakonska_osnova_resenja" type="res:TZakonske_osnove"/>
+            </xs:sequence>
+            <xs:attribute name="razlog_zalbe" type="res:Razlog_zalbe" use="required"/>
+            <xs:attribute name="datum_zahteva" type="xs:date" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Odluka">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Nalozi">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element maxOccurs="unbounded" ref="res:Nalog"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Odbijanje">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="razlog_odbijanja" type="res:Tip_resenja"
+                                    use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Nalog">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="rok_izvrsenja" type="xs:positiveInteger" use="required"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Obrazlozenje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="res:Postupak_zalioca"/>
+                <xs:element ref="res:Prosledjivanje_zalbe"/>
+                <xs:element ref="res:Odgovor_na_zalbu"/>
+                <xs:element ref="res:Razlozi_odluke"/>
+                <xs:element ref="res:Zalba_na_resenje"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Postupak_zalioca">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Podnosenje_zalbe">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="datum_zalbe" type="xs:date" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Podnosenje_zahteva">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="datum_zahteva" type="xs:date" use="required"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="prilozene_kopije" type="xs:boolean"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Prosledjivanje_zalbe">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="Zakonska_osnova_prosledjivanja" type="res:TZakonske_osnove"/>
+            </xs:sequence>
+            <xs:attribute name="datum_prosledjivanja" type="xs:date" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Odgovor_na_zalbu">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute name="datum_odgovora" type="xs:date"/>
+                    <xs:attribute name="rok_za_odgovor" type="xs:positiveInteger"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Razlozi_odluke">
+        <xs:complexType mixed="true">
+            <xs:sequence>
+                <xs:element name="Detaljan_opis_podnetog_zahteva" type="xs:string"/>
+                <xs:element name="Detaljan_opis_odgovora_na_zahtev">
+                    <xs:complexType mixed="true">
+                        <xs:sequence>
+                            <xs:element name="Zakonska_osnova_odgovora" type="res:TZakonske_osnove"
+                            />
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Obrazlozenje_odluke">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Detaljan_opis_odluke" type="xs:string"/>
+                            <xs:element name="Zakonske_osnove_odluke" type="res:TZakonske_osnove"/>
+                        </xs:sequence>
+                        <xs:attribute name="tip_odluke" type="res:Tip_resenja" use="required"/>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element
+        default="Против овог решења није допуштена жалба већ се, у складу са Законом о управним споровима, може покренути управни спор тужбом Управном суду у Београду, у року од 30 дана од дана пријема решења. Такса на тужбу износи 390,00 динара."
+        name="Zalba_na_resenje">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="xs:string">
+                    <xs:attribute default="30" name="rok_za_tuzbu" type="xs:positiveInteger"/>
+                    <xs:attribute default="390.00" name="taksa_tuzbe" type="xs:double"/>
+                    <xs:attribute default="Закон о управним споровима" name="zakon" type="xs:string"/>
+                    <xs:attribute default="Управни суд у Београду" name="sud" type="xs:string"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TZakonska_osnova">
+        <xs:sequence>
+            <xs:element name="Clan" type="xs:positiveInteger"/>
+            <xs:element minOccurs="0" name="Stav" type="xs:positiveInteger"/>
+            <xs:element minOccurs="0" name="Tacka" type="xs:positiveInteger"/>
+            <xs:element name="Zakon" type="xs:string"/>
+            <xs:element minOccurs="0" name="Sluzbeni_glasnik" type="tipovi:TSluzbeni_glasnik">
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="rok" type="xs:positiveInteger"/>
+    </xs:complexType>
+    <xs:complexType mixed="true" name="TZakonske_osnove">
+        <xs:sequence>
+            <xs:element maxOccurs="unbounded" name="Zakonska_osnova" type="res:TZakonska_osnova"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TOsoba">
+        <xs:sequence>
+            <xs:element name="Ime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z][a-z]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Prezime">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="[A-Z][a-z]+"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="Razlog_zalbe">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="nepostupanje"/>
+            <xs:enumeration value="nepostupanje u celosti"/>
+            <xs:enumeration value="nepostupanje u zakonskom roku"/>
+            <xs:enumeration value="odbijanje/odbacivanje"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="Tip_resenja">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="osnovana"/>
+            <xs:enumeration value="neosnovana"/>
+            <xs:enumeration value="ponistena"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>

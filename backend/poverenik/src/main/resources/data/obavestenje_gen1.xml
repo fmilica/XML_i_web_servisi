@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Obavestenje xmlns="http://obavestenje"
+    xmlns:tipovi="http://tipovi"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://obavestenje obavestenje.xsd" 
+    dostavljeno="imenovanom" 
+    datum="2006-05-04"
+    id="ID002">
+    <Organ_vlasti>
+        <tipovi:Naziv>Fakultet tehnickih nauka</tipovi:Naziv>
+        <tipovi:Sediste>Novi Sad</tipovi:Sediste>
+    </Organ_vlasti>
+    <Broj_predmeta>SIIT-1</Broj_predmeta>
+    <Podnosilac>
+        <tipovi:Ime>Vlastislav</tipovi:Ime>
+        <tipovi:Prezime>Jakovljevic</tipovi:Prezime>
+        <tipovi:Adresa>
+            <tipovi:Mesto>Novi Sad</tipovi:Mesto>
+            <tipovi:Ulica>Zeleznicka</tipovi:Ulica>
+            <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>
+        </tipovi:Adresa>
+    </Podnosilac>
+    <Uvid_u_dokument>
+        <Zakonska_osnova>
+            <Clan>16</Clan>
+            <Stav>1</Stav>
+            <Zakon>Zakon o slobodnom pristupu informacijama od javnog značaja</Zakon>
+        </Zakonska_osnova>
+        <Datum_potrazivanja>2006-05-04</Datum_potrazivanja>
+        <Opis_trazene_informacije>Informacije o polozenim predmetima</Opis_trazene_informacije>
+        <Podaci_o_uvidu>
+            <Datum>2006-05-04</Datum>
+            <Vreme>15:30:00.000</Vreme>
+            <Pocetno_vreme>12</Pocetno_vreme>
+            <Krajnje_vreme>17</Krajnje_vreme>
+            <Mesto_uvida>
+                <tipovi:Mesto>Novi Sad</tipovi:Mesto>
+                <tipovi:Ulica>Trg Dositeja Obradovica</tipovi:Ulica>
+                <tipovi:Ulicni_broj>4</tipovi:Ulicni_broj>
+                <Kancelarijski_broj>F-13</Kancelarijski_broj>
+            </Mesto_uvida>
+        </Podaci_o_uvidu>
+    </Uvid_u_dokument>
+    <Ukupan_trosak_kopija valuta="RSD" ziro_racun="840-742328-843-30" poziv_na_broj="97">30</Ukupan_trosak_kopija>
+</Obavestenje>
