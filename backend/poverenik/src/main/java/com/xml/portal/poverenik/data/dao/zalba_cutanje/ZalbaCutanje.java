@@ -53,12 +53,12 @@ import com.xml.portal.poverenik.data.dao.tipovi.TPoverenik;
     "primalacZalbe",
     "zalba"
 })
-@XmlRootElement(name = "Zalba_cutanje")
+@XmlRootElement(name = "Zalba_cutanje", namespace = "http://zalbacutanje")
 public class ZalbaCutanje implements GenericXML {
 
-    @XmlElement(name = "Primalac_zalbe", required = true)
+    @XmlElement(name = "Primalac_zalbe", namespace = "http://zalbacutanje", required = true)
     protected TPoverenik primalacZalbe;
-    @XmlElement(name = "Zalba", required = true)
+    @XmlElement(name = "Zalba", namespace = "http://zalbacutanje", required = true)
     protected Zalba zalba;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -70,6 +70,14 @@ public class ZalbaCutanje implements GenericXML {
     protected XMLGregorianCalendar datum;
     @XmlAttribute(name = "mesto")
     protected String mesto;
+    @XmlAttribute(name = "vocab")
+    protected String vocab;
+    @XmlAttribute(name = "about")
+    protected String about;
+    @XmlAttribute(name = "rel")
+    protected String rel;
+    @XmlAttribute(name = "href")
+    protected String href;
 
     /**
      * Gets the value of the primalacZalbe property.
@@ -189,6 +197,34 @@ public class ZalbaCutanje implements GenericXML {
      */
     public void setMesto(String value) {
         this.mesto = value;
+    }
+    
+    public String getVocab() {
+    	return vocab;
+    }
+    public void setVocab(String value) {
+    	this.vocab = value;
+    }
+    
+    public String getAbout() {
+    	return about;
+    }
+    public void setAbout(String value) {
+    	this.about = value;
+    }
+    
+    public String getRel() {
+    	return rel;
+    }
+    public void setRel(String value) {
+    	this.rel = value;
+    }
+    
+    public String getHref() {
+    	return href;
+    }
+    public void setHref(String value) {
+    	this.href = value;
     }
     
 	@Override

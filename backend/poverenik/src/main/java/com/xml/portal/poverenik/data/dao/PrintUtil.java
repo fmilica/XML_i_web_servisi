@@ -225,8 +225,8 @@ public class PrintUtil {
 	
 	private static void printZalba(Zalba zalba) {
 		outString += "\t Zalba: " + "\n";
-		outString += "\t\t Clan: " + zalba.getClan() + "\n";
-		outString += "\t\t Zakon: " + zalba.getZakon() + "\n";
+		outString += "\t\t Clan: " + zalba.getOsnovaZalbe().getClan() + "\n";
+		outString += "\t\t Zakon: " + zalba.getOsnovaZalbe().getZakon() + "\n";
 		outString += "\t\t Naziv organa: " + zalba.getNazivOrgana() + "\n";
 		outString += "\t\t Razlog zalbe: " + zalba.getRazlogZalbe() + "\n";
 		outString += "\t\t Datum: " + zalba.getDatum() + "\n";

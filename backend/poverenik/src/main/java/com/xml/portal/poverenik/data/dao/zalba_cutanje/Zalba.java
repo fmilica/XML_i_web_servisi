@@ -29,14 +29,7 @@ import com.xml.portal.poverenik.data.dao.tipovi.TLiceKontakt;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Clan">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}int">
- *               &lt;minInclusive value="1"/>
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
- *         &lt;element name="Zakon" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Osnova_zalbe" type="{http://zalbacutanje}TZakonska_osnova"/>
  *         &lt;element name="Naziv_organa" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="Razlog_zalbe">
  *           &lt;simpleType>
@@ -60,71 +53,52 @@ import com.xml.portal.poverenik.data.dao.tipovi.TLiceKontakt;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "clan",
-    "zakon",
+	"osnovaZalbe",
     "nazivOrgana",
     "razlogZalbe",
     "datum",
     "podaciOZahtevu",
     "podnosilacZalbe"
 })
-@XmlRootElement(name = "Zalba")
+@XmlRootElement(name = "Zalba", namespace = "http://zalbacutanje")
 public class Zalba {
 
-    @XmlElement(name = "Clan")
-    protected int clan;
-    @XmlElement(name = "Zakon", required = true)
-    protected String zakon;
-    @XmlElement(name = "Naziv_organa", required = true)
+	@XmlElement(name = "Osnova_zalbe", namespace = "http://zalbacutanje", required = true)
+    protected TZakonskaOsnova osnovaZalbe;
+    @XmlElement(name = "Naziv_organa", namespace = "http://zalbacutanje", required = true)
     protected String nazivOrgana;
-    @XmlElement(name = "Razlog_zalbe", required = true)
+    @XmlElement(name = "Razlog_zalbe", namespace = "http://zalbacutanje", required = true)
     protected String razlogZalbe;
-    @XmlElement(name = "Datum", required = true)
+    @XmlElement(name = "Datum", namespace = "http://zalbacutanje", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
-    @XmlElement(name = "Podaci_o_zahtevu", required = true)
+    @XmlElement(name = "Podaci_o_zahtevu", namespace = "http://zalbacutanje", required = true)
     protected String podaciOZahtevu;
-    @XmlElement(name = "Podnosilac_zalbe", required = true)
+    @XmlElement(name = "Podnosilac_zalbe", namespace = "http://zalbacutanje", required = true)
     protected TLiceKontakt podnosilacZalbe;
-
+    
     /**
-     * Gets the value of the clan property.
-     * 
-     */
-    public int getClan() {
-        return clan;
-    }
-
-    /**
-     * Sets the value of the clan property.
-     * 
-     */
-    public void setClan(int value) {
-        this.clan = value;
-    }
-
-    /**
-     * Gets the value of the zakon property.
+     * Gets the value of the osnovaZalbe property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link TZakonskaOsnova }
      *     
      */
-    public String getZakon() {
-        return zakon;
+    public TZakonskaOsnova getOsnovaZalbe() {
+        return osnovaZalbe;
     }
 
     /**
-     * Sets the value of the zakon property.
+     * Sets the value of the osnovaZalbe property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link TZakonskaOsnova }
      *     
      */
-    public void setZakon(String value) {
-        this.zakon = value;
+    public void setOsnovaZalbe(TZakonskaOsnova value) {
+        this.osnovaZalbe = value;
     }
 
     /**
