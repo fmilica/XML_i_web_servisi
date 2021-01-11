@@ -77,15 +77,15 @@ import com.xml.portal.poverenik.data.dao.tipovi.TSluzbeniGlasnik;
 })
 public class TZakonskaOsnova {
 
-    @XmlElement(name = "Clan", required = true)
+    @XmlElement(name = "Clan", namespace = "http://zahtev", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger clan;
-    @XmlElement(name = "Stav", required = true)
+    @XmlElement(name = "Stav", namespace = "http://zahtev", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger stav;
-    @XmlElement(name = "Zakon", required = true)
+    @XmlElement(name = "Zakon", namespace = "http://zahtev", required = true)
     protected String zakon;
-    @XmlElement(name = "Sluzbeni_glasnik", required = true)
+    @XmlElement(name = "Sluzbeni_glasnik", namespace = "http://zahtev", required = true)
     protected TSluzbeniGlasnik sluzbeniGlasnik;
 
     /**

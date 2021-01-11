@@ -1,51 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Zalba_odbijanje xmlns="http://zalba_odbijen"
+<zoz:Zalba_odbijanje xmlns="http://www.w3.org/ns/rdfa#"
+    xmlns:zoz="http://zalbaodbijen"
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://zalba_odbijen zalba_odbijen.xsd"
-    mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01" id="ID004">
+    xmlns:pred="http://www.xml.com/predicate/"
+    xsi:schemaLocation="http://zalbaodbijen zalba_odbijen.xsd"
+    mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01" id="ID1"
     
-    <podaci_o_primaocu>
-        <tipovi:Naziv>Primaoc</tipovi:Naziv>
+    vocab="http://www.xml.com/predicate/"
+    about="http://zalbaodbijen/ID1"
+    rel="pred:vezanZahtev"
+    href="http://zahtev/ID1">
+    <zoz:podaci_o_primaocu>
+        <tipovi:Naziv property="pred:primalacNaziv">Primalac</tipovi:Naziv>
         <tipovi:Sediste>
             <tipovi:Mesto>Mesto Primaoca</tipovi:Mesto>
             <tipovi:Ulica>Ulica primaoca</tipovi:Ulica>
             <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>
         </tipovi:Sediste>
-    </podaci_o_primaocu>
+    </zoz:podaci_o_primaocu>
     
-    <podaci_o_zaliocu>
-        <tipovi:Ime>Zalioc</tipovi:Ime>
-        <tipovi:Prezime>Zaliocic</tipovi:Prezime>
+    <zoz:podaci_o_zaliocu>
+        <tipovi:Ime property="pred:podnosilacIme">Zalilac</tipovi:Ime>
+        <tipovi:Prezime property="pred:podnosilacPrezime">Zaliocic</tipovi:Prezime>
         <tipovi:Adresa>
             <tipovi:Mesto>Mesto Zalioca</tipovi:Mesto>
             <tipovi:Ulica>Ulica zalioca</tipovi:Ulica>
             <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>
         </tipovi:Adresa>
-    </podaci_o_zaliocu>
+    </zoz:podaci_o_zaliocu>
     
-    <podaci_o_odluci broj_odluke="0" godina="0">
-        <naziv_donosioca_odluke>Donosioc odluke</naziv_donosioca_odluke>
-    </podaci_o_odluci>
+    <zoz:podaci_o_odluci broj_odluke="0" godina="0">
+        <zoz:naziv_donosioca_odluke>Donosioc odluke</zoz:naziv_donosioca_odluke>
+    </zoz:podaci_o_odluci>
     
-    <telo_zalbe>
-        <razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</razlog_zalbe>
-        <osnova_zalbe>
-            <Clan></Clan>
-            <Stav></Stav>
-            <Zakon></Zakon>
-        </osnova_zalbe>
-    </telo_zalbe>
+    <zoz:telo_zalbe>
+        <zoz:razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</zoz:razlog_zalbe>
+        <zoz:osnova_zalbe>
+            <zoz:Clan></zoz:Clan>
+            <zoz:Stav></zoz:Stav>
+            <zoz:Zakon></zoz:Zakon>
+        </zoz:osnova_zalbe>
+    </zoz:telo_zalbe>
     
-    <podaci_o_podnosiocu_zalbe>
-        <tipovi:Ime>Podnosioc</tipovi:Ime>
-        <tipovi:Prezime>Podnosiocic</tipovi:Prezime>
+    <zoz:podaci_o_podnosiocu_zalbe>
+        <tipovi:Ime property="pred:podnosilacIme">Podnosioc</tipovi:Ime>
+        <tipovi:Prezime property="pred:podnosilacPrezime">Podnosiocic</tipovi:Prezime>
         <tipovi:Adresa>
             <tipovi:Mesto>Mesto Podnosioca</tipovi:Mesto>
             <tipovi:Ulica>Adresa podnosioca</tipovi:Ulica>
             <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>
         </tipovi:Adresa>
         <tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>
-    </podaci_o_podnosiocu_zalbe>
+    </zoz:podaci_o_podnosiocu_zalbe>
     
-</Zalba_odbijanje>
+</zoz:Zalba_odbijanje>

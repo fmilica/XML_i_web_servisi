@@ -54,16 +54,16 @@ import javax.xml.bind.annotation.XmlType;
     "kopija",
     "dostavljanjeKopije"
 })
-@XmlRootElement(name = "Zahtevi")
+@XmlRootElement(name = "Zahtevi", namespace = "http://zahtev")
 public class Zahtevi {
 
-    @XmlElement(name = "Obavestenje")
-    protected Object obavestenje;
-    @XmlElement(name = "Uvid")
-    protected Object uvid;
-    @XmlElement(name = "Kopija")
-    protected Object kopija;
-    @XmlElement(name = "Dostavljanje_kopije")
+    @XmlElement(name = "Obavestenje", namespace = "http://zahtev")
+    protected String obavestenje;
+    @XmlElement(name = "Uvid", namespace = "http://zahtev")
+    protected String uvid;
+    @XmlElement(name = "Kopija", namespace = "http://zahtev")
+    protected String kopija;
+    @XmlElement(name = "Dostavljanje_kopije", namespace = "http://zahtev")
     protected Zahtevi.DostavljanjeKopije dostavljanjeKopije;
 
     /**
@@ -71,10 +71,10 @@ public class Zahtevi {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getObavestenje() {
+    public String getObavestenje() {
         return obavestenje;
     }
 
@@ -83,10 +83,10 @@ public class Zahtevi {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setObavestenje(Object value) {
+    public void setObavestenje(String value) {
         this.obavestenje = value;
     }
 
@@ -95,10 +95,10 @@ public class Zahtevi {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getUvid() {
+    public String getUvid() {
         return uvid;
     }
 
@@ -107,10 +107,10 @@ public class Zahtevi {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setUvid(Object value) {
+    public void setUvid(String value) {
         this.uvid = value;
     }
 
@@ -119,10 +119,10 @@ public class Zahtevi {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getKopija() {
+    public String getKopija() {
         return kopija;
     }
 
@@ -131,10 +131,10 @@ public class Zahtevi {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setKopija(Object value) {
+    public void setKopija(String value) {
         this.kopija = value;
     }
 
@@ -188,7 +188,7 @@ public class Zahtevi {
     })
     public static class DostavljanjeKopije {
 
-        @XmlElement(name = "Nacin_dostave", required = true)
+        @XmlElement(name = "Nacin_dostave", namespace = "http://zahtev", required = true)
         protected NacinDostave nacinDostave;
 
         /**

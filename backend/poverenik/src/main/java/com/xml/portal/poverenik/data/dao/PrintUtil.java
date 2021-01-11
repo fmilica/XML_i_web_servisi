@@ -51,7 +51,7 @@ public class PrintUtil {
 	
 	private static void printOrganVlasti(TOrganVlasti organVlasti) {
 		outString += "\n\t Podaci o nadleznom organu vlasti: " + "\n";
-		outString += "\t\t Naziv: " + organVlasti.getNaziv() + "\n";
+		outString += "\t\t Naziv: " + organVlasti.getNaziv().getValue() + "\n";
 		outString += "\t\t Sediste: " + organVlasti.getSediste() + "\n";
 	}
 	
@@ -126,7 +126,7 @@ public class PrintUtil {
 	
 	private static void printOrganVlastiZahtev(TOrganVlasti organVlasti) {
 		outString += "\t Podaci o organu kom se upucuje zahtev: " + "\n";
-		outString += "\t\t Naziv: " + organVlasti.getNaziv() + "\n";
+		outString += "\t\t Naziv: " + organVlasti.getNaziv().getValue() + "\n";
 		outString += "\t\t Sediste: " + organVlasti.getSediste() + "\n";
 		outString += "\n";
 	}
@@ -189,9 +189,9 @@ public class PrintUtil {
 	
 	private static void printTrazilac(TLiceKontakt trazilac) {
 		outString += "\t Informacije o traziocu: " + "\n";
-		outString += "\t\t Ime: " + trazilac.getIme() + "\n";
-		outString += "\t\t Prezime: " + trazilac.getPrezime() + "\n";
-		outString += "\t\t Adresa: " + trazilac.getAdresa() + "\n";
+		outString += "\t\t Ime: " + trazilac.getIme().getValue() + "\n";
+		outString += "\t\t Prezime: " + trazilac.getPrezime().getValue() + "\n";
+		printAdresa(trazilac.getAdresa());
 		outString += "\t\t Kontakt podaci: " +trazilac.getKontaktPodaci() + "\n";
 	}
 	

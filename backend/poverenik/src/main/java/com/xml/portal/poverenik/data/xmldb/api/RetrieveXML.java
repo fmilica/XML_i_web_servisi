@@ -32,11 +32,11 @@ public class RetrieveXML {
 	    	System.out.println("[INFO] " + className);
 	    	
 	        collectionId = "/db/poverenik/" + className;
-	        documentId = className + documentId + ".xml";
+	        documentId = className + "ID" + documentId + ".xml";
     	} else {
     		System.out.println("[INFO] Resenje");
     		collectionId = "/db/poverenik/" + "Resenje";
-    		documentId = "Resenje" + documentId + ".xml";
+    		documentId = "ResenjeID" + documentId + ".xml";
     	}
         
         // initialize database driver
@@ -96,7 +96,7 @@ public class RetrieveXML {
 
 	private static GenericXML retrieveJAXB(Class<GenericXML> xmlClass, XMLResource res) throws JAXBException, XMLDBException {
     	System.out.println("[INFO] Binding XML resouce to an JAXB instance: ");
-        JAXBContext context = JAXBContext.newInstance(xmlClass.getPackageName());
+        JAXBContext context = JAXBContext.newInstance(xmlClass.getPackage().getName());
 		
 		Unmarshaller unmarshaller = context.createUnmarshaller();
 		

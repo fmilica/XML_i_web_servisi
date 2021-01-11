@@ -42,14 +42,14 @@ import javax.xml.bind.annotation.XmlType;
     "zahtevi",
     "zahtevaneInformacije"
 })
-@XmlRootElement(name = "Telo_zahteva")
+@XmlRootElement(name = "Telo_zahteva", namespace = "http://zahtev")
 public class TeloZahteva {
 
-    @XmlElement(name = "Zakonska_osnova", required = true)
+    @XmlElement(name = "Zakonska_osnova", namespace = "http://zahtev", required = true)
     protected TZakonskaOsnova zakonskaOsnova;
-    @XmlElement(name = "Zahtevi", required = true)
+    @XmlElement(name = "Zahtevi", namespace = "http://zahtev", required = true)
     protected Zahtevi zahtevi;
-    @XmlElement(name = "Zahtevane_informacije", required = true)
+    @XmlElement(name = "Zahtevane_informacije", namespace = "http://zahtev", required = true)
     protected String zahtevaneInformacije;
 
     /**

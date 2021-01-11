@@ -60,16 +60,16 @@ import javax.xml.bind.annotation.XmlType;
     "dostavaFaksom",
     "posebnaDostava"
 })
-@XmlRootElement(name = "Nacin_dostave")
+@XmlRootElement(name = "Nacin_dostave", namespace = "http://zahtev")
 public class NacinDostave {
 
-    @XmlElement(name = "Dostava_postom")
-    protected Object dostavaPostom;
-    @XmlElement(name = "Dostava_elektronskom_postom")
-    protected Object dostavaElektronskomPostom;
-    @XmlElement(name = "Dostava_faksom")
-    protected Object dostavaFaksom;
-    @XmlElement(name = "Posebna_dostava")
+    @XmlElement(name = "Dostava_postom", namespace = "http://zahtev")
+    protected String dostavaPostom;
+    @XmlElement(name = "Dostava_elektronskom_postom", namespace = "http://zahtev")
+    protected String dostavaElektronskomPostom;
+    @XmlElement(name = "Dostava_faksom", namespace = "http://zahtev")
+    protected String dostavaFaksom;
+    @XmlElement(name = "Posebna_dostava", namespace = "http://zahtev")
     protected NacinDostave.PosebnaDostava posebnaDostava;
 
     /**
@@ -77,10 +77,10 @@ public class NacinDostave {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getDostavaPostom() {
+    public String getDostavaPostom() {
         return dostavaPostom;
     }
 
@@ -89,10 +89,10 @@ public class NacinDostave {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setDostavaPostom(Object value) {
+    public void setDostavaPostom(String value) {
         this.dostavaPostom = value;
     }
 
@@ -101,10 +101,10 @@ public class NacinDostave {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getDostavaElektronskomPostom() {
+    public String getDostavaElektronskomPostom() {
         return dostavaElektronskomPostom;
     }
 
@@ -113,10 +113,10 @@ public class NacinDostave {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setDostavaElektronskomPostom(Object value) {
+    public void setDostavaElektronskomPostom(String value) {
         this.dostavaElektronskomPostom = value;
     }
 
@@ -125,10 +125,10 @@ public class NacinDostave {
      * 
      * @return
      *     possible object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public Object getDostavaFaksom() {
+    public String getDostavaFaksom() {
         return dostavaFaksom;
     }
 
@@ -137,10 +137,10 @@ public class NacinDostave {
      * 
      * @param value
      *     allowed object is
-     *     {@link Object }
+     *     {@link String }
      *     
      */
-    public void setDostavaFaksom(Object value) {
+    public void setDostavaFaksom(String value) {
         this.dostavaFaksom = value;
     }
 
@@ -200,7 +200,7 @@ public class NacinDostave {
     })
     public static class PosebnaDostava {
 
-        @XmlElement(name = "Nacin_posebne_dostave", required = true)
+        @XmlElement(name = "Nacin_posebne_dostave", namespace = "http://zahtev", required = true)
         protected String nacinPosebneDostave;
 
         /**

@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://zalbacutanje" xmlns:obavestenje="http://obavestenje"
-    xmlns:zalbacutanje="http://zalbacutanje" xmlns:zhtv="http://zahtev" xmlns:tipovi="http://tipovi">
+    targetNamespace="http://zalbacutanje" xmlns:zoc="http://zalbacutanje"  xmlns:tipovi="http://tipovi"
+    xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
     <xs:element name="Zalba_cutanje">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Primalac_zalbe" type="tipovi:TPoverenik"/>
-                <xs:element ref="zalbacutanje:Zalba"/>
+                <xs:element ref="zoc:Zalba"/>
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID"/>
             <xs:attribute name="datum" type="xs:date"/>
             <xs:attribute name="mesto" type="xs:string"/>
+            <xs:attribute name="vocab" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Zalba">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Osnova_zalbe" type="zalbacutanje:TZakonska_osnova"/>
+                <xs:element name="Osnova_zalbe" type="zoc:TZakonska_osnova"/>
                 <xs:element name="Naziv_organa" type="xs:string"/>
                 <xs:element name="Razlog_zalbe">
                     <xs:simpleType>

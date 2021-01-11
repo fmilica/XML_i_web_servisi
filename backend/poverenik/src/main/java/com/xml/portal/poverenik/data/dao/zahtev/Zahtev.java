@@ -62,14 +62,14 @@ import com.xml.portal.poverenik.data.dao.tipovi.TOrganVlasti;
     "teloZahteva",
     "trazilac"
 })
-@XmlRootElement(name = "Zahtev")
+@XmlRootElement(name = "Zahtev", namespace = "http://zahtev")
 public class Zahtev implements GenericXML {
 
-    @XmlElement(name = "Organ_vlasti", required = true)
+    @XmlElement(name = "Organ_vlasti", namespace = "http://zahtev", required = true)
     protected TOrganVlasti organVlasti;
-    @XmlElement(name = "Telo_zahteva", required = true)
+    @XmlElement(name = "Telo_zahteva", namespace = "http://zahtev", required = true)
     protected TeloZahteva teloZahteva;
-    @XmlElement(name = "Trazilac", required = true)
+    @XmlElement(name = "Trazilac", namespace = "http://zahtev", required = true)
     protected TLiceKontakt trazilac;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)

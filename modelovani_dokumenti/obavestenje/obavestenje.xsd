@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://obavestenje" xmlns:obv="http://obavestenje" xmlns:tipovi="http://tipovi">
+    targetNamespace="http://obavestenje" xmlns:obv="http://obavestenje" xmlns:tipovi="http://tipovi"
+    xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
     <xs:element name="Obavestenje">
         <xs:complexType>
@@ -39,6 +41,10 @@
             <xs:attribute name="id" type="xs:ID"/>
             <xs:attribute name="dostavljeno" type="obv:TDostavljeno" use="required"/>
             <xs:attribute name="datum" type="xs:date" use="required"/>
+            <xs:attribute name="vocab" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Uvid_u_dokument">

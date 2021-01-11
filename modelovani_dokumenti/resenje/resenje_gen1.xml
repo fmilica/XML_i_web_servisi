@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://resenje resenje.xsd" 
     broj_resenja="000-00-0000/0000-00" 
     datum_resenja="2006-05-04" 
-    id="ID001">
+    id="ID1">
     <Opis_zalbe razlog_zalbe="nepostupanje" datum_zahteva="2006-05-04">
         Повереник за информације од јавног значаја и заштиту података о личности, 
         у поступку по алби коју је изјавио AA, због непоступања Учитељског факултета 
@@ -19,11 +19,11 @@
         Закона о општем управном поступку („Сл. гласник РС“, бр. 18/2016 и 95/2018-аутентично тумачење), 
         доноси
         <Podnosilac_zalbe>
-            <Ime>Mihailo</Ime>
-            <Prezime>Grujic</Prezime>
+            <Ime property="pred:zalilacIme">Mihailo</Ime>
+            <Prezime property="pred:zalilacPrezime">Grujic</Prezime>
         </Podnosilac_zalbe>
         <Organ_vlasti>
-            <tipovi:Naziv>Uciteljski fakultet u Prizrenu</tipovi:Naziv>
+            <tipovi:Naziv property="pred:optuzeniNaziv">Uciteljski fakultet u Prizrenu</tipovi:Naziv>
             <tipovi:Sediste>
                 <tipovi:Mesto>Leposavic</tipovi:Mesto>
                 <tipovi:Ulica>Nemanjina</tipovi:Ulica>
@@ -106,12 +106,20 @@
     </Odluka>
     <Obrazlozenje>
         <Postupak_zalioca prilozene_kopije="true">
-            <Podnosenje_zalbe datum_zalbe="2020-05-07">
+            <Podnosenje_zalbe datum_zalbe="2020-05-07"
+                vocab="http://www.xml.com/predicate/"
+                about="http://resenje/ID1"
+                rel="pred:vezanaZalba"
+                href="http://zalbacutanje/ID1">
                 АА, као тражилац информација, изјавио је дана 07.05.2020. 
                 године жалбу Поверенику, због непоступања Учитељског факултета 
                 у Призрену са привременим седиштем у Лепосавићу
             </Podnosenje_zalbe>
-            <Podnosenje_zahteva datum_zahteva="2020-04-16">
+            <Podnosenje_zahteva datum_zahteva="2020-04-16"
+                vocab="http://www.xml.com/predicate/"
+                about="http://resenje/ID1"
+                rel="pred:vezanZahtev"
+                href="http://zahtev/ID1">
                 по његовом захтеву од 16.04.2020. године за приступ информацијама
                 од јавног значаја и у прилогу доставио копију истог.
             </Podnosenje_zahteva>
@@ -236,7 +244,7 @@
         </Zalba_na_resenje>
     </Obrazlozenje>
     <Poverenik>
-        <Ime>Aa</Ime>
-        <Prezime>Aa</Prezime>
+        <Ime property="pred:izdavacIme">Aa</Ime>
+        <Prezime property="pred:izdavacPrezime">Aa</Prezime>
     </Poverenik>
 </Resenje>

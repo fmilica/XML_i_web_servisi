@@ -27,13 +27,29 @@
     </xs:complexType>
     <xs:complexType name="TOrgan_vlasti">
         <xs:sequence>
-            <xs:element name="Naziv" type="xs:string"/>
+            <xs:element name="Naziv">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="Sediste" type="tipovi:TMesto"> </xs:element>
         </xs:sequence>
     </xs:complexType>
     <xs:complexType name="TOrgan_vlasti_adresa">
         <xs:sequence>
-            <xs:element name="Naziv" type="xs:string"/>
+            <xs:element name="Naziv">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="Sediste" type="tipovi:TAdresa"> </xs:element>
         </xs:sequence>
     </xs:complexType>
@@ -41,7 +57,15 @@
         <xs:sequence>
             <xs:element
                 default="Повереникy за информације од јавног значаја и заштиту података о личности"
-                name="Naziv" type="xs:string"/>
+                name="Naziv">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
             <xs:element name="Sediste" type="tipovi:TAdresa"/>
         </xs:sequence>
     </xs:complexType>
@@ -49,10 +73,34 @@
         <xs:sequence>
             <xs:choice>
                 <xs:sequence>
-                    <xs:element name="Ime" type="xs:string"/>
-                    <xs:element name="Prezime" type="xs:string"/>
+                    <xs:element name="Ime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Prezime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
                 </xs:sequence>
-                <xs:element name="Naziv" type="xs:string"/>
+                <xs:element name="Naziv">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
             </xs:choice>
             <xs:element name="Adresa" type="tipovi:TAdresa"/>
         </xs:sequence>

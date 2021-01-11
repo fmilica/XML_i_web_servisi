@@ -42,15 +42,21 @@ public class ZahtevService {
     @POST
     public Response addZahtev(Zahtev zahtev, @Context UriInfo uriInfo) {
     	Zahtev stored = zahtevBusiness.create(zahtev);
+    	boolean storedMetadata = zahtevBusiness.storeMetadata(zahtev);
     	
     	Response r;
     	if (stored == null) {
-    		Greska greska = new Greska("Greska u kreiranju zahteva.");
+    		Greska greska = new Greska("Greska u kreiranju Zahteva.");
 			r = Response.status(500).type("application/xml").entity(greska).build();
     	} else {
-		    UriBuilder builder = uriInfo.getAbsolutePathBuilder();
-		    builder.path(stored.getId());
-		    r = Response.created(builder.build()).type("application/xml").entity(stored).build();
+    		if (storedMetadata) {
+			    UriBuilder builder = uriInfo.getAbsolutePathBuilder();
+			    builder.path(stored.getId());
+			    r = Response.created(builder.build()).type("application/xml").entity(stored).build();
+    		} else {
+    			Greska greska = new Greska("Greska u kreiranju metapodataka Zahteva.");
+    			r = Response.status(500).type("application/xml").entity(greska).build();
+    		}
     	}
         return r;
     }

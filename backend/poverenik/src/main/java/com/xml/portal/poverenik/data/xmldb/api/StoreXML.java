@@ -74,7 +74,7 @@ public class StoreXML {
         	System.out.println("[INFO] Retrieving the collection: " + collectionId);
             col = getOrCreateCollection(collectionId);
 
-            String id = col.getResourceCount() + 1 + "";
+            String id = "ID" + (col.getResourceCount() + 1);
             documentId = documentId + id + ".xml";
             
             System.out.println("\t- collection ID: " + collectionId);
@@ -127,7 +127,7 @@ public class StoreXML {
 
     private static Object[] storeJAXB(GenericXML xmlToStore, XMLResource res, OutputStream os, String id) throws JAXBException, XMLDBException {
     	System.out.println("[INFO] Marshalling JAXB instance to an XML document: ");
-    	String packageName = xmlToStore.getClass().getPackageName();
+    	String packageName = xmlToStore.getClass().getPackage().getName();
         JAXBContext context = JAXBContext.newInstance(packageName);
 		Marshaller marshaller = context.createMarshaller();
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);

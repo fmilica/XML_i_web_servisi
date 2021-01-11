@@ -1,6 +1,7 @@
 package com.xml.portal.poverenik.business;
 
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
+import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.data.xmldb.api.RetrieveXML;
 import com.xml.portal.poverenik.data.xmldb.api.StoreXML;
 
@@ -30,6 +31,15 @@ public class ZahtevBusiness {
 			return (Zahtev)ret;
 		}
 		return null;
+	}
+	
+	public boolean storeMetadata(Zahtev zahtev) {
+		try {
+			StoreMetadata.store(zahtev);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
 	}
 	
 }

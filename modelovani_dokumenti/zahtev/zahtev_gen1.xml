@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Zahtev xmlns="http://zahtev"
+<zahtev:Zahtev xmlns="http://www.w3.org/ns/rdfa#"
+    xmlns:zahtev="http://zahtev"
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pred="http://www.xml.com/predicate/"
     xsi:schemaLocation="http://zahtev zahtev.xsd" 
     mesto="Sremska Mitrovica" 
     datum="2022-04-06"
-    id="ID003">
-    <Organ_vlasti>
-        <tipovi:Naziv>Fakultet tehnickih nauka</tipovi:Naziv>
+    id="ID1">
+    <zahtev:Organ_vlasti>
+        <tipovi:Naziv property="pred:primalacNaziv">Fakultet tehnickih nauka</tipovi:Naziv>
         <tipovi:Sediste>Novi Sad</tipovi:Sediste>
-    </Organ_vlasti>
-    <Telo_zahteva>
-        <Zakonska_osnova>
-            <Clan>15</Clan>
-            <Stav>1</Stav>
-            <Zakon>Zakon o slobodnom pristupu informacijama od javnog značaja</Zakon>
-            <Sluzbeni_glasnik>
+    </zahtev:Organ_vlasti>
+    <zahtev:Telo_zahteva>
+        <zahtev:Zakonska_osnova>
+            <zahtev:Clan>15</zahtev:Clan>
+            <zahtev:Stav>1</zahtev:Stav>
+            <zahtev:Zakon>Zakon o slobodnom pristupu informacijama od javnog značaja</zahtev:Zakon>
+            <zahtev:Sluzbeni_glasnik>
                 <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
                 <tipovi:Brojevi>
                     <tipovi:Broj>120/04</tipovi:Broj>
@@ -23,31 +25,31 @@
                     <tipovi:Broj>104/09</tipovi:Broj>
                     <tipovi:Broj>36/10</tipovi:Broj>
                 </tipovi:Brojevi>
-            </Sluzbeni_glasnik>
-        </Zakonska_osnova>
-        <Zahtevi>
-            <Obavestenje>
-            </Obavestenje>
-            <Kopija>
-            </Kopija>
-            <Dostavljanje_kopije>
-                <Nacin_dostave>
-                    <Posebna_dostava>
-                        <Nacin_posebne_dostave>Golubom pismonosom</Nacin_posebne_dostave>
-                    </Posebna_dostava>
-                </Nacin_dostave>
-            </Dostavljanje_kopije>
-        </Zahtevi>
-        <Zahtevane_informacije>Informacije o polozenim predmetima</Zahtevane_informacije>
-    </Telo_zahteva>
-    <Trazilac>
-        <tipovi:Ime>Vlastislav</tipovi:Ime>
-        <tipovi:Prezime>Jakovljevic</tipovi:Prezime>
+            </zahtev:Sluzbeni_glasnik>
+        </zahtev:Zakonska_osnova>
+        <zahtev:Zahtevi>
+            <zahtev:Obavestenje>
+            </zahtev:Obavestenje>
+            <zahtev:Kopija>
+            </zahtev:Kopija>
+            <zahtev:Dostavljanje_kopije>
+                <zahtev:Nacin_dostave>
+                    <zahtev:Posebna_dostava>
+                        <zahtev:Nacin_posebne_dostave>Golubom pismonosom</zahtev:Nacin_posebne_dostave>
+                    </zahtev:Posebna_dostava>
+                </zahtev:Nacin_dostave>
+            </zahtev:Dostavljanje_kopije>
+        </zahtev:Zahtevi>
+        <zahtev:Zahtevane_informacije>Informacije o polozenim predmetima</zahtev:Zahtevane_informacije>
+    </zahtev:Telo_zahteva>
+    <zahtev:Trazilac>
+        <tipovi:Ime property="pred:podnosilacIme">Vlastislav</tipovi:Ime>
+        <tipovi:Prezime property="pred:podnosilacPrezime">Jakovljevic</tipovi:Prezime>
         <tipovi:Adresa>
             <tipovi:Mesto>Novi Sad</tipovi:Mesto>
             <tipovi:Ulica>Zeleznicka</tipovi:Ulica>
             <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>
         </tipovi:Adresa>
         <tipovi:Kontakt_podaci>063/452498506</tipovi:Kontakt_podaci>
-    </Trazilac>
-</Zahtev>
+    </zahtev:Trazilac>
+</zahtev:Zahtev>
