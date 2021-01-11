@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Resenje xmlns="http://resenje"
+<res:Resenje xmlns="http://www.w3.org/ns/rdfa#"
+    xmlns:res="http://resenje"
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:pred="http://www.xml.com/predicate/"
     xsi:schemaLocation="http://resenje resenje.xsd" 
     broj_resenja="000-00-0000/0000-00" 
     datum_resenja="2006-05-04" 
     id="ID1">
-    <Opis_zalbe razlog_zalbe="nepostupanje" datum_zahteva="2006-05-04">
+    <res:Opis_zalbe razlog_zalbe="nepostupanje" datum_zahteva="2006-05-04">
         Повереник за информације од јавног значаја и заштиту података о личности, 
         у поступку по алби коју је изјавио AA, због непоступања Учитељског факултета 
         у Призрену са привременим седиштем у Лепосавићу, ул. Немањина бб, 
@@ -18,25 +20,25 @@
         Закона о слободном приступу информацијама од јавног значаја и члана 173. став 2. 
         Закона о општем управном поступку („Сл. гласник РС“, бр. 18/2016 и 95/2018-аутентично тумачење), 
         доноси
-        <Podnosilac_zalbe>
-            <Ime property="pred:zalilacIme">Mihailo</Ime>
-            <Prezime property="pred:zalilacPrezime">Grujic</Prezime>
-        </Podnosilac_zalbe>
-        <Organ_vlasti>
+        <res:Podnosilac_zalbe>
+            <res:Ime property="pred:zalilacIme">Mihailo</res:Ime>
+            <res:Prezime property="pred:zalilacPrezime">Grujic</res:Prezime>
+        </res:Podnosilac_zalbe>
+        <res:Organ_vlasti>
             <tipovi:Naziv property="pred:optuzeniNaziv">Uciteljski fakultet u Prizrenu</tipovi:Naziv>
             <tipovi:Sediste>
                 <tipovi:Mesto>Leposavic</tipovi:Mesto>
                 <tipovi:Ulica>Nemanjina</tipovi:Ulica>
                 <tipovi:Ulicni_broj>bb</tipovi:Ulicni_broj>
             </tipovi:Sediste>
-        </Organ_vlasti>
-        <Zakonska_osnova_resenja>
-            <Zakonska_osnova>
-                <Clan>35</Clan>
-                <Stav>1</Stav>
-                <Tacka>5</Tacka>
-                <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
-                <Sluzbeni_glasnik>
+        </res:Organ_vlasti>
+        <res:Zakonska_osnova_resenja>
+            <res:Zakonska_osnova>
+                <res:Clan>35</res:Clan>
+                <res:Stav>1</res:Stav>
+                <res:Tacka>5</res:Tacka>
+                <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>
+                <res:Sluzbeni_glasnik>
                     <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
                     <tipovi:Brojevi>
                         <tipovi:Broj>120/04</tipovi:Broj>
@@ -44,45 +46,45 @@
                         <tipovi:Broj>104/09</tipovi:Broj>
                         <tipovi:Broj>36/10</tipovi:Broj>
                     </tipovi:Brojevi>
-                </Sluzbeni_glasnik>
-            </Zakonska_osnova>
-            <Zakonska_osnova>
-                <Clan>4</Clan>
-                <Tacka>22</Tacka>
-                <Zakon>Закона о заштити података о личности</Zakon>
-                <Sluzbeni_glasnik>
+                </res:Sluzbeni_glasnik>
+            </res:Zakonska_osnova>
+            <res:Zakonska_osnova>
+                <res:Clan>4</res:Clan>
+                <res:Tacka>22</res:Tacka>
+                <res:Zakon>Закона о заштити података о личности</res:Zakon>
+                <res:Sluzbeni_glasnik>
                     <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
                     <tipovi:Brojevi>
                         <tipovi:Broj>87/18</tipovi:Broj>
                     </tipovi:Brojevi>
-                </Sluzbeni_glasnik>
-            </Zakonska_osnova>
-            <Zakonska_osnova>
-                <Clan>23</Clan>
-                <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
-            </Zakonska_osnova>
-            <Zakonska_osnova>
-                <Clan>24</Clan>
-                <Stav>4</Stav>
-                <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
-            </Zakonska_osnova>
-            <Zakonska_osnova>
-                <Clan>173</Clan>
-                <Stav>2</Stav>
-                <Zakon>Закона о општем управном поступку</Zakon>
-                <Sluzbeni_glasnik>
+                </res:Sluzbeni_glasnik>
+            </res:Zakonska_osnova>
+            <res:Zakonska_osnova>
+                <res:Clan>23</res:Clan>
+                <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>
+            </res:Zakonska_osnova>
+            <res:Zakonska_osnova>
+                <res:Clan>24</res:Clan>
+                <res:Stav>4</res:Stav>
+                <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>
+            </res:Zakonska_osnova>
+            <res:Zakonska_osnova>
+                <res:Clan>173</res:Clan>
+                <res:Stav>2</res:Stav>
+                <res:Zakon>Закона о општем управном поступку</res:Zakon>
+                <res:Sluzbeni_glasnik>
                     <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>
                     <tipovi:Brojevi>
                         <tipovi:Broj>18/16</tipovi:Broj>
                         <tipovi:Broj>95/18</tipovi:Broj>
                     </tipovi:Brojevi>
-                </Sluzbeni_glasnik>
-            </Zakonska_osnova>
-        </Zakonska_osnova_resenja>
-    </Opis_zalbe>
-    <Odluka>
-        <Nalozi>
-            <Nalog rok_izvrsenja="5">
+                </res:Sluzbeni_glasnik>
+            </res:Zakonska_osnova>
+        </res:Zakonska_osnova_resenja>
+    </res:Opis_zalbe>
+    <res:Odluka>
+        <res:Nalozi>
+            <res:Nalog rok_izvrsenja="5">
                 I Налаже се Учитељском факултету у Призрену са привременим 
                 седиштем у Лепосавићу, да без одлагања, а најкасније у року 
                 од пет дана од дана пријема овог решења, обавести АА, 
@@ -96,17 +98,17 @@
                 као што су: адреса становања, лични матични број грађана, име 
                 оца, радни стаж, просечна оцена студирања и сл. уколико су 
                 такви подаци садржани у траженом документу.
-            </Nalog>
-            <Nalog rok_izvrsenja="7">
+            </res:Nalog>
+            <res:Nalog rok_izvrsenja="7">
                 II О извршењу решења Учитељски факултет у Призрену са привременим
                 седиштем у Лепосавићу, ће обавестити Повереника у року од седам 
                 дана од пријема овог решења.
-            </Nalog>
-        </Nalozi>
-    </Odluka>
-    <Obrazlozenje>
-        <Postupak_zalioca prilozene_kopije="true">
-            <Podnosenje_zalbe datum_zalbe="2020-05-07"
+            </res:Nalog>
+        </res:Nalozi>
+    </res:Odluka>
+    <res:Obrazlozenje>
+        <res:Postupak_zalioca prilozene_kopije="true">
+            <res:Podnosenje_zalbe datum_zalbe="2020-05-07"
                 vocab="http://www.xml.com/predicate/"
                 about="http://resenje/ID1"
                 rel="pred:vezanaZalba"
@@ -114,17 +116,17 @@
                 АА, као тражилац информација, изјавио је дана 07.05.2020. 
                 године жалбу Поверенику, због непоступања Учитељског факултета 
                 у Призрену са привременим седиштем у Лепосавићу
-            </Podnosenje_zalbe>
-            <Podnosenje_zahteva datum_zahteva="2020-04-16"
+            </res:Podnosenje_zalbe>
+            <res:Podnosenje_zahteva datum_zahteva="2020-04-16"
                 vocab="http://www.xml.com/predicate/"
                 about="http://resenje/ID1"
                 rel="pred:vezanZahtev"
                 href="http://zahtev/ID1">
                 по његовом захтеву од 16.04.2020. године за приступ информацијама
                 од јавног значаја и у прилогу доставио копију истог.
-            </Podnosenje_zahteva>
-        </Postupak_zalioca>
-        <Prosledjivanje_zalbe datum_prosledjivanja="2020-05-11">
+            </res:Podnosenje_zahteva>
+        </res:Postupak_zalioca>
+        <res:Prosledjivanje_zalbe datum_prosledjivanja="2020-05-11">
             Поступајући по жалби, Повереник је дана 11.05.2020. године упутио 
             исту на изјашњење Учитељском факултету у Призрену са привременим 
             седиштем у Лепосавићу, као органу власти у смислу члана 3. 
@@ -132,32 +134,32 @@
             затражио да се изјасни о наводима жалбе, посебно о разлозима 
             непоступања у законском року по поднетом захтеву у складу са 
             одредбама члана 16. ст.1-9. или ст. 10. Закона,
-            <Zakonska_osnova_prosledjivanja>
-                <Zakonska_osnova>
-                    <Clan>3</Clan>
-                    <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                </Zakonska_osnova>
-                <Zakonska_osnova>
-                    <Clan>16</Clan>
-                    <Stav>10</Stav>
-                    <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                </Zakonska_osnova>
-            </Zakonska_osnova_prosledjivanja>
-        </Prosledjivanje_zalbe>
-        <Odgovor_na_zalbu rok_za_odgovor="8">
+            <res:Zakonska_osnova_prosledjivanja>
+                <res:Zakonska_osnova>
+                    <res:Clan>3</res:Clan>
+                    <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                </res:Zakonska_osnova>
+                <res:Zakonska_osnova>
+                    <res:Clan>16</res:Clan>
+                    <res:Stav>10</res:Stav>
+                    <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                </res:Zakonska_osnova>
+            </res:Zakonska_osnova_prosledjivanja>
+        </res:Prosledjivanje_zalbe>
+        <res:Odgovor_na_zalbu rok_za_odgovor="8">
             поводом чега није добио одговор.
-        </Odgovor_na_zalbu>
-        <Razlozi_odluke>
+        </res:Odgovor_na_zalbu>
+        <res:Razlozi_odluke>
             По разматрању жалбе и осталих списа овог предмета, 
             донета је одлука као у диспозитиву решења из следећих разлога:
-            <Detaljan_opis_podnetog_zahteva>
+            <res:Detaljan_opis_podnetog_zahteva>
                 Увидом у списе предмета утврђено је да је АА, дана 16.04.2020. године, 
                 поднео Учитељском факултету у Призрену са привременим седиштем у Лепосавићу, 
                 захтев за приступ информацијама од јавног значаја, електронском поштом, 
                 којим је тражио информације од јавног значаја, ближе наведенe у ставу 
                 I диспозитива овог решења.
-            </Detaljan_opis_podnetog_zahteva>
-            <Detaljan_opis_odgovora_na_zahtev>
+            </res:Detaljan_opis_podnetog_zahteva>
+            <res:Detaljan_opis_odgovora_na_zahtev>
                 Такође је увидом у списе предмета утврђено да по захтеву жалиоца 
                 од 16.04.2020. године, орган власти није поступио, што је био дужан да 
                 учини без одлагања, а најкасније у року од 15 дана од пријема захтева 
@@ -167,21 +169,21 @@
                 који исте садржи односно изда му или достави копију документа у коме 
                 су тражене информације садржане, или да у супротном донесе решење о 
                 одбијању захтева, у смислу става 10. истог члана.
-                <Zakonska_osnova_odgovora>
-                    <Zakonska_osnova>
-                        <Clan>16</Clan>
-                        <Stav>1</Stav>
-                        <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>16</Clan>
-                        <Stav>10</Stav>
-                        <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                </Zakonska_osnova_odgovora>
-            </Detaljan_opis_odgovora_na_zahtev>
-            <Obrazlozenje_odluke tip_odluke="osnovana">
-                <Detaljan_opis_odluke>
+                <res:Zakonska_osnova_odgovora>
+                    <res:Zakonska_osnova>
+                        <res:Clan>16</res:Clan>
+                        <res:Stav>1</res:Stav>
+                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>16</res:Clan>
+                        <res:Stav>10</res:Stav>
+                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                </res:Zakonska_osnova_odgovora>
+            </res:Detaljan_opis_odgovora_na_zahtev>
+            <res:Obrazlozenje_odluke tip_odluke="osnovana">
+                <res:Detaljan_opis_odluke>
                     Имајући у виду да орган власти по захтеву жалиоца од 16.04.2020. године није поступио у
                     складу са наведеним одредбама Закона о слободном приступу информацијама од јавног значаја, а
                     да није оправдао разлоге непоступања по поднетом захтеву, Повереник је у поступку по жалби, на
@@ -200,51 +202,51 @@
                     Учитељски факултет у Призрену са привременим седиштем у Лепосавићу, је дужан да о
                     извршењу решења из става I диспозитива, обавести Повереника у складу са чланом 24. став 3. Закона
                     о слободном приступу информацијама од јавног значаја.
-                </Detaljan_opis_odluke>
-                <Zakonske_osnove_odluke>
-                    <Zakonska_osnova>
-                        <Clan>23</Clan>
-                        <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>24</Clan>
-                        <Stav>1</Stav>
-                        <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>24</Clan>
-                        <Stav>4</Stav>
-                        <Zakon>Закон о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>173</Clan>
-                        <Stav>2</Stav>
-                        <Zakon>Закона о општем управном поступку</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>5</Clan>
-                        <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>12</Clan>
-                        <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                    <Zakonska_osnova>
-                        <Clan>24</Clan>
-                        <Stav>3</Stav>
-                        <Zakon>Закона о слободном приступу информацијама од јавног значаја</Zakon>
-                    </Zakonska_osnova>
-                </Zakonske_osnove_odluke>
-            </Obrazlozenje_odluke>
-        </Razlozi_odluke>
-        <Zalba_na_resenje rok_za_tuzbu="30" taksa_tuzbe="3.9E2" zakon="Закон о управним споровима" sud="Управни суд у Београду">
+                </res:Detaljan_opis_odluke>
+                <res:Zakonske_osnove_odluke>
+                    <res:Zakonska_osnova>
+                        <res:Clan>23</res:Clan>
+                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>24</res:Clan>
+                        <res:Stav>1</res:Stav>
+                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>24</res:Clan>
+                        <res:Stav>4</res:Stav>
+                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>173</res:Clan>
+                        <res:Stav>2</res:Stav>
+                        <res:Zakon>Закона о општем управном поступку</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>5</res:Clan>
+                        <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>12</res:Clan>
+                        <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                    <res:Zakonska_osnova>
+                        <res:Clan>24</res:Clan>
+                        <res:Stav>3</res:Stav>
+                        <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>
+                    </res:Zakonska_osnova>
+                </res:Zakonske_osnove_odluke>
+            </res:Obrazlozenje_odluke>
+        </res:Razlozi_odluke>
+        <res:Zalba_na_resenje rok_za_tuzbu="30" taksa_tuzbe="3.9E2" zakon="Закон о управним споровима" sud="Управни суд у Београду">
             Против овог решења није допуштена жалба већ се, у складу са Законом о управним споровима, 
             може покренути управни спор тужбом Управном суду у Београду, у року од 30 дана од дана 
             пријема решења. Такса на тужбу износи 390,00 динара.
-        </Zalba_na_resenje>
-    </Obrazlozenje>
-    <Poverenik>
-        <Ime property="pred:izdavacIme">Aa</Ime>
-        <Prezime property="pred:izdavacPrezime">Aa</Prezime>
-    </Poverenik>
-</Resenje>
+        </res:Zalba_na_resenje>
+    </res:Obrazlozenje>
+    <res:Poverenik>
+        <res:Ime property="pred:izdavacIme">Aa</res:Ime>
+        <res:Prezime property="pred:izdavacPrezime">Aa</res:Prezime>
+    </res:Poverenik>
+</res:Resenje>

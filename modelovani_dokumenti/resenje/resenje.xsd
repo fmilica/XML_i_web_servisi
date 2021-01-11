@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://resenje" xmlns:res="http://resenje" xmlns:tipovi="http://tipovi">
+    targetNamespace="http://resenje" xmlns:res="http://resenje" xmlns:tipovi="http://tipovi"
+    xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
     <xs:element name="Resenje">
         <xs:complexType>

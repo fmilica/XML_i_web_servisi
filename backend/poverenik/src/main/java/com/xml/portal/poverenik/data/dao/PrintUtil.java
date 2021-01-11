@@ -284,8 +284,8 @@ public class PrintUtil {
 	private static void printTelo(TTelo telo) {
 		outString += "\tTelo zalbe: " + "\n";
 		outString += "\t\tRazlog zalbe: " + telo.getRazlogZalbe() + "\n";
-		outString += "\t\tClan: " + telo.getClan() + "\n";
-		outString += "\t\tZakon: " + telo.getZakon() + "\n";
+		outString += "\t\tClan: " + telo.getOsnovaZalbe().getClan() + "\n";
+		outString += "\t\tZakon: " + telo.getOsnovaZalbe().getZakon() + "\n";
 		outString += "\n";
 	}
 

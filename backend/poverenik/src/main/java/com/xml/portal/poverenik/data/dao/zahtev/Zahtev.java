@@ -81,6 +81,10 @@ public class Zahtev implements GenericXML {
     @XmlAttribute(name = "datum")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
+    @XmlAttribute(name = "vocab")
+    protected String vocab;
+    @XmlAttribute(name = "about")
+    protected String about;
 
     /**
      * Gets the value of the organVlasti property.
@@ -224,6 +228,20 @@ public class Zahtev implements GenericXML {
      */
     public void setDatum(XMLGregorianCalendar value) {
         this.datum = value;
+    }
+    
+    public String getVocab() {
+    	return vocab;
+    }
+    public void setVocab(String value) {
+    	this.vocab = value;
+    }
+    
+    public String getAbout() {
+    	return about;
+    }
+    public void setAbout(String value) {
+    	this.about = value;
     }
 
 	@Override
