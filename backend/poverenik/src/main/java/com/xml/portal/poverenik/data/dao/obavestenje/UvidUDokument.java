@@ -46,17 +46,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "opisTrazeneInformacije",
     "podaciOUvidu"
 })
-@XmlRootElement(name = "Uvid_u_dokument")
+@XmlRootElement(name = "Uvid_u_dokument", namespace = "http://obavestenje")
 public class UvidUDokument {
 
-    @XmlElement(name = "Zakonska_osnova", required = true)
+    @XmlElement(name = "Zakonska_osnova", namespace = "http://obavestenje", required = true)
     protected TZakon zakonskaOsnova;
-    @XmlElement(name = "Datum_potrazivanja", required = true)
+    @XmlElement(name = "Datum_potrazivanja", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datumPotrazivanja;
-    @XmlElement(name = "Opis_trazene_informacije", required = true)
+    @XmlElement(name = "Opis_trazene_informacije", namespace = "http://obavestenje", required = true)
     protected String opisTrazeneInformacije;
-    @XmlElement(name = "Podaci_o_uvidu", required = true)
+    @XmlElement(name = "Podaci_o_uvidu", namespace = "http://obavestenje", required = true)
     protected TVremeMesto podaciOUvidu;
 
     /**

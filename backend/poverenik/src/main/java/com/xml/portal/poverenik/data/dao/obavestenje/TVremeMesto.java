@@ -63,17 +63,17 @@ import javax.xml.datatype.XMLGregorianCalendar;
 })
 public class TVremeMesto {
 
-    @XmlElement(name = "Datum", required = true)
+    @XmlElement(name = "Datum", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
-    @XmlElement(name = "Vreme", required = true)
+    @XmlElement(name = "Vreme", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "time")
     protected XMLGregorianCalendar vreme;
-    @XmlElement(name = "Pocetno_vreme")
+    @XmlElement(name = "Pocetno_vreme", namespace = "http://obavestenje")
     protected int pocetnoVreme;
-    @XmlElement(name = "Krajnje_vreme")
+    @XmlElement(name = "Krajnje_vreme", namespace = "http://obavestenje")
     protected int krajnjeVreme;
-    @XmlElement(name = "Mesto_uvida", required = true)
+    @XmlElement(name = "Mesto_uvida", namespace = "http://obavestenje", required = true)
     protected TAdresaUvida mestoUvida;
 
     /**

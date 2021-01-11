@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-    targetNamespace="http://obavestenje" xmlns:obv="http://obavestenje">
+    targetNamespace="http://obavestenje" xmlns:obv="http://obavestenje" xmlns:tipovi="http://tipovi"
+    xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
     <xs:element name="Obavestenje">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="Organ_vlasti" type="obv:TOrgan_vlasti"> </xs:element>
+                <xs:element name="Organ_vlasti" type="tipovi:TOrgan_vlasti"> </xs:element>
                 <xs:element name="Broj_predmeta" type="xs:string"> </xs:element>
-                <xs:element name="Podnosilac" type="obv:TLice"/>
+                <xs:element name="Podnosilac" type="tipovi:TLice"/>
                 <xs:element ref="obv:Uvid_u_dokument"/>
                 <xs:element name="Ukupan_trosak_kopija">
                     <xs:complexType>
@@ -38,6 +41,10 @@
             <xs:attribute name="id" type="xs:ID"/>
             <xs:attribute name="dostavljeno" type="obv:TDostavljeno" use="required"/>
             <xs:attribute name="datum" type="xs:date" use="required"/>
+            <xs:attribute name="vocab" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Uvid_u_dokument">
@@ -50,70 +57,21 @@
             </xs:sequence>
         </xs:complexType>
     </xs:element>
-    <xs:complexType name="TAdresa">
-        <xs:sequence>
-            <xs:element name="Mesto">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="([A-Z][a-z]+)(\s[A-Z][a-z]+)*"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="Ulica">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="([A-Z][a-z]+)(\s[A-Z]?[a-z]+)*"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-            <xs:element name="Ulicni_broj">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="([1-9][0-9]*)|(bb)"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="TAdresa_uvida">
-        <xs:complexContent>
-            <xs:extension base="obv:TAdresa">
-                <xs:sequence>
-                    <xs:element name="Kancelarijski_broj" type="xs:string"/>
-                </xs:sequence>
-            </xs:extension>
-        </xs:complexContent>
-    </xs:complexType>
-    <xs:complexType name="TOrgan_vlasti">
-        <xs:sequence>
-            <xs:element name="Naziv" type="xs:string"/>
-            <xs:element name="Sediste">
-                <xs:simpleType>
-                    <xs:restriction base="xs:string">
-                        <xs:pattern value="([A-Z][a-z]+)(\s[A-Z][a-z]+)*"/>
-                    </xs:restriction>
-                </xs:simpleType>
-            </xs:element>
-        </xs:sequence>
-    </xs:complexType>
-    <xs:complexType name="TLice">
-        <xs:sequence>
-            <xs:choice>
-                <xs:sequence>
-                    <xs:element name="Ime" type="xs:string"/>
-                    <xs:element name="Prezime" type="xs:string"/>
-                </xs:sequence>
-                <xs:element name="Naziv" type="xs:string"/>
-            </xs:choice>
-            <xs:element name="Adresa" type="obv:TAdresa"/>
-        </xs:sequence>
-    </xs:complexType>
     <xs:simpleType name="TDostavljeno">
         <xs:restriction base="xs:string">
             <xs:enumeration value="imenovanom"/>
             <xs:enumeration value="arhivi"/>
         </xs:restriction>
     </xs:simpleType>
+    <xs:complexType name="TAdresa_uvida">
+        <xs:complexContent>
+            <xs:extension base="tipovi:TAdresa">
+                <xs:sequence>
+                    <xs:element name="Kancelarijski_broj" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
     <xs:complexType name="TZakon">
         <xs:sequence>
             <xs:element name="Clan" type="xs:positiveInteger" fixed="16"/>

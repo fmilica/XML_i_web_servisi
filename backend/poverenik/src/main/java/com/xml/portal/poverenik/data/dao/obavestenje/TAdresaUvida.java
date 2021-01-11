@@ -43,7 +43,7 @@ public class TAdresaUvida
     extends TAdresa
 {
 
-    @XmlElement(name = "Kancelarijski_broj", required = true)
+    @XmlElement(name = "Kancelarijski_broj", namespace = "http://obavestenje", required = true)
     protected String kancelarijskiBroj;
 
     /**

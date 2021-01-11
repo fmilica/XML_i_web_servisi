@@ -45,13 +45,13 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class TZakon {
 
-    @XmlElement(name = "Clan", required = true)
+    @XmlElement(name = "Clan", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger clan;
-    @XmlElement(name = "Stav", required = true)
+    @XmlElement(name = "Stav", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger stav;
-    @XmlElement(name = "Zakon", required = true)
+    @XmlElement(name = "Zakon", namespace = "http://obavestenje", required = true)
     protected String zakon;
 
     /**

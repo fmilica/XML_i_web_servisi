@@ -54,31 +54,31 @@ import javax.xml.bind.annotation.XmlType;
     "videoKaseta",
     "skeniranje"
 })
-@XmlRootElement(name = "Cene_kopiranja")
+@XmlRootElement(name = "Cene_kopiranja", namespace = "http://obavestenje")
 public class CeneKopiranja {
 
-    @XmlElement(name = "A4", required = true)
+    @XmlElement(name = "A4", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger a4;
-    @XmlElement(name = "A3", required = true)
+    @XmlElement(name = "A3", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger a3;
-    @XmlElement(name = "CD", required = true)
+    @XmlElement(name = "CD", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger cd;
-    @XmlElement(name = "Disketa", required = true)
+    @XmlElement(name = "Disketa", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger disketa;
-    @XmlElement(name = "DVD", required = true)
+    @XmlElement(name = "DVD", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger dvd;
-    @XmlElement(name = "Audio-kaseta", required = true)
+    @XmlElement(name = "Audio-kaseta", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger audioKaseta;
-    @XmlElement(name = "Video-kaseta", required = true)
+    @XmlElement(name = "Video-kaseta", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger videoKaseta;
-    @XmlElement(name = "Skeniranje", required = true)
+    @XmlElement(name = "Skeniranje", namespace = "http://obavestenje", required = true)
     @XmlSchemaType(name = "positiveInteger")
     protected BigInteger skeniranje;
 

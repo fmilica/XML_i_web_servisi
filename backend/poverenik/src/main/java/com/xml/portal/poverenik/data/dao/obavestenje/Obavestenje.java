@@ -86,18 +86,18 @@ import com.xml.portal.poverenik.data.dao.tipovi.TOrganVlasti;
     "uvidUDokument",
     "ukupanTrosakKopija"
 })
-@XmlRootElement(name = "Obavestenje")
+@XmlRootElement(name = "Obavestenje", namespace = "http://obavestenje")
 public class Obavestenje implements GenericXML {
 
-    @XmlElement(name = "Organ_vlasti", required = true)
+    @XmlElement(name = "Organ_vlasti", namespace = "http://obavestenje", required = true)
     protected TOrganVlasti organVlasti;
-    @XmlElement(name = "Broj_predmeta", required = true)
+    @XmlElement(name = "Broj_predmeta", namespace = "http://obavestenje", required = true)
     protected String brojPredmeta;
-    @XmlElement(name = "Podnosilac", required = true)
+    @XmlElement(name = "Podnosilac", namespace = "http://obavestenje", required = true)
     protected TLice podnosilac;
-    @XmlElement(name = "Uvid_u_dokument", required = true)
+    @XmlElement(name = "Uvid_u_dokument", namespace = "http://obavestenje", required = true)
     protected UvidUDokument uvidUDokument;
-    @XmlElement(name = "Ukupan_trosak_kopija", required = true)
+    @XmlElement(name = "Ukupan_trosak_kopija", namespace = "http://obavestenje", required = true)
     protected Obavestenje.UkupanTrosakKopija ukupanTrosakKopija;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -109,6 +109,14 @@ public class Obavestenje implements GenericXML {
     @XmlAttribute(name = "datum", required = true)
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
+    @XmlAttribute(name = "vocab")
+    protected String vocab;
+    @XmlAttribute(name = "about")
+    protected String about;
+    @XmlAttribute(name = "rel")
+    protected String rel;
+    @XmlAttribute(name = "href")
+    protected String href;
 
     /**
      * Gets the value of the organVlasti property.
@@ -252,6 +260,34 @@ public class Obavestenje implements GenericXML {
      */
     public void setId(String value) {
         this.id = value;
+    }
+    
+    public String getVocab() {
+    	return vocab;
+    }
+    public void setVocab(String value) {
+    	this.vocab = value;
+    }
+    
+    public String getAbout() {
+    	return about;
+    }
+    public void setAbout(String value) {
+    	this.about = value;
+    }
+    
+    public String getRel() {
+    	return rel;
+    }
+    public void setRel(String value) {
+    	this.rel = value;
+    }
+    
+    public String getHref() {
+    	return href;
+    }
+    public void setHref(String value) {
+    	this.href = value;
     }
 
     /**
