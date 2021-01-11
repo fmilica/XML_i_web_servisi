@@ -82,3 +82,12 @@ nb-configuration.xml
 ## OS X
 ##############################
 .DS_Store
+
+##############################
+## Allow lib jars
+##############################
+backend/*
+!backend/poverenik/
+
+backend/poverenik/*
+!backend/poverenik/lib/*.jar
