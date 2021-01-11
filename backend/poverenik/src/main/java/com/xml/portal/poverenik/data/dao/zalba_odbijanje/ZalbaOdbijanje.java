@@ -74,18 +74,18 @@ import com.xml.portal.poverenik.data.dao.tipovi.TPoverenik;
     "teloZalbe",
     "podaciOPodnosiocuZalbe"
 })
-@XmlRootElement(name = "Zalba_odbijanje")
+@XmlRootElement(name = "Zalba_odbijanje", namespace = "http://zalbaodbijanje")
 public class ZalbaOdbijanje implements GenericXML {
 
-    @XmlElement(name = "podaci_o_primaocu", required = true)
+    @XmlElement(name = "podaci_o_primaocu", namespace = "http://zalbaodbijanje", required = true)
     protected TPoverenik podaciOPrimaocu;
-    @XmlElement(name = "podaci_o_zaliocu", required = true)
+    @XmlElement(name = "podaci_o_zaliocu", namespace = "http://zalbaodbijanje", required = true)
     protected TLice podaciOZaliocu;
-    @XmlElement(name = "podaci_o_odluci", required = true)
+    @XmlElement(name = "podaci_o_odluci", namespace = "http://zalbaodbijanje", required = true)
     protected ZalbaOdbijanje.PodaciOOdluci podaciOOdluci;
-    @XmlElement(name = "telo_zalbe", required = true)
+    @XmlElement(name = "telo_zalbe", namespace = "http://zalbaodbijanje", required = true)
     protected TTelo teloZalbe;
-    @XmlElement(name = "podaci_o_podnosiocu_zalbe", required = true)
+    @XmlElement(name = "podaci_o_podnosiocu_zalbe", namespace = "http://zalbaodbijanje", required = true)
     protected TLiceKontakt podaciOPodnosiocuZalbe;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -100,6 +100,14 @@ public class ZalbaOdbijanje implements GenericXML {
     @XmlAttribute(name = "datum_podnosenja_zahteva")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datumPodnosenjaZahteva;
+    @XmlAttribute(name = "vocab")
+    protected String vocab;
+    @XmlAttribute(name = "about")
+    protected String about;
+    @XmlAttribute(name = "rel")
+    protected String rel;
+    @XmlAttribute(name = "href")
+    protected String href;
 
     /**
      * Gets the value of the podaciOPrimaocu property.
@@ -316,6 +324,34 @@ public class ZalbaOdbijanje implements GenericXML {
     public void setDatumPodnosenjaZahteva(XMLGregorianCalendar value) {
         this.datumPodnosenjaZahteva = value;
     }
+    
+    public String getVocab() {
+    	return vocab;
+    }
+    public void setVocab(String value) {
+    	this.vocab = value;
+    }
+    
+    public String getAbout() {
+    	return about;
+    }
+    public void setAbout(String value) {
+    	this.about = value;
+    }
+    
+    public String getRel() {
+    	return rel;
+    }
+    public void setRel(String value) {
+    	this.rel = value;
+    }
+    
+    public String getHref() {
+    	return href;
+    }
+    public void setHref(String value) {
+    	this.href = value;
+    }
 
 
     /**
@@ -345,7 +381,7 @@ public class ZalbaOdbijanje implements GenericXML {
     })
     public static class PodaciOOdluci {
 
-        @XmlElement(name = "naziv_donosioca_odluke", required = true)
+        @XmlElement(name = "naziv_donosioca_odluke", namespace = "http://zalbaodbijanje", required = true)
         protected String nazivDonosiocaOdluke;
         @XmlAttribute(name = "broj_odluke")
         protected Integer brojOdluke;

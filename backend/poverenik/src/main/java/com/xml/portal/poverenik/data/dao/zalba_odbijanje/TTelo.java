@@ -25,8 +25,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="razlog_zalbe" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="clan" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="zakon" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="osnova_zalbe" type="{http://zalbaodbijanje}TZakonska_osnova"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -36,19 +35,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "TTelo", propOrder = {
+@XmlType(name = "TTelo", namespace = "http://zalbaodbijanje", propOrder = {
     "razlogZalbe",
-    "clan",
-    "zakon"
+    "osnovaZalbe"
 })
 public class TTelo {
 
-    @XmlElement(name = "razlog_zalbe", required = true)
+    @XmlElement(name = "razlog_zalbe", namespace = "http://zalbaodbijanje", required = true)
     protected String razlogZalbe;
-    @XmlElement(required = true)
-    protected String clan;
-    @XmlElement(required = true)
-    protected String zakon;
+    @XmlElement(name = "osnova_zalbe", namespace = "http://zalbaodbijanje", required = true)
+    protected TZakonskaOsnova osnovaZalbe;
 
     /**
      * Gets the value of the razlogZalbe property.
@@ -75,51 +71,27 @@ public class TTelo {
     }
 
     /**
-     * Gets the value of the clan property.
+     * Gets the value of the osnovaZalbe property.
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link TZakonskaOsnova }
      *     
      */
-    public String getClan() {
-        return clan;
+    public TZakonskaOsnova getOsnovaZalbe() {
+        return osnovaZalbe;
     }
 
     /**
-     * Sets the value of the clan property.
+     * Sets the value of the osnovaZalbe property.
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link TZakonskaOsnova }
      *     
      */
-    public void setClan(String value) {
-        this.clan = value;
-    }
-
-    /**
-     * Gets the value of the zakon property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getZakon() {
-        return zakon;
-    }
-
-    /**
-     * Sets the value of the zakon property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setZakon(String value) {
-        this.zakon = value;
+    public void setOsnovaZalbe(TZakonskaOsnova value) {
+        this.osnovaZalbe = value;
     }
 
 }
