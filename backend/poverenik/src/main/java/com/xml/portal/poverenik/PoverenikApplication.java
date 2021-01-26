@@ -12,7 +12,7 @@ public class PoverenikApplication {
 	public static void main(String[] args) throws Exception {
 		SpringApplication.run(PoverenikApplication.class, args);
 	}
-	
+	 
 	/*
 	 * Konfiguracija apache CXF JAX-RS servleta
 	 * Moguce je konfigurasati endpoints dynamicki vezano za same klase

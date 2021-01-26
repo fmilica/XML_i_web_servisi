@@ -12,7 +12,7 @@ import com.xml.portal.poverenik.business.ResenjeBusiness;
 public class ResenjeConfig {
 	
     @Bean
-    @SessionScope
+//    @SessionScope
     public ResenjeBusiness getResenjeBusiness() {
         return new ResenjeBusiness();
     }

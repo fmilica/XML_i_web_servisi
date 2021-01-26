@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
 
-    const userLoginDto = new UserLogin(email, password);
+    const userLoginDto = new UserLogin(email);
 
     this.authService.login(userLoginDto).subscribe(
       (response) => {

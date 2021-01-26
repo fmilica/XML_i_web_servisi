@@ -12,7 +12,7 @@ import com.xml.portal.poverenik.business.ZalbaCutanjeBusiness;
 public class ZalbaCutanjeConfig {
 	
     @Bean
-    @SessionScope
+//    @SessionScope
     public ZalbaCutanjeBusiness getZalbaCutanjeBusiness() {
         return new ZalbaCutanjeBusiness();
     }

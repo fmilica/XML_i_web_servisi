@@ -12,7 +12,7 @@ import com.xml.portal.poverenik.business.ObavestenjeBusiness;
 public class ObavestenjeConfig {
 	
     @Bean
-    @SessionScope
+//    @SessionScope
     public ObavestenjeBusiness getObavestenjeBusiness() {
         return new ObavestenjeBusiness();
     }

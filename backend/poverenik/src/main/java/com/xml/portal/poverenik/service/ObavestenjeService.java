@@ -4,13 +4,13 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Service;
 
 import com.xml.portal.poverenik.business.ObavestenjeBusiness;
@@ -26,7 +26,6 @@ public class ObavestenjeService {
 	
 	@GET
 	@Path("/{id}")
-	@Produces("application/xml")
 	public Response getObavestenje(@PathParam("id") String id) {
 		Obavestenje obavestenje = obavestenjeBusiness.getById(id);
 		Response r;

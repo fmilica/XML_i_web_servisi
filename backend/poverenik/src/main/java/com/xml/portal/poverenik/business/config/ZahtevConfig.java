@@ -12,7 +12,7 @@ import com.xml.portal.poverenik.business.ZahtevBusiness;
 public class ZahtevConfig {
 	
     @Bean
-    @SessionScope
+//    @SessionScope
     public ZahtevBusiness getZahtevBusiness() {
         return new ZahtevBusiness();
     }

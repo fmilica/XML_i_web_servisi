@@ -12,7 +12,7 @@ import com.xml.portal.poverenik.business.ZalbaOdbijanjeBusiness;
 public class ZalbaOdbijanjeConfig {
 	
     @Bean
-    @SessionScope
+//    @SessionScope
     public ZalbaOdbijanjeBusiness getZalbaOdbijanjeBusiness() {
         return new ZalbaOdbijanjeBusiness();
     }

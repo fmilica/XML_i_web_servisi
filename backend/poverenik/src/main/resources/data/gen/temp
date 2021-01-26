@@ -1,14 +1,1 @@
-<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zalbacutanje/ID1">
-    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/ID1"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbacutanje/ID1">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</pred:primalacNaziv>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbacutanje/ID1">
-    <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Vlastislav</pred:podnosilacIme>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbacutanje/ID1">
-    <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Jakovljevic</pred:podnosilacPrezime>
-  </rdf:Description>
-</rdf:RDF>
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml"/>
