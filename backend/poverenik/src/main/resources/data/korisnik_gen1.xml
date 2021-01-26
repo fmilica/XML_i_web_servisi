@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kor:Korisnik xmlns:kor="http://korisnik" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://korisnik schema/korisnik/korisnik.xsd ">
+  <kor:korisnicko_ime>kor:korisnicko_ime</kor:korisnicko_ime>
+  <kor:lozinka>kor:lozinka</kor:lozinka>
+  <kor:ime>kor:ime</kor:ime>
+  <kor:prezime>kor:prezime</kor:prezime>
+</kor:Korisnik>
