@@ -11,20 +11,14 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.poverenik.business.ObavestenjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
 
-@RestController()
-//@RequestMapping(value = "/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
+@Service
 @Path("/obavestenje")
 @CrossOrigin()
 public class ObavestenjeService {
@@ -35,16 +29,13 @@ public class ObavestenjeService {
 	@GET
 	@Path("/{id}")
 	@Produces("application/xml")
-//	@GetMapping(path = "/{id}")
 	public Response getObavestenje(@PathParam("id") String id) {
 		Obavestenje obavestenje = obavestenjeBusiness.getById(id);
 		Response r;
 		if (obavestenje == null) {
 			Greska greska = new Greska("Obavestenje sa prosledjenim identifikatorom ne postoji.");
-			r = Response.status(404).type("application/xml").entity(greska).build();
+			r = Response.status(404).type("application/xml").entity(greska).header("Access-Control-Allow-Origin", "*").build();
 		} else {
-//			return Response.ok(entity).header("Content-Disposition", "attachment; filename=\"" + fileName + "\"").build()
-
 			r = Response.ok(obavestenje).type("application/xml").header("Access-Control-Allow-Origin", "*").build();	
 		}
 		return r;
