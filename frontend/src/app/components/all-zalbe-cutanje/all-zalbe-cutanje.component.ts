@@ -15,7 +15,8 @@ export class AllZalbeCutanjeComponent implements OnInit {
       organ: 'ime orgaan',
       podnosilac: 'ime podnosioca',
       datumZalbe: '23.3.1313',
-      razresi: '****',
+      razresena: 'Da',
+      razresi: '*****',
     },
     {
       brojZalbe: 111,
@@ -23,7 +24,8 @@ export class AllZalbeCutanjeComponent implements OnInit {
       organ: 'ime orgaan',
       podnosilac: 'ime podnosioca',
       datumZalbe: '23.3.1313',
-      razresi: '****',
+      razresena: 'Ne',
+      razresi: '*****',
     },
     {
       brojZalbe: 111,
@@ -31,14 +33,15 @@ export class AllZalbeCutanjeComponent implements OnInit {
       organ: 'ime orgaan',
       podnosilac: 'ime podnosioca',
       datumZalbe: '23.3.1313',
-      razresi: '****',
+      razresena: 'Da',
+      razresi: '*****',
     },
   ];
 
   displayedColumns: string[] = this.selectDisplay();
 
   selectDisplay(): string[] {
-    if (this.role == 'ROLE_KORISNIK')
+    if (this.role === 'ROLE_KORISNIK')
       return [
         'brojZalbe',
         'brojZahteva',
