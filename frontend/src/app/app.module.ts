@@ -6,18 +6,37 @@ import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login-register/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatTabsModule } from '@angular/material/tabs';
+
 import { ToastrModule } from 'ngx-toastr';
-import { RegisterComponent } from './register/register.component';
+import { RegisterComponent } from './components/login-register/register/register.component';
+import { HeaderComponent } from './components/header/header.component';
+import { AllZalbeComponent } from './components/all-zalbe/all-zalbe.component';
+import { AllZalbeCutanjeComponent } from './components/all-zalbe-cutanje/all-zalbe-cutanje.component';
+import { AllZalbeOdlukaComponent } from './components/all-zalbe-odluka/all-zalbe-odluka.component';
+import { ViewZalbaCutanjeComponent } from './components/view-zalba-cutanje/view-zalba-cutanje.component';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
 
 @NgModule({
-  declarations: [AppComponent,LoginComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    HeaderComponent,
+    AllZalbeComponent,
+    AllZalbeCutanjeComponent,
+    AllZalbeOdlukaComponent,
+    ViewZalbaCutanjeComponent,
+    LoginRegisterComponent,
+  ],
   imports: [
-    BrowserModule, 
+    BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule,
@@ -27,11 +46,13 @@ import { RegisterComponent } from './register/register.component';
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
+    MatTableModule,
+    MatTabsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-custom',
       timeOut: 2500,
-    })
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent],

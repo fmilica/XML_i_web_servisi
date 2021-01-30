@@ -1,0 +1,30 @@
+<div id = "login-register" class="container-fluid">
+    <!--<div class="row">
+        <div class="col">
+            <img src="../../assets/images/baner_pozadina.png" class="mx-auto d-block" alt="Serbioneer banner">
+        </div>
+    </div>-->
+    <div class="row">
+        <div class="col-7 mx-auto">
+            <nav mat-tab-nav-bar mat-align-tabs="center">
+                <a mat-tab-link
+                id = "prijava-link"
+                [routerLink]="'prijava'"
+                (click)="activeLink = 'prijava'"
+                [active]="activeLink == 'prijava'"
+                >
+                Пријава
+                </a>
+                <a mat-tab-link
+                id = "registracija-link"
+                [routerLink]="'registracija'"
+                (click)="activeLink = 'registracija'"
+                [active]="activeLink == 'registracija'"
+                >
+                Регистрација
+                </a>
+            </nav>
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
