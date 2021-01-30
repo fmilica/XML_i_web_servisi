@@ -1,7 +1,7 @@
 $primary-font: Segoe UI, sans-serif
 $primary-background: #2abd7d
-$lighter-primary: rgb(170, 224, 249, 0.4)
-$light-primary: rgb(170, 224, 249, 0.2)
+$lighter-primary: rgb(42, 189, 125, 0.4)
+$light-primary: rgb(42, 189, 125, 0.2)
 $secondary-background: #b8d7d2
 $lighter-secondary: rgb(184, 215, 210, 0.4)
 $light-secondary: rgb(184, 215, 210, 0.06)
@@ -32,3 +32,32 @@ form
 .toast-custom
     top: 50px
     right: 5px
+
+/* Table formating */
+table
+  width: 100%
+
+.mat-header-row
+  background-color: $lighter-primary
+
+.mat-header-cell
+  font-size: 15px
+  font-weight: 600
+
+.mat-row:nth-child(even)
+  background-color: $light-primary
+
+.mat-icon-button
+  width: 30px
+
+td.mat-cell:last-of-type
+  padding-right: 24px !important
+td.mat-cell:first-of-type
+  padding-left: 24px !important
+
+.progress-bar
+  margin-top: -35px
+  margin-bottom: 35px
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap'
