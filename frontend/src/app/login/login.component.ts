@@ -3,9 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UserLoginDto } from '../model/user-login-dto.model';
-import { AuthenticationService } from '../services/authentication.service';
 import * as JsonToXML from 'js2xmlparser';
-import { userLoginXml } from '../model/user-login-xml.model';
+import { AuthenticationService } from '../services/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -52,7 +51,9 @@ export class LoginComponent implements OnInit {
       }
     };
 
-    let userLoginXml: userLoginXml = JsonToXML.parse("KorisnikLoginDto", userLoginDto, options);
+    let userLoginXml: string = JsonToXML.parse("KorisnikLoginDto", userLoginDto, options);
+
+    console.log(userLoginXml)
 
     this.authService.login(userLoginXml)
       .subscribe(

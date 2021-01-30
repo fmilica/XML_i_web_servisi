@@ -3,8 +3,6 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
-import { UserLoginDto } from "../model/user-login-dto.model";
-import { userLoginXml } from "../model/user-login-xml.model";
 
 @Injectable({
     providedIn: 'root',
@@ -18,13 +16,14 @@ import { userLoginXml } from "../model/user-login-xml.model";
 
     private headers = new HttpHeaders({ 'Content-Type': 'application/xml' });
     
-    /*register(authUserDto: AuthenticatedUser): Observable<AuthenticatedUser> {
-      return this.http.post<AuthenticatedUser>(environment.apiEndpoint + 'register', authUserDto, {
+    register(userRegisterXml: string): Observable<any> {
+      return this.http.post(environment.apiEndpoint + 'korisnik/registracija', userRegisterXml, {
+        responseType: 'text',
         headers: this.headers,
+        observe: 'response'
       });
     }
-  */
-    login(userLoginXml: userLoginXml): Observable<any> {
+    login(userLoginXml: string): Observable<any> {
       return this.http.post(environment.apiEndpoint + 'korisnik/prijava', userLoginXml, {
         responseType: 'text',
         headers: this.headers,
