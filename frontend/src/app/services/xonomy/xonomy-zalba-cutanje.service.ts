@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 declare const Xonomy: any;
 
-const zoc = `xmlns:zoc="http://zalbacutanje"`;
-const tipovi = `xmlns:tipovi="http://tipovi"`;
+// const zoc = `xmlns:zoc="http://zalbacutanje"`;
+// const tipovi = `xmlns:tipovi="http://tipovi"`;
 @Injectable({
   providedIn: 'root',
 })

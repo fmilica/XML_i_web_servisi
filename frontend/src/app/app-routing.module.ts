@@ -6,6 +6,7 @@ import { AllZalbeComponent } from './components/all-zalbe/all-zalbe.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { ObavestenjeComponent } from './components/obavestenje/obavestenje.component';
 import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 import { ZalbaOdlukaComponent } from './components/zalba-odluka/zalba-odluka.component';
 
@@ -55,6 +56,10 @@ const routes: Routes = [
   {
     path: 'zalbe-odluka',
     component: AllZalbeOdlukaComponent
+  },
+  {
+    path: 'novo-obavestenje',
+    component: ObavestenjeComponent
   }
 ];
 

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 
 declare const Xonomy: any;
 
-const zoc = `xmlns:zoc="http://zalbacutanje"`;
-const tipovi = `xmlns:tipovi="http://tipovi"`;
+// const zoz = `xmlns:zoz="http://zalbaodluka"`;
+// const tipovi = `xmlns:tipovi="http://tipovi"`;
 @Injectable({
   providedIn: 'root',
 })
@@ -188,17 +188,17 @@ export class XonomyZalbaOdlukaService {
         asker: Xonomy.askPicklist,
         askerParameter: ["није поступио", "није поступио у целости", "није поступио у законском року"],
       },
-      'zoc:Osnova_zalbe': {
+      'zoz:Osnova_zalbe': {
         isReadOnly: true,
         collapsed: true,
       },
-      'zoc:Clan': {
+      'zoz:Clan': {
         oneliner: true,
       },
-      'zoc:Zakon': {
+      'zoz:Zakon': {
         oneliner: true,
       },
-      'zoc:Datum':{
+      'zoz:Datum':{
         isReadOnly:true,
         oneliner:true
       },
