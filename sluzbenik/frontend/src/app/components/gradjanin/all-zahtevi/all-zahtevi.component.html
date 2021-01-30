@@ -1,0 +1,72 @@
+<div class="ng-container row justify-content-md-center">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSource">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+            <ng-container matColumnDef="nazivOrgana">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив органа </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.nazivOrgana}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="sedisteOrgana">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Седиште органа </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.sedisteOrgana}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="obavestenje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Обавештење </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.obavestenje}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="uvid">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Увид </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.uvid}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="kopija">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Копија </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.kopija}}
+                </td>
+            </ng-container>
+            
+            <ng-container matColumnDef="dostava">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Начин доставе </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.dostava}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="informacije">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Тражена информацијa </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.informacije}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mesto">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Место захтева </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.mesto}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datum">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум захтева </th>
+                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datum}}
+                </td>
+            </ng-container>
+        </table>
+    </div>
+</div>
