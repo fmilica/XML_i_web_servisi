@@ -4,6 +4,7 @@ import { AllZalbeComponent } from './components/all-zalbe/all-zalbe.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/prijava-registracija/prijava', pathMatch: 'full' },
@@ -38,7 +39,7 @@ const routes: Routes = [
   },
   {
     path: 'nova-zalba-cutanje',
-    component: AllZalbeComponent,
+    component: ZalbaCutanjeComponent,
   },
   {
     path: 'nova-zalba-odluka',

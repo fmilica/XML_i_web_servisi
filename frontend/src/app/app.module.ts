@@ -22,6 +22,7 @@ import { AllZalbeCutanjeComponent } from './components/all-zalbe-cutanje/all-zal
 import { AllZalbeOdlukaComponent } from './components/all-zalbe-odluka/all-zalbe-odluka.component';
 import { ViewZalbaCutanjeComponent } from './components/view-zalba-cutanje/view-zalba-cutanje.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
     AllZalbeOdlukaComponent,
     ViewZalbaCutanjeComponent,
     LoginRegisterComponent,
+    ZalbaCutanjeComponent,
   ],
   imports: [
     BrowserModule,
