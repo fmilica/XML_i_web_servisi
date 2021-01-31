@@ -25,7 +25,6 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
 import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
 import { ZalbaOdlukaComponent } from './components/zalba-odluka/zalba-odluka.component';
 import { ResenjeComponent } from './components/resenje/resenje.component';
-import { ObavestenjeComponent } from './components/obavestenje/obavestenje.component';
 import { AllResenjaComponent } from './components/all-resenja/all-resenja.component';
 
 @NgModule({
@@ -42,7 +41,6 @@ import { AllResenjaComponent } from './components/all-resenja/all-resenja.compon
     ZalbaCutanjeComponent,
     ZalbaOdlukaComponent,
     ResenjeComponent,
-    ObavestenjeComponent,
     AllResenjaComponent
   ],
   imports: [

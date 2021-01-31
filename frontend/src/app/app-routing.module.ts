@@ -62,13 +62,6 @@ const routes: Routes = [
     path: 'resenje',
     component: ResenjeComponent
   },
-    path: 'novo-obavestenje',
-    component: ObavestenjeComponent
-  },
-  {
-    path: 'novo-resenje',
-    component: ZalbaOdlukaComponent
-  }
 ];
 
 @NgModule({
