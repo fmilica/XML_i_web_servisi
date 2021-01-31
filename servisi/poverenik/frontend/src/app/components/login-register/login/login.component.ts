@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     };
 
     let userLoginXml: string = JsonToXML.parse(
-      'KorisnikLoginDto',
+      'UserLoginDto',
       userLoginDto,
       options
     );

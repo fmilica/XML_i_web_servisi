@@ -18,12 +18,10 @@ public class PoverenikApplication {
 	 * Moguce je konfigurasati endpoints dynamicki vezano za same klase
 	 */
 	
-	@Bean
-	public ServletRegistrationBean<CXFServlet> cxfServlet() {
-		CXFServlet cxfServlet = new CXFServlet();
-		ServletRegistrationBean<CXFServlet> servletReg = new ServletRegistrationBean<CXFServlet>(cxfServlet, "/*");
-		servletReg.setLoadOnStartup(1);
-		return servletReg;
-	}
-	
+	/*
+	 * @Bean public ServletRegistrationBean<CXFServlet> cxfServlet() { CXFServlet
+	 * cxfServlet = new CXFServlet(); ServletRegistrationBean<CXFServlet> servletReg
+	 * = new ServletRegistrationBean<CXFServlet>(cxfServlet, "/*");
+	 * servletReg.setLoadOnStartup(1); return servletReg; }
+	 */
 }

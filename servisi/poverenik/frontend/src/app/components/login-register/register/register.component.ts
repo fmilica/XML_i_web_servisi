@@ -74,7 +74,7 @@ export class RegisterComponent implements OnInit {
     };
 
     let userRegisterXml: string = JsonToXML.parse(
-      'KorisnikRegisterDto',
+      'UserRegisterDto',
       userRegisterDto,
       options
     );

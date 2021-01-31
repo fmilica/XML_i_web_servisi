@@ -1,17 +1,20 @@
 package com.xml.portal.poverenik.service;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.poverenik.business.KorisnikBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
@@ -20,9 +23,8 @@ import com.xml.portal.poverenik.dto.KorisnikPrijavaDTO;
 import com.xml.portal.poverenik.dto.KorisnikRegistracijaDTO;
 import com.xml.portal.poverenik.security.TokenUtils;
 
-@Service
-@Path("/korisnik")
-@CrossOrigin()
+@RestController
+@RequestMapping(value = "poverenik/korisnik", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 public class KorisnikService {
 
 	@Autowired
@@ -34,11 +36,8 @@ public class KorisnikService {
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
-	@POST
-	@Path("/prijava")
-	@Produces("application/xml")
-	public Response prijava(KorisnikPrijavaDTO korisnikPrijava) {
-		Response r;
+	@PostMapping("/prijava")
+	public ResponseEntity<Object> prijava(@RequestBody KorisnikPrijavaDTO korisnikPrijava) {
 		Authentication authentication = null;
 		try {
 			authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
@@ -46,25 +45,24 @@ public class KorisnikService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			Greska greska = new Greska("Pogresan email ili lozinka.");
-			r = Response.status(404).type("application/xml").entity(greska).header("Access-Control-Allow-Origin", "*").build();
-			return r;
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
 		}
 		Korisnik korisnik = (Korisnik) authentication.getPrincipal();
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		String jwtToken = tokenUtils.generateToken(korisnik.getEmail(), korisnik.getUloga());
 		long expiresIn = tokenUtils.getExpiredIn();
+	    
+		HttpHeaders responseHeaders = new HttpHeaders();
+	    responseHeaders.set("Authorization", "Bearer " + jwtToken);
+	    responseHeaders.set("Expires-In", String.valueOf(expiresIn));
+	    responseHeaders.set("Access-Control-Expose-Headers", "Authorization, Expires-In");
+	    responseHeaders.set("Access-Control-Allow-Headers", "Authorization, X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept, X-Custom-header");
 
-		r = Response.ok().type("application/xml")
-				.header("Access-Control-Allow-Origin", "*")
-				.header("Authorization", "Bearer " + jwtToken)
-				.header("Expires-In", String.valueOf(expiresIn)).build();
-		return r;
+	    return ResponseEntity.ok().headers(responseHeaders).build();
 	}
 	
-    @POST
-    @Path("/registracija")
-    @Produces("application/xml")
-    public Response registracija(KorisnikRegistracijaDTO registracija) {
+	@PostMapping("/registracija")
+    public Response registracija(@RequestBody KorisnikRegistracijaDTO registracija) {
     	boolean storedXml = korisnikBusiness.register(registracija);
     	Response r;
     	if (!storedXml) {
