@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AllZalbeComponent implements OnInit {
   constructor() {}
 
-  role = 'ROLE_POVERENIK';
+  role = 'ROLE_KORISNIK';
 
   dataSource = [
     {
@@ -51,6 +51,7 @@ export class AllZalbeComponent implements OnInit {
         'podnosilac',
         'datumZalbe',
         'razresena',
+        'preuzimanje'
       ];
     else
       return [

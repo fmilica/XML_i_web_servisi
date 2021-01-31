@@ -15,7 +15,7 @@ export class ZalbaOdlukaComponent implements OnInit {
   ngOnInit(): void {}
 
   ngAfterViewInit(){
-    let element = document.getElementById('zalba');
+    let element = document.getElementById('zalbaOdluka');
     let specification = this.xonomyZalbaOdlukaService.zalbaOdlukaSpecification;
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>`+
                     `<zoz:Zalba_odbijanje xmlns="http://www.w3.org/ns/rdfa#"

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllResenjaComponent } from './components/all-resenja/all-resenja.component';
 import { AllZalbeCutanjeComponent } from './components/all-zalbe-cutanje/all-zalbe-cutanje.component';
 import { AllZalbeOdlukaComponent } from './components/all-zalbe-odluka/all-zalbe-odluka.component';
 import { AllZalbeComponent } from './components/all-zalbe/all-zalbe.component';
@@ -39,7 +40,7 @@ const routes: Routes = [
   },
   {
     path: 'resenja',
-    component: AllZalbeComponent,
+    component: AllResenjaComponent,
   },
   {
     path: 'nova-zalba-cutanje',
@@ -60,7 +61,11 @@ const routes: Routes = [
   {
     path: 'novo-obavestenje',
     component: ObavestenjeComponent
-  }
+  },
+  {
+    path: 'novo-resenje',
+    component: ZalbaOdlukaComponent
+  },
 ];
 
 @NgModule({

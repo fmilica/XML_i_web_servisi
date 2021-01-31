@@ -14,7 +14,7 @@ export class ZalbaCutanjeComponent implements OnInit {
   ngOnInit(): void {}
 
   ngAfterViewInit() {
-    let element = document.getElementById('zalba');
+    let element = document.getElementById('zalbaCutanje');
     let specification = this.xonomyZalbaCutanjeService.zalbaCutanjeSpecification;
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
                      <zoc:Zalba_cutanje xmlns="http://www.w3.org/ns/rdfa#"
