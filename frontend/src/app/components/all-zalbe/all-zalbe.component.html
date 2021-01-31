@@ -6,49 +6,49 @@
             </tr>
 
             <ng-container matColumnDef="brojZalbe">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Broj zalbe </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Број жалбе </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.brojZalbe}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="brojZahteva">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Broj zahteva </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Број захтева </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.brojZahteva}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="organ">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Organ </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Орган </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.organ}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="podnosilac">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Podnosilac </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Подносилац </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.podnosilac}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="datumZalbe">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum zalbe </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум жалбе </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.datumZalbe}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="razresena" *ngIf="role==='ROLE_KORISNIK'">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Razresena </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.razresena}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="razresi" *ngIf="role==='ROLE_POVERENIK'">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Razresi </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разреши </th>
                 <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.razresi}}
                 </td>

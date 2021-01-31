@@ -13,7 +13,8 @@ export class AllZalbeOdlukaComponent implements OnInit {
       organ: 'ime orgaan',
       podnosilac: 'ime podnosioca',
       datumZalbe: '23.3.1313',
-      razresi: '****',
+      razresena: 'Da',
+      razresi: '*****',
     },
     {
       brojZalbe: 111,
@@ -21,7 +22,8 @@ export class AllZalbeOdlukaComponent implements OnInit {
       organ: 'ime orgaan',
       podnosilac: 'ime podnosioca',
       datumZalbe: '23.3.1313',
-      razresi: '****',
+      razresena: 'Ne',
+      razresi: '*****',
     },
     {
       brojZalbe: 111,
@@ -29,7 +31,8 @@ export class AllZalbeOdlukaComponent implements OnInit {
       organ: 'ime orgaan',
       podnosilac: 'ime podnosioca',
       datumZalbe: '23.3.1313',
-      razresi: '****',
+      razresena: 'Da',
+      razresi: '*****',
     },
   ];
 

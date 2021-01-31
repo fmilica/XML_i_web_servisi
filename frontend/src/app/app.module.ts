@@ -23,6 +23,8 @@ import { AllZalbeOdlukaComponent } from './components/all-zalbe-odluka/all-zalbe
 import { ViewZalbaCutanjeComponent } from './components/view-zalba-cutanje/view-zalba-cutanje.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.component';
+import { ZalbaOdlukaComponent } from './components/zalba-odluka/zalba-odluka.component';
+import { ObavestenjeComponent } from './components/obavestenje/obavestenje.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { ZalbaCutanjeComponent } from './components/zalba-cutanje/zalba-cutanje.
     ViewZalbaCutanjeComponent,
     LoginRegisterComponent,
     ZalbaCutanjeComponent,
+    ZalbaOdlukaComponent,
+    ObavestenjeComponent,
   ],
   imports: [
     BrowserModule,

@@ -43,7 +43,7 @@ export class AllZalbeComponent implements OnInit {
   displayedColumns: string[] = this.selectDisplay();
 
   selectDisplay(): string[] {
-    if (this.role == 'ROLE_KORISNIK')
+    if (this.role === 'ROLE_KORISNIK')
       return [
         'brojZalbe',
         'brojZahteva',
