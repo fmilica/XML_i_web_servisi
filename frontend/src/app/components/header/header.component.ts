@@ -10,7 +10,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   activeLink = '';
-  role = 'ROLE_KORISNIK';
+  role = 'ROLE_POVERENIK';
 
   ngOnInit(): void {}
 

@@ -24,6 +24,11 @@
     </div>
 
     <div id="user-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_POVERENIK'">
+        <a id="resenja-btn-poverenik" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('resenje')" (keyup.enter)="onClick('resenje')"
+            [ngClass]="{'active': activeLink==='resenje'}">
+            Креирање решења
+        </a>
         <a id="zalbe-btn-poverenik" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('zalbe')" (keyup.enter)="onClick('zalbe')"
             [ngClass]="{'active': activeLink==='zalbe'}">
