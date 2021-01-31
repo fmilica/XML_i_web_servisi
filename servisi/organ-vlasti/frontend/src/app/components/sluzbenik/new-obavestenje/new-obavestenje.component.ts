@@ -25,7 +25,7 @@ export class NewObavestenjeComponent implements OnInit {
                         xmlns:pred="http://www.xml.com/predicate/"
                         xsi:schemaLocation="http://obavestenje obavestenje.xsd" 
                         dostavljeno="imenovanom" 
-                        datum="2006-05-04"
+                        datum="${new Date().toISOString().slice(0, 10)}"
                         id="ID1"
                         
                         vocab="http://www.xml.com/predicate/"
@@ -36,34 +36,34 @@ export class NewObavestenjeComponent implements OnInit {
                         `<tipovi:Naziv property="pred:izdavacNaziv">Fakultet tehnickih nauka</tipovi:Naziv>`+
                         `<tipovi:Sediste>Novi Sad</tipovi:Sediste>`+
                       `</obv:Organ_vlasti>`+
-                      `<obv:Broj_predmeta>SIIT-1</obv:Broj_predmeta>`+
+                      `<obv:Broj_predmeta></obv:Broj_predmeta>`+
                       `<obv:Podnosilac>`+
-                        `<tipovi:Ime property="pred:podnosilacIme">Vlastislav</tipovi:Ime>`+
-                        `<tipovi:Prezime property="pred:podnosilacPrezime">Jakovljevic</tipovi:Prezime>`+
+                        `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
+                        `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
                         `<tipovi:Adresa>`+
-                          `<tipovi:Mesto>Novi Sad</tipovi:Mesto>`+
-                          `<tipovi:Ulica>Zeleznicka</tipovi:Ulica>`+
-                          `<tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>`+
+                          `<tipovi:Mesto></tipovi:Mesto>`+
+                          `<tipovi:Ulica></tipovi:Ulica>`+
+                          `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
                         `</tipovi:Adresa>`+
                       `</obv:Podnosilac>`+
                       `<obv:Uvid_u_dokument>`+
                         `<obv:Zakonska_osnova>`+
                           `<obv:Clan>16</obv:Clan>`+
                           `<obv:Stav>1</obv:Stav>`+
-                          `<obv:Zakon>Zakon o slobodnom pristupu informacijama od javnog značaja</obv:Zakon>`+
+                          `<obv:Zakon>Закон о слободном приступу информацијама од јавног значаја</obv:Zakon>`+
                         `</obv:Zakonska_osnova>`+
-                        `<obv:Datum_potrazivanja>2006-05-04</obv:Datum_potrazivanja>`+
-                        `<obv:Opis_trazene_informacije>Informacije o polozenim predmetima</obv:Opis_trazene_informacije>`+
+                        `<obv:Datum_potrazivanja>2021-01-31</obv:Datum_potrazivanja>`+
+                        `<obv:Opis_trazene_informacije>Информације о положеним предметима</obv:Opis_trazene_informacije>`+
                         `<obv:Podaci_o_uvidu>`+
-                          `<obv:Datum>2006-05-04</obv:Datum>`+
-                          `<obv:Vreme>15:30:00.000</obv:Vreme>`+
-                          `<obv:Pocetno_vreme>12</obv:Pocetno_vreme>`+
-                          `<obv:Krajnje_vreme>17</obv:Krajnje_vreme>`+
+                          `<obv:Datum></obv:Datum>`+
+                          `<obv:Vreme></obv:Vreme>`+
+                          `<obv:Pocetno_vreme></obv:Pocetno_vreme>`+
+                          `<obv:Krajnje_vreme></obv:Krajnje_vreme>`+
                           `<obv:Mesto_uvida>`+
-                            `<tipovi:Mesto>Novi Sad</tipovi:Mesto>`+
-                            `<tipovi:Ulica>Trg Dositeja Obradovica</tipovi:Ulica>`+
-                            `<tipovi:Ulicni_broj>4</tipovi:Ulicni_broj>`+
-                            `<obv:Kancelarijski_broj>F-13</obv:Kancelarijski_broj>`+
+                            `<tipovi:Mesto></tipovi:Mesto>`+
+                            `<tipovi:Ulica></tipovi:Ulica>`+
+                            `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
+                            `<obv:Kancelarijski_broj></obv:Kancelarijski_broj>`+
                           `</obv:Mesto_uvida>`+
                         `</obv:Podaci_o_uvidu>`+
                       `</obv:Uvid_u_dokument>`+

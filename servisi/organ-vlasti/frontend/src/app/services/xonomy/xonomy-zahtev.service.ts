@@ -31,17 +31,24 @@ export class XonomyZahtevService {
       }
     },
     elements: {
+      //ZAHTEV
       'zahtev:Zahtev': {
-        menu: [],
         attributes: {
           'xsi:schemaLocation': {
             isInvisible: true,
           },
           mesto: {
-            isInvisible: true,
-          },
-          datum: {
-            isInvisible: true,
+            title: 'Место подношења захтева',
+            validate: function(jsAttribute){
+              //Make sure item/@mesto is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Место је обавезан атрибут."}
+              );
+            }   
+          },        
+            asker: Xonomy.askString,
           },
           id: {
             isInvisible: true,
@@ -52,9 +59,16 @@ export class XonomyZahtevService {
           about: {
             isInvisible: true,
           },
+          
         },
+        title: 'Захтев за приступ информацији од јавног значаја',
+      },
+      //Organ vlasti i njegovi elementi
+      'zahtev:Organ_vlasti': {
+        title: 'Орган власти коме се упућује захтев'
       },
       'tipovi:Naziv' : {
+        mustBeBefore: ['tipovi:Prezime','tipovi:Adresa', 'tipovi:Kontakt_podaci'],
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -70,14 +84,15 @@ export class XonomyZahtevService {
           property: {
             isInvisible: true
           }
-        }
+        },
+        title: 'Назив органа'
       },
       'tipovi:Sediste' : {
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
               htmlID: jsElement.htmlID,
-              text: "Назив је обавезно поље!"
+              text: "Седиште је обавезно поље!"
             }
             );
           }
@@ -88,29 +103,29 @@ export class XonomyZahtevService {
           property: {
             isInvisible: true
           }
-        }
+        },
+        title: 'Седиште органа'
       },
+      //Telo zahteva
+      'zahtev:Telo_zahteva': {
+        title: 'Садржај захтева'
+      },
+      //Zakonska osnova i njeni elementi - ne prikazuju se 
       'zahtev:Zakonska_osnova': {
-        isReadOnly: true,
-        collapsed: true
+        isInvisible: true,
       },
-      'tipovi:Brojevi': {
-        oneliner: true,
-        collapsed: true
-      },
-      'zahtev:Clan': {
-        oneliner: true
-      },
-      'zahtev:Stav': {
-        oneliner: true
-      },
-      'zahtev:Zakon': {
-        oneliner: true
-      },
-      'tipovi:Broj': {
-        oneliner: true
-      },
+      //Zahtev i njegovi elementi
       'zahtev:Zahtevi': {
+        validate: function (jsElement:any) {
+          if (jsElement.children.length == 0) {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Морате додати макар један захтев!"
+            }
+            );
+          }
+        },
+        title: 'Кликните да бисте додали захтев/е',
         menu: [
         {
           caption: 'од горе наведеног органа захтевам обавештење да ли поседује тражену информацију',
@@ -163,7 +178,7 @@ export class XonomyZahtevService {
         oneliner: true,
         menu: [
           {
-            caption: 'Обришите Увод',
+            caption: 'Обришите Увид',
             action: Xonomy.deleteElement
           }
         ]
@@ -180,6 +195,16 @@ export class XonomyZahtevService {
         ]
       },
       'zahtev:Dostavljanje_kopije': {
+        validate: function (jsElement:any) {
+          if (jsElement.children.length == 0) {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Морате додати макар један начин достављања копије!"
+            }
+            );
+          }
+        },
+        title: 'Кликните да бисте одабрали начин/е достављања копије',
         hasText: false,
         menu: [
           {
@@ -213,7 +238,7 @@ export class XonomyZahtevService {
           {
             caption: 'на други начин',
             action: Xonomy.newElementChild,
-            actionParameter: '<zahtev:Posebna_dostava xmlns:zahtev="http://zahtev"></zahtev:Posebna_dostava>',
+            actionParameter: '<zahtev:Posebna_dostava xmlns:zahtev="http://zahtev"><zahtev:Nacin_posebne_dostave></zahtev:Nacin_posebne_dostave></zahtev:Posebna_dostava>',
             hideIf: function (jsElement) {
               return jsElement.hasChildElement("zahtev:Posebna_dostava")
             }
@@ -228,7 +253,7 @@ export class XonomyZahtevService {
             caption: 'Обришите Достава поштом',
             action: Xonomy.deleteElement
           }
-        ]
+        ],
       },
       'zahtev:Dostava_elektronskom_postom': {
         mustBeBefore: ['zahtev:Dostava_faksom','zahtev:Posebna_dostava'],
@@ -257,15 +282,7 @@ export class XonomyZahtevService {
             caption: 'Обришите Посебна достава',
             action: Xonomy.deleteElement
           },
-          {
-            caption: 'Начин посебне доставе',
-            action: Xonomy.newElementChild,
-            actionParameter: '<zahtev:Nacin_posebne_dostave xmlns:zahtev="http://zahtev"></zahtev:Nacin_posebne_dostave>',
-            hideIf: function (jsElement) {
-              return jsElement.hasChildElement("zahtev:Nacin_posebne_dostave")
-            }
-          }
-        ]
+        ],
       },
       'zahtev:Nacin_posebne_dostave': {
         validate: function (jsElement:any) {
@@ -280,7 +297,9 @@ export class XonomyZahtevService {
         hasText: true,
         asker: Xonomy.askString
       },
+      //Zahtevane informacije
       'zahtev:Zahtevane_informacije' : {
+        title: 'Навести што прецизнији опис информације која се тражи као и друге податке који олакшавају проналажење тражене информације',
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -292,6 +311,10 @@ export class XonomyZahtevService {
         },
         hasText: true,
         asker: Xonomy.askString
+      },
+      //Trazilac zahteva
+      'zahtev:Trazilac': {
+        title: 'Информације о тражиоцу захтева',
       },
       'tipovi:Ime' : {
         validate: function (jsElement:any) {
@@ -384,3 +407,4 @@ export class XonomyZahtevService {
     },
   }
 }
+
