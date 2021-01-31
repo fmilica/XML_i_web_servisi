@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AllZalbeCutanjeComponent implements OnInit {
   constructor() {}
-  role = 'ROLE_POVERENIK';
+  role = 'ROLE_KORISNIK';
   dataSource = [
     {
       brojZalbe: 111,
@@ -49,6 +49,7 @@ export class AllZalbeCutanjeComponent implements OnInit {
         'podnosilac',
         'datumZalbe',
         'razresena',
+        'preuzimanje'
       ];
     else
       return [

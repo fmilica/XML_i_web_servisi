@@ -6,6 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./all-zalbe-odluka.component.sass'],
 })
 export class AllZalbeOdlukaComponent implements OnInit {
+  
+  
+  role = 'ROLE_KORISNIK';
   dataSource = [
     {
       brojZalbe: 111,
@@ -36,7 +39,6 @@ export class AllZalbeOdlukaComponent implements OnInit {
     },
   ];
 
-  role = 'ROLE_KORISNIK';
   displayedColumns: string[] = this.selectDisplay();
 
   selectDisplay(): string[] {
@@ -48,6 +50,7 @@ export class AllZalbeOdlukaComponent implements OnInit {
         'podnosilac',
         'datumZalbe',
         'razresena',
+        'preuzimanje'
       ];
     else
       return [
