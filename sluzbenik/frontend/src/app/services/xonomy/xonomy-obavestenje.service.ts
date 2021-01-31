@@ -28,16 +28,14 @@ export class XonomyObavestenjeService {
       }
     },
     elements: {
+      //Obavestenje
       'obv:Obavestenje': {
-        menu: [],
+        title: 'Обевештење о стављању на увид документа који садржи тражену информацију и о изради копије',
         attributes: {
           'xsi:schemaLocation': {
             isInvisible: true,
           },
           dostavljeno: {
-            isInvisible: true,
-          },
-          datum: {
             isInvisible: true,
           },
           id: {
@@ -57,26 +55,61 @@ export class XonomyObavestenjeService {
           },
         },
       },
+      //Podaci o organu vlasti
       'obv:Organ_vlasti': {
-        isReadOnly: true,
-        oneliner: true,
-        collapsed: true,
+        isInvisible: true
       },
-      'tipovi:Naziv': {
-        // collapsed: true,
-        //   oneliner: true,
+      //Broj predmeta
+      'obv:Broj_predmeta': {
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Број предмета је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+      //Podaci o podnosiocu zahteva
+      'obv:Podnosilac': {
+        title: 'Подаци о подносиоцу захтева'
+      },
+      
+      'tipovi:Ime': {
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Име је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
         attributes: {
           property: {
             isInvisible: true,
           },
         },
       },
-      // 'tipovi:Sediste': {
-      //   oneliner: true,
-      // },
-      'obv:Broj_predmeta': {
-        //   isReadOnly: true
-        oneliner: true,
+      'tipovi:Prezime': {
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Презиме је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
+        attributes: {
+          property: {
+            isInvisible: true,
+          },
+        },
       },
       'tipovi:Mesto': {
         validate: function (jsElement: any) {
@@ -114,71 +147,91 @@ export class XonomyObavestenjeService {
         hasText: true,
         asker: Xonomy.askString,
       },
-      'tipovi:Ime': {
-        validate: function (jsElement: any) {
-          if (jsElement.getText() == '') {
-            Xonomy.warnings.push({
-              htmlID: jsElement.htmlID,
-              text: 'Име је обавезно поље!',
-            });
-          }
-        },
-        hasText: true,
-        asker: Xonomy.askString,
-        attributes: {
-          property: {
-            isInvisible: true,
-          },
-        },
-      },
-      'tipovi:Prezime': {
-        validate: function (jsElement: any) {
-          if (jsElement.getText() == '') {
-            Xonomy.warnings.push({
-              htmlID: jsElement.htmlID,
-              text: 'Презиме је обавезно поље!',
-            });
-          }
-        },
-        hasText: true,
-        asker: Xonomy.askString,
-        attributes: {
-          property: {
-            isInvisible: true,
-          },
-        },
-      },
+      //Zakonska osnova
       'obv:Zakonska_osnova': {
-        isReadOnly: true,
-        collapsed: true,
+        isInvisible: true,
       },
-      'obv:Clan': {
-        oneliner: true,
-      },
-      'obv:Zakon': {
-        oneliner: true,
-      },
+      //Datum potrazivanja
       'obv:Datum_potrazivanja': {
+        isReadOnly: true,
         oneliner: true,
       },
+      //Opis trazene informacije
       'obv:Opis_trazene_informacije': {
+        isReadOnly: true,
         oneliner: true,
+      },
+      //Podaci o uvidu
+      'obv:Podaci_o_uvidu': {
+        title: 'Подаци о увиду у документ у ком је садржана тражена информација'
       },
       'obv:Datum': {
-        //   isReadOnly: true,
-        oneliner: true,
+        title: 'Датум увида',
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Датум увида је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
       },
       'obv:Vreme': {
-        oneliner: true,
+        title: 'Време увида',
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Време увида је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
       },
       'obv:Pocetno_vreme': {
-        oneliner: true,
+        title: 'Почетно време увида',
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Почетно време увида је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
       },
       'obv:Krajnje_vreme': {
-        oneliner: true,
+        title: 'Крајње време увида',
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Крајње време увида је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
       },
       'obv:Kancelarijski_broj': {
-        oneliner: true,
+        title: 'Број канцеларије у којој се може извршити увид у документ',
+        validate: function (jsElement: any) {
+          if (jsElement.getText() == '') {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: 'Канцеларијски број је обавезно поље!',
+            });
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString
+      },
+      'obv:Mesto_uvida': {
+        title: 'Подаци о месту на ком је могуће извршити увид у документ'
       },
       'obv:Ukupan_trosak_kopija': {
         oneliner: true,

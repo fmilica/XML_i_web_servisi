@@ -6,6 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -52,6 +53,7 @@ import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-oba
     MatIconModule,
     MatTableModule,
     MatTabsModule,
+    MatTooltipModule,
     ToastrModule.forRoot({
       positionClass: 'toast-custom',
       timeOut: 2500,

@@ -13,20 +13,21 @@ export class AllZahteviSluzbenikComponent implements OnInit {
     {
       nazivOrgana: 'ФТН',
       sedisteOrgana: 'Нови Сад',
-      obavestenje: 'труе',
-      uvid: 'фалсе',
-      kopija: 'труе',
-      informacije: 'Извод оцена',
+      obavestenje: 'true',
+      uvid: 'false',
+      kopija: 'true',
       dostava: 'Голубом писмоношом',
+      informacije: 'Извод оцена',
       mesto: 'Нови Сад',
       datum: '23.3.2020.',
       trazilacInformacija: 'Властислав Јаковљевић',
+      adresaTrazioca: 'Железничка 23, Нови Сад',
       kontaktTelefon: '0632258394'
     }
   ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 
-                                'informacije', 'mesto', 'datum', 'trazilacInformacija','kontaktTelefon', 'preuzimanje'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije',
+                                'mesto', 'datum', 'trazilacInformacija','adresaTrazioca', 'kontaktTelefon', 'preuzimanje'];
 
   ngOnInit(): void {
   }

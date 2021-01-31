@@ -25,9 +25,9 @@ export class NewZahtevComponent implements OnInit {
         xmlns:tipovi="http://tipovi"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xmlns:pred="http://www.xml.com/predicate/"
-        xsi:schemaLocation="http://zahtev zahtev.xsd" 
-        mesto="Sremska Mitrovica" 
-        datum="2022-04-06"
+        xsi:schemaLocation="http://zahtev zahtev.xsd"
+        datum="${new Date().toISOString().slice(0, 10)}"
+        mesto=""
         id="ID1"
         
         vocab="http://www.xml.com/predicate/"

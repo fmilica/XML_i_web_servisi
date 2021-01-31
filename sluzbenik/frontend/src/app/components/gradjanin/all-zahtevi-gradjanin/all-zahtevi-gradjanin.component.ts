@@ -13,9 +13,9 @@ export class AllZahteviGradjaninComponent implements OnInit {
     {
       nazivOrgana: 'ФТН',
       sedisteOrgana: 'Нови Сад',
-      obavestenje: 'труе',
-      uvid: 'фалсе',
-      kopija: 'труе',
+      obavestenje: 'true',
+      uvid: 'false',
+      kopija: 'true',
       informacije: 'Извод оцена',
       dostava: 'Голубом писмоношом',
       mesto: 'Нови Сад',

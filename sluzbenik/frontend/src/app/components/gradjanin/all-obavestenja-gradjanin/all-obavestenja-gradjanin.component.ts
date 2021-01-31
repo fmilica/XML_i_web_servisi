@@ -15,8 +15,6 @@ export class AllObavestenjaGradjaninComponent implements OnInit {
       sedisteOrgana: 'Нови Сад',
       brojPredmeta: '1',
       datum: '26.3.2020.',
-      //imePrezime: 'Властислав Јаковљевић',
-      //adresa: 'Железничка 23, Нови Сад',
       datumZahteva: '23.3.2020.',
       informacije: 'Извод оцена',
       danCasovi: '30.3.2020. у 13:00',
@@ -26,7 +24,7 @@ export class AllObavestenjaGradjaninComponent implements OnInit {
     }
   ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum'/*, 'imePrezime', 'adresa',*/, 'datumZahteva', 'informacije','danCasovi', 'vreme', 'adresaOrgana', 'brojKancelarije', 'preuzimanje'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'datumZahteva', 'informacije','danCasovi', 'vreme', 'adresaOrgana', 'brojKancelarije', 'preuzimanje'];
 
 
   ngOnInit(): void {
