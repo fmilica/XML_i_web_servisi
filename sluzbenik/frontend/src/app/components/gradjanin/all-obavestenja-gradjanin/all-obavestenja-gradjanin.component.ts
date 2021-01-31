@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-all-obavestenja',
-  templateUrl: './all-obavestenja.component.html',
-  styleUrls: ['./all-obavestenja.component.sass']
+  templateUrl: './all-obavestenja-gradjanin.component.html',
+  styleUrls: ['./all-obavestenja-gradjanin.component.sass']
 })
-export class AllObavestenjaComponent implements OnInit {
+export class AllObavestenjaGradjaninComponent implements OnInit {
 
   constructor() { }
 

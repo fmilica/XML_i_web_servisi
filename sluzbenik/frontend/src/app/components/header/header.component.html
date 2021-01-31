@@ -23,6 +23,16 @@
             [ngClass]="{'active': activeLink==='novo-obavestenje'}">
             Креирање обавештења
         </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('pristigli-zahtevi')" (keyup.enter)="onClick('pristigli-zahtevi')"
+            [ngClass]="{'active': activeLink==='pristigli-zahtevi'}">
+            Преглед пристиглих захтева
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('kreirana-obavestenja')" (keyup.enter)="onClick('kreirana-obavestenja')"
+            [ngClass]="{'active': activeLink==='kreirana-obavestenja'}">
+            Преглед креираних обавештења
+        </a>
     </div>
 
     <div class="nav nav-pill mr-auto" *ngIf="role===''" style="padding-top: 46px;">

@@ -19,9 +19,11 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
 import { NewZahtevComponent } from './components/gradjanin/new-zahtev/new-zahtev.component';
-import { AllZahteviComponent } from './components/gradjanin/all-zahtevi/all-zahtevi.component';
-import { AllObavestenjaComponent } from './components/gradjanin/all-obavestenja/all-obavestenja.component';
+import { AllZahteviGradjaninComponent } from './components/gradjanin/all-zahtevi-gradjanin/all-zahtevi-gradjanin.component';
+import { AllObavestenjaGradjaninComponent } from './components/gradjanin/all-obavestenja-gradjanin/all-obavestenja-gradjanin.component';
 import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/new-obavestenje.component';
+import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
+import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-obavestenja-sluzbenik/all-obavestenja-sluzbenik.component';
 
 @NgModule({
   declarations: [
@@ -31,9 +33,11 @@ import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/
     RegisterComponent,
     HeaderComponent,
     NewZahtevComponent,
-    AllZahteviComponent,
-    AllObavestenjaComponent,
-    NewObavestenjeComponent
+    AllZahteviGradjaninComponent,
+    AllObavestenjaGradjaninComponent,
+    NewObavestenjeComponent,
+    AllZahteviSluzbenikComponent,
+    AllObavestenjaSluzbenikComponent
   ],
   imports: [
     AppRoutingModule, 

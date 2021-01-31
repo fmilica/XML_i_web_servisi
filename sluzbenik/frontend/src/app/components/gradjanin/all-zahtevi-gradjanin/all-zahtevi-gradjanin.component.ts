@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-all-zahtevi',
-  templateUrl: './all-zahtevi.component.html',
-  styleUrls: ['./all-zahtevi.component.sass']
+  templateUrl: './all-zahtevi-gradjanin.component.html',
+  styleUrls: ['./all-zahtevi-gradjanin.component.sass']
 })
-export class AllZahteviComponent implements OnInit {
+export class AllZahteviGradjaninComponent implements OnInit {
 
   constructor() { }
 
