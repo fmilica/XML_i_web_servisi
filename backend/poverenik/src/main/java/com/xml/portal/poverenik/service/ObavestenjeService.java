@@ -36,7 +36,7 @@ public class ObavestenjeService {
 			Greska greska = new Greska("Obavestenje sa prosledjenim identifikatorom ne postoji.");
 			r = Response.status(404).type("application/xml").entity(greska).header("Access-Control-Allow-Origin", "*").build();
 		} else {
-			r = Response.ok(obavestenje).type("application/xml").header("Access-Control-Allow-Origin", "*").build();	
+			r = Response.ok(obavestenje).type("application/xml").header("Access-Control-Allow-Origin", "*").build();
 		}
 		return r;
 	}

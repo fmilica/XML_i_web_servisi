@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
-	targetNamespace="http://korisnik" xmlns:kor="http://korisnik"
-	xmlns:rdfa="http://www.w3.org/ns/rdfa#"
-	xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
-
+	targetNamespace="http://korisnik" xmlns:kor="http://korisnik">
+	<xs:element name="Lista_korisnika">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="kor:Korisnik"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
 	<xs:element name="Korisnik">
 		<xs:complexType>
 			<xs:sequence>
@@ -12,7 +16,14 @@
 				<xs:element name="Email" type="xs:string"/>
 				<xs:element name="Lozinka" type="xs:string"/>
 			</xs:sequence>
-			<xs:attribute name="uloga" type="xs:string"/>
+			<xs:attribute name="uloga">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="korisnik"/>
+						<xs:enumeration value="admin"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

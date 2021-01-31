@@ -25,6 +25,7 @@ import org.xmldb.api.modules.CollectionManagementService;
 import org.xmldb.api.modules.XMLResource;
 
 import com.xml.portal.poverenik.data.dao.GenericXML;
+import com.xml.portal.poverenik.data.dao.korisnik.Korisnik;
 import com.xml.portal.poverenik.data.xmldb.util.AuthenticationUtilities;
 import com.xml.portal.poverenik.data.xmldb.util.AuthenticationUtilities.ConnectionProperties;
 
@@ -76,6 +77,9 @@ public class StoreXML {
 
             String id = "ID" + (col.getResourceCount() + 1);
             documentId = documentId + id + ".xml";
+            if(xmlToStore instanceof Korisnik) {
+            	//documentId = ((Korisnik)xmlToStore).getId() + ".xml";
+            }
             
             System.out.println("\t- collection ID: " + collectionId);
         	System.out.println("\t- document ID: " + documentId);
@@ -133,7 +137,9 @@ public class StoreXML {
 		marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 		
 		// set id
-		xmlToStore.setId(id);
+		if (!(xmlToStore instanceof Korisnik)) {
+			xmlToStore.setId(id);
+		}
 		
 		// marshal the contents to an output stream
 		marshaller.marshal(xmlToStore, os);

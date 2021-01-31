@@ -13,6 +13,7 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.xml.portal.poverenik.data.dao.GenericXML;
+import com.xml.portal.poverenik.data.dao.korisnik.ListaKorisnika;
 import com.xml.portal.poverenik.data.xmldb.util.AuthenticationUtilities;
 import com.xml.portal.poverenik.data.xmldb.util.AuthenticationUtilities.ConnectionProperties;
 
@@ -28,11 +29,15 @@ public class RetrieveXML {
     	String collectionId = "";
     	
     	if (xmlClass != null) {
-	    	String className = xmlClass.getSimpleName();
+    		String className = xmlClass.getSimpleName();
 	    	System.out.println("[INFO] " + className);
-	    	
-	        collectionId = "/db/poverenik/" + className;
-	        documentId = className + "ID" + documentId + ".xml";
+    		collectionId = "/db/poverenik/" + className;
+    		if (xmlClass.equals(ListaKorisnika.class)) {
+    			collectionId = "/db/poverenik/Korisnik";
+    			documentId = documentId + ".xml";
+    		} else {
+    			documentId = className + "ID" + documentId + ".xml";
+    		}
     	} else {
     		System.out.println("[INFO] Resenje");
     		collectionId = "/db/poverenik/" + "Resenje";
