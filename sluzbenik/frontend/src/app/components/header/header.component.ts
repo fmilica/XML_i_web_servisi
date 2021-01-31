@@ -12,7 +12,7 @@ export class HeaderComponent implements OnInit {
     ) {}
 
   activeLink = '';
-  role = 'ROLE_GRADJANIN';
+  role = 'ROLE_SLUZBENIK';
 
   ngOnInit(): void {
     // preuzimanje trenutne rute

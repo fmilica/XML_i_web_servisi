@@ -7,94 +7,67 @@
 
             <ng-container matColumnDef="nazivOrgana">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив органа </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <td matTooltip="Назив органа ком је упућен захтев" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.nazivOrgana}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="sedisteOrgana">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Седиште органа </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <td matTooltip="Седиште органа ком је упућен захтев" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.sedisteOrgana}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="brojPredmeta">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Број предмета </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <td matTooltip="Број предмета" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.brojPredmeta}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="datum">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум добијања обавештења </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум обавештења </th>
+                <td matTooltip="Датум креирања обавештења" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.datum}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="imePrezime">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Име и презиме подносиоца захтева </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Име и презиме </th>
+                <td matTooltip="Име и презиме подносиоца захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.imePrezime}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="adresa">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса подносиоца захтева </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса </th>
+                <td matTooltip="Адреса подносиоца захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.adresa}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="datumZahteva">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум подношења захтева </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум захтева </th>
+                <td matTooltip="Датум подношења захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.datumZahteva}}
                 </td>
             </ng-container>
             
             <ng-container matColumnDef="informacije">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Тражене информације </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <td matTooltip="Опис тражене информације" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.informacije}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="danCasovi">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум увида </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.danCasovi}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="vreme">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Време увида </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.vreme}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="adresaOrgana">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса увида </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.adresaOrgana}}
-                </td>
-            </ng-container>
-
-            <ng-container matColumnDef="brojKancelarije">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Број канцеларије </th>
-                <td matTooltip="Click for detailed view" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.brojKancelarije}}
                 </td>
             </ng-container>
 
             <ng-container matColumnDef="preuzimanje">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
-                <td mat-cell *matCellDef="let row">
-                    <a href="/preuzmi-pdf/1" style="margin-right: 3px;">PDF</a><a href="/preuzmi-xml/1" style="margin-right: 3px;">XML</a>
+                <td matTooltip="Преузимање захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a href="/preuzmi-pdf/1" style="margin-right: 3px;">PDF</a><a href="/preuzmi-xml/1" style="margin-right: 3px;">HTML</a>
                 </td>
             </ng-container>
         </table>
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
     </div>
 </div>
