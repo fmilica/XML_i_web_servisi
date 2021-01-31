@@ -23,7 +23,7 @@ export class AllZahteviGradjaninComponent implements OnInit {
     }
   ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije', 'mesto', 'datum'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije', 'mesto', 'datum', 'preuzimanje'];
 
   ngOnInit(): void {
   }

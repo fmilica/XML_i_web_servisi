@@ -26,7 +26,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 
-                                'informacije', 'mesto', 'datum', 'trazilacInformacija','kontaktTelefon'];
+                                'informacije', 'mesto', 'datum', 'trazilacInformacija','kontaktTelefon', 'preuzimanje'];
 
   ngOnInit(): void {
   }

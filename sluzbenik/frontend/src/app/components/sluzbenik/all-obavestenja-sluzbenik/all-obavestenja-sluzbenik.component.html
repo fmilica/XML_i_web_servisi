@@ -88,6 +88,13 @@
                     {{row.brojKancelarije}}
                 </td>
             </ng-container>
+
+            <ng-container matColumnDef="preuzimanje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
+                <td mat-cell *matCellDef="let row">
+                    <a href="/preuzmi-pdf/1" style="margin-right: 3px;">PDF</a><a href="/preuzmi-xml/1" style="margin-right: 3px;">XML</a>
+                </td>
+            </ng-container>
         </table>
     </div>
 </div>

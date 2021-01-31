@@ -26,7 +26,7 @@ export class AllObavestenjaGradjaninComponent implements OnInit {
     }
   ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum'/*, 'imePrezime', 'adresa',*/, 'datumZahteva', 'informacije','danCasovi', 'vreme', 'adresaOrgana', 'brojKancelarije'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum'/*, 'imePrezime', 'adresa',*/, 'datumZahteva', 'informacije','danCasovi', 'vreme', 'adresaOrgana', 'brojKancelarije', 'preuzimanje'];
 
 
   ngOnInit(): void {
