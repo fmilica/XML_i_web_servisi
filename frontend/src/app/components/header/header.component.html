@@ -1,0 +1,47 @@
+<nav id="navigation" class="navbar navbar-expand-lg navbar-light">
+
+    <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_KORISNIK'">
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('nova-zalba-cutanje')" (keyup.enter)="onClick('nova-zalba-cutanje')"
+            [ngClass]="{'active': activeLink==='nova-zalba-cutanje'}">
+            Поднеси жалбу на ћутање управе
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('nova-zalba-odluka')" (keyup.enter)="onClick('nova-zalba-odluka')"
+            [ngClass]="{'active': activeLink==='nova-zalba-odluka'}">
+            Поднеси жалбу на одбијање захтева
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('zalbe')" (keyup.enter)="onClick('zalbe')"
+            [ngClass]="{'active': activeLink==='zalbe'}">
+            Моје жалбе
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('resenja')" (keyup.enter)="onClick('resenja')"
+            [ngClass]="{'active': activeLink==='resenja'}">
+            Моја решења
+        </a>
+    </div>
+
+    <div id="user-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_POVERENIK'">
+        <a id="resenja-btn-poverenik" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('resenje')" (keyup.enter)="onClick('resenje')"
+            [ngClass]="{'active': activeLink==='resenje'}">
+            Креирање решења
+        </a>
+        <a id="zalbe-btn-poverenik" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('zalbe')" (keyup.enter)="onClick('zalbe')"
+            [ngClass]="{'active': activeLink==='zalbe'}">
+            Све жалбе
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('resenja')" (keyup.enter)="onClick('resenja')"
+            [ngClass]="{'active': activeLink==='resenja'}">
+            Сва решења
+        </a>
+    </div>
+
+    <div id="user-btn-group" class="nav nav-pill mr-auto" *ngIf="role===''" style="padding-top: 46px;">
+
+    </div>
+</nav>

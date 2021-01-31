@@ -1,0 +1,41 @@
+<nav id = "navigation" class="navbar navbar-expand-lg">
+    <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_GRADJANIN'">
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('novi-zahtev')" (keyup.enter)="onClick('novi-zahtev')"
+            [ngClass]="{'active': activeLink==='novi-zahtev'}">
+            Подношење захтева
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('zahtevi')" (keyup.enter)="onClick('zahtevi')"
+            [ngClass]="{'active': activeLink==='zahtevi'}">
+            Преглед поднетих захтева
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('obavestenja')" (keyup.enter)="onClick('obavestenja')"
+            [ngClass]="{'active': activeLink==='obavestenja'}">
+            Преглед добијених обавештења
+        </a>
+    </div>
+
+    <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_SLUZBENIK'">
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('novo-obavestenje')" (keyup.enter)="onClick('novo-obavestenje')"
+            [ngClass]="{'active': activeLink==='novo-obavestenje'}">
+            Креирање обавештења
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('pristigli-zahtevi')" (keyup.enter)="onClick('pristigli-zahtevi')"
+            [ngClass]="{'active': activeLink==='pristigli-zahtevi'}">
+            Преглед пристиглих захтева
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('kreirana-obavestenja')" (keyup.enter)="onClick('kreirana-obavestenja')"
+            [ngClass]="{'active': activeLink==='kreirana-obavestenja'}">
+            Преглед креираних обавештења
+        </a>
+    </div>
+
+    <div class="nav nav-pill mr-auto" *ngIf="role===''" style="padding-top: 46px;">
+
+    </div>
+</nav>
