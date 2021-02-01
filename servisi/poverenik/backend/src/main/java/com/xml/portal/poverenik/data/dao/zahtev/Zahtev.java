@@ -81,6 +81,8 @@ public class Zahtev implements GenericXML {
     @XmlAttribute(name = "datum")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
+    @XmlAttribute(name = "razresen")
+    protected boolean razresen;
     @XmlAttribute(name = "vocab")
     protected String vocab;
     @XmlAttribute(name = "about")
@@ -232,6 +234,13 @@ public class Zahtev implements GenericXML {
      */
     public void setDatum(XMLGregorianCalendar value) {
         this.datum = value;
+    }
+    
+    public boolean getRazresen() {
+    	return razresen;
+    }
+    public void setRazresen(boolean value) {
+    	this.razresen = value;
     }
     
     public String getVocab() {

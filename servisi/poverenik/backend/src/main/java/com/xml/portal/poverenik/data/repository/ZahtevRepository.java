@@ -135,5 +135,19 @@ public class ZahtevRepository {
 			return null;
 		}
 	}
+	
+	public boolean update(String zahtevId, Zahtev zahtev) {
+		String xPath = "/Zahtev";
+		StringWriter sw = new StringWriter();
+		try {
+			marshaller.marshal(zahtev, sw);
+			String zahtevString = sw.toString();
+			this.existManager.update(collectionId, zahtevId, xPath, zahtevString, UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

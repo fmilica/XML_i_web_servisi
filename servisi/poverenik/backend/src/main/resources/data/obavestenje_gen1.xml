@@ -19,7 +19,7 @@
         <tipovi:Sediste>Novi Sad</tipovi:Sediste>
     </obv:Organ_vlasti>
     <obv:Broj_predmeta>SIIT-1</obv:Broj_predmeta>
-    <obv:Podnosilac>
+    <obv:Podnosilac vocab="http://www.xml.com/predicate/" about="http://obavestenje/ID1" rel="pred:vezanGradjanin" href="http://korisnik/pera@pera.com">
         <tipovi:Ime property="pred:podnosilacIme">Vlastislav</tipovi:Ime>
         <tipovi:Prezime property="pred:podnosilacPrezime">Jakovljevic</tipovi:Prezime>
         <tipovi:Adresa>

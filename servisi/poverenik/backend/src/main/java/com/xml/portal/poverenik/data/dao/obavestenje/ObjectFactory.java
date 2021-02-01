@@ -94,5 +94,16 @@ public class ObjectFactory {
     public TAdresaUvida createTAdresaUvida() {
         return new TAdresaUvida();
     }
+    
+    /**
+     * Create an instance of {@link Podnosilac }
+     * 
+     */
+    public Podnosilac createPodnosilac() {
+    	Podnosilac podnosilac = new Podnosilac();
+    	podnosilac.setVocab("http://www.xml.com/predicate/");
+    	podnosilac.setRel("pred:vezanGradjanin");
+		return podnosilac;
+    }
 
 }

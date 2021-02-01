@@ -1,0 +1,6 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) obavestenja vezanog za jednog korisnika
+
+SELECT ?obavestenje FROM <%s>
+WHERE { 
+  ?obavestenje <http://www.xml.com/predicate/vezanGradjanin> <%s> .
+}

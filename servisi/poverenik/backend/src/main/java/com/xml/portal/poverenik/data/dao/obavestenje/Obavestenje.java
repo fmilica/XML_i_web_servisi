@@ -94,7 +94,7 @@ public class Obavestenje implements GenericXML {
     @XmlElement(name = "Broj_predmeta", namespace = "http://obavestenje", required = true)
     protected String brojPredmeta;
     @XmlElement(name = "Podnosilac", namespace = "http://obavestenje", required = true)
-    protected TLice podnosilac;
+    protected Podnosilac podnosilac;
     @XmlElement(name = "Uvid_u_dokument", namespace = "http://obavestenje", required = true)
     protected UvidUDokument uvidUDokument;
     @XmlElement(name = "Ukupan_trosak_kopija", namespace = "http://obavestenje", required = true)
@@ -174,7 +174,7 @@ public class Obavestenje implements GenericXML {
      *     {@link TLice }
      *     
      */
-    public TLice getPodnosilac() {
+    public Podnosilac getPodnosilac() {
         return podnosilac;
     }
 
@@ -186,7 +186,7 @@ public class Obavestenje implements GenericXML {
      *     {@link TLice }
      *     
      */
-    public void setPodnosilac(TLice value) {
+    public void setPodnosilac(Podnosilac value) {
         this.podnosilac = value;
     }
 

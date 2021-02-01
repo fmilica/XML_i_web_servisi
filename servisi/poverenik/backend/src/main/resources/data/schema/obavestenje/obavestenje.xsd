@@ -9,7 +9,18 @@
             <xs:sequence>
                 <xs:element name="Organ_vlasti" type="tipovi:TOrgan_vlasti"> </xs:element>
                 <xs:element name="Broj_predmeta" type="xs:string"> </xs:element>
-                <xs:element name="Podnosilac" type="tipovi:TLice"/>
+                <xs:element name="Podnosilac">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="tipovi:TLice">
+                                <xs:attribute name="vocab" type="xs:string"/>
+                                <xs:attribute name="about" type="xs:string"/>
+                                <xs:attribute name="rel" type="xs:string"/>
+                                <xs:attribute name="href" type="xs:string"/>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
                 <xs:element ref="obv:Uvid_u_dokument"/>
                 <xs:element name="Ukupan_trosak_kopija">
                     <xs:complexType>

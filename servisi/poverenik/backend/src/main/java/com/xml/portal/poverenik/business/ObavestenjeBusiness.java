@@ -29,8 +29,8 @@ public class ObavestenjeBusiness {
 		ListaObavestenja obavestenja = null;
 		try {
 			obavestenjeIds = QueryMetadata.query(
-					"/poverenik/Zahtev", 
-					"src/main/resources/data/sparql/korisnikZahtevi.rq", 
+					"/poverenik/Obavestenje", 
+					"src/main/resources/data/sparql/korisnikObavestenja.rq", 
 					this.KORISNIK_NAMESPACE + userEmail);
 			obavestenja = new ListaObavestenja();
 			obavestenja.setObavestenje(obavestenjeRepository.findAllByGradjanin(obavestenjeIds));
@@ -53,8 +53,15 @@ public class ObavestenjeBusiness {
 	public String create(Obavestenje obavestenje, String zahtevId, String userEmail) {
 		String documentId = null;
 		try {
-			//obavestenje.setRel("pred:vezanGradjanin");
+			// vezivanje obavestenja i zahteva
+			obavestenje.setVocab("http://www.xml.com/predicate/");
+			obavestenje.setRel("pred:vezanZahtev");
 			obavestenje.setHref("http://zahtev/" + zahtevId);
+			// vezivanje obavestenja i korisnika
+			obavestenje.getPodnosilac().setVocab("http://www.xml.com/predicate/");
+			obavestenje.getPodnosilac().setRel("pred:vezanGradjanin");
+			obavestenje.getPodnosilac().setHref("http://korisnik/" + userEmail);
+			// cuvanje u bazama
 			documentId = obavestenjeRepository.save(obavestenje);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -50,11 +50,20 @@ public class ZahtevBusiness {
 		return loaded;
 	}
 	
+	public boolean update(String zahtevId, Zahtev zahtev) {
+		zahtev.setRazresen(true);
+		return zahtevRepository.update(zahtevId, zahtev);
+	}
+	
 	public String create(Zahtev zahtev, String userEmail) {
 		String documentId = null;
 		try {
-			zahtev.setRel("pred:vezanGradjanin");
+			// vezivanje zahteva i korisnika
+			zahtev.setVocab("http://www.xml.com/predicate/");
+	    	zahtev.setRel("pred:vezanGradjanin");
 			zahtev.setHref("http://korisnik/" + userEmail);
+			// kada se kreira -> nije razresen
+			zahtev.setRazresen(false);
 			documentId = zahtevRepository.save(zahtev);
 		} catch (Exception e) {
 			e.printStackTrace();

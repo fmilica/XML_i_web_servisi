@@ -126,6 +126,7 @@ public class ObavestenjeRepository {
 			String documentId = UUID.randomUUID().toString();
 			obavestenje.setId(TARGET_NAMESPACE + "/" + documentId);
 			obavestenje.setAbout(TARGET_NAMESPACE + "/" + documentId);
+			obavestenje.getPodnosilac().setAbout(TARGET_NAMESPACE + "/" + documentId);
 			marshaller.marshal(obavestenje, sw);
 			String obavestenjeString = sw.toString();
 			this.existManager.storeFromText(collectionId, documentId, obavestenjeString);
