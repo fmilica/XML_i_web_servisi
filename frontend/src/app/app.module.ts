@@ -13,6 +13,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 import { ToastrModule } from 'ngx-toastr';
 import { RegisterComponent } from './components/login-register/register/register.component';
@@ -57,6 +58,7 @@ import { AllResenjaComponent } from './components/all-resenja/all-resenja.compon
     MatTableModule,
     MatTabsModule,
     BrowserAnimationsModule,
+    MatTooltipModule,
     ToastrModule.forRoot({
       positionClass: 'toast-custom',
       timeOut: 2500,

@@ -50,6 +50,7 @@ export class ZalbaCutanjeComponent implements OnInit {
                       `<zoc:Podnosilac_zalbe>`+
                         `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
                         `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
+                          // `<tipovi:Naziv property="pred:podnosilacNaziv"></tipovi:Naziv>`+
                         `<tipovi:Adresa>`+
                           `<tipovi:Mesto></tipovi:Mesto>`+
                           `<tipovi:Ulica></tipovi:Ulica>`+
