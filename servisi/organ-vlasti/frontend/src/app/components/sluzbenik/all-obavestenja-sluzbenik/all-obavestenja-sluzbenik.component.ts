@@ -14,18 +14,7 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
   ) { }
 
   
-  dataSource = [
-    {
-      nazivOrgana: 'ФТН',
-      sedisteOrgana: 'Нови Сад',
-      brojPredmeta: '1',
-      datum: '26.3.2020.',
-      imePrezime: 'Властислав Јаковљевић',
-      adresa: 'Железничка 23, Нови Сад',
-      datumZahteva: '23.3.2020.',
-      informacije: 'Извод оцена'
-    }
-  ];
+  dataSource = [ ];
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'imePrezime', 'adresa', 'datumZahteva', 'informacije', 'preuzimanje'];
 
@@ -38,17 +27,20 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
           let data = []
           allObavestenja[1].children.map(obavestenje => {
             console.log(obavestenje)
-            let zahtevPrikaz = {
-              nazivOrgana: 'ФТН',
-              sedisteOrgana: 'Нови Сад',
-              brojPredmeta: '1',
-              datum: '26.3.2020.',
-              imePrezime: 'Властислав Јаковљевић',
-              adresa: 'Железничка 23, Нови Сад',
-              datumZahteva: '23.3.2020.',
-              informacije: 'Извод оцена'
+            let obavestenjePrikaz = {
+              nazivOrgana: obavestenje.children[0].children[0].children[0],
+              sedisteOrgana: obavestenje.children[0].children[1].children[0],
+              brojPredmeta: obavestenje.children[1].children[0],
+              datum: obavestenje.attributes.datum,
+              imePrezime: obavestenje.children[2].children[0].children[0] + ' ' + obavestenje.children[2].children[1].children[0],
+              adresa: obavestenje.children[2].children[2].children[1].children[0] + ', ' + 
+              obavestenje.children[2].children[2].children[2].children[0] + ' ' + obavestenje.children[2].children[2].children[0].children[0],
+              datumZahteva: obavestenje.children[3].children[1].children[0],
+              informacije: obavestenje.children[3].children[2].children[0]
             }
+            data.push(obavestenjePrikaz);
           })
+          this.dataSource = data;
         }
       )
   }

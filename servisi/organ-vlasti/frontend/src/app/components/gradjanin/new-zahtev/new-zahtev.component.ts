@@ -57,8 +57,8 @@ export class NewZahtevComponent implements OnInit {
               `</zahtev:Zahtevane_informacije>` +
           `</zahtev:Telo_zahteva>` +
           `<zahtev:Trazilac>` +
-            `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>` +
-            `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>` +
+           /* `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>` +
+            `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>` +*/
             `<tipovi:Adresa>` +
               `<tipovi:Mesto></tipovi:Mesto>` +
               `<tipovi:Ulica></tipovi:Ulica>` + 
