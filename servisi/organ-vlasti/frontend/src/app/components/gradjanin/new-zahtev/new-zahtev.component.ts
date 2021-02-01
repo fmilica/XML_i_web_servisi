@@ -84,7 +84,6 @@ export class NewZahtevComponent implements OnInit {
     this.zahtevService.createZahtev(xmlDocument)
       .subscribe((response) => {
         this.toastr.success('Успешно сте поднели захтев! Можете да га видите у "Преглед поднетих захтева".')
-        Xonomy.reset()
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')

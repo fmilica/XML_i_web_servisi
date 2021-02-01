@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
+import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
+import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 import { XonomyObavestenjeService } from 'src/app/services/xonomy/xonomy-obavestenje.service';
+import { ZahtevService } from 'src/app/services/zahtev.service';
 
 declare const Xonomy: any;
 
@@ -10,9 +15,23 @@ declare const Xonomy: any;
 })
 export class NewObavestenjeComponent implements OnInit {
 
-  constructor(private xonomyObavestenjeService: XonomyObavestenjeService) {}
+  zahtevDto: ZahtevDto;
+  subscription: Subscription;
 
-  ngOnInit(): void {}
+  constructor(
+    private xonomyObavestenjeService: XonomyObavestenjeService,
+    private zahtevService: ZahtevService,
+    private toastr: ToastrService,
+    private obavestenjeService: ObavestenjeService) {}
+
+  ngOnInit(
+
+  ): void {
+    this.subscription = this.zahtevService.odabraniZahtev
+      .subscribe(zahtevDto => {
+        this.zahtevDto = zahtevDto;
+      })
+  }
 
   ngAfterViewInit() {
     let element = document.getElementById('obavestenje');
@@ -26,25 +45,25 @@ export class NewObavestenjeComponent implements OnInit {
                         xsi:schemaLocation="http://obavestenje obavestenje.xsd" 
                         dostavljeno="imenovanom" 
                         datum="${new Date().toISOString().slice(0, 10)}"
-                        id="ID1"
-                        
-                        vocab="http://www.xml.com/predicate/"
-                        about="http://obavestenje/ID1"
-                        rel="pred:vezanZahtev"
-                        href="http://zahtev/ID1">`+
+                        >`+
                       `<obv:Organ_vlasti>`+
-                        `<tipovi:Naziv property="pred:izdavacNaziv">Факултет техничких наука</tipovi:Naziv>`+
-                        `<tipovi:Sediste>Нови Сад</tipovi:Sediste>`+
+                        `<tipovi:Naziv property="pred:izdavacNaziv">` + this.zahtevDto.nazivOrganaVlasti + `</tipovi:Naziv>`+
+                        `<tipovi:Sediste>` + this.zahtevDto.sedisteOrganaVlasti + `</tipovi:Sediste>`+
                       `</obv:Organ_vlasti>`+
                       `<obv:Broj_predmeta></obv:Broj_predmeta>`+
-                      `<obv:Podnosilac>`+
-                        `<tipovi:Naziv>ПМФ</tipovi:Naziv>` +
-                        /*`<tipovi:Ime property="pred:podnosilacIme">Пера</tipovi:Ime>`+
-                        `<tipovi:Prezime property="pred:podnosilacPrezime">Перић</tipovi:Prezime>`+*/
+                      `<obv:Podnosilac>`;
+                      if(this.zahtevDto.nazivPodnosioca) {
+                        xmlString += `<tipovi:Naziv>` + this.zahtevDto.nazivPodnosioca + `</tipovi:Naziv>`
+                      }else {
+                        xmlString += 
+                        `<tipovi:Ime property="pred:podnosilacIme">` + this.zahtevDto.imePodnosioca + `</tipovi:Ime>`+
+                        `<tipovi:Prezime property="pred:podnosilacPrezime">` + this.zahtevDto.prezimePodnosioca + `</tipovi:Prezime>`
+                      }
+                      xmlString += 
                         `<tipovi:Adresa>`+
-                          `<tipovi:Mesto>Нови Сад</tipovi:Mesto>`+
-                          `<tipovi:Ulica>Железничка</tipovi:Ulica>`+
-                          `<tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>`+
+                          `<tipovi:Mesto>` + this.zahtevDto.mesto + `</tipovi:Mesto>`+
+                          `<tipovi:Ulica>` + this.zahtevDto.ulica + `</tipovi:Ulica>`+
+                          `<tipovi:Ulicni_broj>` + this.zahtevDto.broj + `</tipovi:Ulicni_broj>`+
                         `</tipovi:Adresa>`+
                       `</obv:Podnosilac>`+
                       `<obv:Uvid_u_dokument>`+
@@ -53,8 +72,8 @@ export class NewObavestenjeComponent implements OnInit {
                           `<obv:Stav>1</obv:Stav>`+
                           `<obv:Zakon>Закон о слободном приступу информацијама од јавног значаја</obv:Zakon>`+
                         `</obv:Zakonska_osnova>`+
-                        `<obv:Datum_potrazivanja>2021-01-31</obv:Datum_potrazivanja>`+
-                        `<obv:Opis_trazene_informacije>Информације о положеним предметима</obv:Opis_trazene_informacije>`+
+                        `<obv:Datum_potrazivanja>` + this.zahtevDto.datumZahteva + `</obv:Datum_potrazivanja>`+
+                        `<obv:Opis_trazene_informacije>` + this.zahtevDto.informacije + `</obv:Opis_trazene_informacije>`+
                         `<obv:Podaci_o_uvidu>`+
                           `<obv:Datum></obv:Datum>`+
                           `<obv:Vreme></obv:Vreme>`+
@@ -72,5 +91,30 @@ export class NewObavestenjeComponent implements OnInit {
                   `</obv:Obavestenje>`;
                 
     Xonomy.render(xmlString, element, specification);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
+  }
+
+  send() {
+    let xmlDocument =  Xonomy.harvest();
+    console.log(xmlDocument)
+    if(Xonomy.warnings.length !== 0) {
+      this.toastr.error('Молимо Вас да исправно попуните форму!')
+      return
+    }
+    this.obavestenjeService.createObavestenje(xmlDocument, this.zahtevDto.id)
+      .subscribe((response) => {
+        this.toastr.success('Успешно сте креирали обавештење! Можете да га видите у "Преглед креираних обавештења".')
+        this.zahtevService.resiZahtev(this.zahtevDto.id)
+          .subscribe( () => {
+            console.log('resio')
+            }
+          )
+      },
+        err => {
+          this.toastr.error('Молимо Вас да исправно попуните форму!')
+        });
   }
 }

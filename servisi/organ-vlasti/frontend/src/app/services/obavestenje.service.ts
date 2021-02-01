@@ -30,4 +30,12 @@ export class ObavestenjeService {
       headers: this.headers
     });
   }
+
+  createObavestenje(xmlDocument: string, id: string) {
+    let email =  this.authService.getLoggedInUserEmail();
+    return this.http.post(environment.apiEndpoint + 'obavestenje?zahtevId=' + id +'&userEmail=' + email, xmlDocument, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }

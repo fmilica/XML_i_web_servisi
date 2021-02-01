@@ -19,11 +19,6 @@
 
     <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_SLUZBENIK'">
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('novo-obavestenje')" (keyup.enter)="onClick('novo-obavestenje')"
-            [ngClass]="{'active': activeLink==='novo-obavestenje'}">
-            Креирање обавештења
-        </a>
-        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('pristigli-zahtevi')" (keyup.enter)="onClick('pristigli-zahtevi')"
             [ngClass]="{'active': activeLink==='pristigli-zahtevi'}">
             Преглед пристиглих захтева
