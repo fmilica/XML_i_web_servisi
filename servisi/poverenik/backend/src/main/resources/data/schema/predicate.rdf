@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF xml:lang="en"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+
+    <!-- Klasa Zahtev -->
+    <rdfs:Class rdf:ID="Zahtev">
+        <rdfs:label>Zahtev</rdfs:label>
+        <rdfs:comment>
+            Zahtev klasa predstavlja svaki zahtev koji Gradjanin podnese.
+        </rdfs:comment>
+    </rdfs:Class>
+    <!-- Klasa Obavestenje -->
+    <rdfs:Class rdf:ID="Obavestenje">
+        <rdfs:label>Obavestenje</rdfs:label>
+        <rdfs:comment>
+            Obavestenje klasa predstavlja svako obavestenje koje Ogran vlasti izda.
+        </rdfs:comment>
+    </rdfs:Class>
+    <!-- Klasa Zalba -->
+    <rdfs:Class rdf:ID="Zalba">
+        <rdfs:label>Zalba</rdfs:label>
+        <rdfs:comment>
+            Zalba klasa predstavlja svaku zalbu (zbog cutanja ili odbijanja) koju Gradjanin podnese.
+        </rdfs:comment>
+    </rdfs:Class>
+    <!-- Klasa Resenje -->
+    <rdfs:Class rdf:ID="Resenje">
+        <rdfs:label>Resenje</rdfs:label>
+        <rdfs:comment>
+            Resenje klasa predstavlja svako resenje koje Poverenik izda.
+        </rdfs:comment>
+    </rdfs:Class>
+    <!-- Klasa Gradjanin -->
+    <rdfs:Class rdf:ID="Gradjanin">
+        <rdfs:label>Gradjanin</rdfs:label>
+        <rdfs:comment>
+            Gradjanin klasa predstavlja svakog registrovanog korisnika.
+        </rdfs:comment>
+    </rdfs:Class>
+    
+    <!-- Property podnosilacIme -->
+    <rdf:Property rdf:ID="podnosilacIme">
+        <rdfs:label>podnosilacIme</rdfs:label>
+        <rdfs:comment>
+            Ime gradjanina koji je podnosilac Zahteva ili Zalbe.
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property podnosilacPrezime -->
+    <rdf:Property rdf:ID="podnosilacPrezime">
+        <rdfs:label>podnosilacPrezime</rdfs:label>
+        <rdfs:comment>
+            Prezime gradjanina koji je podnosilac Zahteva ili Zalbe.
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property primalacNaziv -->
+    <rdf:Property rdf:ID="primalacNaziv">
+        <rdfs:label>primalacNaziv</rdfs:label>
+        <rdfs:comment>
+            Naziv Organ vlasti koji je primalac Zahteva
+            ili
+            Naziv Poverenika koji je primalac Zalbe (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property izdavacNaziv -->
+    <rdf:Property rdf:ID="izdavacNaziv">
+        <rdfs:label>izdavacNaziv</rdfs:label>
+        <rdfs:comment>
+            Organ vlasti koji je izdavac Obavestenja
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property izdavacIme -->
+    <rdf:Property rdf:ID="izdavacIme">
+        <rdfs:label>izdavacNaziv</rdfs:label>
+        <rdfs:comment>
+            Ime Poverenika koji je izdavac Resenja.
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property izdavacPrezime -->
+    <rdf:Property rdf:ID="izdavacPrezime">
+        <rdfs:label>izdavacPrezime</rdfs:label>
+        <rdfs:comment>
+            Prezime Poverenika koji je izdavac Resenja.
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property optuzeniNaziv -->
+    <rdf:Property rdf:ID="optuzeniNaziv">
+        <rdfs:label>optuzeniNaziv</rdfs:label>
+        <rdfs:comment>
+            Naziv Organa vlasti koji je optuzen u Zalbi (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property zalilacIme -->
+    <rdf:Property rdf:ID="zalilacIme">
+        <rdfs:label>zalilacIme</rdfs:label>
+        <rdfs:comment>
+            Ime Gradjanina koji je izrekao Zalbu (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+    </rdf:Property>
+    <!-- Property zalilacPrezime -->
+    <rdf:Property rdf:ID="zalilacPrezime">
+        <rdfs:label>zalilacPrezime</rdfs:label>
+        <rdfs:comment>
+            Prezime Gradjanina koji je izrekao Zalbu (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+    </rdf:Property>
+    
+    <!-- Veza vezanZahtev -->
+    <rdf:Property rdf:ID="vezanZahtev">
+        <rdfs:label>vezanZahtev</rdfs:label>
+        <rdfs:comment>
+            Zahtev koji je vezan za Obavestenje, Resenje ili Zalbu (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+        <rdfs:range rdf:resource="#Zahtev"/>
+    </rdf:Property>
+    <!-- Veza vezanaZalba -->
+    <rdf:Property rdf:ID="vezanaZalba">
+        <rdfs:label>vezanaZalba</rdfs:label>
+        <rdfs:comment>
+            Zalba (zbog cutanja ili odbijanja) koja je vezana za Resenje.
+        </rdfs:comment>
+        <rdfs:range rdf:resource="#Zalba"/>
+        <rdfs:domain rdf:resource="#Resenje"/>
+    </rdf:Property>
+    <!-- Veza vezanGradjanin -->
+    <rdf:Property rdf:ID="vezanGradjanin">
+        <rdfs:label>vezanGradjanin</rdfs:label>
+        <rdfs:comment>
+            Gradjanin koji je vezan za Zahtev, Obavestenje, Resenje ili Zalbu (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+        <rdfs:range rdf:resource="#Gradjanin"/>
+    </rdf:Property>
+</rdf:RDF>
