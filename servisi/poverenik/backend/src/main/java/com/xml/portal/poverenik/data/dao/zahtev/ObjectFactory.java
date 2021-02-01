@@ -81,7 +81,10 @@ public class ObjectFactory {
      * 
      */
     public Zahtev createZahtev() {
-        return new Zahtev();
+    	Zahtev zahtev = new Zahtev();
+    	zahtev.setVocab("http://www.xml.com/predicate/");
+    	zahtev.setRel("pred:vezanGradjanin");
+        return zahtev;
     }
 
 

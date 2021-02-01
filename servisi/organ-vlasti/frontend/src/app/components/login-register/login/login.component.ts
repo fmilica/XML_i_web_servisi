@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
     };
 
     let userLoginXml: string = JsonToXML.parse(
-      'KorisnikLoginDto',
+      'UserLoginDto',
       userLoginDto,
       options
     );
@@ -59,20 +59,24 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(userLoginXml).subscribe(
       (response) => {
-        this.toastr.success('Logged in successfully!');
+        this.toastr.success('Успешна пријава!');
         // postavljanje u local storage
         this.authService.setLoggedInUser(response);
         // reset forme
         this.loginForm.reset();
         // preusmerenje
-        //this.router.navigate(['homepage']);
-        //this.authService.role.next(this.authService.getLoggedInUserAuthority());
+        this.authService.role.next(this.authService.getLoggedInUserAuthority());
+        if (this.authService.role.value === 'ROLE_GRADJANIN') {
+          this.router.navigate(['zahtevi']);
+        } else {
+          this.router.navigate(['pristigli-zahtevi']);
+        }
       },
       (error) => {
         if (error.status === 401) {
-          this.toastr.error('Incorrect email or password.');
+          this.toastr.error('Невалидна електронска пошта или лозинка.');
         } else {
-          this.toastr.error('503 Server Unavailable');
+          this.toastr.error('503 Сервер недоступан');
         }
         this.loginForm.reset();
       }
@@ -82,11 +86,11 @@ export class LoginComponent implements OnInit {
   getEmailErrorMessage(): string {
     if (this.loginForm.controls.email.touched) {
       if (this.loginForm.controls.email.hasError('required')) {
-        return 'Required field';
+        return 'Обавезно поље';
       }
 
       return this.loginForm.controls.email.hasError('email')
-        ? 'Not a valid email'
+        ? 'Невалидна форма електронске поште'
         : '';
     }
     return '';
@@ -95,7 +99,7 @@ export class LoginComponent implements OnInit {
   getRequiredFieldErrorMessage(fieldName: string): string {
     if (this.loginForm.controls[fieldName].touched) {
       return this.loginForm.controls[fieldName].hasError('required')
-        ? 'Required field'
+        ? 'Обавезно поље'
         : '';
     }
 

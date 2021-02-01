@@ -19,11 +19,13 @@
 			<xs:attribute name="uloga">
 				<xs:simpleType>
 					<xs:restriction base="xs:string">
-						<xs:enumeration value="korisnik"/>
-						<xs:enumeration value="admin"/>
+						<xs:enumeration value="ROLE_GRADJANIN"/>
+						<xs:enumeration value="ROLE_SLUZBENIK"/>
 					</xs:restriction>
 				</xs:simpleType>
 			</xs:attribute>
+			<xs:attribute name="vocab" type="xs:string"/>
+			<xs:attribute name="about" type="xs:string"/>
 		</xs:complexType>
 	</xs:element>
 </xs:schema>

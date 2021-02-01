@@ -31,6 +31,13 @@
             Resenje klasa predstavlja svako resenje koje Poverenik izda.
         </rdfs:comment>
     </rdfs:Class>
+    <!-- Klasa Gradjanin -->
+    <rdfs:Class rdf:ID="Gradjanin">
+        <rdfs:label>Gradjanin</rdfs:label>
+        <rdfs:comment>
+            Gradjanin klasa predstavlja svakog registrovanog korisnika.
+        </rdfs:comment>
+    </rdfs:Class>
     
     <!-- Property podnosilacIme -->
     <rdf:Property rdf:ID="podnosilacIme">
@@ -114,5 +121,13 @@
         </rdfs:comment>
         <rdfs:range rdf:resource="#Zalba"/>
         <rdfs:domain rdf:resource="#Resenje"/>
+    </rdf:Property>
+    <!-- Veza vezanGradjanin -->
+    <rdf:Property rdf:ID="vezanGradjanin">
+        <rdfs:label>vezanGradjanin</rdfs:label>
+        <rdfs:comment>
+            Gradjanin koji je vezan za Zahtev, Obavestenje, Resenje ili Zalbu (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+        <rdfs:range rdf:resource="#Gradjanin"/>
     </rdf:Property>
 </rdf:RDF>

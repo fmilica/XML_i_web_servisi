@@ -62,8 +62,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 })
 @XmlRootElement(name = "Korisnik")
 public class Korisnik implements UserDetails {
-
-    @XmlElement(name = "Ime", required = true)
+	private static final long serialVersionUID = 1L;
+	
+	@XmlElement(name = "Ime", required = true)
     protected String ime;
     @XmlElement(name = "Prezime", required = true)
     protected String prezime;
@@ -73,6 +74,10 @@ public class Korisnik implements UserDetails {
     protected String lozinka;
     @XmlAttribute(name = "uloga")
     protected String uloga;
+    @XmlAttribute(name = "vocab")
+    protected String vocab;
+    @XmlAttribute(name = "about")
+    protected String about;
 
     /**
      * Gets the value of the ime property.
@@ -192,6 +197,20 @@ public class Korisnik implements UserDetails {
      */
     public void setUloga(String value) {
         this.uloga = value;
+    }
+    
+    public String getVocab() {
+    	return vocab;
+    }
+    public void setVocab(String value) {
+    	this.vocab = value;
+    }
+    
+    public String getAbout() {
+    	return about;
+    }
+    public void setAbout(String value) {
+    	this.about = value;
     }
 
 	@Override

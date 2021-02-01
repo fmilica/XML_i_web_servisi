@@ -106,6 +106,14 @@ public class ExistManager {
 		}
 	}
 
+	public Collection loadCollection(String collectionId) throws Exception {
+		createConnection();
+		Collection col = DatabaseManager.getCollection(conn.uri + collectionId, conn.user,
+				conn.password);
+		col.setProperty(OutputKeys.INDENT, "yes");
+		return col;
+	}
+	
 	public XMLResource load(String collectionUri, String documentId) throws Exception  {
 		createConnection();
 		Collection col = null;

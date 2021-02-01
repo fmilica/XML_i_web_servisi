@@ -4,7 +4,7 @@
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.xml.com/predicate/"
-    xsi:schemaLocation="http://obavestenje obavestenje.xsd" 
+    xsi:schemaLocation="http://obavestenje schema/obavestenje/obavestenje.xsd" 
     dostavljeno="imenovanom" 
     datum="2006-05-04"
     id="ID1"

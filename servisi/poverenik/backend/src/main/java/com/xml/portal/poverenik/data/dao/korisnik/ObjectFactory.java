@@ -10,6 +10,7 @@ package com.xml.portal.poverenik.data.dao.korisnik;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
+import com.xml.portal.poverenik.data.dao.zahtev.ListaZahteva;
 import com.xml.portal.poverenik.dto.KorisnikRegistracijaDTO;
 
 
@@ -56,12 +57,18 @@ public class ObjectFactory {
     
     public Korisnik createKorisnikFromRegistracija(KorisnikRegistracijaDTO registracija) {
     	Korisnik korisnik = new Korisnik();
-    	korisnik.setUloga("korisnik");
+    	korisnik.setUloga("ROLE_GRADJANIN");
     	korisnik.setEmail(registracija.getEmail());
     	korisnik.setLozinka(registracija.getLozinka());
     	korisnik.setIme(registracija.getIme());
     	korisnik.setPrezime(registracija.getPrezime());
+    	korisnik.setVocab("http://www.xml.com/predicate/");
+    	korisnik.setAbout(registracija.getEmail());
     	return korisnik;
+    }
+    
+    public ListaZahteva createListaZahteva() {
+    	return new ListaZahteva();
     }
 
 }

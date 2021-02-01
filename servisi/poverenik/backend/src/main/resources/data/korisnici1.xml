@@ -2,13 +2,17 @@
 <Lista_korisnika xmlns="http://korisnik"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
  xsi:schemaLocation="http://korisnik schema/korisnik/korisnik.xsd">
-    <Korisnik uloga="korisnik">
+    <Korisnik uloga="ROLE_GRADJANIN"
+        vocab="http://www.xml.com/predicate/"
+        about="http://zahtev/pera@pera.com">
         <Ime>Pera</Ime>
         <Prezime>Peric</Prezime>
         <Email>pera@pera.com</Email>
         <Lozinka>pera</Lozinka>
     </Korisnik>
-    <Korisnik uloga="korisnik">
+    <Korisnik uloga="ROLE_GRADJANIN"
+        vocab="http://www.xml.com/predicate/"
+        about="http://zahtev/mika@mika.com">
         <Ime>Mika</Ime>
         <Prezime>Mikic</Prezime>
         <Email>mika@mika.com</Email>

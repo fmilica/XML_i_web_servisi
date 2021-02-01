@@ -54,10 +54,7 @@ import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-oba
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-custom',
-      timeOut: 2500,
-    })
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,5 @@
 package com.xml.portal.poverenik.service;
 
-import javax.ws.rs.core.Response;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -62,15 +60,12 @@ public class KorisnikService {
 	}
 	
 	@PostMapping("/registracija")
-    public Response registracija(@RequestBody KorisnikRegistracijaDTO registracija) {
+    public ResponseEntity<Object> registracija(@RequestBody KorisnikRegistracijaDTO registracija) {
     	boolean storedXml = korisnikBusiness.register(registracija);
-    	Response r;
     	if (!storedXml) {
     		Greska greska = new Greska("Greska u registraciji. Korisnik sa unetim email-om vec postoji.");
-			r = Response.status(500).type("application/xml").entity(greska).header("Access-Control-Allow-Origin", "*").build();
-    	} else {
-    		r = Response.ok(registracija).type("application/xml").header("Access-Control-Allow-Origin", "*").build();	
-		}
-        return r;
+    		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
+    	}
+    	return new ResponseEntity<>(registracija, HttpStatus.CREATED);
     }
 }

@@ -85,6 +85,10 @@ public class Zahtev implements GenericXML {
     protected String vocab;
     @XmlAttribute(name = "about")
     protected String about;
+    @XmlAttribute(name = "rel")
+    protected String rel;
+    @XmlAttribute(name = "href")
+    protected String href;
 
     /**
      * Gets the value of the organVlasti property.
@@ -242,6 +246,20 @@ public class Zahtev implements GenericXML {
     }
     public void setAbout(String value) {
     	this.about = value;
+    }
+
+    public String getRel() {
+    	return rel;
+    }
+    public void setRel(String value) {
+    	this.rel = value;
+    }
+    
+    public String getHref() {
+    	return href;
+    }
+    public void setHref(String value) {
+    	this.href = value;
     }
 
 	@Override

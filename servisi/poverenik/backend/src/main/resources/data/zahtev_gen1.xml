@@ -4,13 +4,15 @@
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.xml.com/predicate/"
-    xsi:schemaLocation="http://zahtev zahtev.xsd" 
+    xsi:schemaLocation="http://zahtev schema/zahtev/zahtev.xsd" 
     mesto="Sremska Mitrovica" 
     datum="2022-04-06"
     id="ID1"
     
     vocab="http://www.xml.com/predicate/"
-    about="http://zahtev/ID1">
+    about="http://zahtev/ID1"
+    rel="pred:vezanGradjanin"
+    href="http://korisnik/pera@pera.com">
     <zahtev:Organ_vlasti>
         <tipovi:Naziv property="pred:primalacNaziv">Fakultet tehnickih nauka</tipovi:Naziv>
         <tipovi:Sediste>Novi Sad</tipovi:Sediste>
