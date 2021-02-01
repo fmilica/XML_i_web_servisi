@@ -1,5 +1,7 @@
 package com.xml.portal.poverenik.service;
 
+import java.io.FileInputStream;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -11,6 +13,7 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.xml.portal.poverenik.business.ZahtevBusiness;
@@ -60,4 +63,38 @@ public class ZahtevService {
     	}
         return r;
     }
+    
+    @GET
+    @Path("/generisiHTML/{id}")
+	public Response generisiHTML(@PathParam("id") String id) throws Exception {
+
+		String file_path = zahtevBusiness.generateHTML(id);
+		
+		try {
+			
+			return Response.ok().build();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok().build();
+		}
+	
+	}
+    
+    @GET
+    @Path("/generisiPDF/{id}")
+	public Response generisiPDF(@PathParam("id") String id) throws Exception {
+
+		String file_path = zahtevBusiness.generatePDF(id);
+		
+		try {
+			
+			return Response.ok().build();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok().build();
+		}
+	
+	}
 }

@@ -22,11 +22,11 @@
     </zoc:Primalac_zalbe>
     <zoc:Zalba>
         <zoc:Osnova_zalbe>
-            <zoc:Clan></zoc:Clan>
-            <zoc:Zakon></zoc:Zakon>
+            <zoc:Clan>22</zoc:Clan>
+            <zoc:Zakon>Zakonom o slobodnom pristupu informacijama od javnog znacaja</zoc:Zakon>
         </zoc:Osnova_zalbe>
         <zoc:Naziv_organa>Fakultet tehnickih nauka</zoc:Naziv_organa>
-        <zoc:Razlog_zalbe>Nije postupio</zoc:Razlog_zalbe>
+        <zoc:Razlog_zalbe>nije postupio</zoc:Razlog_zalbe>
         <zoc:Datum>2020-11-13</zoc:Datum>
         <zoc:Podaci_o_zahtevu>Zahtevane informacije o polozenim predmetima Vlastislava Jakovljevica</zoc:Podaci_o_zahtevu>
         <zoc:Podnosilac_zalbe>

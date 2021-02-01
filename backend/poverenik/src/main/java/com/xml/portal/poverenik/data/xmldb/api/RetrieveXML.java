@@ -93,6 +93,71 @@ public class RetrieveXML {
         }
         return loaded;
     }
+    
+    public static Object retrieveRaw(Class xmlClass, String documentId) throws Exception {
+        
+    	conn = AuthenticationUtilities.loadProperties();
+    	
+    	// initialize collection and document identifiers
+    	String collectionId = "";
+    	
+    	if (xmlClass != null) {
+	    	String className = xmlClass.getSimpleName();
+	    	System.out.println("[INFO] " + className);
+	    	
+	        collectionId = "/db/poverenik/" + className;
+	        documentId = className + "ID" + documentId + ".xml";
+    	} else {
+    		System.out.println("[INFO] Resenje");
+    		collectionId = "/db/poverenik/" + "Resenje";
+    		documentId = "ResenjeID" + documentId + ".xml";
+    	}
+        
+        // initialize database driver
+    	System.out.println("[INFO] Loading driver class: " + conn.driver);
+        Class<?> cl = Class.forName(conn.driver);
+        
+        Database database = (Database) cl.newInstance();
+        database.setProperty("create-database", "true");
+        
+        DatabaseManager.registerDatabase(database);
+        
+        Collection col = null;
+        XMLResource res = null;
+        
+        try {    
+            // get the collection
+        	System.out.println("[INFO] Retrieving the collection: " + collectionId);
+            col = DatabaseManager.getCollection(conn.uri + collectionId);
+            col.setProperty(OutputKeys.INDENT, "yes");
+            
+            System.out.println("[INFO] Retrieving the document: " + documentId);
+            res = (XMLResource)col.getResource(documentId);
+            
+            if(res == null) {
+                System.out.println("[WARNING] Document '" + documentId + "' could not be found!");
+            }
+        } finally {
+            //don't forget to clean up!
+            
+            if(res != null) {
+                try { 
+                	((EXistResource)res).freeResources(); 
+                } catch (XMLDBException xe) {
+                	xe.printStackTrace();
+                }
+            }
+            
+            if(col != null) {
+                try { 
+                	col.close(); 
+                } catch (XMLDBException xe) {
+                	xe.printStackTrace();
+                }
+            }
+        }
+        return res.getContent();
+    }
 
 	private static GenericXML retrieveJAXB(Class<GenericXML> xmlClass, XMLResource res) throws JAXBException, XMLDBException {
     	System.out.println("[INFO] Binding XML resouce to an JAXB instance: ");

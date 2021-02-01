@@ -60,5 +60,39 @@ public class ResenjeService {
     	}
         return r;
     }
+    
+    @GET
+    @Path("/generisiHTML/{id}")
+	public Response generisiHTML(@PathParam("id") String id) throws Exception {
+
+		String file_path = resenjeBusiness.generateHTML(id);
+		
+		try {
+			
+			return Response.ok().build();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok().build();
+		}
+	
+	}
+    
+    @GET
+    @Path("/generisiPDF/{id}")
+	public Response generisiPDF(@PathParam("id") String id) throws Exception {
+
+		String file_path = resenjeBusiness.generatePDF(id);
+		
+		try {
+			
+			return Response.ok().build();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok().build();
+		}
+	
+	}
 }
 

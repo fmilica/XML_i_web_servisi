@@ -1,5 +1,9 @@
 package com.xml.portal.poverenik.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -10,6 +14,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,4 +65,40 @@ public class ZalbaOdbijanjeService {
     	}
         return r;
     }
+    
+    @GET
+    @Path("/generisiHTML/{id}")
+	public Response generisiHTML(@PathParam("id") String id) throws Exception {
+
+		String path = zalbaOdbijanjeBusiness.generateHTML(id);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return Response.ok().entity(IOUtils.toByteArray(stream)).build();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok().build();
+		}
+	
+	}
+    
+    @GET
+    @Path("/generisiPDF/{id}")
+	public Response generisiPDF(@PathParam("id") String id) throws Exception {
+
+		String path = zalbaOdbijanjeBusiness.generatePDF(id);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return Response.ok().entity(IOUtils.toByteArray(stream)).build();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Response.ok().build();
+		}
+	
+	}
 }

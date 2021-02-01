@@ -4,7 +4,7 @@
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.xml.com/predicate/"
-    xsi:schemaLocation="http://zalbaodbijen zalba_odbijen.xsd"
+    xsi:schemaLocation="http://zalbaodbijanje zalba_odbijen.xsd"
     mesto_podnosenja_zalbe="Sabac" datum_podnosenja_zalbe="2020-01-01" datum_podnosenja_zahteva="2020-01-01" id="ID1"
     
     vocab="http://www.xml.com/predicate/"
