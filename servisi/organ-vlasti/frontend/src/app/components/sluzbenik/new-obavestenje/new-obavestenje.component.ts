@@ -33,17 +33,18 @@ export class NewObavestenjeComponent implements OnInit {
                         rel="pred:vezanZahtev"
                         href="http://zahtev/ID1">`+
                       `<obv:Organ_vlasti>`+
-                        `<tipovi:Naziv property="pred:izdavacNaziv">Fakultet tehnickih nauka</tipovi:Naziv>`+
-                        `<tipovi:Sediste>Novi Sad</tipovi:Sediste>`+
+                        `<tipovi:Naziv property="pred:izdavacNaziv">Факултет техничких наука</tipovi:Naziv>`+
+                        `<tipovi:Sediste>Нови Сад</tipovi:Sediste>`+
                       `</obv:Organ_vlasti>`+
                       `<obv:Broj_predmeta></obv:Broj_predmeta>`+
                       `<obv:Podnosilac>`+
-                        `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
-                        `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
+                        `<tipovi:Naziv>ПМФ</tipovi:Naziv>` +
+                        /*`<tipovi:Ime property="pred:podnosilacIme">Пера</tipovi:Ime>`+
+                        `<tipovi:Prezime property="pred:podnosilacPrezime">Перић</tipovi:Prezime>`+*/
                         `<tipovi:Adresa>`+
-                          `<tipovi:Mesto></tipovi:Mesto>`+
-                          `<tipovi:Ulica></tipovi:Ulica>`+
-                          `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
+                          `<tipovi:Mesto>Нови Сад</tipovi:Mesto>`+
+                          `<tipovi:Ulica>Железничка</tipovi:Ulica>`+
+                          `<tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>`+
                         `</tipovi:Adresa>`+
                       `</obv:Podnosilac>`+
                       `<obv:Uvid_u_dokument>`+

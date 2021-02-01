@@ -53,6 +53,13 @@
             Prezime gradjanina koji je podnosilac Zahteva ili Zalbe.
         </rdfs:comment>
     </rdf:Property>
+	<!-- Property podnosilacNaziv -->
+    <rdf:Property rdf:ID="podnosilacNaziv">
+        <rdfs:label>podnosilacNaziv</rdfs:label>
+        <rdfs:comment>
+            Naziv podnosioca Zahteva ili Zalbe.
+        </rdfs:comment>
+    </rdf:Property>
     <!-- Property primalacNaziv -->
     <rdf:Property rdf:ID="primalacNaziv">
         <rdfs:label>primalacNaziv</rdfs:label>

@@ -57,7 +57,20 @@ export class XonomyObavestenjeService {
       },
       //Podaci o organu vlasti
       'obv:Organ_vlasti': {
-        isInvisible: true
+        title: 'Орган власти ком је упућен захтев',
+        isReadOnly: true,
+        collapsed: true
+      },
+      'tipovi:Naziv': {
+        oneliner: true,
+        attributes: {
+          property: {
+            isInvisible: true,
+          },
+        },
+      },
+      'tipovi:Sediste': {
+        oneliner: true
       },
       //Broj predmeta
       'obv:Broj_predmeta': {
@@ -74,20 +87,12 @@ export class XonomyObavestenjeService {
       },
       //Podaci o podnosiocu zahteva
       'obv:Podnosilac': {
-        title: 'Подаци о подносиоцу захтева'
+        title: 'Подаци о подносиоцу захтева',
+        isReadOnly: true,
       },
       
       'tipovi:Ime': {
-        validate: function (jsElement: any) {
-          if (jsElement.getText() == '') {
-            Xonomy.warnings.push({
-              htmlID: jsElement.htmlID,
-              text: 'Име је обавезно поље!',
-            });
-          }
-        },
-        hasText: true,
-        asker: Xonomy.askString,
+        oneliner: true,
         attributes: {
           property: {
             isInvisible: true,
@@ -95,21 +100,16 @@ export class XonomyObavestenjeService {
         },
       },
       'tipovi:Prezime': {
-        validate: function (jsElement: any) {
-          if (jsElement.getText() == '') {
-            Xonomy.warnings.push({
-              htmlID: jsElement.htmlID,
-              text: 'Презиме је обавезно поље!',
-            });
-          }
-        },
-        hasText: true,
-        asker: Xonomy.askString,
+        oneliner: true,
         attributes: {
           property: {
             isInvisible: true,
           },
         },
+      },
+      'tipovi:Adresa' : {
+        collapsed: true,
+        oneliner: true,
       },
       'tipovi:Mesto': {
         validate: function (jsElement: any) {
@@ -121,7 +121,7 @@ export class XonomyObavestenjeService {
           }
         },
         hasText: true,
-        asker: Xonomy.askString,
+        asker: Xonomy.askString
       },
       'tipovi:Ulica': {
         validate: function (jsElement: any) {
@@ -133,7 +133,7 @@ export class XonomyObavestenjeService {
           }
         },
         hasText: true,
-        asker: Xonomy.askString,
+        asker: Xonomy.askString
       },
       'tipovi:Ulicni_broj': {
         validate: function (jsElement: any) {
@@ -145,14 +145,18 @@ export class XonomyObavestenjeService {
           }
         },
         hasText: true,
-        asker: Xonomy.askString,
+        asker: Xonomy.askString
       },
       //Zakonska osnova
       'obv:Zakonska_osnova': {
         isInvisible: true,
       },
+      'obv:Uvid_u_dokument': {
+        title: 'Информације о датуму, времену и месту увида у документ који садржи тражену информацију'
+      },
       //Datum potrazivanja
       'obv:Datum_potrazivanja': {
+        title: 'Датум подношења захтева',
         isReadOnly: true,
         oneliner: true,
       },

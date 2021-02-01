@@ -88,4 +88,14 @@ export class AuthenticationService {
       return '';
     }
   }
+
+  getLoggedInUserEmail(): string {
+    const info = this.getLoggedInUser();
+    if (info) {
+      return info.sub;
+    }
+    else {
+      return '';
+    }
+  }
 }
