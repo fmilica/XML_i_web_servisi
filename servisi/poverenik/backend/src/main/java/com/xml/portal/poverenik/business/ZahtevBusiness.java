@@ -26,7 +26,7 @@ public class ZahtevBusiness {
 	
 	public ListaZahteva getAllByGradjanin(String userEmail) {
 		List<String> zahtevIds;
-		ListaZahteva zahtevi = new ListaZahteva();
+		ListaZahteva zahtevi = null;
 		try {
 			zahtevIds = QueryMetadata.query(
 					"/poverenik/Zahtev", 

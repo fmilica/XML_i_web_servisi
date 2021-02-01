@@ -41,7 +41,10 @@ public class ObjectFactory {
      * 
      */
     public Obavestenje createObavestenje() {
-        return new Obavestenje();
+		Obavestenje obavestenje = new Obavestenje();
+		obavestenje.setVocab("http://www.xml.com/predicate/");
+		obavestenje.setRel("pred:vezanZahtev");
+		return obavestenje;
     }
 
     /**
