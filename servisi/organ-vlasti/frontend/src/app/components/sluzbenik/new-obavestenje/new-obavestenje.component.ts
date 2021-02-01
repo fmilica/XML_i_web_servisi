@@ -99,7 +99,6 @@ export class NewObavestenjeComponent implements OnInit {
 
   send() {
     let xmlDocument =  Xonomy.harvest();
-    console.log(xmlDocument)
     if(Xonomy.warnings.length !== 0) {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return
@@ -108,10 +107,7 @@ export class NewObavestenjeComponent implements OnInit {
       .subscribe((response) => {
         this.toastr.success('Успешно сте креирали обавештење! Можете да га видите у "Преглед креираних обавештења".')
         this.zahtevService.resiZahtev(this.zahtevDto.id)
-          .subscribe( () => {
-            console.log('resio')
-            }
-          )
+          .subscribe()
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')
