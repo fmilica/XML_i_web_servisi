@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Орган власти';
+  
+  constructor(
+    private authService: AuthenticationService
+  ) { }
+
+  ngOnInit(): void {
+
+    this.authService.autoLogin();
+  }
+
 }
