@@ -64,7 +64,8 @@ export class XonomyZalbaOdlukaService {
       },
       'zoz:podaci_o_primaocu':{
         menu:[],
-        // isReadOnly: true
+        isReadOnly: true,
+        isInvisible: true,
       },
       'tipovi:Naziv': {
         // collapsed: true,
@@ -117,6 +118,9 @@ export class XonomyZalbaOdlukaService {
         hasText: true,
         asker: Xonomy.askString,
       },
+      'zoz:podaci_o_zaliocu':{
+        title:'Подаци о жалиоцу'
+      },
       'tipovi:Ime':{
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
@@ -152,6 +156,7 @@ export class XonomyZalbaOdlukaService {
         },}
       },
       'zoz:podaci_o_odluci':{
+        title: 'Подаци о одлуци',
         attributes:{
           broj_odluke:{
             isInvisible: true
@@ -188,19 +193,24 @@ export class XonomyZalbaOdlukaService {
         asker: Xonomy.askPicklist,
         askerParameter: ["није поступио", "није поступио у целости", "није поступио у законском року"],
       },
-      'zoz:Osnova_zalbe': {
+      'zoz:osnova_zalbe': {
         isReadOnly: true,
+        isInvisible: true,
         collapsed: true,
       },
-      'zoz:Clan': {
+      'zoz:clan': {
         oneliner: true,
       },
-      'zoz:Zakon': {
+      'zoz:zakon': {
         oneliner: true,
       },
-      'zoz:Datum':{
+      'zoz:datum':{
         isReadOnly:true,
+        isInvisible: true,
         oneliner:true
+      },
+      'zoz:podaci_o_podnosiocu_zalbe':{
+        title: 'Подаци о подносиоцу жалбе'
       },
       'tipovi:Kontakt_podaci':{
         validate: function (jsElement:any) {

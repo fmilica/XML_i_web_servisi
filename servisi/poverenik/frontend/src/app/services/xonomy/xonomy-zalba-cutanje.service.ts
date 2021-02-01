@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 
 declare const Xonomy: any;
 
-// const zoc = `xmlns:zoc="http://zalbacutanje"`;
-// const tipovi = `xmlns:tipovi="http://tipovi"`;
 @Injectable({
   providedIn: 'root',
 })
@@ -63,6 +61,7 @@ export class XonomyZalbaCutanjeService {
         menu: [],
         //   mustBeBefore:["zoc:Zalba"]
         isReadOnly: true,
+        isInvisible: true,
       },
       'tipovi:Naziv': {
         // collapsed: true,
@@ -71,7 +70,7 @@ export class XonomyZalbaCutanjeService {
           property: {
             isInvisible: true,
           },
-        }
+        },
       },
       'tipovi:Sediste': {
         collapsed: true,
@@ -87,6 +86,7 @@ export class XonomyZalbaCutanjeService {
           }
         },
         hasText: true,
+        title: 'Назив места',
         asker: Xonomy.askString,
       },
       'tipovi:Ulica': {
@@ -114,21 +114,17 @@ export class XonomyZalbaCutanjeService {
         },
         hasText: true,
         asker: Xonomy.askString,
-      },
-      
+        title: ''
+      },   
       'zoc:Osnova_zalbe': {
         isReadOnly: true,
         collapsed: true,
-      },
-      'zoc:Clan': {
-        oneliner: true,
-      },
-      'zoc:Zakon': {
-        oneliner: true,
+        isInvisible: true,
       },
       'zoc:Datum':{
-        isReadOnly:true,
-        oneliner:true
+        // isReadOnly:true,
+        isInvisible: true,
+        // oneliner:true
       },
       'zoc:Naziv_organa':{
         validate: function (jsElement:any) {
@@ -142,6 +138,7 @@ export class XonomyZalbaCutanjeService {
         },
         hasText: true,
         asker: Xonomy.askString,
+        title: 'Назив органа власти'
       },
       'zoc:Razlog_zalbe': {
         validate: function (jsElement:any) {
@@ -154,6 +151,7 @@ export class XonomyZalbaCutanjeService {
           }
         },
         hasText: true,
+        title: 'Разлог подношења жалбе',
         asker: Xonomy.askPicklist,
         askerParameter: ["није поступио", "није поступио у целости", "није поступио у законском року"],
       },
@@ -170,6 +168,7 @@ export class XonomyZalbaCutanjeService {
         },
         hasText: true,
         asker: Xonomy.askString,
+        title: 'Подаци о захтеву'
       },
       'tipovi:Ime':{
         validate: function (jsElement:any) {
@@ -183,6 +182,7 @@ export class XonomyZalbaCutanjeService {
         },
         hasText: true,
         asker: Xonomy.askString,
+        title: 'Име подносиоца жалбе',
         attributes:{
           property: {
           isInvisible: true,
@@ -199,6 +199,7 @@ export class XonomyZalbaCutanjeService {
           }
         },
         hasText: true,
+        title: 'Презиме подносиоца жалбе',
         asker: Xonomy.askString,
         attributes:{
           property: {
