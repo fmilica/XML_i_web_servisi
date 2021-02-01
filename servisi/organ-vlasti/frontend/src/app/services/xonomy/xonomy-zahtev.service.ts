@@ -154,7 +154,7 @@ export class XonomyZahtevService {
         {
           caption: 'од горе наведеног органа захтевам достављање копије документа који садржи тражену информацију',
           action: Xonomy.newElementChild,
-          actionParameter: '<zahtev:Dostavljanje_kopije xmlns:zahtev="http://zahtev"></zahtev:Dostavljanje_kopije>',
+          actionParameter: '<zahtev:Dostavljanje_kopije xmlns:zahtev="http://zahtev"><zahtev:Nacin_dostave></zahtev:Nacin_dostave></zahtev:Dostavljanje_kopije>',
           hideIf: function (jsElement) {
             return jsElement.hasChildElement("zahtev:Dostavljanje_kopije")
           }
@@ -195,7 +195,7 @@ export class XonomyZahtevService {
         ]
       },
       //Dostavljanje kopije
-      'zahtev:Dostavljanje_kopije': {
+      'zahtev:Nacin_dostave': {
         validate: function (jsElement:any) {
           if (jsElement.children.length == 0) {
             Xonomy.warnings.push({

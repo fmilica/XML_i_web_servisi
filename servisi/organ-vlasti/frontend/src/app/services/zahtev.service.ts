@@ -30,4 +30,13 @@ export class ZahtevService {
       headers: this.headers
     });
   }
+
+  createZahtev(xmlDocument: string) {
+    let email =  this.authService.getLoggedInUserEmail();
+    return this.http.post(environment.apiEndpoint + 'zahtev?userEmail=' + email, xmlDocument, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
 }
