@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ɵɵi18nAttributes } from '@angular/core';
+import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
+import * as txml from 'txml';
 
 @Component({
   selector: 'app-zalbe-cutanje-gradjanin',
@@ -7,22 +9,36 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ZalbeCutanjeGradjaninComponent implements OnInit {
 
-  constructor() { }
-  dataSource = [
-    {
-      organVlasti: 'ФТН',
-      razlogZalbe: 'није поступио у целости',
-      datumZahteva: '2021-02-02',
-      podaci: 'Захтеавне информације о положеним предметима',
-      datumZalbe: '23.3.1313',
-      mestoZalbe: 'Нови Сад',
-      razresena: 'Да'
-    }
-  ];
+  constructor(
+    private zalbaCutanjeService: ZalbaCutanjeService
+  ) { }
+  dataSource = [ ];
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'datumZalbe', 'mestoZalbe',
                                 'razresena', 'preuzimanje']
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.zalbaCutanjeService.getAllGradjaninZalbeCutanje()
+      .subscribe(
+        (response) => {
+          let xmlResponse = response;
+          let allZalbe: any = txml.parse(xmlResponse);
+          let data = []
+          allZalbe[1].children.map(zalba => {
+            let zalbaPrikaz = {
+              organVlasti: zalba.children[1].children[1].children[0],
+              razlogZalbe: zalba.children[1].children[2].children[0],
+              datumZahteva: zalba.attributes.datum_podnosenja_zahteva,
+              podaci: zalba.children[1].children[3].children[0],
+              datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
+              mestoZalbe: zalba.attributes.mesto,
+              razresena: 'Да'
+            }
+            data.push(zalbaPrikaz);
+          })
+          this.dataSource = data;
+        }
+      )
+  }
 
 }

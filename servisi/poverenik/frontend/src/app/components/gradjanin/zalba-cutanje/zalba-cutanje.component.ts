@@ -29,10 +29,10 @@ export class ZalbaCutanjeComponent implements OnInit {
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                       xmlns:pred="http://www.xml.com/predicate/"
                       xsi:schemaLocation="http://zalbacutanje zalbacutanje.xsd"
-                      mesto="" datum="${new Date().toISOString().slice(0, 10)}"
+                      mesto="" datum_podnosenja_zalbe="${new Date().toISOString().slice(0, 10)}" datum_podnosenja_zahteva="2021.02.02"
                       >`+
                       `<zoc:Primalac_zalbe>`+
-                        `<tipovi:Naziv property="pred:primalacNaziv">Поверенику за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>`+
+                        `<tipovi:Naziv property="pred:primalacNaziv">Повереник за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>`+
                         `<tipovi:Sediste>`+
                           `<tipovi:Mesto>Београд</tipovi:Mesto>`+
                           `<tipovi:Ulica>Булевар краља Александра</tipovi:Ulica>`+
@@ -46,7 +46,6 @@ export class ZalbaCutanjeComponent implements OnInit {
                         `</zoc:Osnova_zalbe>`+
                         `<zoc:Naziv_organa></zoc:Naziv_organa>`+
                         `<zoc:Razlog_zalbe></zoc:Razlog_zalbe>`+
-                        `<zoc:Datum>2021.02.02.</zoc:Datum>`+
                         `<zoc:Podaci_o_zahtevu></zoc:Podaci_o_zahtevu>`+
                       `</zoc:Zalba>`+
                       `<zoc:Podnosilac_zalbe>`+
@@ -71,7 +70,7 @@ export class ZalbaCutanjeComponent implements OnInit {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return
     }
-    this.zalbaCutanjeService.createZalbaCutanje(xmlDocument)
+    this.zalbaCutanjeService.createZalbaCutanje(xmlDocument, '1')
       .subscribe((response) => {
         this.toastr.success('Успешно сте поднели жалбу на одлуку! Можете да је видите у "Жалбе на одлуку".')
       },

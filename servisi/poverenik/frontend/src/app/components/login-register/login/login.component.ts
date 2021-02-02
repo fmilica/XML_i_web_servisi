@@ -55,8 +55,6 @@ export class LoginComponent implements OnInit {
       options
     );
 
-    console.log(userLoginXml);
-
     this.authService.login(userLoginXml).subscribe(
       (response) => {
         this.toastr.success('Успешна пријава!');

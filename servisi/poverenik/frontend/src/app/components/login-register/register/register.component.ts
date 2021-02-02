@@ -78,9 +78,7 @@ export class RegisterComponent implements OnInit {
       userRegisterDto,
       options
     );
-
-    console.log(userRegisterXml);
-
+    
     this.authenticationService.register(userRegisterXml).subscribe(
       (response) => {
         this.toastr.success('Успешна регистрација! Можете се пријавити.');

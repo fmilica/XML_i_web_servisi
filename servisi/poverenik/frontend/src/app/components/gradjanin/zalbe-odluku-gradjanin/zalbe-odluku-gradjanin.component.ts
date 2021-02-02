@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
+import * as txml from 'txml';
 
 @Component({
   selector: 'app-zalbe-odluku-gradjanin',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ZalbeOdlukuGradjaninComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private zalbaOdlukaService: ZalbaOdlukaService
+  ) { }
 
   dataSource = [
     {
@@ -27,6 +31,47 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
                                 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje']
 
-  ngOnInit(): void {} 
+  ngOnInit(): void {
+    this.zalbaOdlukaService.getAllGradjaninZalbeOdluka()
+      .subscribe(
+        (response) => {
+          let xmlResponse = response;
+          let allZalbe: any = txml.parse(xmlResponse);
+          let data = []
+          allZalbe[1].children.map(zalba => {
+            let zalbaPrikaz = {
+              naziv: '',
+              adresa: '',
+              organVlasti: zalba.children[2].children[0].children[0],
+              broj: zalba.children[2].attributes.broj_odluke,
+              godina: zalba.children[2].attributes.godina,
+              datumZahteva: zalba.attributes.datum_podnosenja_zahteva,
+              razlogZalbe: zalba.children[3].children[0].children[0],
+              datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
+              mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
+              razresena: 'Да'
+            }
+            //podaci o zaliocu
+            if (zalba.children[1].children.length === 3) {
+              // ima ime i prezime
+              zalbaPrikaz.naziv = zalba.children[1].children[0].children[0] + ' ' + zalba.children[1].children[1].children[0];
+
+              zalbaPrikaz.adresa = zalba.children[1].children[2].children[1].children[0] + ' ' + 
+              zalba.children[1].children[2].children[2].children[0] + ', ' + 
+              zalba.children[1].children[2].children[0].children[0]
+            } else {
+              // ima naziv
+              zalbaPrikaz.naziv = zalba.children[1].children[0].children[0] ;
+
+              zalbaPrikaz.adresa = zalba.children[1].children[1].children[1].children[0] + ' ' + 
+              zalba.children[1].children[1].children[2].children[0] + ', ' + 
+              zalba.children[1].children[1].children[0].children[0]
+            }
+            data.push(zalbaPrikaz);
+          })
+          this.dataSource = data;
+        }
+      )
+  } 
 
 }

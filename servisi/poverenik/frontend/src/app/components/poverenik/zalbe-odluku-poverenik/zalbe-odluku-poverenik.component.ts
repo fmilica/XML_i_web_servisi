@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
+import * as txml from 'txml';
 
 @Component({
   selector: 'app-zalbe-odluku-poverenik',
@@ -6,6 +8,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./zalbe-odluku-poverenik.component.sass']
 })
 export class ZalbeOdlukuPoverenikComponent implements OnInit {
+
+  constructor(
+    private zalbaOdlukaService: ZalbaOdlukaService
+  ) { }
 
   dataSource = [
     {
@@ -27,9 +33,65 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
                                 'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje']
 
-  constructor() { }
-
   ngOnInit(): void {
+    this.zalbaOdlukaService.getAllZalbeOdluka()
+      .subscribe(
+        (response) => {
+          let xmlResponse = response;
+          let allZalbe: any = txml.parse(xmlResponse);
+          let data = []
+          allZalbe[1].children.map(zalba => {
+            let zalbaPrikaz = {
+              naziv: '',
+              adresa: '',
+              organVlasti: zalba.children[2].children[0].children[0],
+              broj: zalba.children[2].attributes.broj_odluke,
+              godina: zalba.children[2].attributes.godina,
+              datumZahteva: zalba.attributes.datum_podnosenja_zahteva,
+              razlogZalbe: zalba.children[3].children[0].children[0],
+              nazivPodnosioca: '',
+              adresaPodnosioca: '',
+              datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
+              mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
+              razresena: 'Да'
+            }
+            //podaci o zaliocu
+            if (zalba.children[1].children.length === 3) {
+              // ima ime i prezime
+              zalbaPrikaz.naziv = zalba.children[1].children[0].children[0] + ' ' + zalba.children[1].children[1].children[0];
+
+              zalbaPrikaz.adresa = zalba.children[1].children[2].children[1].children[0] + ' ' + 
+              zalba.children[1].children[2].children[2].children[0] + ', ' + 
+              zalba.children[1].children[2].children[0].children[0]
+            } else {
+              // ima naziv
+              zalbaPrikaz.naziv = zalba.children[1].children[0].children[0] ;
+
+              zalbaPrikaz.adresa = zalba.children[1].children[1].children[1].children[0] + ' ' + 
+              zalba.children[1].children[1].children[2].children[0] + ', ' + 
+              zalba.children[1].children[1].children[0].children[0]
+            }
+             //podaci o podnosiocu zalbe
+             if (zalba.children[4].children.length === 4) {
+              // ima ime i prezime
+              zalbaPrikaz.nazivPodnosioca = zalba.children[4].children[0].children[0] + ' ' + zalba.children[4].children[1].children[0];
+
+              zalbaPrikaz.adresaPodnosioca = zalba.children[4].children[2].children[1].children[0] + ' ' + 
+              zalba.children[4].children[2].children[2].children[0] + ', ' + 
+              zalba.children[4].children[2].children[0].children[0]
+            } else {
+              // ima naziv
+              zalbaPrikaz.nazivPodnosioca = zalba.children[4].children[0].children[0] ;
+
+              zalbaPrikaz.adresaPodnosioca = zalba.children[4].children[1].children[1].children[0] + ' ' + 
+              zalba.children[4].children[1].children[2].children[0] + ', ' + 
+              zalba.children[4].children[1].children[0].children[0]
+            }
+            data.push(zalbaPrikaz);
+          })
+          this.dataSource = data;
+        }
+      )
   }
 
 }

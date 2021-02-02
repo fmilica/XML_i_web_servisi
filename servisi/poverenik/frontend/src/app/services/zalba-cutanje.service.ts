@@ -18,7 +18,7 @@ export class ZalbaCutanjeService {
   ) { }
 
   getAllZalbeCutanje(): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'neki url', {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje', {
       responseType: 'text',
       headers: this.headers
     })
@@ -26,15 +26,15 @@ export class ZalbaCutanjeService {
 
   getAllGradjaninZalbeCutanje(): Observable<any> {
     let email = this.authService.getLoggedInUserEmail();
-    return this.http.get(environment.apiEndpoint + 'neki url' + email, {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje?userEmail=' + email, {
       responseType: 'text',
       headers: this.headers
     })
   }
 
-  createZalbaCutanje(xmlDocument: string) {
+  createZalbaCutanje(xmlDocument: string, zahtevId: string) {
     let email = this.authService.getLoggedInUserEmail();
-    return this.http.post(environment.apiEndpoint + 'neki url' + email, xmlDocument, {
+    return this.http.post(environment.apiEndpoint + 'zalba-cutanje?zahtevId=' + zahtevId + '&userEmail=' + email, xmlDocument, {
       responseType: 'text',
       headers: this.headers
     })

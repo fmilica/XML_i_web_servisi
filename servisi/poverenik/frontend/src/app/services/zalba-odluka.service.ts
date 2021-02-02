@@ -17,7 +17,7 @@ export class ZalbaOdlukaService {
   ) { }
 
   getAllZalbeOdluka(): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'neki url', {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje', {
       responseType: 'text',
       headers: this.headers
     })
@@ -25,15 +25,15 @@ export class ZalbaOdlukaService {
 
   getAllGradjaninZalbeOdluka(): Observable<any> {
     let email = this.authService.getLoggedInUserEmail();
-    return this.http.get(environment.apiEndpoint + 'neki url' + email, {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/korisnik?userEmail=' + email, {
       responseType: 'text',
       headers: this.headers
     })
   }
 
-  createZalbaOdluka(xmlDocument: string) {
+  createZalbaOdluka(xmlDocument: string, zahtevId: string) {
     let email = this.authService.getLoggedInUserEmail();
-    return this.http.get(environment.apiEndpoint + 'neki url' + email, {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje?zahtevId=' + zahtevId + '&userEmail=' + email, {
       responseType: 'text',
       headers: this.headers
     })

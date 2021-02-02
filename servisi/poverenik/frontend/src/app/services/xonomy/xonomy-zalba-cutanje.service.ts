@@ -45,6 +45,8 @@ export class XonomyZalbaCutanjeService {
               );
               }
             },
+             hasText: true,
+             asker: Xonomy.askString
           },
         }
       },

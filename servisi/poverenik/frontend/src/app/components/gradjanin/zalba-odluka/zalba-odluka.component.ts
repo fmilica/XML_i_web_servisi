@@ -32,15 +32,15 @@ export class ZalbaOdlukaComponent implements OnInit {
                     mesto_podnosenja_zalbe="" datum_podnosenja_zalbe="${new Date().toISOString().slice(0, 10)}"
                     datum_podnosenja_zahteva="2021-01-02"
                     >`+
-                    `<zoz:podaci_o_primaocu>`+
-                      `<tipovi:Naziv property="pred:primalacNaziv">Поверенику за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>`+
+                    `<zoz:Podaci_o_primaocu>`+
+                      `<tipovi:Naziv property="pred:primalacNaziv">Повереник за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>`+
                       `<tipovi:Sediste>`+
                         `<tipovi:Mesto>Београд</tipovi:Mesto>`+
                         `<tipovi:Ulica>Булевар краља Александра</tipovi:Ulica>`+
                         `<tipovi:Ulicni_broj>15</tipovi:Ulicni_broj>`+
                       `</tipovi:Sediste>`+
-                    `</zoz:podaci_o_primaocu>`+
-                    `<zoz:podaci_o_zaliocu>`+
+                    `</zoz:Podaci_o_primaocu>`+
+                    `<zoz:Podaci_o_zaliocu>`+
                       //`<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
                       //`<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
                       `<tipovi:Adresa>`+
@@ -48,19 +48,19 @@ export class ZalbaOdlukaComponent implements OnInit {
                         `<tipovi:Ulica></tipovi:Ulica>`+
                         `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
                       `</tipovi:Adresa>`+
-                    `</zoz:podaci_o_zaliocu>`+
-                    `<zoz:podaci_o_odluci broj_odluke="1" godina="2021.01.02.">`+
-                      `<zoz:naziv_donosioca_odluke>ФТН</zoz:naziv_donosioca_odluke>`+
-                    `</zoz:podaci_o_odluci>`+
-                    `<zoz:telo_zalbe>`+
-                      `<zoz:razlog_zalbe></zoz:razlog_zalbe>`+
-                      `<zoz:osnova_zalbe>`+
+                    `</zoz:Podaci_o_zaliocu>`+
+                    `<zoz:Podaci_o_odluci broj_odluke="" godina="">`+
+                      `<zoz:Naziv_donosioca_odluke>ФТН</zoz:Naziv_donosioca_odluke>`+
+                    `</zoz:Podaci_o_odluci>`+
+                    `<zoz:Telo_zalbe>`+
+                      `<zoz:Razlog_zalbe></zoz:Razlog_zalbe>`+
+                      `<zoz:Osnova_zalbe>`+
                         `<zoz:Clan>22</zoz:Clan>`+
                         `<zoz:Stav>1</zoz:Stav>`+
                         `<zoz:Zakon>Закона о слободном приступу информацијама од јавног значаја</zoz:Zakon>`+
-                      `</zoz:osnova_zalbe>`+
-                    `</zoz:telo_zalbe>`+
-                    `<zoz:podaci_o_podnosiocu_zalbe>`+
+                      `</zoz:Osnova_zalbe>`+
+                    `</zoz:Telo_zalbe>`+
+                    `<zoz:Podaci_o_podnosiocu_zalbe>`+
                       //`<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
                       //`<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
                       `<tipovi:Adresa>`+
@@ -69,7 +69,7 @@ export class ZalbaOdlukaComponent implements OnInit {
                         `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
                       `</tipovi:Adresa>`+
                       `<tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>`+
-                    `</zoz:podaci_o_podnosiocu_zalbe>`+
+                    `</zoz:Podaci_o_podnosiocu_zalbe>`+
                   `</zoz:Zalba_odbijanje>`;
 
     Xonomy.render(xmlString, element, specification);
@@ -81,7 +81,7 @@ export class ZalbaOdlukaComponent implements OnInit {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return
     }
-    this.zalbaOdlukaService.createZalbaOdluka(xmlDocument)
+    this.zalbaOdlukaService.createZalbaOdluka(xmlDocument, '1')
       .subscribe((response) => {
         this.toastr.success('Успешно сте поднели жалбу на одлуку! Можете да је видите у "Жалбе на одлуку".')
       },

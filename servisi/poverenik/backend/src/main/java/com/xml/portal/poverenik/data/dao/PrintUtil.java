@@ -203,7 +203,7 @@ public class PrintUtil {
 		outString += "\n";
 		
 		outString += "Mesto zahteva: " + zalbaCutanje.getMesto() + "\n";
-		outString += "Datum zahteva: " + zalbaCutanje.getDatum() + "\n";
+		outString += "Datum zahteva: " + zalbaCutanje.getDatumPodnosenjaZahteva() + "\n";
 		outString += "\n";
 		
 		printPoverenik(zalbaCutanje.getPrimalacZalbe());

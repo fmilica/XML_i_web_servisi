@@ -48,6 +48,8 @@ export class XonomyZalbaOdlukaService {
               );
               }
             },
+            hasText: true,
+            asker: Xonomy.askString,
           },
           datum_podnosenja_zalbe: {
             title: 'Датум подношења жалбе',            
@@ -58,7 +60,7 @@ export class XonomyZalbaOdlukaService {
         }
       },
       //Podaci o primaocu
-      'zoz:podaci_o_primaocu':{
+      'zoz:Podaci_o_primaocu':{
         title: 'Подаци о примаоцу жалбе',
         isReadOnly: true
       },
@@ -124,7 +126,7 @@ export class XonomyZalbaOdlukaService {
         asker: Xonomy.askString,
       },
       //Podaci o zaliocu
-      'zoz:podaci_o_zaliocu':{
+      'zoz:Podaci_o_zaliocu':{
         title: 'Подаци у подносиоцу жалбе/Лични подаци',
         validate: function (jsElement:any) {
           if (jsElement.children.length == 1) {
@@ -190,15 +192,43 @@ export class XonomyZalbaOdlukaService {
         },}
       },
       //Podaci o odluci
-      'zoz:podaci_o_odluci':{
+      'zoz:Podaci_o_odluci':{
         title: 'Подаци о одлуци',
+        attributes: {
+          'broj_odluke': {
+            validate: function(jsAttribute){
+              //Make sure item/@broj_odluke is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Број одлуке је обавезан атрибут."}
+              );
+            }   
+          },
+            hasText: true,
+            asker: Xonomy.askString,
+          },
+          godina: {
+            validate: function(jsAttribute){
+              //Make sure item/@godina is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Година је обавезан атрибут."}
+              );
+            }   
+          },
+            hasText: true,
+            asker: Xonomy.askString,
+          }
+        }
       },
-      'zoz:naziv_donosioca_odluke':{
+      'zoz:Naziv_donosioca_odluke':{
         isReadOnly: true,
         hasText: true,
         asker: Xonomy.askString,
       },
-      'zoz:razlog_zalbe': {
+      'zoz:Razlog_zalbe': {
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -211,12 +241,12 @@ export class XonomyZalbaOdlukaService {
         hasText: true,
         asker: Xonomy.askString,
       },
-      'zoz:osnova_zalbe': {
+      'zoz:Osnova_zalbe': {
         isInvisible: true,
       },
 
       //Podaci o podnosiocu zalbe
-      'zoz:podaci_o_podnosiocu_zalbe':{
+      'zoz:Podaci_o_podnosiocu_zalbe':{
         title: 'Подаци у подносиоцу жалбе/Лични подаци',
         validate: function (jsElement:any) {
           if (jsElement.children.length == 2) {
