@@ -67,8 +67,7 @@ public class TVremeMesto {
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datum;
     @XmlElement(name = "Vreme", namespace = "http://obavestenje", required = true)
-    @XmlSchemaType(name = "time")
-    protected XMLGregorianCalendar vreme;
+    protected String vreme;
     @XmlElement(name = "Pocetno_vreme", namespace = "http://obavestenje")
     protected int pocetnoVreme;
     @XmlElement(name = "Krajnje_vreme", namespace = "http://obavestenje")
@@ -105,10 +104,10 @@ public class TVremeMesto {
      * 
      * @return
      *     possible object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public XMLGregorianCalendar getVreme() {
+    public String getVreme() {
         return vreme;
     }
 
@@ -117,10 +116,10 @@ public class TVremeMesto {
      * 
      * @param value
      *     allowed object is
-     *     {@link XMLGregorianCalendar }
+     *     {@link String }
      *     
      */
-    public void setVreme(XMLGregorianCalendar value) {
+    public void setVreme(String value) {
         this.vreme = value;
     }
 

@@ -7,8 +7,8 @@
     xsi:schemaLocation="http://zahtev schema/zahtev/zahtev.xsd" 
     mesto="Sremska Mitrovica" 
     datum="2022-04-06"
+    razresen="false"
     id="ID1"
-    
     vocab="http://www.xml.com/predicate/"
     about="http://zahtev/ID1"
     rel="pred:vezanGradjanin"

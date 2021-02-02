@@ -4,9 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +21,7 @@ import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 
 @RestController
 @RequestMapping(value = "poverenik/zahtev", produces = MediaType.APPLICATION_XML_VALUE)
+@CrossOrigin(origins = "https://localhost:4200")
 public class ZahtevService {
 
 	@Autowired
@@ -65,5 +68,24 @@ public class ZahtevService {
     			return ResponseEntity.status(500).body(greska);
     		}
     	}
+    }
+    
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<Object> resiZahtev(@PathVariable("id") String id) {
+		Zahtev zahtev = zahtevBusiness.getById(id);
+		if (zahtev == null) {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		} else if (zahtev.getRazresen() == true) {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom je vec razresen.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
+		} else {
+			boolean updated = zahtevBusiness.update(id, zahtev);
+			if (!updated) {
+				Greska greska = new Greska("Greska u izmeni Zahteva.");
+				return ResponseEntity.status(500).body(greska);
+			}
+			return new ResponseEntity<>(zahtev, HttpStatus.OK);
+		}
     }
 }

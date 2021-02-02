@@ -154,7 +154,7 @@ export class XonomyZahtevService {
         {
           caption: 'од горе наведеног органа захтевам достављање копије документа који садржи тражену информацију',
           action: Xonomy.newElementChild,
-          actionParameter: '<zahtev:Dostavljanje_kopije xmlns:zahtev="http://zahtev"></zahtev:Dostavljanje_kopije>',
+          actionParameter: '<zahtev:Dostavljanje_kopije xmlns:zahtev="http://zahtev"><zahtev:Nacin_dostave></zahtev:Nacin_dostave></zahtev:Dostavljanje_kopije>',
           hideIf: function (jsElement) {
             return jsElement.hasChildElement("zahtev:Dostavljanje_kopije")
           }
@@ -194,17 +194,18 @@ export class XonomyZahtevService {
           }
         ]
       },
-      'zahtev:Dostavljanje_kopije': {
+      //Dostavljanje kopije
+      'zahtev:Nacin_dostave': {
         validate: function (jsElement:any) {
           if (jsElement.children.length == 0) {
             Xonomy.warnings.push({
               htmlID: jsElement.htmlID,
-              text: "Морате додати макар један начин достављања копије!"
+              text: "Морате додати начин достављања копије!"
             }
             );
           }
         },
-        title: 'Кликните да бисте одабрали начин/е достављања копије',
+        title: 'Кликните да бисте одабрали начин достављања копије',
         hasText: false,
         menu: [
           {
@@ -215,8 +216,9 @@ export class XonomyZahtevService {
             caption: 'поштом',
             action: Xonomy.newElementChild,
             actionParameter: '<zahtev:Dostava_postom xmlns:zahtev="http://zahtev"></zahtev:Dostava_postom>',
-            hideIf: function (jsElement) {
-              return jsElement.hasChildElement("zahtev:Dostava_postom")
+            hideIf: function (jsElement) { 
+              return (jsElement.hasChildElement("zahtev:Dostava_postom") || jsElement.hasChildElement("zahtev:Dostava_elektronskom_postom") ||
+              jsElement.hasChildElement("zahtev:Dostava_faksom") || jsElement.hasChildElement("zahtev:Posebna_dostava"))
             }
           },
           {
@@ -224,7 +226,8 @@ export class XonomyZahtevService {
             action: Xonomy.newElementChild,
             actionParameter: '<zahtev:Dostava_elektronskom_postom xmlns:zahtev="http://zahtev"></zahtev:Dostava_elektronskom_postom>',
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("zahtev:Dostava_elektronskom_postom")
+              return (jsElement.hasChildElement("zahtev:Dostava_postom") || jsElement.hasChildElement("zahtev:Dostava_elektronskom_postom") ||
+              jsElement.hasChildElement("zahtev:Dostava_faksom") || jsElement.hasChildElement("zahtev:Posebna_dostava"))
             }
           },
           {
@@ -232,7 +235,8 @@ export class XonomyZahtevService {
             action: Xonomy.newElementChild,
             actionParameter: '<zahtev:Dostava_faksom xmlns:zahtev="http://zahtev"></zahtev:Dostava_faksom>',
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("zahtev:Dostava_faksom")
+              return (jsElement.hasChildElement("zahtev:Dostava_postom") || jsElement.hasChildElement("zahtev:Dostava_elektronskom_postom") ||
+              jsElement.hasChildElement("zahtev:Dostava_faksom") || jsElement.hasChildElement("zahtev:Posebna_dostava"))
             }
           },
           {
@@ -240,7 +244,8 @@ export class XonomyZahtevService {
             action: Xonomy.newElementChild,
             actionParameter: '<zahtev:Posebna_dostava xmlns:zahtev="http://zahtev"><zahtev:Nacin_posebne_dostave></zahtev:Nacin_posebne_dostave></zahtev:Posebna_dostava>',
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("zahtev:Posebna_dostava")
+              return (jsElement.hasChildElement("zahtev:Dostava_postom") || jsElement.hasChildElement("zahtev:Dostava_elektronskom_postom") ||
+              jsElement.hasChildElement("zahtev:Dostava_faksom") || jsElement.hasChildElement("zahtev:Posebna_dostava"))
             }
           }
         ]
@@ -315,8 +320,35 @@ export class XonomyZahtevService {
       //Trazilac zahteva
       'zahtev:Trazilac': {
         title: 'Информације о тражиоцу захтева',
+        validate: function (jsElement:any) {
+          if (jsElement.children.length == 2) {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Тражилац информације/Име и презиме је обавезно поље!"
+            }
+            );
+          }
+        },
+        menu: [
+          {
+            caption: 'Назив тражиоца информације',
+            action: Xonomy.newElementChild,
+            actionParameter: '<tipovi:Naziv xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacNaziv"></tipovi:Naziv>',
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("tipovi:Naziv") || jsElement.hasChildElement("tipovi:Ime"))
+            }
+          },
+          {
+            caption: 'Име и презиме тражиоца информације',
+            action: insertImePrezime,
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("tipovi:Naziv") || jsElement.hasChildElement("tipovi:Ime"))
+            }
+          }
+        ]
       },
       'tipovi:Ime' : {
+        mustBeBefore: ['tipovi:Prezime','tipovi:Adresa', 'tipovi:Kontakt_podaci'],
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -335,6 +367,7 @@ export class XonomyZahtevService {
         asker: Xonomy.askString
       },
       'tipovi:Prezime' : {
+        mustBeBefore: ['tipovi:Adresa', 'tipovi:Kontakt_podaci'],
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -406,5 +439,10 @@ export class XonomyZahtevService {
       }
     },
   }
+}
+
+function insertImePrezime(htmlID) {
+  Xonomy.newElementChild(htmlID, '<tipovi:Ime xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacIme"></tipovi:Ime>')
+  Xonomy.newElementChild(htmlID, '<tipovi:Prezime xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacPrezime"></tipovi:Prezime>')
 }
 

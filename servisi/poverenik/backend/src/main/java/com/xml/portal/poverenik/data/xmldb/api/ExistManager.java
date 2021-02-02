@@ -162,6 +162,7 @@ public class ExistManager {
 			XUpdateQueryService service = (XUpdateQueryService) col.getService("XUpdateQueryService", "1.0");
 			service.setProperty("indent", "yes");
 
+			System.out.println(String.format(chosenTemplate, contextXPath, patch));
 			service.updateResource(documentId, String.format(chosenTemplate, contextXPath, patch));
 		} finally {
 			if (col != null)

@@ -11,7 +11,7 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
@@ -25,6 +25,7 @@ import { AllObavestenjaGradjaninComponent } from './components/gradjanin/all-oba
 import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/new-obavestenje.component';
 import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
 import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-obavestenja-sluzbenik/all-obavestenja-sluzbenik.component';
+import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,14 @@ import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-oba
     MatTooltipModule,
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    // ako multi nije true ovo bi bio jedini interceptor i pregazio bi sve defaultne interceptore
+    multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

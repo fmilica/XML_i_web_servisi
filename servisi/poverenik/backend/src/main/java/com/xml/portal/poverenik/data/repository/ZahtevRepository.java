@@ -25,14 +25,15 @@ public class ZahtevRepository {
 
 	private String collectionId = "/db/poverenik/Zahtev";
 	
+	private static final String TARGET_PREFIX = "zahtev";
 	private static final String TARGET_NAMESPACE = "http://zahtev";
 	
 	public static final String APPEND = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
-			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:append select=\"%1$s\" child=\"last()\">%2$s</xu:append>"
+			+ "\" xmlns:=\"" + TARGET_NAMESPACE + "\">" + "<xu:append select=\"%1$s\" child=\"last()\">%2$s</xu:append>"
 			+ "</xu:modifications>";
 
 	public static final String UPDATE = "<xu:modifications version=\"1.0\" xmlns:xu=\"" + XUpdateProcessor.XUPDATE_NS
-			+ "\" xmlns=\"" + TARGET_NAMESPACE + "\">" + "<xu:update select=\"%1$s\">%2$s</xu:update>"
+			+ "\" xmlns:"+TARGET_PREFIX+"=\"" + TARGET_NAMESPACE + "\">" + "<xu:update select=\"%1$s\">%2$s</xu:update>"
 			+ "</xu:modifications>";
 	
 	private static JAXBContext context;
@@ -133,6 +134,20 @@ public class ZahtevRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public boolean update(String zahtevId, Zahtev zahtev) {
+		String xPath = "/zahtev:Zahtev/@razresen";
+		StringWriter sw = new StringWriter();
+		try {
+			marshaller.marshal(zahtev, sw);
+			String zahtevString = sw.toString();
+			this.existManager.update(collectionId, zahtevId, xPath, "true", UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 

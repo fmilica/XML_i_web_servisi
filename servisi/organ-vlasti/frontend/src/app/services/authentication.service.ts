@@ -29,12 +29,34 @@ export class AuthenticationService {
       observe: 'response'
     });
   }
+  
   login(userLoginXml: string): Observable<any> {
     return this.http.post(environment.apiEndpoint + 'korisnik/prijava', userLoginXml, {
       responseType: 'text',
       headers: this.headers,
       observe: 'response',
     });
+  }
+
+  autoLogin(): boolean {
+    const user = this.getLoggedInUser();
+    // provera postojanja tokena
+    if (!user) {
+      return true;
+    }
+    // provera validnosti tokena
+    if (user.exp * 1000 < Date.now()) {
+      // token vise nije validan
+      localStorage.removeItem('jwtToken');
+      localStorage.removeItem('expiresIn');
+      this.router.navigate(['login-register/login']);
+      return false;
+    }
+    // token je validan, prosledimo rolu kao sledecu vrednost observable
+    const role = this.getLoggedInUserAuthority();
+    this.role.next(role);
+    // pokrenemo refresh
+    return true;
   }
 
   setLoggedInUser(response: any): void {
@@ -61,6 +83,16 @@ export class AuthenticationService {
     const info = this.getLoggedInUser();
     if (info) {
       return info.uloga;
+    }
+    else {
+      return '';
+    }
+  }
+
+  getLoggedInUserEmail(): string {
+    const info = this.getLoggedInUser();
+    if (info) {
+      return info.sub;
     }
     else {
       return '';

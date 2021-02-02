@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { XonomyZahtevService } from 'src/app/services/xonomy/xonomy-zahtev.service';
+import { ZahtevService } from 'src/app/services/zahtev.service';
 
 declare const Xonomy: any;
 @Component({
@@ -10,7 +12,9 @@ declare const Xonomy: any;
 export class NewZahtevComponent implements OnInit {
 
   constructor(
-    private xonomyZahtevService: XonomyZahtevService
+    private xonomyZahtevService: XonomyZahtevService,
+    private zahtevService: ZahtevService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -57,8 +61,8 @@ export class NewZahtevComponent implements OnInit {
               `</zahtev:Zahtevane_informacije>` +
           `</zahtev:Telo_zahteva>` +
           `<zahtev:Trazilac>` +
-            `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>` +
-            `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>` +
+           /* `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>` +
+            `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>` +*/
             `<tipovi:Adresa>` +
               `<tipovi:Mesto></tipovi:Mesto>` +
               `<tipovi:Ulica></tipovi:Ulica>` + 
@@ -68,6 +72,22 @@ export class NewZahtevComponent implements OnInit {
           `</zahtev:Trazilac>` +
         `</zahtev:Zahtev>`
     Xonomy.render(xmlString, element, specification);
+  }
+
+  send() {
+    let xmlDocument =  Xonomy.harvest();
+    console.log(xmlDocument)
+    if(Xonomy.warnings.length !== 0) {
+      this.toastr.error('Молимо Вас да исправно попуните форму!')
+      return
+    }
+    this.zahtevService.createZahtev(xmlDocument)
+      .subscribe((response) => {
+        this.toastr.success('Успешно сте поднели захтев! Можете да га видите у "Преглед поднетих захтева".')
+      },
+        err => {
+          this.toastr.error('Молимо Вас да исправно попуните форму!')
+        });
   }
 
 }

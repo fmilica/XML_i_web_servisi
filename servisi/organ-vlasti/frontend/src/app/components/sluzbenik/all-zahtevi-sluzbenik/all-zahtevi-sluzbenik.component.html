@@ -46,7 +46,9 @@
             <ng-container matColumnDef="dostava">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Начин доставе </th>
                 <td matTooltip="Достављање копије документа који садржи тражену иформацију" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.dostava}}
+                    <div *ngIf="row.dostava === 'false'; then nema else ima"></div>
+                    <ng-template #nema><mat-icon>close</mat-icon></ng-template>
+                    <ng-template #ima>{{row.dostava}}</ng-template>
                 </td>
             </ng-container>
 
@@ -89,6 +91,15 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Контакт телефон </th>
                 <td matTooltip="Контакт телефон тражиоца информације" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.kontaktTelefon}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="razresen">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Статус захтева </th>
+                <td matTooltip="Статус захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <div *ngIf="row.razresen === 'true'; then tekst else dugme"></div>
+                    <ng-template #tekst>Разрешен</ng-template>
+                    <ng-template #dugme><button (click) = "createObavestenje(row)">Креирај Обавештење</button></ng-template>
                 </td>
             </ng-container>
 

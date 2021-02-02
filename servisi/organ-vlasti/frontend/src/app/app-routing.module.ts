@@ -9,6 +9,8 @@ import { RegisterComponent } from './components/login-register/register/register
 import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-obavestenja-sluzbenik/all-obavestenja-sluzbenik.component';
 import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
 import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/new-obavestenje.component';
+import { LoginGuard } from './guards/login-guard.service';
+import { RoleGuard } from './guards/role-guard.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/prijava-registracija/prijava', pathMatch: 'full' },
@@ -24,36 +26,50 @@ const routes: Routes = [
       {
         path: 'prijava',
         component: LoginComponent,
+        //canActivate: [LoginGuard]
       },
       {
         path: 'registracija',
         component: RegisterComponent,
+        canActivate: [LoginGuard]
       },
     ],
   },
   {
     path: 'novi-zahtev',
-    component: NewZahtevComponent
+    component: NewZahtevComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
     path: 'zahtevi',
-    component: AllZahteviGradjaninComponent
+    component: AllZahteviGradjaninComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
     path: 'obavestenja',
-    component: AllObavestenjaGradjaninComponent
+    component: AllObavestenjaGradjaninComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
     path: 'novo-obavestenje',
-    component: NewObavestenjeComponent
+    component: NewObavestenjeComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {
     path: 'pristigli-zahtevi',
-    component: AllZahteviSluzbenikComponent
+    component: AllZahteviSluzbenikComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {
     path: 'kreirana-obavestenja',
-    component: AllObavestenjaSluzbenikComponent
+    component: AllObavestenjaSluzbenikComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   }
 ];
 

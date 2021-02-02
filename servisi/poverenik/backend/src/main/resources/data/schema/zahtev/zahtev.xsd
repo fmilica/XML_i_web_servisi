@@ -20,6 +20,7 @@
                 </xs:simpleType>
             </xs:attribute>
             <xs:attribute name="datum" type="xs:date"/>
+            <xs:attribute name="razresen" type="xs:boolean"/>
             <xs:attribute name="vocab" type="xs:string"/>
             <xs:attribute name="about" type="xs:string"/>
             <xs:attribute name="rel" type="xs:string"/>
@@ -38,9 +39,9 @@
     <xs:element name="Zahtevi">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" name="Obavestenje" fixed="odabrano" type="xs:string"/>
-                <xs:element minOccurs="0" name="Uvid" fixed="odabrano" type="xs:string"/>
-                <xs:element minOccurs="0" name="Kopija" fixed="odabrano" type="xs:string"/>
+                <xs:element minOccurs="0" name="Obavestenje" type="xs:string"/>
+                <xs:element minOccurs="0" name="Uvid" type="xs:string"/>
+                <xs:element minOccurs="0" name="Kopija" type="xs:string"/>
                 <xs:element minOccurs="0" name="Dostavljanje_kopije">
                     <xs:complexType>
                         <xs:sequence>
@@ -54,9 +55,9 @@
     <xs:element name="Nacin_dostave">
         <xs:complexType>
             <xs:choice>
-                <xs:element name="Dostava_postom" fixed="odabrano" type="xs:string"/>
-                <xs:element name="Dostava_elektronskom_postom" fixed="odabrano" type="xs:string"/>
-                <xs:element name="Dostava_faksom" fixed="odabrano" type="xs:string"/>
+                <xs:element name="Dostava_postom" type="xs:string"/>
+                <xs:element name="Dostava_elektronskom_postom" type="xs:string"/>
+                <xs:element name="Dostava_faksom" type="xs:string"/>
                 <xs:element name="Posebna_dostava">
                     <xs:complexType>
                         <xs:sequence>
