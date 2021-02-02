@@ -14,7 +14,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
   ) { }
 
   dataSource = [
-    {
+    /*{
       naziv: 'Пера Перић',
       adresa: 'Железничка 23, Нови Сад',
       organVlasti: 'ФТН',
@@ -25,7 +25,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
       datumZalbe: '23.3.1313',
       mestoZalbe: 'Нови Сад',
       razresena: 'Да'
-    }
+    }*/
   ];
 
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
@@ -42,6 +42,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
             let zalbaPrikaz = {
               naziv: '',
               adresa: '',
+              id: zalba.attributes.id.substring(22),
               organVlasti: zalba.children[2].children[0].children[0],
               broj: zalba.children[2].attributes.broj_odluke,
               godina: zalba.children[2].attributes.godina,
@@ -74,4 +75,29 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
       )
   } 
 
+  generisiPDF(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiPDF(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "pdf");
+      }
+    );
+  }
+
+  generisiHTML(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiHTML(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "html");
+      }
+    );
+  }
+
+  previewAndDownload(response: any, id: string, tip: string){
+    let type = "application/"+tip;
+    let blob = new Blob([response], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = "zalba_odbijanje_"+id+"."+tip;
+    link.click();
+  }
 }

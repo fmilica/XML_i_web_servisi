@@ -39,4 +39,18 @@ export class ZalbaCutanjeService {
       headers: this.headers
     })
   }
+
+  generisiPDF(zalbaCutanjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje/generisiPDF/' + zalbaCutanjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiHTML(zalbaCutanjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje/generisiHTML/' + zalbaCutanjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

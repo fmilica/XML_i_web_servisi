@@ -44,6 +44,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
             let zalbaPrikaz = {
               naziv: '',
               adresa: '',
+              id: zalba.attributes.id.substring(22),
               organVlasti: zalba.children[2].children[0].children[0],
               broj: zalba.children[2].attributes.broj_odluke,
               godina: zalba.children[2].attributes.godina,
@@ -94,4 +95,30 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
       )
   }
 
+  generisiPDF(zalbaOdlukaId: string) {
+    console.log(zalbaOdlukaId);
+    this.zalbaOdlukaService.generisiPDF(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "pdf");
+      }
+    );
+  }
+
+  generisiHTML(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiHTML(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "html");
+      }
+    );
+  }
+
+  previewAndDownload(response: any, id: string, tip: string){
+    let type = "application/"+tip;
+    let blob = new Blob([response], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = "zalba_odbijanje_"+id+"."+tip;
+    link.click();
+  }
 }

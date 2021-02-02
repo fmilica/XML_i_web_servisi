@@ -92,7 +92,7 @@
             <ng-container matColumnDef="preuzimanje">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
                 <td matTooltip="Преузимање жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    <a href="/preuzmi-pdf/1" style="margin-right: 3px;">PDF</a><a href="/preuzmi-xml/1" style="margin-right: 3px;">XML</a>
+                    <a (click)="generisiPDF(row.id)" class="link">PDF</a><a (click)="generisiHTML(row.id)" class="link">HTML</a>
                 </td>
             </ng-container>
         </table>

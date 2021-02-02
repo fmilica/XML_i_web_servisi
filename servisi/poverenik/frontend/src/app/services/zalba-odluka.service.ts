@@ -38,4 +38,18 @@ export class ZalbaOdlukaService {
       headers: this.headers
     })
   }
+  
+  generisiPDF(zalbaOdlukaId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiPDF/' + zalbaOdlukaId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiHTML(zalbaOdlukaId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiHTML/' + zalbaOdlukaId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

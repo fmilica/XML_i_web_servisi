@@ -12,6 +12,8 @@ import { ResenjaGradjaninComponent } from './components/gradjanin/resenja-gradja
 import { ZalbeOdlukuPoverenikComponent } from './components/poverenik/zalbe-odluku-poverenik/zalbe-odluku-poverenik.component';
 import { ZalbeCutanjePoverenikComponent } from './components/poverenik/zalbe-cutanje-poverenik/zalbe-cutanje-poverenik.component';
 import { ResenjaPoverenikComponent } from './components/poverenik/resenja-poverenik/resenja-poverenik.component';
+import { RoleGuard } from './guards/role-guard.service';
+import { LoginGuard } from './guards/login-guard.service';
 
 const routes: Routes = [
   //Putanje kojima mogu svi da pristupe
@@ -33,6 +35,7 @@ const routes: Routes = [
       {
         path: 'registracija',
         component: RegisterComponent,
+        canActivate: [LoginGuard]
       },
     ],
   },
@@ -40,39 +43,57 @@ const routes: Routes = [
   {
     path: 'nova-zalba-cutanje',
     component: ZalbaCutanjeComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
     path: 'nova-zalba-odluka',
     component: ZalbaOdlukaComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
     path: 'moje-zalbe-odluka',
-    component: ZalbeOdlukuGradjaninComponent
+    component: ZalbeOdlukuGradjaninComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
     path: 'moje-zalbe-cutanje',
-    component: ZalbeCutanjeGradjaninComponent
+    component: ZalbeCutanjeGradjaninComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   {
-    path: 'resenja',
-    component: ResenjaGradjaninComponent
+    path: 'moja-resenja',
+    component: ResenjaGradjaninComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_GRADJANIN' }
   },
   //Poverenik putanje
   {
     path: 'resenje',
-    component: ResenjeComponent
+    component: ResenjeComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {
     path: 'zalbe-odluka',
-    component: ZalbeOdlukuPoverenikComponent
+    component: ZalbeOdlukuPoverenikComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {
     path: 'zalbe-cutanje',
-    component: ZalbeCutanjePoverenikComponent
+    component: ZalbeCutanjePoverenikComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {
-    path: 'moja-resenja',
-    component: ResenjaPoverenikComponent
+    path: 'resenja',
+    component: ResenjaPoverenikComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
   }
 ];
 
