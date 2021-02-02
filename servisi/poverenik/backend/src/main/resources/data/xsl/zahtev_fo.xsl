@@ -18,7 +18,7 @@
             </fo:layout-master-set>
             
             <fo:page-sequence master-reference="zahtev-page">
-                <fo:flow flow-name="xsl-region-body">
+                <fo:flow flow-name="xsl-region-body" font-family="Times New Roman">
                     <fo:block text-decoration="underline" text-align="center">
                         <xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Naziv"/>
                     </fo:block>

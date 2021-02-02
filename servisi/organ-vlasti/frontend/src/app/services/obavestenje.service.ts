@@ -38,4 +38,18 @@ export class ObavestenjeService {
       headers: this.headers
     })
   }
+
+  generisiPDF(obavestenjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/generisiPDF/' + obavestenjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiHTML(obavestenjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/generisiHTML/' + obavestenjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

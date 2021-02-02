@@ -49,4 +49,17 @@ export class ZahtevService {
     })
   }
 
+  generisiPDF(zahtevId: string) {
+    return this.http.get(environment.apiEndpoint + 'zahtev/generisiPDF/' + zahtevId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiHTML(zahtevId: string) {
+    return this.http.get(environment.apiEndpoint + 'zahtev/generisiHTML/' + zahtevId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

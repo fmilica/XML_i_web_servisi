@@ -18,7 +18,7 @@
             </fo:layout-master-set>
             
             <fo:page-sequence master-reference="zalbaodbijen-page">
-                <fo:flow flow-name="xsl-region-body">
+                <fo:flow flow-name="xsl-region-body" font-family="Times New Roman">
                     <fo:block font-weight="bold" text-align="center">ZALBA PROTIV ODLUKE ORGANA VLASTI KOJOJM JE</fo:block>
                     <fo:block font-weight="bold" text-align="center">
                         <fo:inline text-decoration="underline">ODBIJEN ILI ODBACEN ZAHTEV</fo:inline> ZA PRISTUP INFORMACIJI
