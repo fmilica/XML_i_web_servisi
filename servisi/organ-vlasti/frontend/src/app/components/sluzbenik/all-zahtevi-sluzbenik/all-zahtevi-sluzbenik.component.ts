@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { ZahtevService } from 'src/app/services/zahtev.service';
@@ -11,10 +13,26 @@ import * as txml from 'txml';
 })
 export class AllZahteviSluzbenikComponent implements OnInit {
 
+  //formе za pretragu
+  obicnaForm: FormGroup;
+  metaDataForm: FormGroup;
+
   constructor(
     private zahtevService: ZahtevService,
     private router: Router
-  ) { }
+  ) { 
+    this.obicnaForm = new FormGroup({
+      sve: new FormControl()
+    })
+    this.metaDataForm = new FormGroup({
+      primalacNaziv: new FormControl(),
+      podnosilacIme: new FormControl(),
+      podnosilacPrezime: new FormControl(),
+      podnosilacNaziv: new FormControl(),
+      vezaniGradjanin: new FormControl(),
+      operator: new FormControl()
+    })
+  }
 
   dataSource = [ ];
 
@@ -169,4 +187,14 @@ export class AllZahteviSluzbenikComponent implements OnInit {
     link.download = "zahtev_"+id+"."+tip;
     link.click();
   }
+
+  obicnaPretraga() {
+    console.log(this.obicnaForm.value)
+  }
+
+  metapodaciPretraga() {
+    console.log(this.obicnaForm.value)
+  }
+
+
 }

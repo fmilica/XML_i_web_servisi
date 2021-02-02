@@ -6,7 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +57,8 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     MatTableModule,
     MatTabsModule,
     MatTooltipModule,
+    MatRadioModule,
+    MatButtonModule,
     ToastrModule.forRoot()
   ],
   providers: [
