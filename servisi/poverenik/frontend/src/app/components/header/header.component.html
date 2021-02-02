@@ -1,43 +1,53 @@
 <nav id="navigation" class="navbar navbar-expand-lg navbar-light">
 
-    <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_KORISNIK'">
+    <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_GRADJANIN'">
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('nova-zalba-cutanje')" (keyup.enter)="onClick('nova-zalba-cutanje')"
             [ngClass]="{'active': activeLink==='nova-zalba-cutanje'}">
-            Поднеси жалбу на ћутање управе
+            Поднеси жалбу на ћутање
         </a>
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('nova-zalba-odluka')" (keyup.enter)="onClick('nova-zalba-odluka')"
             [ngClass]="{'active': activeLink==='nova-zalba-odluka'}">
-            Поднеси жалбу на одбијање захтева
+            Поднеси жалбу на одлуку
         </a>
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('zalbe')" (keyup.enter)="onClick('zalbe')"
-            [ngClass]="{'active': activeLink==='zalbe'}">
-            Моје жалбе
+            (click)="onClick('moje-zalbe-odluka')" (keyup.enter)="onClick('moje-zalbe-odluka')"
+            [ngClass]="{'active': activeLink==='moje-zalbe-odluka'}">
+            Жалбе на одлуку
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('moje-zalbe-cutanje')" (keyup.enter)="onClick('moje-zalbe-cutanje')"
+            [ngClass]="{'active': activeLink==='moje-zalbe-cutanje'}">
+            Жалбе на ћутање
         </a>
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('resenja')" (keyup.enter)="onClick('resenja')"
             [ngClass]="{'active': activeLink==='resenja'}">
-            Моја решења
+            Решења
         </a>
     </div>
 
     <div id="user-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_POVERENIK'">
-        <a id="resenja-btn-poverenik" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('resenje')" (keyup.enter)="onClick('resenje')"
             [ngClass]="{'active': activeLink==='resenje'}">
-            Креирање решења
-        </a>
-        <a id="zalbe-btn-poverenik" class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('zalbe')" (keyup.enter)="onClick('zalbe')"
-            [ngClass]="{'active': activeLink==='zalbe'}">
-            Све жалбе
+            Креирање Решења
         </a>
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('resenja')" (keyup.enter)="onClick('resenja')"
-            [ngClass]="{'active': activeLink==='resenja'}">
-            Сва решења
+            (click)="onClick('zalbe-odluka')" (keyup.enter)="onClick('zalbe-odluka')"
+            [ngClass]="{'active': activeLink==='zalbe-odluka'}">
+            Жалбе на одлуку
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('zalbe-cutanje')" (keyup.enter)="onClick('zalbe-cutanje')"
+            [ngClass]="{'active': activeLink==='zalbe-cutanje'}">
+            Жалбе ћутање
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('moja-resenja')" (keyup.enter)="onClick('moja-resenja')"
+            [ngClass]="{'active': activeLink==='moja-resenja'}">
+            Решења
         </a>
     </div>
 
