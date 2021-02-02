@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import * as JsonToXML from 'js2xmlparser';
 
 @Component({
   selector: 'app-root',

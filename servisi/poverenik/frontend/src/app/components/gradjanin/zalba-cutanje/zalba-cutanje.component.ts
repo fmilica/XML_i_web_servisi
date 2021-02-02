@@ -23,12 +23,8 @@ export class ZalbaCutanjeComponent implements OnInit {
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                       xmlns:pred="http://www.xml.com/predicate/"
                       xsi:schemaLocation="http://zalbacutanje zalbacutanje.xsd"
-                      mesto="Novi Sad" datum="2020-12-07" id="ID1"
-                      
-                      vocab="http://www.xml.com/predicate/"
-                      about="http://zalbacutanje/ID1"
-                      rel="pred:vezanZahtev"
-                      href="http://zahtev/ID1">`+
+                      mesto="" datum="${new Date().toISOString().slice(0, 10)}"
+                      >`+
                       `<zoc:Primalac_zalbe>`+
                         `<tipovi:Naziv property="pred:primalacNaziv">Поверенику за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>`+
                         `<tipovi:Sediste>`+
@@ -44,20 +40,21 @@ export class ZalbaCutanjeComponent implements OnInit {
                         `</zoc:Osnova_zalbe>`+
                         `<zoc:Naziv_organa></zoc:Naziv_organa>`+
                         `<zoc:Razlog_zalbe></zoc:Razlog_zalbe>`+
-                        `<zoc:Datum>${new Date().toISOString().slice(0, 10)}</zoc:Datum>`+
+                        `<zoc:Datum>2021.02.02.</zoc:Datum>`+
                         `<zoc:Podaci_o_zahtevu></zoc:Podaci_o_zahtevu>`+
                       `</zoc:Zalba>`+
                       `<zoc:Podnosilac_zalbe>`+
-                        `<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
-                        `<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
-                          // `<tipovi:Naziv property="pred:podnosilacNaziv"></tipovi:Naziv>`+
+                        //`<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
+                        //`<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
+                        //`<tipovi:Naziv property="pred:podnosilacNaziv"></tipovi:Naziv>`+
                         `<tipovi:Adresa>`+
                           `<tipovi:Mesto></tipovi:Mesto>`+
                           `<tipovi:Ulica></tipovi:Ulica>`+
                           `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
                         `</tipovi:Adresa>`+
                         `<tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>`+
-                      `</zoc:Podnosilac_zalbe></zoc:Zalba_cutanje>`;
+                      `</zoc:Podnosilac_zalbe>` +
+                      `</zoc:Zalba_cutanje>`;
 
     Xonomy.render(xmlString, element, specification);
   }
