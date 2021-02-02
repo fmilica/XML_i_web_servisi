@@ -61,10 +61,7 @@ import { ResenjaGradjaninComponent } from './components/gradjanin/resenja-gradja
     MatTabsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
-    ToastrModule.forRoot({
-      positionClass: 'toast-custom',
-      timeOut: 2500,
-    }),
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

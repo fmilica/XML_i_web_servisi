@@ -76,7 +76,6 @@ export class NewZahtevComponent implements OnInit {
 
   send() {
     let xmlDocument =  Xonomy.harvest();
-    console.log(xmlDocument)
     if(Xonomy.warnings.length !== 0) {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return

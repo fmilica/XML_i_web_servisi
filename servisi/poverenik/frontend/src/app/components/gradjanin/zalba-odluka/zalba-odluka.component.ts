@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { XonomyZalbaOdlukaService } from 'src/app/services/xonomy/xonomy-zalba-odluka.service';
+import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
 
 declare const Xonomy: any;
 
@@ -10,7 +12,10 @@ declare const Xonomy: any;
 })
 export class ZalbaOdlukaComponent implements OnInit {
 
-  constructor(private xonomyZalbaOdlukaService: XonomyZalbaOdlukaService) { }
+  constructor(
+    private xonomyZalbaOdlukaService: XonomyZalbaOdlukaService,
+    private zalbaOdlukaService: ZalbaOdlukaService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {}
 
@@ -68,6 +73,21 @@ export class ZalbaOdlukaComponent implements OnInit {
                   `</zoz:Zalba_odbijanje>`;
 
     Xonomy.render(xmlString, element, specification);
+  }
+
+  send() {
+    let xmlDocument =  Xonomy.harvest();
+    if(Xonomy.warnings.length !== 0) {
+      this.toastr.error('Молимо Вас да исправно попуните форму!')
+      return
+    }
+    this.zalbaOdlukaService.createZalbaOdluka(xmlDocument)
+      .subscribe((response) => {
+        this.toastr.success('Успешно сте поднели жалбу на одлуку! Можете да је видите у "Жалбе на одлуку".')
+      },
+        err => {
+          this.toastr.error('Молимо Вас да исправно попуните форму!')
+      });
   }
 
 }
