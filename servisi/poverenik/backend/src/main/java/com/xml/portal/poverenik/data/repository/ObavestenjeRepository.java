@@ -120,6 +120,20 @@ public class ObavestenjeRepository {
 		}
 	}
 	
+	public String findByIdRaw(String documentId) {
+		try {
+			XMLResource resource = this.existManager.loadRaw(collectionId, documentId);
+			if (resource == null) {
+				return null;
+			} else {
+				return resource.getContent().toString();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public String save(Obavestenje obavestenje) {
 		StringWriter sw = new StringWriter();
 		try {

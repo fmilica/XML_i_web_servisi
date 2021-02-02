@@ -121,6 +121,20 @@ public class ZahtevRepository {
 		}
 	}
 	
+	public String findByIdRaw(String documentId) {
+		try {
+			XMLResource resource = this.existManager.loadRaw(collectionId, documentId);
+			if (resource == null) {
+				return null;
+			} else {
+				return resource.getContent().toString();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public String save(Zahtev zahtev) {
 		StringWriter sw = new StringWriter();
 		try {
@@ -139,10 +153,7 @@ public class ZahtevRepository {
 	
 	public boolean update(String zahtevId, Zahtev zahtev) {
 		String xPath = "/zahtev:Zahtev/@razresen";
-		StringWriter sw = new StringWriter();
 		try {
-			marshaller.marshal(zahtev, sw);
-			String zahtevString = sw.toString();
 			this.existManager.update(collectionId, zahtevId, xPath, "true", UPDATE);
 			return true;
 		} catch (Exception e) {

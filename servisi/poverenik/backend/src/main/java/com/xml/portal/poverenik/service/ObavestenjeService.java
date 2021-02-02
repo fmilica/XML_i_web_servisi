@@ -1,5 +1,9 @@
 package com.xml.portal.poverenik.service;
 
+import java.io.File;
+import java.io.FileInputStream;
+
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -67,4 +71,40 @@ public class ObavestenjeService {
     			return ResponseEntity.status(500).body(greska);    		}
     	}
     }
+	
+	@GetMapping("/generisiHTML/{id}")
+	public ResponseEntity<Object> generisiHTML(@PathVariable("id") String id) throws Exception {
+
+		String path = obavestenjeBusiness.generateHTML(id);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja html-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiPDF/{id}")
+	public ResponseEntity<Object> generisiPDF(@PathVariable("id") String id) throws Exception {
+
+		String path = obavestenjeBusiness.generatePDF(id);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
 }
