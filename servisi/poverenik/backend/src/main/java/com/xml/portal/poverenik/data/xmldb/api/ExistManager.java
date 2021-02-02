@@ -130,6 +130,23 @@ public class ExistManager {
 			}
 		}
 	}
+	
+	public XMLResource loadRaw(String collectionUri, String documentId) throws Exception  {
+		createConnection();
+		Collection col = null;
+		XMLResource res = null;
+		try {
+			col = DatabaseManager.getCollection(conn.uri + collectionUri, conn.user,
+					conn.password);
+			col.setProperty(OutputKeys.INDENT, "yes");
+			res = (XMLResource) col.getResource(documentId);
+			return res;
+		} finally {
+			if (col != null) {
+				col.close();
+			}
+		}
+	}
 
 	public ResourceSet retrieve(String collectionUri, String xpathExp, String targetNamespace) throws Exception  {
 		createConnection();

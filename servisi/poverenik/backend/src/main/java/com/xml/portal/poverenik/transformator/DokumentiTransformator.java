@@ -96,7 +96,7 @@ public class DokumentiTransformator {
 		out.close();
 		
 		System.out.println("[INFO] End.");
-		return "";
+		return OUTPUT_FILE;
 	}
 
 	public String generateHTML(String xmlPath, String OUTPUT_FILE, String XSL_FILE) {
