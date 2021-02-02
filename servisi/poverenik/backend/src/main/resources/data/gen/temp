@@ -1,17 +1,14 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zalbaodbijanje/a71544f5-fe7b-4136-a8ec-6faf19a041fe">
-    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/5f408717-0126-43c4-a232-d0bd6efc4d2b"/>
+  <rdf:Description rdf:about="http://zalbacutanje/52ecf3c2-defa-43c6-91a8-7f0050f6ee31">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/1ae8a7c6-e341-47aa-a5cf-945ed2b8985a"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/a71544f5-fe7b-4136-a8ec-6faf19a041fe">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Primalac</pred:primalacNaziv>
+  <rdf:Description rdf:about="http://zalbacutanje/52ecf3c2-defa-43c6-91a8-7f0050f6ee31">
+    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Повереник за информације од јавног значаја и заштиту података о личности</pred:primalacNaziv>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/a71544f5-fe7b-4136-a8ec-6faf19a041fe">
-    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Naziv</pred:podnosilacNaziv>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/a71544f5-fe7b-4136-a8ec-6faf19a041fe">
+  <rdf:Description rdf:about="http://zalbacutanje/52ecf3c2-defa-43c6-91a8-7f0050f6ee31">
     <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/a71544f5-fe7b-4136-a8ec-6faf19a041fe">
-    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Naziv</pred:podnosilacNaziv>
+  <rdf:Description rdf:about="http://zalbacutanje/52ecf3c2-defa-43c6-91a8-7f0050f6ee31">
+    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">d</pred:podnosilacNaziv>
   </rdf:Description>
 </rdf:RDF>

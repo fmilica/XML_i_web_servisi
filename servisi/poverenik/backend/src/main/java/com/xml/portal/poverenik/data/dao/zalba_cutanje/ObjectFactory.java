@@ -10,6 +10,8 @@ package com.xml.portal.poverenik.data.dao.zalba_cutanje;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
+import com.xml.portal.poverenik.data.dao.zalba_cutanje.Podnosilac;
+
 
 /**
  * This object contains factory methods for each 
@@ -50,6 +52,17 @@ public class ObjectFactory {
      */
     public ZalbaCutanje createZalbaCutanje() {
         return new ZalbaCutanje();
+    }
+    
+    /**
+     * Create an instance of {@link Podnosilac }
+     * 
+     */
+    public Podnosilac createPodnosilac() {
+    	Podnosilac podnosilac = new Podnosilac();
+    	podnosilac.setVocab("http://www.xml.com/predicate/");
+    	podnosilac.setRel("pred:vezanGradjanin");
+		return podnosilac;
     }
 
 }

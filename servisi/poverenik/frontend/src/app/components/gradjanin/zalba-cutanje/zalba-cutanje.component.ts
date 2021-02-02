@@ -29,7 +29,7 @@ export class ZalbaCutanjeComponent implements OnInit {
                       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                       xmlns:pred="http://www.xml.com/predicate/"
                       xsi:schemaLocation="http://zalbacutanje zalbacutanje.xsd"
-                      mesto="" datum_podnosenja_zalbe="${new Date().toISOString().slice(0, 10)}" datum_podnosenja_zahteva="2021.02.02"
+                      mesto="" datum_podnosenja_zalbe="${new Date().toISOString().slice(0, 10)}" datum_podnosenja_zahteva="2021-01-02"
                       >`+
                       `<zoc:Primalac_zalbe>`+
                         `<tipovi:Naziv property="pred:primalacNaziv">Повереник за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>`+
@@ -41,25 +41,25 @@ export class ZalbaCutanjeComponent implements OnInit {
                       `</zoc:Primalac_zalbe>`+
                       `<zoc:Zalba>`+
                         `<zoc:Osnova_zalbe>`+
-                          `<zoc:Clan>22.</zoc:Clan>`+
-                          `<zoc:Zakon>Закона о слободном приступу информацијама од јавног ѕначаја</zoc:Zakon>`+
+                          `<zoc:Clan>22</zoc:Clan>`+
+                          `<zoc:Zakon>Закона о слободном приступу информацијама од јавног значаја</zoc:Zakon>`+
                         `</zoc:Osnova_zalbe>`+
                         `<zoc:Naziv_organa></zoc:Naziv_organa>`+
                         `<zoc:Razlog_zalbe></zoc:Razlog_zalbe>`+
                         `<zoc:Podaci_o_zahtevu></zoc:Podaci_o_zahtevu>`+
+                        `<zoc:Podnosilac_zalbe>`+
+                          //`<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
+                          //`<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
+                          //`<tipovi:Naziv property="pred:podnosilacNaziv"></tipovi:Naziv>`+
+                          `<tipovi:Adresa>`+
+                            `<tipovi:Mesto></tipovi:Mesto>`+
+                            `<tipovi:Ulica></tipovi:Ulica>`+
+                            `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
+                          `</tipovi:Adresa>`+
+                          `<tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>`+
+                        `</zoc:Podnosilac_zalbe>` +
                       `</zoc:Zalba>`+
-                      `<zoc:Podnosilac_zalbe>`+
-                        //`<tipovi:Ime property="pred:podnosilacIme"></tipovi:Ime>`+
-                        //`<tipovi:Prezime property="pred:podnosilacPrezime"></tipovi:Prezime>`+
-                        //`<tipovi:Naziv property="pred:podnosilacNaziv"></tipovi:Naziv>`+
-                        `<tipovi:Adresa>`+
-                          `<tipovi:Mesto></tipovi:Mesto>`+
-                          `<tipovi:Ulica></tipovi:Ulica>`+
-                          `<tipovi:Ulicni_broj></tipovi:Ulicni_broj>`+
-                        `</tipovi:Adresa>`+
-                        `<tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>`+
-                      `</zoc:Podnosilac_zalbe>` +
-                      `</zoc:Zalba_cutanje>`;
+                    `</zoc:Zalba_cutanje>`;
 
     Xonomy.render(xmlString, element, specification);
   }
@@ -70,9 +70,9 @@ export class ZalbaCutanjeComponent implements OnInit {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return
     }
-    this.zalbaCutanjeService.createZalbaCutanje(xmlDocument, '1')
+    this.zalbaCutanjeService.createZalbaCutanje(xmlDocument, '1ae8a7c6-e341-47aa-a5cf-945ed2b8985a')
       .subscribe((response) => {
-        this.toastr.success('Успешно сте поднели жалбу на одлуку! Можете да је видите у "Жалбе на одлуку".')
+        this.toastr.success('Успешно сте поднели жалбу због ћутања! Можете да је видите у "Жалбе на ћутање".')
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')

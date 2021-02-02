@@ -81,7 +81,7 @@ export class ZalbaOdlukaComponent implements OnInit {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return
     }
-    this.zalbaOdlukaService.createZalbaOdluka(xmlDocument, '1')
+    this.zalbaOdlukaService.createZalbaOdluka(xmlDocument, '1ae8a7c6-e341-47aa-a5cf-945ed2b8985a')
       .subscribe((response) => {
         this.toastr.success('Успешно сте поднели жалбу на одлуку! Можете да је видите у "Жалбе на одлуку".')
       },
