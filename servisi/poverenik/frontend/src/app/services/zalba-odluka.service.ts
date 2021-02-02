@@ -33,7 +33,7 @@ export class ZalbaOdlukaService {
 
   createZalbaOdluka(xmlDocument: string, zahtevId: string) {
     let email = this.authService.getLoggedInUserEmail();
-    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje?zahtevId=' + zahtevId + '&userEmail=' + email, {
+    return this.http.post(environment.apiEndpoint + 'zalba-odbijanje?zahtevId=' + zahtevId + '&userEmail=' + email, xmlDocument, {
       responseType: 'text',
       headers: this.headers
     })
