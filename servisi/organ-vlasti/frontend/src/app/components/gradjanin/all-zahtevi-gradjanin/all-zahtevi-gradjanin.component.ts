@@ -39,6 +39,7 @@ export class AllZahteviGradjaninComponent implements OnInit {
         allZahtevi[1].children.map(zahtev => {
           console.log(zahtev)
           let zahtevPrikaz = {
+            id: zahtev.attributes.id.substring(14),
             nazivOrgana: zahtev.children[0].children[0].children[0],
             sedisteOrgana: zahtev.children[0].children[1].children[0],
             obavestenje: 'false',
@@ -90,6 +91,32 @@ export class AllZahteviGradjaninComponent implements OnInit {
         this.dataSource = data;
       }
     );
+  }
+
+  generisiPDF(zahtevId: string) {
+    this.zahtevService.generisiPDF(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "pdf");
+      }
+    );
+  }
+
+  generisiHTML(zahtevId: string) {
+    this.zahtevService.generisiHTML(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "html");
+      }
+    );
+  }
+
+  previewAndDownload(response: any, id: string, tip: string){
+    let type = "application/"+tip;
+    let blob = new Blob([response], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = "zahtev_"+id+"."+tip;
+    link.click();
   }
 
 }

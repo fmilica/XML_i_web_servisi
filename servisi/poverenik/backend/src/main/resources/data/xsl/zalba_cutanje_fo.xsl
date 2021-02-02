@@ -18,7 +18,7 @@
             </fo:layout-master-set>
             
             <fo:page-sequence master-reference="zalbacutanje-page">
-                <fo:flow flow-name="xsl-region-body">
+                <fo:flow flow-name="xsl-region-body" font-family="Times New Roman">
                     <fo:block font-weight="bold">
                         ZALBA KADA ORGAN VLASTI <fo:inline text-decoration="underline">NIJE POSTUPIO/nije postupio u celosti/PO ZAHTEVU</fo:inline>
                     </fo:block> 

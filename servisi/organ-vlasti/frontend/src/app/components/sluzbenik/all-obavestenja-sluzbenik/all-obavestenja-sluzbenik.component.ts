@@ -13,6 +13,7 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
     private obavestenjeService: ObavestenjeService
   ) { }
 
+  pdfLink: string = "";
   
   dataSource = [ ];
 
@@ -26,8 +27,9 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
           let allObavestenja: any =  txml.parse(xmlResponse);
           let data = []
           allObavestenja[1].children.map(obavestenje => {
-            console.log(obavestenje)
+            //console.log(obavestenje)
             let obavestenjePrikaz = {
+              id: obavestenje.attributes.id.substring(19),
               nazivOrgana: obavestenje.children[0].children[0].children[0],
               sedisteOrgana: obavestenje.children[0].children[1].children[0],
               brojPredmeta: obavestenje.children[1].children[0],
@@ -43,6 +45,32 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
           this.dataSource = data;
         }
       )
+  }
+
+  generisiPDF(obavestenjeId: string) {
+    this.obavestenjeService.generisiPDF(obavestenjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, obavestenjeId, "pdf");
+      }
+    );
+  }
+
+  generisiHTML(obavestenjeId: string) {
+    this.obavestenjeService.generisiHTML(obavestenjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, obavestenjeId, "html");
+      }
+    );
+  }
+
+  previewAndDownload(response: any, id: string, tip: string){
+    let type = "application/"+tip;
+    let blob = new Blob([response], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = "obavestenje_"+id+"."+tip;
+    link.click();
   }
 
 }
