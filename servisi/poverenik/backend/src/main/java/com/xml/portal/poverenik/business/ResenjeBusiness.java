@@ -13,8 +13,13 @@ import com.xml.portal.poverenik.data.dao.resenje.DOMParser;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.data.xmldb.api.RetrieveXML;
 import com.xml.portal.poverenik.data.xmldb.api.StoreXML;
+import com.xml.portal.poverenik.transformator.DokumentiTransformator;
 
 public class ResenjeBusiness {
+	
+	public static final String XSL_FILE = "src/main/resources/data/xsl/resenje.xsl";
+	
+	public static final String XSL_FO_FILE = "src/main/resources/data/xsl/resenje_fo.xsl";
 	
 	public Document getById(String id) {
 		Object ret = null;
@@ -77,5 +82,59 @@ public class ResenjeBusiness {
 		Document resenje = parser.getDocument();
 		
 		return resenje;
+	}
+	
+	public String generateHTML(String id) throws Exception {
+		DokumentiTransformator transformer = null;
+
+		try {
+			transformer = new DokumentiTransformator();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		Object zahtev = RetrieveXML.retrieveRaw(null, id);
+
+		String ok = "";
+		String htmlPath = "src/main/resources/data/html/resenje_" + id + ".html";
+
+		try {
+			ok = transformer.generateHTML(zahtev.toString(), htmlPath, XSL_FILE);
+			if (ok.length()>0)
+				return htmlPath;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String generatePDF(String id) throws Exception {
+		DokumentiTransformator transformer = null;
+
+		try {
+			transformer = new DokumentiTransformator();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		Object zahtev = RetrieveXML.retrieveRaw(null, id);
+
+		String ok = "";
+		String pdfPath = "src/main/resources/data/pdf/resenje_" + id + ".pdf";
+
+		try {
+			ok = transformer.generatePDF(zahtev.toString(), pdfPath, XSL_FO_FILE);
+			if (ok.length()>0)
+				return pdfPath;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 }
