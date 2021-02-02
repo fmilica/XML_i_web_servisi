@@ -24,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="razlog_zalbe" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="osnova_zalbe" type="{http://zalbaodbijanje}TZakonska_osnova"/>
+ *         &lt;element name="Razlog_zalbe" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="Osnova_zalbe" type="{http://zalbaodbijanje}TZakonska_osnova"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,9 +41,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class TTelo {
 
-    @XmlElement(name = "razlog_zalbe", namespace = "http://zalbaodbijanje", required = true)
+    @XmlElement(name = "Razlog_zalbe", namespace = "http://zalbaodbijanje", required = true)
     protected String razlogZalbe;
-    @XmlElement(name = "osnova_zalbe", namespace = "http://zalbaodbijanje", required = true)
+    @XmlElement(name = "Osnova_zalbe", namespace = "http://zalbaodbijanje", required = true)
     protected TZakonskaOsnova osnovaZalbe;
 
     /**

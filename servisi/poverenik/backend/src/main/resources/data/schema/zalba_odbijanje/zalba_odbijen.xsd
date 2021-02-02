@@ -7,25 +7,35 @@
     <xs:element name="Zalba_odbijanje">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="podaci_o_primaocu" type="tipovi:TPoverenik"> </xs:element>
-                <xs:element name="podaci_o_zaliocu" type="tipovi:TLice"> </xs:element>
-                <xs:element name="podaci_o_odluci">
+                <xs:element name="Podaci_o_primaocu" type="tipovi:TPoverenik"> </xs:element>
+                <xs:element name="Podaci_o_zaliocu" type="tipovi:TLice"> </xs:element>
+                <xs:element name="Podaci_o_odluci">
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="naziv_donosioca_odluke" type="xs:string">
+                            <xs:element name="Naziv_donosioca_odluke" type="xs:string">
                             </xs:element>
                         </xs:sequence>
                         <xs:attribute name="broj_odluke" type="xs:int"> </xs:attribute>
                         <xs:attribute name="godina" type="xs:int"> </xs:attribute>
                     </xs:complexType>
                 </xs:element>
-                <xs:element name="telo_zalbe" type="zoz:TTelo"> </xs:element>
-                <xs:element name="podaci_o_podnosiocu_zalbe" type="tipovi:TLice_kontakt">
+                <xs:element name="Telo_zalbe" type="zoz:TTelo"> </xs:element>
+                <xs:element name="Podaci_o_podnosiocu_zalbe">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="tipovi:TLice_kontakt">
+                                <xs:attribute name="vocab" type="xs:string"/>
+                                <xs:attribute name="about" type="xs:string"/>
+                                <xs:attribute name="rel" type="xs:string"/>
+                                <xs:attribute name="href" type="xs:string"/>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
                 </xs:element>
             </xs:sequence>
             <xs:attribute name="id" type="xs:ID"/>
             <xs:attribute name="mesto_podnosenja_zalbe" type="xs:string"> </xs:attribute>
-            <xs:attribute name="datum_podnosenja_zalbe" type="xs:date"> </xs:attribute>
+            <xs:attribute name="datum_podnosenja_zalbe" type="xs:string"/>
             <xs:attribute name="datum_podnosenja_zahteva" type="xs:date"> </xs:attribute>
             <xs:attribute name="vocab" type="xs:string"/>
             <xs:attribute name="about" type="xs:string"/>
@@ -36,8 +46,8 @@
 
     <xs:complexType name="TTelo">
         <xs:sequence>
-            <xs:element name="razlog_zalbe" type="xs:string"> </xs:element>
-            <xs:element name="osnova_zalbe" type="zoz:TZakonska_osnova"/>
+            <xs:element name="Razlog_zalbe" type="xs:string"> </xs:element>
+            <xs:element name="Osnova_zalbe" type="zoz:TZakonska_osnova"/>
         </xs:sequence>
     </xs:complexType>
 

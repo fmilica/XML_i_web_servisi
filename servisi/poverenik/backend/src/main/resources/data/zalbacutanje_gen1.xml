@@ -4,13 +4,8 @@
     xmlns:tipovi="http://tipovi"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:pred="http://www.xml.com/predicate/"
-    xsi:schemaLocation="http://zalbacutanje zalbacutanje.xsd"
-    mesto="Novi Sad" datum="2020-12-07" id="ID1"
-    
-    vocab="http://www.xml.com/predicate/"
-    about="http://zalbacutanje/ID1"
-    rel="pred:vezanZahtev"
-    href="http://zahtev/ID1"
+    xsi:schemaLocation="http://zalbacutanje schema/zalba_cutanje/zalbacutanje.xsd"
+    mesto="Novi Sad" datum_podnosenja_zahteva="2020-05-07" datum_podnosenja_zalbe="2020-12-07"
     >
     <zoc:Primalac_zalbe>
         <tipovi:Naziv property="pred:primalacNaziv">Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</tipovi:Naziv>
@@ -27,7 +22,6 @@
         </zoc:Osnova_zalbe>
         <zoc:Naziv_organa>Fakultet tehnickih nauka</zoc:Naziv_organa>
         <zoc:Razlog_zalbe>Nije postupio</zoc:Razlog_zalbe>
-        <zoc:Datum>2020-11-13</zoc:Datum>
         <zoc:Podaci_o_zahtevu>Zahtevane informacije o polozenim predmetima Vlastislava Jakovljevica</zoc:Podaci_o_zahtevu>
         <zoc:Podnosilac_zalbe>
             <tipovi:Ime property="pred:podnosilacIme">Vlastislav</tipovi:Ime>

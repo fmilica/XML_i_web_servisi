@@ -16,8 +16,6 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import com.xml.portal.poverenik.data.dao.tipovi.TLiceKontakt;
-
 
 /**
  * <p>Java class for anonymous complex type.
@@ -75,7 +73,7 @@ public class Zalba {
     @XmlElement(name = "Podaci_o_zahtevu", namespace = "http://zalbacutanje", required = true)
     protected String podaciOZahtevu;
     @XmlElement(name = "Podnosilac_zalbe", namespace = "http://zalbacutanje", required = true)
-    protected TLiceKontakt podnosilacZalbe;
+    protected Podnosilac podnosilacZalbe;
     
     /**
      * Gets the value of the osnovaZalbe property.
@@ -202,10 +200,10 @@ public class Zalba {
      * 
      * @return
      *     possible object is
-     *     {@link TLiceKontakt }
+     *     {@link Podnosilac }
      *     
      */
-    public TLiceKontakt getPodnosilacZalbe() {
+    public Podnosilac getPodnosilacZalbe() {
         return podnosilacZalbe;
     }
 
@@ -214,10 +212,10 @@ public class Zalba {
      * 
      * @param value
      *     allowed object is
-     *     {@link TLiceKontakt }
+     *     {@link Podnosilac }
      *     
      */
-    public void setPodnosilacZalbe(TLiceKontakt value) {
+    public void setPodnosilacZalbe(Podnosilac value) {
         this.podnosilacZalbe = value;
     }
 
