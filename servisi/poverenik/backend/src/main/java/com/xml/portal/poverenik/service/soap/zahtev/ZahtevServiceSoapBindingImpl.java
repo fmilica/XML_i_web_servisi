@@ -4,7 +4,7 @@
  * This class is not complete
  */
 
-package com.xml.portal.poverenik.service.soap;
+package com.xml.portal.poverenik.service.soap.zahtev;
 
 import java.util.logging.Logger;
 import javax.jws.WebMethod;

@@ -106,7 +106,7 @@
 										<extraarg>-impl</extraarg> <!-- Ima i drugih dodatniha<extraarg>-client</extraarg> -->
 										<extraarg>-verbose</extraarg>
 									</extraargs>
-									<wsdlLocation>classpath:wsdl/zahtev.wsdl</wsdlLocation>
+									<wsdlLocation>classpath:wsdl/posta.wsdl</wsdlLocation>
 								</wsdlOption>
 
 							</wsdlOptions>
