@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
 import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
 import * as txml from 'txml';
 
@@ -14,9 +15,25 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'zalilac','adresa', 'kontaktTelefon', 
                                 'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje']
 
+
+  //formе za pretragu
+  obicnaForm: FormGroup;
+  metaDataForm: FormGroup;
+
   constructor(
     private zalbaCutanjeService: ZalbaCutanjeService
-  ) { }
+  ) { 
+    this.obicnaForm = new FormGroup({
+      sve: new FormControl()
+    })
+
+    this.metaDataForm = new FormGroup({
+      primalacNaziv: new FormControl(),
+      podnosilacIme: new FormControl(),
+      podnosilacPrezime: new FormControl(),
+      podnosilacNaziv: new FormControl(),
+    })
+  }
 
   ngOnInit(): void {
     this.zalbaCutanjeService.getAllGradjaninZalbeCutanje()
@@ -106,6 +123,14 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     link.href = url;
     link.download = "zalba_cutanje_"+id+"."+tip;
     link.click();
+  }
+
+  obicnaPretraga() {
+    console.log(this.obicnaForm.value)
+  }
+
+  metapodaciPretraga() {
+    console.log(this.obicnaForm.value)
   }
 
 }
