@@ -31,7 +31,7 @@
         <div class="col-md-1.75">
             <div class="form-group">
                 <mat-form-field class="form-field">
-                    <mat-label>Претрага по називу подносиоцу обавештења</mat-label>
+                    <mat-label>Претрага по издаваоцу обавештења</mat-label>
                     <input matInput formControlName="izdavacNaziv" placeholder="Нпр. бео">
                 </mat-form-field>
             </div>
@@ -40,7 +40,7 @@
         <div class="col-md-1.75">
             <div class="form-group">
                 <mat-form-field class="form-field">
-                    <mat-label>Претрага по везаном грађанину</mat-label>
+                    <mat-label>Претрага е-пошти грађанина</mat-label>
                     <input matInput formControlName="vezaniGradjanin" placeholder="Нпр. бео">
                 </mat-form-field>
             </div>
@@ -76,7 +76,7 @@
         <div class="col-md-1.75">
             <div class="form-group">
                 <mat-form-field class="form-field">
-                    <mat-label>Претрага по везаном захтеву</mat-label>
+                    <mat-label>Претрага по ID-ју везаног захтева</mat-label>
                     <input matInput formControlName="vezaniZahtev" placeholder="Нпр. бео">
                 </mat-form-field>
             </div>
@@ -89,8 +89,8 @@
         </div>
         <div class="col-md-7">
             <mat-radio-group formControlName="operator" aria-label="Начин претраге">
-                <mat-radio-button value="and">Обавештење мора да задовољи све параметре</mat-radio-button>
-                <mat-radio-button value="or">Обавештење мора да задовољи бар један параметар</mat-radio-button>
+                <mat-radio-button value="AND" [checked] = "true">Обавештење мора да задовољи све параметре</mat-radio-button>
+                <mat-radio-button value="OR">Обавештење мора да задовољи бар један параметар</mat-radio-button>
             </mat-radio-group>
         </div>
         <!-- Filter -->

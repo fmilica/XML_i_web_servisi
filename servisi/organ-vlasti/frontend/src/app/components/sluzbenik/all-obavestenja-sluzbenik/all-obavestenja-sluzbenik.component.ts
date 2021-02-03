@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { ObavestenjeNaprednaPretragaDto } from 'src/app/model/obavestenje-napredna-pretraga-dto';
 import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 import * as txml from 'txml';
+import * as JsonToXML from 'js2xmlparser';
 
 @Component({
   selector: 'app-all-obavestenja-sluzbenik',
@@ -40,28 +42,32 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
     this.obavestenjeService.getAllObavestenja()
       .subscribe(
         (response) => {
-          let xmlResponse = response;
-          let allObavestenja: any =  txml.parse(xmlResponse);
-          let data = []
-          allObavestenja[1].children.map(obavestenje => {
-            //console.log(obavestenje)
-            let obavestenjePrikaz = {
-              id: obavestenje.attributes.id.substring(19),
-              nazivOrgana: obavestenje.children[0].children[0].children[0],
-              sedisteOrgana: obavestenje.children[0].children[1].children[0],
-              brojPredmeta: obavestenje.children[1].children[0],
-              datum: obavestenje.attributes.datum,
-              imePrezime: obavestenje.children[2].children[0].children[0] + ' ' + obavestenje.children[2].children[1].children[0],
-              adresa: obavestenje.children[2].children[2].children[1].children[0] + ', ' + 
-              obavestenje.children[2].children[2].children[2].children[0] + ' ' + obavestenje.children[2].children[2].children[0].children[0],
-              datumZahteva: obavestenje.children[3].children[1].children[0],
-              informacije: obavestenje.children[3].children[2].children[0]
-            }
-            data.push(obavestenjePrikaz);
-          })
-          this.dataSource = data;
+          this.listaObavestenja2Prikaz(response)
         }
       )
+  }
+
+  listaObavestenja2Prikaz(response) {
+    let xmlResponse = response;
+    let allObavestenja: any =  txml.parse(xmlResponse);
+    let data = []
+    allObavestenja[1].children.map(obavestenje => {
+      //console.log(obavestenje)
+      let obavestenjePrikaz = {
+        id: obavestenje.attributes.id.substring(19),
+        nazivOrgana: obavestenje.children[0].children[0].children[0],
+        sedisteOrgana: obavestenje.children[0].children[1].children[0],
+        brojPredmeta: obavestenje.children[1].children[0],
+        datum: obavestenje.attributes.datum,
+        imePrezime: obavestenje.children[2].children[0].children[0] + ' ' + obavestenje.children[2].children[1].children[0],
+        adresa: obavestenje.children[2].children[2].children[1].children[0] + ', ' + 
+        obavestenje.children[2].children[2].children[2].children[0] + ' ' + obavestenje.children[2].children[2].children[0].children[0],
+        datumZahteva: obavestenje.children[3].children[1].children[0],
+        informacije: obavestenje.children[3].children[2].children[0]
+      }
+      data.push(obavestenjePrikaz);
+    })
+    this.dataSource = data;
   }
 
   generisiPDF(obavestenjeId: string) {
@@ -91,11 +97,94 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
   }
 
   obicnaPretraga() {
-    console.log(this.obicnaForm.value)
+    let unos = this.obicnaForm.get('sve').value
+    if(!unos) {
+      this.obavestenjeService.getAllObavestenja().subscribe(
+        (response) => {
+          this.listaObavestenja2Prikaz(response)
+        }
+      )
+    } else {
+      this.obavestenjeService.obicnaPretraga(unos).subscribe(
+        (response) => {
+          this.listaObavestenja2Prikaz(response)
+        }
+      )
+    }
   }
 
   metapodaciPretraga() {
-    console.log(this.obicnaForm.value)
+    let naprednaDto: ObavestenjeNaprednaPretragaDto = {
+      IzdavacNaziv: '?izdavacNaziv',
+      VezanGradjanin: '?vezanGradjanin',
+      PodnosilacIme: '?podnosilacIme',
+      PodnosilacPrezime: '?podnosilacPrezime',
+      PodnosilacNaziv: '?podnosilacNaziv',
+      VezanZahtev: '?vezanZahtev',
+      Operator: 'AND'
+    }
+
+    let izdavacNaziv = this.metaDataForm.get('izdavacNaziv').value;
+    if(izdavacNaziv) {
+      naprednaDto.IzdavacNaziv = "\"" + izdavacNaziv + "\""
+    }
+
+    let vezanGradjanin = this.metaDataForm.get('vezaniGradjanin').value;
+    if(vezanGradjanin) {
+      naprednaDto.VezanGradjanin = 'http://korisnik/' + vezanGradjanin
+    }
+
+    let podnosilacIme = this.metaDataForm.get('podnosilacIme').value;
+    if(podnosilacIme) {
+      naprednaDto.PodnosilacIme = "\"" + podnosilacIme + "\""
+    }
+
+    let podnosilacPrezime = this.metaDataForm.get('podnosilacPrezime').value;
+    if(podnosilacPrezime) {
+      naprednaDto.PodnosilacPrezime = "\"" + podnosilacPrezime + "\""
+    }
+
+    let podnosilacNaziv = this.metaDataForm.get('podnosilacNaziv').value;
+    if(podnosilacNaziv) {
+      naprednaDto.PodnosilacNaziv = "\"" + podnosilacNaziv + "\""
+    }
+
+    let vezanZahtev = this.metaDataForm.get('vezaniZahtev').value;
+    if(vezanZahtev) {
+      naprednaDto.VezanZahtev = "\"" + vezanZahtev + "\""
+    }
+
+    let operator = this.metaDataForm.get('operator').value;
+    if(operator) {
+      naprednaDto.Operator = operator
+    }
+
+    if(!izdavacNaziv && !vezanGradjanin && !podnosilacIme && !podnosilacPrezime && !podnosilacNaziv  && vezanZahtev) {
+      this.obavestenjeService.getAllObavestenja().subscribe(
+        (response) => {
+          this.listaObavestenja2Prikaz(response);
+        }
+      );
+      return
+    }
+
+    const options = {
+      declaration: {
+        include: false,
+      },
+    };
+
+    let xmlDocument: string = JsonToXML.parse(
+      'ObavestenjeNaprednaPretragaDto',
+      naprednaDto,
+      options
+    );
+
+    this.obavestenjeService.naprednaPretraga(xmlDocument).subscribe(
+      (response) => {
+        this.listaObavestenja2Prikaz(response);
+      }
+    );
   }
 
 }

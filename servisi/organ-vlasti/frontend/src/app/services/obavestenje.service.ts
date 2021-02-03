@@ -52,4 +52,19 @@ export class ObavestenjeService {
       headers: this.headers
     })
   }
+
+  //Pretrage
+  obicnaPretraga(sve: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/pretrazi?sadrzaj=' + sve, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
+  naprednaPretraga(xmlDocument: string) {
+    return this.http.post(environment.apiEndpoint + 'obavestenje/pretrazi-napredno', xmlDocument, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }
