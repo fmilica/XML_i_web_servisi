@@ -28,33 +28,31 @@ export class ResenjeComponent implements OnInit {
                         xmlns:pred="http://www.xml.com/predicate/"
                         xsi:schemaLocation="http://resenje resenje.xsd" 
                         broj_resenja="000-00-0000/0000-00" 
-                        datum_resenja="2006-05-04" 
-                        id="ID1"
-                        
-                        vocab="http://www.xml.com/predicate/"
-                        about="http://resenje/ID1">` +
+                        datum_resenja="2006-05-04">` +
                         `<res:Opis_zalbe razlog_zalbe="nepostupanje" datum_zahteva="2006-05-04">` +
-                          `<res:Podnosilac_zalbe>` +
-                            `<res:Ime property="pred:zalilacIme">Михајло</res:Ime>` +
-                            `<res:Prezime property="pred:zalilacPrezime">Грујић</res:Prezime>` +
-                          `</res:Podnosilac_zalbe>` +
-                          `<res:Organ_vlasti>` +
-                          `<tipovi:Naziv property="pred:optuzeniNaziv">Учитељски факултет у Призрену</tipovi:Naziv>` +
-                          `<tipovi:Sediste>` +
-                            `<tipovi:Mesto>Лепосавић</tipovi:Mesto>` +
-                            `<tipovi:Ulica>Немањина</tipovi:Ulica>` +
-                            `<tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>` +
-                          `</tipovi:Sediste>` +
-                          `</res:Organ_vlasti>` +
-                          `<res:Zakonska_osnova_resenja>` +
-                            `<res:Zakonska_osnova>` +
-                              `<res:Clan>35</res:Clan>` +
-                              `<res:Stav>1</res:Stav>` +
-                              `<res:Tacka>5</res:Tacka>` +
-                              `<res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>` +
-                            `</res:Zakonska_osnova>` +
-                          `</res:Zakonska_osnova_resenja>` +
                         `</res:Opis_zalbe>` +
+                        `<res:Odluka>` +
+                        `</res:Odluka>` +
+                        `<res:Obrazlozenje>` +
+                          `<res:Postupak_zalioca prilozene_kopije="true">` +
+                            `<res:Podnosenje_zalbe datum_zalbe="2020-05-07">` +
+                            `</res:Podnosenje_zalbe>` +
+                            `<res:Podnosenje_zahteva datum_zahteva="2020-04-16">` +
+                            `</res:Podnosenje_zahteva>` +
+                          `</res:Postupak_zalioca>` +
+                          `<res:Prosledjivanje_zalbe datum_prosledjivanja="2020-05-11">` +
+                          `</res:Prosledjivanje_zalbe>` +
+                          `<res:Odgovor_na_zalbu rok_za_odgovor="8">` +
+                          `</res:Odgovor_na_zalbu>` +
+                          `<res:Razlozi_odluke>` +
+                          `</res:Razlozi_odluke>` +
+                          `<res:Zalba_na_resenje rok_za_tuzbu="30" taksa_tuzbe="3.9E2" zakon="Закон о управним споровима" sud="Управни суд у Београду">` +
+                          `</res:Zalba_na_resenje>` +
+                          `<res:Poverenik>` +
+                            `<res:Ime property="pred:izdavacIme"></res:Ime>` +
+                            `<res:Prezime property="pred:izdavacPrezime"></res:Prezime>` +
+                          `</res:Poverenik>` +
+                        `</res:Obrazlozenje>` +
                     `</res:Resenje>`
     Xonomy.render(xmlString, elemet, specification);
   }
