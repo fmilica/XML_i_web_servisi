@@ -208,10 +208,12 @@ public class TLice {
     })
     public static class Ime {
 
-        @XmlValue
+    	@XmlValue
         protected String value;
         @XmlAttribute(name = "property")
         protected String property;
+        @XmlAttribute(name = "datetype")
+        protected String datetype = "xs:string";
 
         /**
          * Gets the value of the value property.
@@ -246,7 +248,7 @@ public class TLice {
          *     
          */
         public String getProperty() {
-            return property;
+        	return property;
         }
 
         /**
@@ -259,6 +261,30 @@ public class TLice {
          */
         public void setProperty(String value) {
             this.property = value;
+        }
+
+        /**
+         * Gets the value of the datetype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatetype() {
+            return datetype;
+        }
+
+        /**
+         * Sets the value of the datetype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatetype(String value) {
+            this.datetype = value;
         }
 
     }
@@ -287,10 +313,12 @@ public class TLice {
     })
     public static class Naziv {
 
-        @XmlValue
+    	@XmlValue
         protected String value;
         @XmlAttribute(name = "property")
         protected String property;
+        @XmlAttribute(name = "datetype")
+        protected String datetype = "xs:string";
 
         /**
          * Gets the value of the value property.
@@ -340,6 +368,29 @@ public class TLice {
             this.property = value;
         }
 
+        /**
+         * Gets the value of the datetype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatetype() {
+            return datetype;
+        }
+
+        /**
+         * Sets the value of the datetype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatetype(String value) {
+            this.datetype = value;
+        }
     }
 
 
@@ -366,10 +417,12 @@ public class TLice {
     })
     public static class Prezime {
 
-        @XmlValue
+    	@XmlValue
         protected String value;
         @XmlAttribute(name = "property")
         protected String property;
+        @XmlAttribute(name = "datetype")
+        protected String datetype = "xs:string";
 
         /**
          * Gets the value of the value property.
@@ -417,6 +470,30 @@ public class TLice {
          */
         public void setProperty(String value) {
             this.property = value;
+        }
+
+        /**
+         * Gets the value of the datetype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatetype() {
+            return datetype;
+        }
+
+        /**
+         * Sets the value of the datetype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatetype(String value) {
+            this.datetype = value;
         }
 
     }

@@ -32,6 +32,7 @@
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
                             <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -46,6 +47,7 @@
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
                             <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -62,6 +64,7 @@
                     <xs:simpleContent>
                         <xs:extension base="xs:string">
                             <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
                         </xs:extension>
                     </xs:simpleContent>
                 </xs:complexType>
@@ -78,6 +81,8 @@
                             <xs:simpleContent>
                                 <xs:extension base="xs:string">
                                     <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute fixed="xs:string" name="datetype" type="xs:string"
+                                    />
                                 </xs:extension>
                             </xs:simpleContent>
                         </xs:complexType>
@@ -87,6 +92,8 @@
                             <xs:simpleContent>
                                 <xs:extension base="xs:string">
                                     <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute fixed="xs:string" name="datetype" type="xs:string"
+                                    />
                                 </xs:extension>
                             </xs:simpleContent>
                         </xs:complexType>
@@ -97,6 +104,7 @@
                         <xs:simpleContent>
                             <xs:extension base="xs:string">
                                 <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
                             </xs:extension>
                         </xs:simpleContent>
                     </xs:complexType>
