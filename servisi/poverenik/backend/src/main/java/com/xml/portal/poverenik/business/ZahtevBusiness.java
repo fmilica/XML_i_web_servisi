@@ -11,7 +11,7 @@ import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.data.repository.ZahtevRepository;
-import com.xml.portal.poverenik.dto.pretraga.NaprednaPretragaDTO;
+import com.xml.portal.poverenik.dto.pretraga.ZahtevPretraga;
 import com.xml.portal.poverenik.transformator.DokumentiTransformator;
 
 public class ZahtevBusiness {
@@ -65,100 +65,132 @@ public class ZahtevBusiness {
 		return filtriraniZahtevi;
 	}
 	
-	public ListaZahteva getAllNapredna(NaprednaPretragaDTO params) {
+	public ListaZahteva getAllNapredna(ZahtevPretraga params) {
 		List<String> zahtevIds;
 		ListaZahteva zahtevi = null;
+		
+		String vezanGradjanin = params.getVezanGradjanin();
+		if (!vezanGradjanin.equals("?vezanGradjanin")) {
+			// dodajemo <> okolo
+			vezanGradjanin = "<" + vezanGradjanin + ">";
+			params.setVezanGradjanin(vezanGradjanin);
+		}
+		// za sve ostale dodajemo
+		// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
+		// nakon vrednosti
+		// ako se razlikuju od default-ne
+		String primalacNaziv = params.getPrimalacNaziv();
+		if (!primalacNaziv.equals("?primalacNaziv")) {
+			primalacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPrimalacNaziv(primalacNaziv);
+		}
+		// naziv
+		String podnosilacNaziv = params.getPodnosilacNaziv();
+		if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
+			podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacNaziv(podnosilacNaziv);
+		}
+		// ime i prezime
+		String podnosilacIme = params.getPodnosilacIme();
+		if (!podnosilacIme.equals("?podnosilacIme")) {
+			podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacIme(podnosilacIme);
+		}
+		String podnosilacPrezime = params.getPodnosilacPrezime();
+		if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
+			podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacPrezime(podnosilacPrezime);
+		}
+		
 		try {
-			String vezanGradjanin = params.getParametri().getParametar().get(0);
-			if (!vezanGradjanin.equals("?vezanGradjanin")) {
-				// dodajemo <> okolo
-				vezanGradjanin = "<" + vezanGradjanin + ">";
-				params.getParametri().getParametar().set(0, vezanGradjanin);
-			}
-			// za sve ostale dodajemo
-			// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
-			// nakon vrednosti
-			// ako se razlikuju od default-ne
-			String primalacNaziv = params.getParametri().getParametar().get(1);
-			if (!primalacNaziv.equals("?primalacNaziv")) {
-				primalacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-				params.getParametri().getParametar().set(1, primalacNaziv);
-			}
-			if (params.getParametri().getParametar().size() == 4) {
-				// ime i prezime
-				String podnosilacIme = params.getParametri().getParametar().get(2);
-				if (!podnosilacIme.equals("?podnosilacIme")) {
-					podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.getParametri().getParametar().set(2, podnosilacIme);
-				}
-				String podnosilacPrezime = params.getParametri().getParametar().get(3);
-				if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
-					podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.getParametri().getParametar().set(3, podnosilacPrezime);
-				}
-				
-				// provera logickog operatora
-				if (params.getOperator().equals("AND")) {
-					zahtevIds = QueryMetadata.query(
-							"/poverenik/Zahtev", 
-							"src/main/resources/data/sparql/napredna/naprednaZahtevImePrezime.rq", 
-							params.getParametri().getParametar());
-				} else {
-					zahtevIds = QueryMetadata.query(
-							"/poverenik/Zahtev", 
-							"src/main/resources/data/sparql/napredna/naprednaZahtevORImePrezime.rq", 
-							params.getParametri().getParametar());
-				}
-			} else if (params.getParametri().getParametar().size() == 3) {
-				// naziv
-				String podnosilacNaziv = params.getParametri().getParametar().get(2);
-				if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
-					podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.getParametri().getParametar().set(2, podnosilacNaziv);
-				}
-				
-				// provera logickog operatora
-				if (params.getOperator().equals("AND")) {
-					zahtevIds = QueryMetadata.query(
-							"/poverenik/Zahtev", 
-							"src/main/resources/data/sparql/napredna/naprednaZahtevNaziv.rq", 
-							params.getParametri().getParametar());
-				} else {
-					zahtevIds = QueryMetadata.query(
-							"/poverenik/Zahtev", 
-							"src/main/resources/data/sparql/napredna/naprednaZahtevORNaziv.rq", 
-							params.getParametri().getParametar());
-				}
-			} else {
-				// i naziv i ime i prezime
-				String podnosilacIme = params.getParametri().getParametar().get(2);
-				if (!podnosilacIme.equals("?podnosilacIme")) {
-					podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.getParametri().getParametar().set(2, podnosilacIme);
-				}
-				String podnosilacPrezime = params.getParametri().getParametar().get(3);
-				if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
-					podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.getParametri().getParametar().set(3, podnosilacPrezime);
-				}
-				String podnosilacNaziv = params.getParametri().getParametar().get(4);
-				if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
-					podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.getParametri().getParametar().set(2, podnosilacNaziv);
-				}
-				// provera logickog operatora
-				if (params.getOperator().equals("AND")) {
+			if (params.getOperator().equals("AND")) {
+				// ako unese kombinaciju primalac:
+				// ime+naziv || prezime+naziv || ime+prezime+naziv
+				// -> prazna lista
+				if ((!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) 
+					&& ((!params.getPodnosilacIme().equals("?podnosilacIme"))
+							|| (!params.getPodnosilacPrezime().equals("?podnosilacPrezime")))) {
 					zahtevIds = new ArrayList<String>();
 				} else {
+					// validna AND pretraga
+					if (!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) {
+						zahtevIds = QueryMetadata.query(
+								"/poverenik/Zahtev", 
+								"src/main/resources/data/sparql/napredna/naprednaZahtevNaziv.rq", 
+								params.createNazivArray());
+					} else if ((!params.getPodnosilacIme().equals("?podnosilacIme")) || (!params.getPodnosilacPrezime().equals("?podnosilacPrezime"))) {
+						zahtevIds = QueryMetadata.query(
+								"/poverenik/Zahtev", 
+								"src/main/resources/data/sparql/napredna/naprednaZahtevImePrezime.rq", 
+								params.createImePrezimeArray());
+					} else {
+						// samo po zajednickim parametrima
+						zahtevIds = QueryMetadata.query(
+								"/poverenik/Zahtev", 
+								"src/main/resources/data/sparql/napredna/naprednaZahtev.rq", 
+								params.createImePrezimeArray());
+					}
+				}
+			} else {
+				// OR pretraga
+				vezanGradjanin = params.getVezanGradjanin();
+				if (vezanGradjanin.equals("?vezanGradjanin")) {
+					// dodajemo <> okolo
+					vezanGradjanin = "<>";
+					params.setVezanGradjanin(vezanGradjanin);
+				}
+				// za sve ostale dodajemo
+				// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
+				// nakon vrednosti
+				// ako se razlikuju od default-ne
+				primalacNaziv = params.getPrimalacNaziv();
+				if (primalacNaziv.equals("?primalacNaziv")) {
+					primalacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPrimalacNaziv(primalacNaziv);
+				}
+				// naziv
+				podnosilacNaziv = params.getPodnosilacNaziv();
+				if (podnosilacNaziv.equals("?podnosilacNaziv")) {
+					podnosilacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacNaziv(podnosilacNaziv);
+				}
+				// ime i prezime
+				podnosilacIme = params.getPodnosilacIme();
+				if (podnosilacIme.equals("?podnosilacIme")) {
+					podnosilacIme = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacIme(podnosilacIme);
+				}
+				podnosilacPrezime = params.getPodnosilacPrezime();
+				if (podnosilacPrezime.equals("?podnosilacPrezime")) {
+					podnosilacPrezime = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacPrezime(podnosilacPrezime);
+				}
+				if ((!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) 
+						&& ((!params.getPodnosilacIme().equals("?podnosilacIme"))
+								|| (!params.getPodnosilacPrezime().equals("?podnosilacPrezime")))) {
 					zahtevIds = QueryMetadata.query(
 							"/poverenik/Zahtev", 
 							"src/main/resources/data/sparql/napredna/naprednaZahtevORSve.rq", 
-							params.getParametri().getParametar());
+							params.createAllArray());
+				} else {
+					if (!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) {
+						// naziv
+						zahtevIds = QueryMetadata.query(
+								"/poverenik/Zahtev", 
+								"src/main/resources/data/sparql/napredna/naprednaZahtevORNaziv.rq", 
+								params.createNazivArray());
+					} else {
+						// ime i prezime
+						zahtevIds = QueryMetadata.query(
+								"/poverenik/Zahtev", 
+								"src/main/resources/data/sparql/napredna/naprednaZahtevORImePrezime.rq", 
+								params.createImePrezimeArray());
+					}
 				}
 			}
 			zahtevi = new ListaZahteva();
-			zahtevi.setZahtev(zahtevRepository.findAllNapredna(zahtevIds));
-		} catch (IOException e) {
+			zahtevi.setZahtev(zahtevRepository.findAllByGradjanin(zahtevIds));
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return zahtevi;

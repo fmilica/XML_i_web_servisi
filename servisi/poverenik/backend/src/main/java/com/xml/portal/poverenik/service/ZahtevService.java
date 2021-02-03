@@ -22,7 +22,7 @@ import com.xml.portal.poverenik.business.ZahtevBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.zahtev.ListaZahteva;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
-import com.xml.portal.poverenik.dto.pretraga.NaprednaPretragaDTO;
+import com.xml.portal.poverenik.dto.pretraga.ZahtevPretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/zahtev", produces = MediaType.APPLICATION_XML_VALUE)
@@ -101,7 +101,7 @@ public class ZahtevService {
     }
     
     @GetMapping("/pretrazi-napredno")
-    public ResponseEntity<Object> naprednaPretraga(@RequestBody NaprednaPretragaDTO params) {
+    public ResponseEntity<Object> naprednaPretraga(@RequestBody ZahtevPretraga params) {
 		ListaZahteva filtriraniZahtevi = zahtevBusiness.getAllNapredna(params);
 		return new ResponseEntity<>(filtriraniZahtevi, HttpStatus.OK);
     }

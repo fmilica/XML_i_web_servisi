@@ -22,9 +22,9 @@ public class QueryMetadata {
 	private static ConnectionProperties conn;
 	
 	public static void main(String[] args) throws IOException {
-		//query("/poverenik/Zahtev", 
-				//"src/main/resources/data/sparql/korisnikZahtevi.rq", 
-				//"http://korisnik/pera@pera.com");
+		query("/poverenik/Zahtev", 
+				"src/main/resources/data/sparql/napredna/ksenija.rq", 
+				new ArrayList<String>());
 	}
 	
 	public static List<String> query(String graphUri, String sparqlFilePath, List<String> queryParams) throws IOException {
