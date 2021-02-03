@@ -69,10 +69,67 @@ public class ZahtevBusiness {
 		List<String> zahtevIds;
 		ListaZahteva zahtevi = null;
 		try {
-			zahtevIds = QueryMetadata.query(
-					"/poverenik/Zahtev", 
-					"src/main/resources/data/sparql/naprednaZahtev.rq", 
-					params.getParametri().getParametar());
+			String vezanGradjanin = params.getParametri().getParametar().get(0);
+			if (!vezanGradjanin.equals("?vezanGradjanin")) {
+				// dodajemo <> okolo
+				vezanGradjanin = "<" + vezanGradjanin + ">";
+				params.getParametri().getParametar().set(0, vezanGradjanin);
+			}
+			// za sve ostale dodajemo
+			// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
+			// nakon vrednosti
+			// ako se razlikuju od default-ne
+			String primalacNaziv = params.getParametri().getParametar().get(1);
+			if (!primalacNaziv.equals("?primalacNaziv")) {
+				primalacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+				params.getParametri().getParametar().set(1, primalacNaziv);
+			}
+			if (params.getParametri().getParametar().size() == 4) {
+				// ime i prezime
+				String podnosilacIme = params.getParametri().getParametar().get(2);
+				if (!podnosilacIme.equals("?podnosilacIme")) {
+					podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.getParametri().getParametar().set(2, podnosilacIme);
+				}
+				String podnosilacPrezime = params.getParametri().getParametar().get(3);
+				if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
+					podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.getParametri().getParametar().set(3, podnosilacPrezime);
+				}
+				
+				// provera logickog operatora
+				if (params.getOperator().equals("AND")) {
+					zahtevIds = QueryMetadata.query(
+							"/poverenik/Zahtev", 
+							"src/main/resources/data/sparql/napredna/naprednaZahtevImePrezime.rq", 
+							params.getParametri().getParametar());
+				} else {
+					zahtevIds = QueryMetadata.query(
+							"/poverenik/Zahtev", 
+							"src/main/resources/data/sparql/napredna/naprednaZahtevORImePrezime.rq", 
+							params.getParametri().getParametar());
+				}
+			} else {
+				// naziv
+				String podnosilacNaziv = params.getParametri().getParametar().get(2);
+				if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
+					podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.getParametri().getParametar().set(2, podnosilacNaziv);
+				}
+				
+				// provera logickog operatora
+				if (params.getOperator().equals("AND")) {
+					zahtevIds = QueryMetadata.query(
+							"/poverenik/Zahtev", 
+							"src/main/resources/data/sparql/napredna/naprednaZahtevNaziv.rq", 
+							params.getParametri().getParametar());
+				} else {
+					zahtevIds = QueryMetadata.query(
+							"/poverenik/Zahtev", 
+							"src/main/resources/data/sparql/napredna/naprednaZahtevORNaziv.rq", 
+							params.getParametri().getParametar());
+				}
+			}
 			zahtevi = new ListaZahteva();
 			zahtevi.setZahtev(zahtevRepository.findAllNapredna(zahtevIds));
 		} catch (IOException e) {
@@ -93,8 +150,20 @@ public class ZahtevBusiness {
 			zahtev.setVocab("http://www.xml.com/predicate/");
 	    	zahtev.setRel("pred:vezanGradjanin");
 			zahtev.setHref("http://korisnik/" + userEmail);
+			// vezivanje ostalih metapodataka
+			zahtev.getOrganVlasti().getNaziv().setProperty("pred:primalacNaziv");
+			if (zahtev.getTrazilac().getNaziv() != null) {
+				// ima naziv
+				zahtev.getTrazilac().getNaziv().setProperty("pred:podnosilacNaziv");
+			} else {
+				// ima ime i prezime
+				zahtev.getTrazilac().getIme().setProperty("pred:podnosilacIme");
+				zahtev.getTrazilac().getPrezime().setProperty("pred:podnosilacPrezime");
+			}
 			// kada se kreira -> nije razresen
 			zahtev.setRazresen(false);
+			// kada se kreira -> nije odbijen
+			zahtev.setOdbijen(false);
 			documentId = zahtevRepository.save(zahtev);
 		} catch (Exception e) {
 			e.printStackTrace();
