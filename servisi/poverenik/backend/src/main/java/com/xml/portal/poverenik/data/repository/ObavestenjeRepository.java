@@ -8,12 +8,15 @@ import java.util.UUID;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
@@ -132,6 +135,55 @@ public class ObavestenjeRepository {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<Obavestenje> findAllByContent(String content) {
+		String xPath = "//*[contains(., '" + content + "')]";
+		List<Obavestenje> pronadjenaObavestenja = new ArrayList<Obavestenje>();
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			ResourceIterator iter = query.getIterator();
+			XMLResource res;
+			while(iter.hasMoreResources()) {
+				res = (XMLResource)iter.nextResource();
+				try {
+					pronadjenaObavestenja.add((Obavestenje) unmarshaller.unmarshal(res.getContentAsDOM()));
+				} catch (ClassCastException | UnmarshalException e) {
+					// elementi ispod zahteva koji zadovoljavaju xpath
+					continue;
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pronadjenaObavestenja;
+	}
+	
+	public List<Obavestenje> findAllNapredna(List<String> obavestenjeIds) {
+		Collection allObavestenja = null;
+		List<Obavestenje> obavestenja = new ArrayList<Obavestenje>();
+		try {
+			allObavestenja = this.existManager.loadCollection(collectionId);
+			for (String id : obavestenjeIds) {
+				XMLResource resource = this.existManager.load(collectionId, id);
+				if (resource != null) {
+					obavestenja.add((Obavestenje) unmarshaller.unmarshal(resource.getContentAsDOM()));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (allObavestenja != null) {
+				try {
+					allObavestenja.close();
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return obavestenja;
 	}
 	
 	public String save(Obavestenje obavestenje) {
