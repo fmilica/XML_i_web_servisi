@@ -1,9 +1,15 @@
 package com.xml.portal.poverenik.business;
 
+import java.io.IOException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.xml.portal.poverenik.data.dao.zalba_cutanje.ListaZalbiCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
-import com.xml.portal.poverenik.data.xmldb.api.RetrieveXML;
-import com.xml.portal.poverenik.data.xmldb.api.StoreXML;
+import com.xml.portal.poverenik.data.repository.ZalbaCutanjeRepository;
 import com.xml.portal.poverenik.transformator.DokumentiTransformator;
 
 public class ZalbaCutanjeBusiness {
@@ -12,30 +18,60 @@ public class ZalbaCutanjeBusiness {
 	
 	public static final String XSL_FO_FILE = "src/main/resources/data/xsl/zalba_cutanje_fo.xsl";
 	
-	public ZalbaCutanje getById(String id) {
-		Object ret = null;
-		try {
-			ret = RetrieveXML.retrieve(ZalbaCutanje.class, id);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		if (ret != null) {
-			return (ZalbaCutanje)ret;
-		}
-		return null;
+	private final String KORISNIK_NAMESPACE = "http://korisnik/";
+	
+	@Autowired
+	private ZalbaCutanjeRepository zalbaCutanjeRepository;
+	
+	public ListaZalbiCutanje getAll() {
+		ListaZalbiCutanje zalbeCutanje = new ListaZalbiCutanje();
+		zalbeCutanje.setZalbaCutanje(zalbaCutanjeRepository.findAll());
+		return zalbeCutanje;
 	}
 	
-	public ZalbaCutanje create(ZalbaCutanje zalbaCutanje) {
-		Object ret = null;
+	public ListaZalbiCutanje getAllByGradjanin(String userEmail) {
+		List<String> zalbeCutanjeIds;
+		ListaZalbiCutanje zalbeCutanje = null;
 		try {
-			ret = StoreXML.store(zalbaCutanje);
+			zalbeCutanjeIds = QueryMetadata.query(
+					"/poverenik/ZalbaCutanje", 
+					"src/main/resources/data/sparql/korisnikZalbeCutanje.rq", 
+					this.KORISNIK_NAMESPACE + userEmail);
+			zalbeCutanje = new ListaZalbiCutanje();
+			zalbeCutanje.setZalbaCutanje(zalbaCutanjeRepository.findAllByGradjanin(zalbeCutanjeIds));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return zalbeCutanje;
+	}
+	
+	public ZalbaCutanje getById(String id) {
+		ZalbaCutanje loaded = null;
+		try {
+			loaded = zalbaCutanjeRepository.findById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (ret != null) {
-			return (ZalbaCutanje)ret;
+		return loaded;
+	}
+	
+	public String create(ZalbaCutanje zalbaCutanje, String zahtevId, String userEmail) {
+		String documentId = null;
+		try {
+			// vezivanje zalbe cutanje i zahteva
+			zalbaCutanje.setVocab("http://www.xml.com/predicate/");
+			zalbaCutanje.setRel("pred:vezanZahtev");
+			zalbaCutanje.setHref("http://zahtev/" + zahtevId);
+			// vezivanje zalbe cutanje i korisnika
+			zalbaCutanje.getZalba().getPodnosilacZalbe().setVocab("http://www.xml.com/predicate/");
+			zalbaCutanje.getZalba().getPodnosilacZalbe().setRel("pred:vezanGradjanin");
+			zalbaCutanje.getZalba().getPodnosilacZalbe().setHref("http://korisnik/" + userEmail);
+			// cuvanje u bazama
+			documentId = zalbaCutanjeRepository.save(zalbaCutanje);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		return null;
+		return documentId;
 	}
 	
 	public boolean storeMetadata(ZalbaCutanje zalbaCutanje) {
@@ -57,13 +93,13 @@ public class ZalbaCutanjeBusiness {
 			return null;
 		}
 		
-		Object zahtev = RetrieveXML.retrieveRaw(ZalbaCutanje.class, id);
-
+		String zalbaCutanje = zalbaCutanjeRepository.findByIdRaw(id);
+		
 		String ok = "";
 		String htmlPath = "src/main/resources/data/html/zalba_cutanje_" + id + ".html";
 
 		try {
-			ok = transformer.generateHTML(zahtev.toString(), htmlPath, XSL_FILE);
+			ok = transformer.generateHTML(zalbaCutanje, htmlPath, XSL_FILE);
 			if (ok.length()>0)
 				return htmlPath;
 			else
@@ -84,13 +120,13 @@ public class ZalbaCutanjeBusiness {
 			return null;
 		}
 		
-		Object zahtev = RetrieveXML.retrieveRaw(ZalbaCutanje.class, id);
+		String zalbaCutanje = zalbaCutanjeRepository.findByIdRaw(id);
 
 		String ok = "";
 		String pdfPath = "src/main/resources/data/pdf/zalba_cutanje_" + id + ".pdf";
 
 		try {
-			ok = transformer.generatePDF(zahtev.toString(), pdfPath, XSL_FO_FILE);
+			ok = transformer.generatePDF(zalbaCutanje, pdfPath, XSL_FO_FILE);
 			if (ok.length()>0)
 				return pdfPath;
 			else

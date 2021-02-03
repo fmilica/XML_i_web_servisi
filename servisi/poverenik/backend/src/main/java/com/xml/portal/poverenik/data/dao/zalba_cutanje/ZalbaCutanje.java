@@ -65,9 +65,12 @@ public class ZalbaCutanje implements GenericXML {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String id;
-    @XmlAttribute(name = "datum")
+    @XmlAttribute(name = "datum_podnosenja_zahteva")
     @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datum;
+    protected XMLGregorianCalendar datumPodnosenjaZahteva;
+    @XmlAttribute(name = "datum_podnosenja_zalbe")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datumPodnosenjaZalbe;
     @XmlAttribute(name = "mesto")
     protected String mesto;
     @XmlAttribute(name = "vocab")
@@ -152,27 +155,51 @@ public class ZalbaCutanje implements GenericXML {
     }
 
     /**
-     * Gets the value of the datum property.
+     * Gets the value of the datumPodnosenjaZahteva property.
      * 
      * @return
      *     possible object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public XMLGregorianCalendar getDatum() {
-        return datum;
+    public XMLGregorianCalendar getDatumPodnosenjaZahteva() {
+        return datumPodnosenjaZahteva;
     }
 
     /**
-     * Sets the value of the datum property.
+     * Sets the value of the datumPodnosenjaZahteva property.
      * 
      * @param value
      *     allowed object is
      *     {@link XMLGregorianCalendar }
      *     
      */
-    public void setDatum(XMLGregorianCalendar value) {
-        this.datum = value;
+    public void setDatumPodnosenjaZahteva(XMLGregorianCalendar value) {
+        this.datumPodnosenjaZahteva = value;
+    }
+    
+    /**
+     * Gets the value of the datumPodnosenjaZalbe property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatumPodnosenjaZalbe() {
+        return datumPodnosenjaZalbe;
+    }
+
+    /**
+     * Sets the value of the datumPodnosenjaZalbe property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDatumPodnosenjaZalbe(XMLGregorianCalendar value) {
+        this.datumPodnosenjaZalbe = value;
     }
 
     /**

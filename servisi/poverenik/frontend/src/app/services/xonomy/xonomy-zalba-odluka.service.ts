@@ -30,51 +30,58 @@ export class XonomyZalbaOdlukaService {
       }
     },
     elements: {
+      //Zalba odbijanje
       'zoz:Zalba_odbijanje': {
-        menu:[],
+        title: 'Жалба против одлуке органа власти којом је одбијен или одбачен захтев за приступ информацији',
         attributes:{
           'xsi:schemaLocation': {
             isInvisible: true,
           },
           mesto_podnosenja_zalbe: {
-            isInvisible: true,
+            title: 'Место подношења жалбе',
+            validate: function(jsAttribute){
+              //Make sure item/@mesto is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Место је обавезан атрибут."}
+              );
+              }
+            },
+            hasText: true,
+            asker: Xonomy.askString,
           },
           datum_podnosenja_zalbe: {
-            isInvisible: true,
+            title: 'Датум подношења жалбе',            
           },
           datum_podnosenja_zahteva:{
-            isInvisible: true
-          },
-          id: {
-            isInvisible: true,
-          },
-          vocab: {
-            isInvisible: true,
-          },
-          about: {
-            isInvisible: true,
-          },
-          rel: {
-            isInvisible: true,
-          },
-          href: {
-            isInvisible: true,
+            title: 'Датум подношења захтева',
           },
         }
       },
-      'zoz:podaci_o_primaocu':{
-        menu:[],
-        isReadOnly: true,
-        isInvisible: true,
+      //Podaci o primaocu
+      'zoz:Podaci_o_primaocu':{
+        title: 'Подаци о примаоцу жалбе',
+        isReadOnly: true
       },
       'tipovi:Naziv': {
-        // collapsed: true,
-        oneliner: true,
+        mustBeBefore: ['tipovi:Adresa', 'tipovi:Kontakt_podaci'],
+        validate: function (jsElement:any) {
+          if (jsElement.getText() == "") {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Назив је обавезно поље!"
+            }
+            );
+          }
+        },
+        hasText: true,
+        asker: Xonomy.askString,
         attributes:{
           property: {
             isInvisible: true,
           },
-        }
+        },
       },
       'tipovi:Sediste': {
         collapsed: true,
@@ -118,10 +125,38 @@ export class XonomyZalbaOdlukaService {
         hasText: true,
         asker: Xonomy.askString,
       },
-      'zoz:podaci_o_zaliocu':{
-        title:'Подаци о жалиоцу'
+      //Podaci o zaliocu
+      'zoz:Podaci_o_zaliocu':{
+        title: 'Подаци у подносиоцу жалбе/Лични подаци',
+        validate: function (jsElement:any) {
+          if (jsElement.children.length == 1) {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Подносилац жалбе/Име и презиме је обавезно поље!"
+            }
+            );
+          }
+        },
+        menu: [
+          {
+            caption: 'Назив подносиоца жалбе',
+            action: Xonomy.newElementChild,
+            actionParameter: '<tipovi:Naziv xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacNaziv"></tipovi:Naziv>',
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("tipovi:Naziv") || jsElement.hasChildElement("tipovi:Ime"))
+            }
+          },
+          {
+            caption: 'Име и презиме подносиоца жалбе',
+            action: insertImePrezime,
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("tipovi:Naziv") || jsElement.hasChildElement("tipovi:Ime"))
+            }
+          }
+        ]
       },
       'tipovi:Ime':{
+        mustBeBefore: ['tipovi:Prezime','tipovi:Adresa', 'tipovi:Kontakt_podaci'],
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -139,6 +174,7 @@ export class XonomyZalbaOdlukaService {
         },}
       },
       'tipovi:Prezime':{
+        mustBeBefore: ['tipovi:Adresa', 'tipovi:Kontakt_podaci'],
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -155,31 +191,44 @@ export class XonomyZalbaOdlukaService {
           isInvisible: true,
         },}
       },
-      'zoz:podaci_o_odluci':{
+      //Podaci o odluci
+      'zoz:Podaci_o_odluci':{
         title: 'Подаци о одлуци',
-        attributes:{
-          broj_odluke:{
-            isInvisible: true
+        attributes: {
+          'broj_odluke': {
+            validate: function(jsAttribute){
+              //Make sure item/@broj_odluke is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Број одлуке је обавезан атрибут."}
+              );
+            }   
           },
-          godina:{
-            isInvisible:true
+            hasText: true,
+            asker: Xonomy.askString,
+          },
+          godina: {
+            validate: function(jsAttribute){
+              //Make sure item/@godina is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Година је обавезан атрибут."}
+              );
+            }   
+          },
+            hasText: true,
+            asker: Xonomy.askString,
           }
         }
       },
-      'zoz:naziv_donosioca_odluke':{
-        validate: function (jsElement:any) {
-          if (jsElement.getText() == "") {
-            Xonomy.warnings.push({
-              htmlID: jsElement.htmlID,
-              text: "Назив доносиоца одлуке је обавезно поље!"
-            }
-            );
-          }
-        },
+      'zoz:Naziv_donosioca_odluke':{
+        isReadOnly: true,
         hasText: true,
         asker: Xonomy.askString,
       },
-      'zoz:razlog_zalbe': {
+      'zoz:Razlog_zalbe': {
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({
@@ -190,27 +239,41 @@ export class XonomyZalbaOdlukaService {
           }
         },
         hasText: true,
-        asker: Xonomy.askPicklist,
-        askerParameter: ["није поступио", "није поступио у целости", "није поступио у законском року"],
+        asker: Xonomy.askString,
       },
-      'zoz:osnova_zalbe': {
-        isReadOnly: true,
+      'zoz:Osnova_zalbe': {
         isInvisible: true,
-        collapsed: true,
       },
-      'zoz:clan': {
-        oneliner: true,
-      },
-      'zoz:zakon': {
-        oneliner: true,
-      },
-      'zoz:datum':{
-        isReadOnly:true,
-        isInvisible: true,
-        oneliner:true
-      },
-      'zoz:podaci_o_podnosiocu_zalbe':{
-        title: 'Подаци о подносиоцу жалбе'
+
+      //Podaci o podnosiocu zalbe
+      'zoz:Podaci_o_podnosiocu_zalbe':{
+        title: 'Подаци у подносиоцу жалбе/Лични подаци',
+        validate: function (jsElement:any) {
+          if (jsElement.children.length == 2) {
+            Xonomy.warnings.push({
+              htmlID: jsElement.htmlID,
+              text: "Подносилац жалбе/Име и презиме је обавезно поље!"
+            }
+            );
+          }
+        },
+        menu: [
+          {
+            caption: 'Назив подносиоца жалбе',
+            action: Xonomy.newElementChild,
+            actionParameter: '<tipovi:Naziv xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacNaziv"></tipovi:Naziv>',
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("tipovi:Naziv") || jsElement.hasChildElement("tipovi:Ime"))
+            }
+          },
+          {
+            caption: 'Име и презиме подносиоца жалбе',
+            action: insertImePrezime,
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("tipovi:Naziv") || jsElement.hasChildElement("tipovi:Ime"))
+            }
+          }
+        ]
       },
       'tipovi:Kontakt_podaci':{
         validate: function (jsElement:any) {
@@ -227,4 +290,9 @@ export class XonomyZalbaOdlukaService {
       }
     }
   };
+}
+
+function insertImePrezime(htmlID) {
+  Xonomy.newElementChild(htmlID, '<tipovi:Ime xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacIme"></tipovi:Ime>')
+  Xonomy.newElementChild(htmlID, '<tipovi:Prezime xmlns:tipovi="http://tipovi"  xmlns:pred="http://www.xml.com/predicate/" property="pred:podnosilacPrezime"></tipovi:Prezime>')
 }

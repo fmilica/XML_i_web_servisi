@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import * as JsonToXML from 'js2xmlparser';
+import { AuthenticationService } from './services/authentication.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +7,14 @@ import * as JsonToXML from 'js2xmlparser';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Портал повереник';
+
+  constructor(
+    private authService: AuthenticationService
+  ) { }
+
+  ngOnInit(): void {
+    this.authService.autoLogin()
+  }
 
 }

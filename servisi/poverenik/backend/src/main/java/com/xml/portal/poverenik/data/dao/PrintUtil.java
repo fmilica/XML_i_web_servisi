@@ -203,7 +203,7 @@ public class PrintUtil {
 		outString += "\n";
 		
 		outString += "Mesto zahteva: " + zalbaCutanje.getMesto() + "\n";
-		outString += "Datum zahteva: " + zalbaCutanje.getDatum() + "\n";
+		outString += "Datum zahteva: " + zalbaCutanje.getDatumPodnosenjaZahteva() + "\n";
 		outString += "\n";
 		
 		printPoverenik(zalbaCutanje.getPrimalacZalbe());
@@ -229,7 +229,6 @@ public class PrintUtil {
 		outString += "\t\t Zakon: " + zalba.getOsnovaZalbe().getZakon() + "\n";
 		outString += "\t\t Naziv organa: " + zalba.getNazivOrgana() + "\n";
 		outString += "\t\t Razlog zalbe: " + zalba.getRazlogZalbe() + "\n";
-		outString += "\t\t Datum: " + zalba.getDatum() + "\n";
 		outString += "\t\t Podaci o zahtevu: " + zalba.getPodaciOZahtevu() + "\n";
 		printPodnosilacZalba(zalba.getPodnosilacZalbe());
 	}

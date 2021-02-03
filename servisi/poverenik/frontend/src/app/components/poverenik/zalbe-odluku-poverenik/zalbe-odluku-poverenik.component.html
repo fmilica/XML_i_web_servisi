@@ -1,0 +1,101 @@
+<div class="ng-container row justify-content-md-center">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSource">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+            <ng-container matColumnDef="naziv">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив жалиоца </th>
+                <td matTooltip="Назив жалиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.naziv}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adresa">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса жалиоца </th>
+                <td matTooltip="Адреса жалиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.adresa}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="organVlasti">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Орган власти </th>
+                <td matTooltip="Назив органа власти који је донео одлуку" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.organVlasti}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="broj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Број одлуке </th>
+                <td matTooltip="Број одлуке" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.broj}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="godina">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Година одлуке </th>
+                <td matTooltip="Година одлуке" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.godina}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datumZahteva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум захтева </th>
+                <td matTooltip="Датум подношења захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datumZahteva}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="razlogZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разлог жалбе </th>
+                <td matTooltip="Разлог жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.razlogZalbe}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nazivPodnosioca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив подносиоца </th>
+                <td matTooltip="Назив подносиоца жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.nazivPodnosioca}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adresaPodnosioca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса подносиоца </th>
+                <td matTooltip="Адреса подносиоца жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.adresaPodnosioca}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datumZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум жалбе </th>
+                <td matTooltip="Датум подношења жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datumZalbe}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mestoZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Место жалбе </th>
+                <td matTooltip="Место подношења жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.mestoZalbe}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="razresena">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
+                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.razresena}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="preuzimanje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
+                <td matTooltip="Преузимање жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a (click)="generisiPDF(row.id)" class="link">PDF</a><a (click)="generisiHTML(row.id)" class="link">HTML</a>
+                </td>
+            </ng-container>
+        </table>
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+    </div>
+</div>

@@ -23,7 +23,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import com.xml.portal.poverenik.data.dao.GenericXML;
 import com.xml.portal.poverenik.data.dao.PrintUtil;
 import com.xml.portal.poverenik.data.dao.tipovi.TLice;
-import com.xml.portal.poverenik.data.dao.tipovi.TLiceKontakt;
 import com.xml.portal.poverenik.data.dao.tipovi.TPoverenik;
 
 
@@ -37,14 +36,14 @@ import com.xml.portal.poverenik.data.dao.tipovi.TPoverenik;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="podaci_o_primaocu" type="{http://zalba_odbijen}TPrimalac"/>
- *         &lt;element name="podaci_o_zaliocu" type="{http://zalba_odbijen}TZalilac"/>
- *         &lt;element name="podaci_o_odluci">
+ *         &lt;element name="Podaci_o_primaocu" type="{http://zalba_odbijen}TPrimalac"/>
+ *         &lt;element name="Podaci_o_zaliocu" type="{http://zalba_odbijen}TZalilac"/>
+ *         &lt;element name="Podaci_o_odluci">
  *           &lt;complexType>
  *             &lt;complexContent>
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *                 &lt;sequence>
- *                   &lt;element name="naziv_donosioca_odluke" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *                   &lt;element name="Naziv_donosioca_odluke" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *                 &lt;/sequence>
  *                 &lt;attribute name="broj_odluke" type="{http://www.w3.org/2001/XMLSchema}int" />
  *                 &lt;attribute name="godina" type="{http://www.w3.org/2001/XMLSchema}int" />
@@ -52,8 +51,8 @@ import com.xml.portal.poverenik.data.dao.tipovi.TPoverenik;
  *             &lt;/complexContent>
  *           &lt;/complexType>
  *         &lt;/element>
- *         &lt;element name="telo_zalbe" type="{http://zalba_odbijen}TTelo"/>
- *         &lt;element name="podaci_o_podnosiocu_zalbe" type="{http://zalba_odbijen}TPodnosilac"/>
+ *         &lt;element name="Telo_zalbe" type="{http://zalba_odbijen}TTelo"/>
+ *         &lt;element name="Podaci_o_podnosiocu_zalbe" type="{http://zalba_odbijen}TPodnosilac"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}ID" />
  *       &lt;attribute name="mesto_podnosenja_zalbe" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -77,16 +76,16 @@ import com.xml.portal.poverenik.data.dao.tipovi.TPoverenik;
 @XmlRootElement(name = "Zalba_odbijanje", namespace = "http://zalbaodbijanje")
 public class ZalbaOdbijanje implements GenericXML {
 
-    @XmlElement(name = "podaci_o_primaocu", namespace = "http://zalbaodbijanje", required = true)
+    @XmlElement(name = "Podaci_o_primaocu", namespace = "http://zalbaodbijanje", required = true)
     protected TPoverenik podaciOPrimaocu;
-    @XmlElement(name = "podaci_o_zaliocu", namespace = "http://zalbaodbijanje", required = true)
+    @XmlElement(name = "Podaci_o_zaliocu", namespace = "http://zalbaodbijanje", required = true)
     protected TLice podaciOZaliocu;
-    @XmlElement(name = "podaci_o_odluci", namespace = "http://zalbaodbijanje", required = true)
+    @XmlElement(name = "Podaci_o_odluci", namespace = "http://zalbaodbijanje", required = true)
     protected ZalbaOdbijanje.PodaciOOdluci podaciOOdluci;
-    @XmlElement(name = "telo_zalbe", namespace = "http://zalbaodbijanje", required = true)
+    @XmlElement(name = "Telo_zalbe", namespace = "http://zalbaodbijanje", required = true)
     protected TTelo teloZalbe;
-    @XmlElement(name = "podaci_o_podnosiocu_zalbe", namespace = "http://zalbaodbijanje", required = true)
-    protected TLiceKontakt podaciOPodnosiocuZalbe;
+    @XmlElement(name = "Podaci_o_podnosiocu_zalbe", namespace = "http://zalbaodbijanje", required = true)
+    protected Podnosilac podaciOPodnosiocuZalbe;
     @XmlAttribute(name = "id")
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
     @XmlID
@@ -210,10 +209,10 @@ public class ZalbaOdbijanje implements GenericXML {
      * 
      * @return
      *     possible object is
-     *     {@link TLiceKontakt }
+     *     {@link Podnosilac }
      *     
      */
-    public TLiceKontakt getPodaciOPodnosiocuZalbe() {
+    public Podnosilac getPodaciOPodnosiocuZalbe() {
         return podaciOPodnosiocuZalbe;
     }
 
@@ -222,10 +221,10 @@ public class ZalbaOdbijanje implements GenericXML {
      * 
      * @param value
      *     allowed object is
-     *     {@link TLiceKontakt }
+     *     {@link Podnosilac }
      *     
      */
-    public void setPodaciOPodnosiocuZalbe(TLiceKontakt value) {
+    public void setPodaciOPodnosiocuZalbe(Podnosilac value) {
         this.podaciOPodnosiocuZalbe = value;
     }
 
@@ -381,7 +380,7 @@ public class ZalbaOdbijanje implements GenericXML {
     })
     public static class PodaciOOdluci {
 
-        @XmlElement(name = "naziv_donosioca_odluke", namespace = "http://zalbaodbijanje", required = true)
+        @XmlElement(name = "Naziv_donosioca_odluke", namespace = "http://zalbaodbijanje", required = true)
         protected String nazivDonosiocaOdluke;
         @XmlAttribute(name = "broj_odluke")
         protected Integer brojOdluke;

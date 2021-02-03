@@ -78,20 +78,18 @@ export class RegisterComponent implements OnInit {
       userRegisterDto,
       options
     );
-
-    console.log(userRegisterXml);
-
+    
     this.authenticationService.register(userRegisterXml).subscribe(
       (response) => {
-        this.toastr.success('Successfull registration!');
+        this.toastr.success('Успешна регистрација! Можете се пријавити.');
         this.registerForm.reset();
         //this.router.navigate(['login-register/login']);
       },
       (error) => {
-        if (error.error.message) {
-          this.toastr.error(error.error.message);
+        if (error.status === 400) {
+          this.toastr.error('Грешка при регистрацији. Корисник са унетом електронском поштом већ постоји.');
         } else {
-          this.toastr.error('503 Server Unavailable');
+          this.toastr.error('503 Сервер недоступан');
         }
         this.registerForm.reset();
       }
@@ -101,10 +99,10 @@ export class RegisterComponent implements OnInit {
   getEmailErrorMessage(): string {
     if (this.registerForm.controls.email.touched) {
       if (this.registerForm.controls.email.hasError('required')) {
-        return 'Required field';
+        return 'Обавезно поље';
       }
       return this.registerForm.controls.email.hasError('email')
-        ? 'Not a valid email'
+        ? 'Невалидна форма електронске поште'
         : '';
     }
     return '';
@@ -115,7 +113,7 @@ export class RegisterComponent implements OnInit {
       return this.registerForm.controls.passwordGroup
         .get(fieldName)
         ?.hasError('required')
-        ? 'Required field'
+        ? 'Обавезно поље'
         : '';
     }
     return '';
@@ -125,13 +123,13 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.controls[fieldName].touched) {
       if (this.registerForm.controls[fieldName].hasError('pattern')) {
         if (onlyContainsLetters(this.registerForm.controls[fieldName].value)) {
-          return 'Must start with capital letter';
+          return 'Унос мора почети великим словом';
         } else {
-          return 'Cannot contain special characters or numbers';
+          return 'Унос не сме садржати специјалне карактере или бројеве';
         }
       }
       return this.registerForm.controls[fieldName].hasError('required')
-        ? 'Required field'
+        ? 'Обавезно поље'
         : '';
     }
     return '';
@@ -145,7 +143,7 @@ export class RegisterComponent implements OnInit {
       return this.registerForm.controls.passwordGroup.hasError(
         'passwordsDontMatch'
       )
-        ? 'Passwords must match'
+        ? 'Лозинке се не подударају'
         : '';
     }
     return '';

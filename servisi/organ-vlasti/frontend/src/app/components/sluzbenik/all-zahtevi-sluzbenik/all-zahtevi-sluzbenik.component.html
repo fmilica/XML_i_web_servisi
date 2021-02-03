@@ -1,3 +1,99 @@
+<form [formGroup]="obicnaForm">
+    <div class="row">
+        <div class="col-md-2.5 left top">
+            <mat-label>Основна претрага:</mat-label>
+        </div>
+        <!-- Sve -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по текстуалном садржају</mat-label>
+                    <input matInput formControlName="sve" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Pretraga -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="obicnaPretraga()">
+                Претрага захтева
+            </button>
+        </div>
+    </div>
+</form>
+
+<form [formGroup]="metaDataForm">
+    <div class="row">
+        <div class="col-md-2.5 left top">
+            <mat-label matTooltip="Претрага по метаподацима" 
+            matTooltipPosition="above">Напредна претрага:</mat-label>
+        </div>
+        <!-- Naziv primaoca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по називу примаоца захтева</mat-label>
+                    <input matInput formControlName="primalacNaziv" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Ime podnosioca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по имену подносиоца захтева</mat-label>
+                    <input matInput formControlName="podnosilacIme" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Prezime podnosioca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по презимену подносиоца захтева</mat-label>
+                    <input matInput formControlName="podnosilacPrezime" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Naziv podnosioca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по називу подносиоца захтева</mat-label>
+                    <input matInput formControlName="podnosilacNaziv" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Vezani gradjanin -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по везаном грађанину</mat-label>
+                    <input matInput formControlName="vezaniGradjanin" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-1.5 left">
+            <mat-label>Начин напредне претраге:</mat-label>
+        </div>
+        <div class="col-md-5">
+            <mat-radio-group formControlName="operator" aria-label="Начин претраге">
+                <mat-radio-button value="and">Захтев мора да задовољи све параметре</mat-radio-button>
+                <mat-radio-button value="or">Захтев мора да задовољи један параметар</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <!-- Filter -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="metapodaciPretraga()">
+                Претрага захтева
+            </button>
+        </div>
+    </div>
+</form>
+
+
+
 <div class="ng-container row justify-content-md-center">
     <div class="col-md-11">
         <table mat-table [dataSource]="dataSource">

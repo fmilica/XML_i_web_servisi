@@ -12,11 +12,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
-
-import com.xml.portal.poverenik.data.dao.tipovi.TLiceKontakt;
 
 
 /**
@@ -56,7 +52,6 @@ import com.xml.portal.poverenik.data.dao.tipovi.TLiceKontakt;
 	"osnovaZalbe",
     "nazivOrgana",
     "razlogZalbe",
-    "datum",
     "podaciOZahtevu",
     "podnosilacZalbe"
 })
@@ -69,13 +64,10 @@ public class Zalba {
     protected String nazivOrgana;
     @XmlElement(name = "Razlog_zalbe", namespace = "http://zalbacutanje", required = true)
     protected String razlogZalbe;
-    @XmlElement(name = "Datum", namespace = "http://zalbacutanje", required = true)
-    @XmlSchemaType(name = "date")
-    protected XMLGregorianCalendar datum;
     @XmlElement(name = "Podaci_o_zahtevu", namespace = "http://zalbacutanje", required = true)
     protected String podaciOZahtevu;
     @XmlElement(name = "Podnosilac_zalbe", namespace = "http://zalbacutanje", required = true)
-    protected TLiceKontakt podnosilacZalbe;
+    protected Podnosilac podnosilacZalbe;
     
     /**
      * Gets the value of the osnovaZalbe property.
@@ -150,30 +142,6 @@ public class Zalba {
     }
 
     /**
-     * Gets the value of the datum property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDatum() {
-        return datum;
-    }
-
-    /**
-     * Sets the value of the datum property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDatum(XMLGregorianCalendar value) {
-        this.datum = value;
-    }
-
-    /**
      * Gets the value of the podaciOZahtevu property.
      * 
      * @return
@@ -202,10 +170,10 @@ public class Zalba {
      * 
      * @return
      *     possible object is
-     *     {@link TLiceKontakt }
+     *     {@link Podnosilac }
      *     
      */
-    public TLiceKontakt getPodnosilacZalbe() {
+    public Podnosilac getPodnosilacZalbe() {
         return podnosilacZalbe;
     }
 
@@ -214,10 +182,10 @@ public class Zalba {
      * 
      * @param value
      *     allowed object is
-     *     {@link TLiceKontakt }
+     *     {@link Podnosilac }
      *     
      */
-    public void setPodnosilacZalbe(TLiceKontakt value) {
+    public void setPodnosilacZalbe(Podnosilac value) {
         this.podnosilacZalbe = value;
     }
 

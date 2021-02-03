@@ -18,10 +18,10 @@ public class ObavestenjeBusiness {
 	
 	public static final String XSL_FO_FILE = "src/main/resources/data/xsl/obavestenje_fo.xsl";
 	
+	private final String KORISNIK_NAMESPACE = "http://korisnik/";
+	
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
-	
-	private final String KORISNIK_NAMESPACE = "http://korisnik/";
 	
 	public ListaObavestenja getAll() {
 		ListaObavestenja obavestenja = new ListaObavestenja();
