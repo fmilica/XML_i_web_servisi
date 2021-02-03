@@ -133,6 +133,12 @@ public class ZahtevBusiness {
 				}
 			} else {
 				// OR pretraga
+				// svi prazni
+				if (params.getVezanGradjanin().equals("?vezanGradjanin") &&
+						params.getPrimalacNaziv().equals("?primalacNaziv") &&	
+						params.getPodnosilacNaziv().equals("?podnosilacNaziv") &&
+						params.getPodnosilacIme().equals("?podnosilacIme") &&
+						params.getPodnosilacPrezime().equals("?podnosilacPrezime"))
 				vezanGradjanin = params.getVezanGradjanin();
 				if (vezanGradjanin.equals("?vezanGradjanin")) {
 					// dodajemo <> okolo
