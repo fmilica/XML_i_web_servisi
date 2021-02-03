@@ -1,13 +1,23 @@
 package com.xml.portal.poverenik.business;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
+import javax.xml.datatype.DatatypeFactory;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.xml.portal.poverenik.data.dao.izvestaj.Izvestaj;
+import com.xml.portal.poverenik.data.dao.izvestaj.ListaIzvestaj;
 import com.xml.portal.poverenik.data.dao.izvestaj.ObjectFactory;
 import com.xml.portal.poverenik.data.dao.izvestaj.Zahtevi;
 import com.xml.portal.poverenik.data.dao.izvestaj.ZahteviStat;
 import com.xml.portal.poverenik.data.dao.izvestaj.Zalbe;
 import com.xml.portal.poverenik.data.dao.izvestaj.ZalbeStat;
+import com.xml.portal.poverenik.data.dao.obavestenje.ListaObavestenja;
+import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
 import com.xml.portal.poverenik.data.repository.IzvestajRepository;
 import com.xml.portal.poverenik.data.repository.ZahtevRepository;
 import com.xml.portal.poverenik.data.repository.ZalbaCutanjeRepository;
@@ -27,7 +37,7 @@ public class IzvestajBusiness {
 	@Autowired
 	private ZalbaOdbijanjeRepository zalbaOdbijanjeRepository;
 	
-	public void generisiIzvestaj() {
+	public Izvestaj generisiIzvestaj() {
 		Izvestaj izvestaj = new ObjectFactory().createIzvestaj();
 		ZahteviStat zs = new ZahteviStat();
 		Zahtevi z = new Zahtevi();
@@ -71,6 +81,36 @@ public class IzvestajBusiness {
 		izvestaj.getZalbe().getOrganizacijaZalbe().setUkupnoZbogNepostupanja((int)zalbaCutanjeRepository.findAllByYearOrganizacija());
 		izvestaj.getZalbe().getOrganizacijaZalbe().setUkupnoZbogOdbijanja((int)zalbaOdbijanjeRepository.findAllByYearOrganizacija());
 		
-		System.out.println(izvestaj);
+		try{
+            Calendar createDate = Calendar.getInstance();
+            Date cDate = createDate.getTime();
+            GregorianCalendar c = new GregorianCalendar();
+            c.setTime(cDate);
+            XMLGregorianCalendar currentDate = DatatypeFactory.newInstance().newXMLGregorianCalendar(c);
+            izvestaj.setDatumPodnosenjaIzvestaja(currentDate);
+         }catch(Exception e){
+            System.out.println("nista");
+         }
+		
+		this.izvestajRepository.save(izvestaj);
+		
+		//System.out.println(izvestaj);
+		return izvestaj;
+	}
+	
+	public ListaIzvestaj getAll() {
+		ListaIzvestaj izvestaji = new ListaIzvestaj();
+		izvestaji.setIzvestaj(izvestajRepository.findAll());;
+		return izvestaji;
+	}
+	
+	public Izvestaj getById(String id) {
+		Izvestaj loaded = null;
+		try {
+			loaded = izvestajRepository.findById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return loaded;
 	}
 }

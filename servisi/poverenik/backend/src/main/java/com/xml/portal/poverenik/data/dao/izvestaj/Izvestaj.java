@@ -18,6 +18,9 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import com.xml.portal.poverenik.data.dao.obavestenje.TDostavljeno;
 
 
 /**
@@ -58,6 +61,9 @@ public class Izvestaj {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String id;
+    @XmlAttribute(name = "datum_podnosenja_izvestaja")
+    @XmlSchemaType(name = "date")
+    protected XMLGregorianCalendar datumPodnosenjaIzvestaja;
 
     /**
      * Gets the value of the zahtevi property.
@@ -129,6 +135,30 @@ public class Izvestaj {
      */
     public void setId(String value) {
         this.id = value;
+    }
+    
+    /**
+     * Gets the value of the getDatumPodnosenjaIzvestaja property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDatumPodnosenjaIzvestaja() {
+        return datumPodnosenjaIzvestaja;
+    }
+
+    /**
+     * Sets the value of the setDatumPodnosenjaIzvestaja property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDatumPodnosenjaIzvestaja(XMLGregorianCalendar value) {
+        this.datumPodnosenjaIzvestaja = value;
     }
 
 	@Override

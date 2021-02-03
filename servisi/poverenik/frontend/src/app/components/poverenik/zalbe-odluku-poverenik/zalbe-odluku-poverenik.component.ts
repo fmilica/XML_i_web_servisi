@@ -96,7 +96,6 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   }
 
   generisiPDF(zalbaOdlukaId: string) {
-    console.log(zalbaOdlukaId);
     this.zalbaOdlukaService.generisiPDF(zalbaOdlukaId).subscribe(
       (response) => {
         this.previewAndDownload(response, zalbaOdlukaId, "pdf");

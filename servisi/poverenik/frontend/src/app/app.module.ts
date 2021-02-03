@@ -27,6 +27,8 @@ import { ResenjeComponent } from './components/poverenik/resenje/resenje.compone
 import { ZalbeCutanjePoverenikComponent } from './components/poverenik/zalbe-cutanje-poverenik/zalbe-cutanje-poverenik.component';
 import { ZalbeOdlukuPoverenikComponent } from './components/poverenik/zalbe-odluku-poverenik/zalbe-odluku-poverenik.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { IzvestajComponent } from './components/poverenik/izvestaj/izvestaj.component';
+import { AllIzvestajiComponent } from './components/poverenik/all-izvestaji/all-izvestaji.component';
 
 
 
@@ -45,7 +47,9 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     ZalbeOdlukuPoverenikComponent,
     ZalbeCutanjePoverenikComponent,
     ResenjaPoverenikComponent,
-    ResenjaGradjaninComponent
+    ResenjaGradjaninComponent,
+    IzvestajComponent,
+    AllIzvestajiComponent
   ],
   imports: [
     BrowserModule,
