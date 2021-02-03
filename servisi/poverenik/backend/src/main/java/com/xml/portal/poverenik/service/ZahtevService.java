@@ -100,7 +100,7 @@ public class ZahtevService {
 		return new ResponseEntity<>(filtriraniZahtevi, HttpStatus.OK);
     }
     
-    @GetMapping("/pretrazi-napredno")
+    @PostMapping("/pretrazi-napredno")
     public ResponseEntity<Object> naprednaPretraga(@RequestBody ZahtevPretraga params) {
 		ListaZahteva filtriraniZahtevi = zahtevBusiness.getAllNapredna(params);
 		return new ResponseEntity<>(filtriraniZahtevi, HttpStatus.OK);

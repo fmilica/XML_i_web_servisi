@@ -6,14 +6,3 @@ export interface ZahtevNaprednaPretragaDto {
     PodnosilacNaziv: string,
     Operator: string
 }
-
- /**
-    <NaprednaPretragaDto>
-      <Parametri>
-          <Parametar>?vezanGradjanin</Parametar>
-          <Parametar>?primalacNaziv</Parametar>
-          <Parametar>"Vlastislav"</Parametar>
-          <Parametar>"Ilic"</Parametar>
-      </Parametri>
-      <Operator>OR</Operator>
-    </NaprednaPretragaDto> */

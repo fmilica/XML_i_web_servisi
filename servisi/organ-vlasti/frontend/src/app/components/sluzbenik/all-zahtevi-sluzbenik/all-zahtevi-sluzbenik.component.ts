@@ -218,35 +218,44 @@ export class AllZahteviSluzbenikComponent implements OnInit {
       PodnosilacNaziv: '?podnosilacNaziv',
       Operator: 'AND'
     }
- 
+
     let vezanGradjanin = this.metaDataForm.get('vezaniGradjanin').value;
     if(vezanGradjanin) {
-      naprednaDto.VezanGradjanin = vezanGradjanin
+      naprednaDto.VezanGradjanin = 'http://korisnik/' + vezanGradjanin
     }
 
     let primalacNaziv = this.metaDataForm.get('primalacNaziv').value;
     if(primalacNaziv) {
-      naprednaDto.PrimalacNaziv = primalacNaziv
+      naprednaDto.PrimalacNaziv = "\"" + primalacNaziv + "\""
     }
 
     let podnosilacIme = this.metaDataForm.get('podnosilacIme').value;
     if(podnosilacIme) {
-      naprednaDto.PodnosilacIme = podnosilacIme
+      naprednaDto.PodnosilacIme = "\"" + podnosilacIme + "\""
     }
 
     let podnosilacPrezime = this.metaDataForm.get('podnosilacPrezime').value;
     if(podnosilacPrezime) {
-      naprednaDto.PodnosilacPrezime = podnosilacIme
+      naprednaDto.PodnosilacPrezime = "\"" + podnosilacPrezime + "\""
     }
 
     let podnosilacNaziv = this.metaDataForm.get('podnosilacNaziv').value;
     if(podnosilacNaziv) {
-      naprednaDto.PodnosilacNaziv = podnosilacNaziv
+      naprednaDto.PodnosilacNaziv = "\"" + podnosilacNaziv + "\""
     }
 
     let operator = this.metaDataForm.get('operator').value;
     if(operator) {
       naprednaDto.Operator = operator
+    }
+
+    if(!vezanGradjanin && !primalacNaziv && !podnosilacIme && !podnosilacPrezime && !podnosilacNaziv  && operator === 'OR') {
+      this.zahtevService.getAllZahtevi().subscribe(
+        (response) => {
+          this.listaZahteva2Prikaz(response);
+        }
+      );
+      return
     }
 
     const options = {
