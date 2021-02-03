@@ -14,6 +14,8 @@ import { ZalbeCutanjePoverenikComponent } from './components/poverenik/zalbe-cut
 import { ResenjaPoverenikComponent } from './components/poverenik/resenja-poverenik/resenja-poverenik.component';
 import { RoleGuard } from './guards/role-guard.service';
 import { LoginGuard } from './guards/login-guard.service';
+import { IzvestajComponent } from './components/poverenik/izvestaj/izvestaj.component';
+import { AllIzvestajiComponent } from './components/poverenik/all-izvestaji/all-izvestaji.component';
 
 const routes: Routes = [
   //Putanje kojima mogu svi da pristupe
@@ -92,6 +94,18 @@ const routes: Routes = [
   {
     path: 'resenja',
     component: ResenjaPoverenikComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
+  },
+  {
+    path: 'izvestaj/:id',
+    component: IzvestajComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
+  },
+  {
+    path: 'izvestaji',
+    component: AllIzvestajiComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_SLUZBENIK' }
   }
