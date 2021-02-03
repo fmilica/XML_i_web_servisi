@@ -67,6 +67,14 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.4</version>
 		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.ws/spring-ws-core -->
+		<dependency>
+			<groupId>org.springframework.ws</groupId>
+			<artifactId>spring-ws-core</artifactId>
+			<version>3.0.10.RELEASE</version>
+		</dependency>
+
 	</dependencies>
 
 	<profiles>
@@ -118,9 +126,9 @@
 
 
 								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/data/wsdl/zahtev.wsdl</wsdl>
+									<wsdl>${basedir}/src/main/resources/data/wsdl/poverenik-posta.wsdl</wsdl>
 									<extraargs>
-										<extraarg>-impl</extraarg> <!-- Ima i drugih dodatniha<extraarg>-client</extraarg> -->
+										<extraarg>-impl</extraarg>
 										<extraarg>-verbose</extraarg>
 									</extraargs>
 									<wsdlLocation>classpath:wsdl/poverenik-posta.wsdl</wsdlLocation>

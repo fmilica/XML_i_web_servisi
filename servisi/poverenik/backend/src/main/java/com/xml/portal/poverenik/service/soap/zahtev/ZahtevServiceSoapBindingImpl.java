@@ -31,7 +31,7 @@ import com.xml.portal.poverenik.business.ZahtevBusiness;
                       portName = "ZahtevServiceSoapBinding",
                       targetNamespace = "http://zahtev",
                       wsdlLocation = "src/main/resources/data/wsdl/zahtev.wsdl",
-                      endpointInterface = "com.xml.portal.poverenik.service.soap.ZahtevServicePortType")
+                      endpointInterface = "com.xml.portal.poverenik.service.soap.zahtev.ZahtevServicePortType")
 @Service              
 public class ZahtevServiceSoapBindingImpl implements ZahtevServicePortType {
 

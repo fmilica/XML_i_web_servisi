@@ -19,7 +19,7 @@
     <wsdl:binding name="PoverenikPostaServiceSoapBinding" type="tns:PoverenikPostaServicePortType">
         <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="posaljiPoruku">
-            <soap:operation soapAction="http:///ws/posaljiPoruku" />
+            <soap:operation soapAction="http://ws/posaljiPoruku" />
             <wsdl:input>
             </wsdl:input>
             <wsdl:output>
