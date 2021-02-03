@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Izvestaj xmlns="http://izvestaj"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://izvestaj schema/izvestaj.xsd" id="dfadsa">
+    <Zahtevi>
+        <Gradjanin_zahtevi>
+            <Ukupno_zahteva>55</Ukupno_zahteva>
+            <Ukupno_prihvacenih_zahteva>40</Ukupno_prihvacenih_zahteva>
+            <Ukupno_odbijenih_zahtevi>15</Ukupno_odbijenih_zahtevi>
+            <Ukupno_nerazresenih_zahteva>0</Ukupno_nerazresenih_zahteva>
+        </Gradjanin_zahtevi>
+        <Organizacija_ukupno>
+            <Ukupno_zahteva>64</Ukupno_zahteva>
+            <Ukupno_prihvacenih_zahteva>54</Ukupno_prihvacenih_zahteva>
+            <Ukupno_odbijenih_zahtevi>9</Ukupno_odbijenih_zahtevi>
+            <Ukupno_nerazresenih_zahteva>1</Ukupno_nerazresenih_zahteva>
+        </Organizacija_ukupno>
+        <Zahtevi_ukupno>
+            <Ukupno_zahteva>119</Ukupno_zahteva>
+            <Ukupno_prihvacenih_zahteva>95</Ukupno_prihvacenih_zahteva>
+            <Ukupno_odbijenih_zahtevi>21</Ukupno_odbijenih_zahtevi>
+            <Ukupno_nerazresenih_zahteva>3</Ukupno_nerazresenih_zahteva>
+        </Zahtevi_ukupno>
+    </Zahtevi>
+    <Zalbe>
+        <Gradjanin_zalbe>
+            <Ukupno_zalbi>28</Ukupno_zalbi>
+            <Ukupno_zbog_nepostupanja>14</Ukupno_zbog_nepostupanja>
+            <Ukupno_zbog_odbijanja>4</Ukupno_zbog_odbijanja>
+        </Gradjanin_zalbe>
+        <Organizacija_zalbe>
+            <Ukupno_zalbi>17</Ukupno_zalbi>
+            <Ukupno_zbog_nepostupanja>2</Ukupno_zbog_nepostupanja>
+            <Ukupno_zbog_odbijanja>15</Ukupno_zbog_odbijanja>
+        </Organizacija_zalbe>
+        <Zalbe_ukupno>
+            <Ukupno_zalbi>45</Ukupno_zalbi>
+            <Ukupno_zbog_nepostupanja>16</Ukupno_zbog_nepostupanja>
+            <Ukupno_zbog_odbijanja>19</Ukupno_zbog_odbijanja>
+        </Zalbe_ukupno>
+    </Zalbe>
+</Izvestaj>

@@ -2,6 +2,7 @@ package com.xml.portal.poverenik.data.repository;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -132,6 +133,19 @@ public class ZahtevRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public long findAllByYear() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/Zahtev/contains(@datum, '2020')";
+		long size = 0;
+		try {
+			size = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE).getSize();
+			return size;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
 		}
 	}
 	
