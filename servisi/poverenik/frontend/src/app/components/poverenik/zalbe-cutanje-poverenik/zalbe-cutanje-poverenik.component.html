@@ -71,14 +71,14 @@
         </div>
         <div class="col-md-7">
             <mat-radio-group formControlName="operator" aria-label="Начин претраге">
-                <mat-radio-button value="and">Жалба ћутање мора да задовољи све параметре</mat-radio-button>
-                <mat-radio-button value="or">Жалба ћутање мора да задовољи бар један параметар</mat-radio-button>
+                <mat-radio-button value="AND" [checked] = 'true'>Жалба ћутање мора да задовољи све параметре</mat-radio-button>
+                <mat-radio-button value="OR">Жалба ћутање мора да задовољи бар један параметар</mat-radio-button>
             </mat-radio-group>
         </div>
         <!-- Filter -->
         <div class="col-md-2">
             <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="metapodaciPretraga()">
-                Претрага обавештења
+                Претрага жалби ћутања
             </button>
         </div>
     </div>

@@ -218,7 +218,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
       PodnosilacNaziv: '?podnosilacNaziv',
       Operator: 'AND'
     }
-
+    
     let vezanGradjanin = this.metaDataForm.get('vezaniGradjanin').value;
     if(vezanGradjanin) {
       naprednaDto.VezanGradjanin = 'http://korisnik/' + vezanGradjanin
