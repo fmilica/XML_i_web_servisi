@@ -159,7 +159,7 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
       naprednaDto.Operator = operator
     }
 
-    if(!izdavacNaziv && !vezanGradjanin && !podnosilacIme && !podnosilacPrezime && !podnosilacNaziv  && vezanZahtev) {
+    if(!izdavacNaziv && !vezanGradjanin && !podnosilacIme && !podnosilacPrezime && !podnosilacNaziv  && !vezanZahtev) {
       this.obavestenjeService.getAllObavestenja().subscribe(
         (response) => {
           this.listaObavestenja2Prikaz(response);
