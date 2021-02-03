@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 import * as txml from 'txml';
 
@@ -9,12 +10,28 @@ import * as txml from 'txml';
 })
 export class AllObavestenjaSluzbenikComponent implements OnInit {
 
+  //formе za pretragu
+  obicnaForm: FormGroup;
+  metaDataForm: FormGroup;
+
   constructor(
     private obavestenjeService: ObavestenjeService
-  ) { }
+  ) { 
+    this.obicnaForm = new FormGroup({
+      sve: new FormControl()
+    })
 
-  pdfLink: string = "";
-  
+    this.metaDataForm = new FormGroup({
+      izdavacNaziv: new FormControl(),
+      vezaniGradjanin: new FormControl(),
+      podnosilacIme: new FormControl(),
+      podnosilacPrezime: new FormControl(),
+      podnosilacNaziv: new FormControl(),
+      vezaniZahtev: new FormControl(),
+      operator: new FormControl()
+    })
+  }
+
   dataSource = [ ];
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'imePrezime', 'adresa', 'datumZahteva', 'informacije', 'preuzimanje'];
@@ -71,6 +88,14 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
     link.href = url;
     link.download = "obavestenje_"+id+"."+tip;
     link.click();
+  }
+
+  obicnaPretraga() {
+    console.log(this.obicnaForm.value)
+  }
+
+  metapodaciPretraga() {
+    console.log(this.obicnaForm.value)
   }
 
 }
