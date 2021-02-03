@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ZahtevService"
+    targetNamespace="http://zahtev"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://zahtev">
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://zahtev" 
+                schemaLocation= "../schema/zahtev/zahtev.xsd"/>  
+        </xs:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="getZahtevRequest">
+        <wsdl:part name="id" type="xs:string" />
+    </wsdl:message>
+    <wsdl:message name="getZahtevResponse">
+        <wsdl:part name="zahtev" element="tns:Zahtev" />
+    </wsdl:message>
+    
+    
+    
+    <wsdl:portType name="ZahtevServicePortType">
+        <wsdl:operation name="getZahtev">
+            <wsdl:input message="tns:getZahtevRequest" />
+            <wsdl:output message="tns:getZahtevResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="ZahtevServiceSoapBinding" type="tns:ZahtevServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="getZahtev">
+            <soap:operation soapAction="http://zahtev/ws/getZahtev" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZahtevService">
+        <wsdl:port name="ZahtevServiceSoapBinding" binding="tns:ZahtevServiceSoapBinding">
+            <soap:address location="http://localhost:8081/zahtevPort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
