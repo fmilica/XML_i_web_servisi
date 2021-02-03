@@ -1,5 +1,7 @@
 package com.xml.portal.poverenik.service.posta;
 
+import java.util.Base64;
+
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.MimeHeaders;
 import javax.xml.soap.SOAPBody;
@@ -10,6 +12,9 @@ import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
+
+import org.exist.util.Base64Decoder;
+import org.exist.util.Base64Encoder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -60,7 +65,11 @@ public class EpostaService {
         SOAPElement sadrzajElem = pismoElem.addChildElement("sadrzaj", myNamespace);
         sadrzajElem.addTextNode(pismo.getSadrzaj());
         SOAPElement prilogElem = pismoElem.addChildElement("prilog", myNamespace);
-        prilogElem.addTextNode(pismo.getPrilog().toString());
+        System.out.println("PRILOG");
+       
+        String s = Base64.getEncoder().encodeToString(pismo.getPrilog());
+        System.out.println(s);
+        prilogElem.addTextNode(s);
         
         System.out.println();
         System.out.println(soapBody);
