@@ -69,40 +69,41 @@ public class ZahtevBusiness {
 		List<String> zahtevIds;
 		ListaZahteva zahtevi = null;
 		
+		String vezanGradjanin = params.getVezanGradjanin();
+		if (!vezanGradjanin.equals("?vezanGradjanin")) {
+			// dodajemo <> okolo
+			vezanGradjanin = "<" + vezanGradjanin + ">";
+			params.setVezanGradjanin(vezanGradjanin);
+		}
+		// za sve ostale dodajemo
+		// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
+		// nakon vrednosti
+		// ako se razlikuju od default-ne
+		String primalacNaziv = params.getPrimalacNaziv();
+		if (!primalacNaziv.equals("?primalacNaziv")) {
+			primalacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPrimalacNaziv(primalacNaziv);
+		}
+		// naziv
+		String podnosilacNaziv = params.getPodnosilacNaziv();
+		if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
+			podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacNaziv(podnosilacNaziv);
+		}
+		// ime i prezime
+		String podnosilacIme = params.getPodnosilacIme();
+		if (!podnosilacIme.equals("?podnosilacIme")) {
+			podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacIme(podnosilacIme);
+		}
+		String podnosilacPrezime = params.getPodnosilacPrezime();
+		if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
+			podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacPrezime(podnosilacPrezime);
+		}
+		
 		try {
 			if (params.getOperator().equals("AND")) {
-				String vezanGradjanin = params.getVezanGradjanin();
-				if (!vezanGradjanin.equals("?vezanGradjanin")) {
-					// dodajemo <> okolo
-					vezanGradjanin = "<" + vezanGradjanin + ">";
-					params.setVezanGradjanin(vezanGradjanin);
-				}
-				// za sve ostale dodajemo
-				// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
-				// nakon vrednosti
-				// ako se razlikuju od default-ne
-				String primalacNaziv = params.getPrimalacNaziv();
-				if (!primalacNaziv.equals("?primalacNaziv")) {
-					primalacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.setPrimalacNaziv(primalacNaziv);
-				}
-				// naziv
-				String podnosilacNaziv = params.getPodnosilacNaziv();
-				if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
-					podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.setPodnosilacNaziv(podnosilacNaziv);
-				}
-				// ime i prezime
-				String podnosilacIme = params.getPodnosilacIme();
-				if (!podnosilacIme.equals("?podnosilacIme")) {
-					podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.setPodnosilacIme(podnosilacIme);
-				}
-				String podnosilacPrezime = params.getPodnosilacPrezime();
-				if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
-					podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-					params.setPodnosilacPrezime(podnosilacPrezime);
-				}
 				// ako unese kombinaciju primalac:
 				// ime+naziv || prezime+naziv || ime+prezime+naziv
 				// -> prazna lista
@@ -132,77 +133,37 @@ public class ZahtevBusiness {
 				}
 			} else {
 				// OR pretraga
-				// svi prazni
-				if (params.getVezanGradjanin().equals("?vezanGradjanin") &&
-						params.getPrimalacNaziv().equals("?primalacNaziv") &&	
-						params.getPodnosilacNaziv().equals("?podnosilacNaziv") &&
-						params.getPodnosilacIme().equals("?podnosilacIme") &&
-						params.getPodnosilacPrezime().equals("?podnosilacPrezime")) {
-					String vezanGradjanin = params.getVezanGradjanin();
-					if (vezanGradjanin.equals("?vezanGradjanin")) {
-						// dodajemo <> okolo
-						vezanGradjanin = "<>";
-						params.setVezanGradjanin(vezanGradjanin);
-					}
-					// za sve ostale dodajemo
-					// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
-					// nakon vrednosti
-					// ako se razlikuju od default-ne
-					String primalacNaziv = params.getPrimalacNaziv();
-					if (primalacNaziv.equals("?primalacNaziv")) {
-						primalacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPrimalacNaziv(primalacNaziv);
-					}
-					// naziv
-					String podnosilacNaziv = params.getPodnosilacNaziv();
-					if (podnosilacNaziv.equals("?podnosilacNaziv")) {
-						podnosilacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPodnosilacNaziv(podnosilacNaziv);
-					}
-					// ime i prezime
-					String podnosilacIme = params.getPodnosilacIme();
-					if (podnosilacIme.equals("?podnosilacIme")) {
-						podnosilacIme = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPodnosilacIme(podnosilacIme);
-					}
-					String podnosilacPrezime = params.getPodnosilacPrezime();
-					if (podnosilacPrezime.equals("?podnosilacPrezime")) {
-						podnosilacPrezime = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPodnosilacPrezime(podnosilacPrezime);
-					}
-				} else {
-					String vezanGradjanin = params.getVezanGradjanin();
-					if (!vezanGradjanin.equals("?vezanGradjanin")) {
-						// dodajemo <> okolo
-						vezanGradjanin = "<" + vezanGradjanin + ">";
-						params.setVezanGradjanin(vezanGradjanin);
-					}
-					// za sve ostale dodajemo
-					// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
-					// nakon vrednosti
-					// ako se razlikuju od default-ne
-					String primalacNaziv = params.getPrimalacNaziv();
-					if (!primalacNaziv.equals("?primalacNaziv")) {
-						primalacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPrimalacNaziv(primalacNaziv);
-					}
-					// naziv
-					String podnosilacNaziv = params.getPodnosilacNaziv();
-					if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
-						podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPodnosilacNaziv(podnosilacNaziv);
-					}
-					// ime i prezime
-					String podnosilacIme = params.getPodnosilacIme();
-					if (!podnosilacIme.equals("?podnosilacIme")) {
-						podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPodnosilacIme(podnosilacIme);
-					}
-					String podnosilacPrezime = params.getPodnosilacPrezime();
-					if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
-						podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
-						params.setPodnosilacPrezime(podnosilacPrezime);
-					}
+				vezanGradjanin = params.getVezanGradjanin();
+				if (vezanGradjanin.equals("?vezanGradjanin")) {
+					// dodajemo <> okolo
+					vezanGradjanin = "<>";
+					params.setVezanGradjanin(vezanGradjanin);
+				}
+				// za sve ostale dodajemo
+				// ^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>
+				// nakon vrednosti
+				// ako se razlikuju od default-ne
+				primalacNaziv = params.getPrimalacNaziv();
+				if (primalacNaziv.equals("?primalacNaziv")) {
+					primalacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPrimalacNaziv(primalacNaziv);
+				}
+				// naziv
+				podnosilacNaziv = params.getPodnosilacNaziv();
+				if (podnosilacNaziv.equals("?podnosilacNaziv")) {
+					podnosilacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacNaziv(podnosilacNaziv);
+				}
+				// ime i prezime
+				podnosilacIme = params.getPodnosilacIme();
+				if (podnosilacIme.equals("?podnosilacIme")) {
+					podnosilacIme = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacIme(podnosilacIme);
+				}
+				podnosilacPrezime = params.getPodnosilacPrezime();
+				if (podnosilacPrezime.equals("?podnosilacPrezime")) {
+					podnosilacPrezime = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacPrezime(podnosilacPrezime);
 				}
 				if ((!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) 
 						&& ((!params.getPodnosilacIme().equals("?podnosilacIme"))
