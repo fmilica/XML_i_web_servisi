@@ -11,6 +11,14 @@ WHERE {
 	}
 	UNION
 	{
+		?zahtev <http://www.xml.com/predicate/podnosilacIme> %s .
+	}
+	UNION
+	{
+		?zahtev <http://www.xml.com/predicate/podnosilacPrezime> %s .
+	}
+	UNION
+	{
 		?zahtev <http://www.xml.com/predicate/podnosilacNaziv> %s .
 	}
 }

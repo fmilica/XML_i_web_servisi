@@ -109,7 +109,7 @@ public class ZahtevBusiness {
 							"src/main/resources/data/sparql/napredna/naprednaZahtevORImePrezime.rq", 
 							params.getParametri().getParametar());
 				}
-			} else {
+			} else if (params.getParametri().getParametar().size() == 3) {
 				// naziv
 				String podnosilacNaziv = params.getParametri().getParametar().get(2);
 				if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
@@ -127,6 +127,32 @@ public class ZahtevBusiness {
 					zahtevIds = QueryMetadata.query(
 							"/poverenik/Zahtev", 
 							"src/main/resources/data/sparql/napredna/naprednaZahtevORNaziv.rq", 
+							params.getParametri().getParametar());
+				}
+			} else {
+				// i naziv i ime i prezime
+				String podnosilacIme = params.getParametri().getParametar().get(2);
+				if (!podnosilacIme.equals("?podnosilacIme")) {
+					podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.getParametri().getParametar().set(2, podnosilacIme);
+				}
+				String podnosilacPrezime = params.getParametri().getParametar().get(3);
+				if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
+					podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.getParametri().getParametar().set(3, podnosilacPrezime);
+				}
+				String podnosilacNaziv = params.getParametri().getParametar().get(4);
+				if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
+					podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.getParametri().getParametar().set(2, podnosilacNaziv);
+				}
+				// provera logickog operatora
+				if (params.getOperator().equals("AND")) {
+					zahtevIds = new ArrayList<String>();
+				} else {
+					zahtevIds = QueryMetadata.query(
+							"/poverenik/Zahtev", 
+							"src/main/resources/data/sparql/napredna/naprednaZahtevORSve.rq", 
 							params.getParametri().getParametar());
 				}
 			}

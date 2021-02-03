@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 import org.exist.xupdate.XUpdateProcessor;
@@ -162,11 +163,15 @@ public class ZahtevRepository {
 			XMLResource res;
 			while(iter.hasMoreResources()) {
 				res = (XMLResource)iter.nextResource();
-				pronadjeniZahtevi.add((Zahtev) unmarshaller.unmarshal(res.getContentAsDOM()));
+				try {
+					pronadjeniZahtevi.add((Zahtev) unmarshaller.unmarshal(res.getContentAsDOM()));
+				} catch (ClassCastException | UnmarshalException e) {
+					// elementi ispod zahteva koji zadovoljavaju xpath
+					continue;
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
 			}
-		} catch (ClassCastException e1) {
-			// pronadjeni elementi koji su ispod nivoa zahteva
-			// a zadovoljavaju upit
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
