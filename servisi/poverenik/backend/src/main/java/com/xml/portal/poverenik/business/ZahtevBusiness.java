@@ -1,6 +1,7 @@
 package com.xml.portal.poverenik.business;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.data.repository.ZahtevRepository;
+import com.xml.portal.poverenik.dto.pretraga.NaprednaPretragaDTO;
 import com.xml.portal.poverenik.transformator.DokumentiTransformator;
 
 public class ZahtevBusiness {
@@ -33,10 +35,12 @@ public class ZahtevBusiness {
 		List<String> zahtevIds;
 		ListaZahteva zahtevi = null;
 		try {
+			List<String> userQuery = new ArrayList<String>();
+			userQuery.add(this.KORISNIK_NAMESPACE + userEmail);
 			zahtevIds = QueryMetadata.query(
 					"/poverenik/Zahtev", 
 					"src/main/resources/data/sparql/korisnikZahtevi.rq", 
-					this.KORISNIK_NAMESPACE + userEmail);
+					userQuery);
 			zahtevi = new ListaZahteva();
 			zahtevi.setZahtev(zahtevRepository.findAllByGradjanin(zahtevIds));
 		} catch (IOException e) {
@@ -53,6 +57,28 @@ public class ZahtevBusiness {
 			e.printStackTrace();
 		}
 		return loaded;
+	}
+	
+	public ListaZahteva getAllByContent(String content) {
+		ListaZahteva filtriraniZahtevi = new ListaZahteva();
+		filtriraniZahtevi.setZahtev(zahtevRepository.findAllByContent(content));
+		return filtriraniZahtevi;
+	}
+	
+	public ListaZahteva getAllNapredna(NaprednaPretragaDTO params) {
+		List<String> zahtevIds;
+		ListaZahteva zahtevi = null;
+		try {
+			zahtevIds = QueryMetadata.query(
+					"/poverenik/Zahtev", 
+					"src/main/resources/data/sparql/naprednaZahtev.rq", 
+					params.getParametri().getParametar());
+			zahtevi = new ListaZahteva();
+			zahtevi.setZahtev(zahtevRepository.findAllNapredna(zahtevIds));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return zahtevi;
 	}
 	
 	public boolean update(String zahtevId, Zahtev zahtev) {

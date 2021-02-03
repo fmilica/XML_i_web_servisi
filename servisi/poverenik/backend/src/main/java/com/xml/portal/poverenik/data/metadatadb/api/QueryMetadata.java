@@ -22,19 +22,22 @@ public class QueryMetadata {
 	private static ConnectionProperties conn;
 	
 	public static void main(String[] args) throws IOException {
-		query("/poverenik/Zahtev", 
-				"src/main/resources/data/sparql/korisnikZahtevi.rq", 
-				"http://korisnik/pera@pera.com");
+		//query("/poverenik/Zahtev", 
+				//"src/main/resources/data/sparql/korisnikZahtevi.rq", 
+				//"http://korisnik/pera@pera.com");
 	}
 	
-	public static List<String> query(String graphUri, String sparqlFilePath, String queryParam) throws IOException {
+	public static List<String> query(String graphUri, String sparqlFilePath, List<String> queryParams) throws IOException {
 		conn = AuthenticationUtilities.loadProperties();
+		
+		// Setup queryParams
+		queryParams.add(0, conn.dataEndpoint + graphUri);
 		
 		// Querying the named graph with a referenced SPARQL query
 		System.out.println("[INFO] Loading SPARQL query from file \"" + sparqlFilePath + "\"");
 		String sparqlQuery = String.format(FileUtil.readFile(sparqlFilePath, StandardCharsets.UTF_8), 
-				conn.dataEndpoint + graphUri, queryParam);
-		
+				queryParams.toArray());
+
 		System.out.println(sparqlQuery);
 		
 		// Create a QueryExecution that will access a SPARQL service over HTTP

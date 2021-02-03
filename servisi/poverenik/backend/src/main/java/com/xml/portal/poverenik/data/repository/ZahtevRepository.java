@@ -15,6 +15,7 @@ import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceIterator;
 import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
@@ -150,6 +151,51 @@ public class ZahtevRepository {
 			e.printStackTrace();
 			return 0;
 		}
+	}
+	
+	public List<Zahtev> findAllByContent(String content) {
+		String xPath = "//*[contains(., '" + content + "')]";
+		List<Zahtev> pronadjeniZahtevi = new ArrayList<Zahtev>();
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			ResourceIterator iter = query.getIterator();
+			XMLResource res;
+			while(iter.hasMoreResources()) {
+				res = (XMLResource)iter.nextResource();
+				pronadjeniZahtevi.add((Zahtev) unmarshaller.unmarshal(res.getContentAsDOM()));
+			}
+		} catch (ClassCastException e1) {
+			// pronadjeni elementi koji su ispod nivoa zahteva
+			// a zadovoljavaju upit
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pronadjeniZahtevi;
+	}
+	
+	public List<Zahtev> findAllNapredna(List<String> zahtevIds) {
+		Collection allZahtevi = null;
+		List<Zahtev> zahtevi = new ArrayList<Zahtev>();
+		try {
+			allZahtevi = this.existManager.loadCollection(collectionId);
+			for (String id : zahtevIds) {
+				XMLResource resource = this.existManager.load(collectionId, id);
+				if (resource != null) {
+					zahtevi.add((Zahtev) unmarshaller.unmarshal(resource.getContentAsDOM()));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (allZahtevi != null) {
+				try {
+					allZahtevi.close();
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return zahtevi;
 	}
 	
 	public String save(Zahtev zahtev) {

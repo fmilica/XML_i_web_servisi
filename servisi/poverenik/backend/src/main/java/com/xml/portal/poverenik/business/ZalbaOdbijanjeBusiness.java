@@ -1,6 +1,7 @@
 package com.xml.portal.poverenik.business;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,10 +34,12 @@ public class ZalbaOdbijanjeBusiness {
 		List<String> zalbeOdbijanjeIds;
 		ListaZalbiOdbijanje zalbeOdbijanje = null;
 		try {
+			List<String> userQuery = new ArrayList<String>();
+			userQuery.add(this.KORISNIK_NAMESPACE + userEmail);
 			zalbeOdbijanjeIds = QueryMetadata.query(
 					"/poverenik/ZalbaOdbijanje", 
 					"src/main/resources/data/sparql/korisnikZalbeOdbijanje.rq", 
-					this.KORISNIK_NAMESPACE + userEmail);
+					userQuery);
 			zalbeOdbijanje = new ListaZalbiOdbijanje();
 			zalbeOdbijanje.setZalbaOdbijanje(zalbaOdbijanjeRepository.findAllByGradjanin(zalbeOdbijanjeIds));
 		} catch (IOException e) {

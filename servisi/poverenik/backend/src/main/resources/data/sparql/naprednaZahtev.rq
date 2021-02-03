@@ -1,0 +1,10 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) zahteva po naprednoj pretrazi
+
+SELECT ?zahtev FROM <%s>
+WHERE { 
+  ?zahtev <http://www.xml.com/predicate/vezanGradjanin>    <%s> .
+  ?zahtev <http://www.xml.com/predicate/primalacNaziv>     <%s> .
+  ?zahtev <http://www.xml.com/predicate/podnosilacIme>     <%s> .
+  ?zahtev <http://www.xml.com/predicate/podnosilacPrezime> <%s> .
+  ?zahtev <http://www.xml.com/predicate/podnosilacNaziv>   <%s> .
+}
