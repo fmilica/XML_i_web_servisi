@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="EpostaService"
+    targetNamespace="http://posta"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:elem="http://pismo"
+    xmlns:tns="http://posta">
+    
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://pismo" 
+                schemaLocation= "./pismo.xsd"/>  
+        </xs:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="posaljiPorukuRequest">
+        <wsdl:part name="pismo" element="elem:pismo" />
+    </wsdl:message>
+    <wsdl:message name="posaljiPorukuResponse" />
+    
+    <wsdl:portType name="EpostaServicePortType">
+        <wsdl:operation name="posaljiPoruku">
+            <wsdl:input message="tns:posaljiPorukuRequest" />
+            <wsdl:output message="tns:posaljiPorukuResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="EpostaServiceSoapBinding" type="tns:EpostaServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="posaljiPoruku">
+            <soap:operation soapAction="http://eposta/ws/posaljiPoruku" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    
+    <wsdl:service name="EpostaService">
+        <wsdl:port name="EpostaServiceSoapBinding" binding="tns:EpostaServiceSoapBinding">
+            <soap:address location="http://localhost:8886/epostaPort" />
+        </wsdl:port>
+    </wsdl:service>
+    
+</wsdl:definitions>
