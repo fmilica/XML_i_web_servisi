@@ -131,4 +131,14 @@ public class Izvestaj {
         this.id = value;
     }
 
+	@Override
+	public String toString() {
+		return "Izvestaj\n"
+				+ "[zahtevi=" + zahtevi + "\n" 
+				+ ", zalbe=" + zalbe + "\n"
+				+ ", id=" + id + "]";
+	}
+    
+    
+
 }

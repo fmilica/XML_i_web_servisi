@@ -124,4 +124,10 @@ public class Zahtevi {
         this.zahteviUkupno = value;
     }
 
+	@Override
+	public String toString() {
+		return "\n\tZahtevi [\n\t\tgradjaninZahtevi=" + gradjaninZahtevi + ", \n\t\torganizacijaUkupno=" + organizacijaUkupno
+				+ ", \n\t\tzahteviUkupno=" + zahteviUkupno + "]";
+	}
+
 }

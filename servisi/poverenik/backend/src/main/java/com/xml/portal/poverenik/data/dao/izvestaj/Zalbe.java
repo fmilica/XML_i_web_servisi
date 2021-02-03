@@ -124,4 +124,10 @@ public class Zalbe {
         this.zalbeUkupno = value;
     }
 
+	@Override
+	public String toString() {
+		return "\n\tZalbe [\n\t\tgradjaninZalbe=" + gradjaninZalbe + ", \n\t\torganizacijaZalbe=" + organizacijaZalbe + ", \n\t\tzalbeUkupno="
+				+ zalbeUkupno + "]";
+	}
+
 }
