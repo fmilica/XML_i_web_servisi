@@ -2,6 +2,7 @@ package com.xml.portal.poverenik.data.repository;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
@@ -132,6 +134,21 @@ public class ZahtevRepository {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+	
+	public long findAllByYear() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		//String xPath = "/Zahtev/contains(@datum, '2020')"; -> vraca true false
+		// -> zato je uvek vracao sve, vracao je dve false vrednosti
+		String xPath = "/Zahtev[contains(@datum,'" + year + "')]";
+		// vraca zahtev ceo ako zadovoljava uslov u uglastim
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
 		}
 	}
 	
