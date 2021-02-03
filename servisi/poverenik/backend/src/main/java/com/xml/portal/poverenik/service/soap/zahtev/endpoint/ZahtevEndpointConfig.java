@@ -1,4 +1,4 @@
-package com.xml.portal.poverenik.service.soap.endpoint;
+package com.xml.portal.poverenik.service.soap.zahtev.endpoint;
 
 import javax.xml.ws.Endpoint;
 
@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import com.xml.portal.poverenik.service.soap.ZahtevServiceSoapBindingImpl;
+import com.xml.portal.poverenik.service.soap.zahtev.ZahtevServiceSoapBindingImpl;
 
 @Configuration
-public class EndpointConfig {
+public class ZahtevEndpointConfig {
 
     @Autowired
     private Bus bus;

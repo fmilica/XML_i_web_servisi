@@ -1,4 +1,4 @@
-package com.xml.portal.poverenik.service.soap;
+package com.xml.portal.poverenik.service.soap.zahtev;
 
 import java.net.URL;
 import javax.xml.namespace.QName;
