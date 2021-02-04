@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ZalbaOdbijanjeService"
+    targetNamespace="http://zalbaodbijanje"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://zalbaodbijanje">
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://zalbaodbijanje" 
+                schemaLocation= "../schema/zalba_odbijanje/zalba_odbijen.xsd"/>  
+        </xs:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="sendZalbaOdbijenRequest">
+        <wsdl:part name="ZalbaOdbijanje" element="tns:Zalba_odbijanje"/>
+    </wsdl:message>
+    <wsdl:message name="sendZalbaOdbijenResponse">
+    </wsdl:message>
+    
+    <wsdl:portType name="ZalbaOdbijenServicePortType">
+        <wsdl:operation name="sendZalbaOdbijen">
+            <wsdl:input message="tns:sendZalbaOdbijenRequest" />
+            <wsdl:output message="tns:sendZalbaOdbijenResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="ZalbaOdbijenSoapBinding" type="tns:ZalbaOdbijenServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="sendZalbaOdbijen">
+            <soap:operation soapAction="http://zalbaodbijanje/ws/sendZalbaOdbijen" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZalbaOdbijenService">
+        <wsdl:port name="ZalbaOdbijenServiceSoapBinding" binding="tns:ZalbaOdbijenSoapBinding">
+            <soap:address location="http://localhost:8081/zalbaodbijanjePort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

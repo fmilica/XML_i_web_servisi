@@ -140,6 +140,33 @@
 									</extraargs>
 									<wsdlLocation>classpath:wsdl/poverenik-posta.wsdl</wsdlLocation>
 								</wsdlOption>
+
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/data/wsdl/zalba-cutanje.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg>
+										<extraarg>-verbose</extraarg>
+									</extraargs>
+									<wsdlLocation>classpath:wsdl/zalba-cutanje.wsdl</wsdlLocation>
+								</wsdlOption>
+
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/data/wsdl/zalba-odbijanje.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg>
+										<extraarg>-verbose</extraarg>
+									</extraargs>
+									<wsdlLocation>classpath:wsdl/zalba-odbijanje.wsdl</wsdlLocation>
+								</wsdlOption>
+								
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/data/wsdl/izvestaj.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg>
+										<extraarg>-verbose</extraarg>
+									</extraargs>
+									<wsdlLocation>classpath:wsdl/izvestaj.wsdl</wsdlLocation>
+								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
 						<goals>
