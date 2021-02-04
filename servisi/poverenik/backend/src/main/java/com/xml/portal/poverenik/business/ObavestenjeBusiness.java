@@ -22,6 +22,9 @@ public class ObavestenjeBusiness {
 	
 	private final String KORISNIK_NAMESPACE = "http://korisnik/";
 	
+	private final String GRAPH_URI = "/poverenik/Obavestenje";
+	private final String QUERY_PATH = "src/main/resources/data/sparql/napredna/obavestenje/";
+	
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
 	
@@ -68,6 +71,134 @@ public class ObavestenjeBusiness {
 	public ListaObavestenja getAllNapredna(ObavestenjePretraga params) {
 		List<String> obavestenjeIds;
 		ListaObavestenja obavestenja = null;
+		
+		String vezanGradjanin = params.getVezanGradjanin();
+		if (!vezanGradjanin.equals("?vezanGradjanin")) {
+			// dodajemo <> okolo
+			vezanGradjanin = "<" + vezanGradjanin + ">";
+			params.setVezanGradjanin(vezanGradjanin);
+		}
+		String vezanZahtev = params.getVezanZahtev();
+		if (!vezanZahtev.equals("?vezanZahtev")) {
+			// dodajemo <> okolo
+			vezanGradjanin = "<" + vezanGradjanin + ">";
+			params.setVezanGradjanin(vezanGradjanin);
+		}
+		String izdavacNaziv = params.getIzdavacNaziv();
+		if (!izdavacNaziv.equals("?izdavacNaziv")) {
+			izdavacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setIzdavacNaziv(izdavacNaziv);
+		}
+		// naziv
+		String podnosilacNaziv = params.getPodnosilacNaziv();
+		if (!podnosilacNaziv.equals("?podnosilacNaziv")) {
+			podnosilacNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacNaziv(podnosilacNaziv);
+		}
+		// ime i prezime
+		String podnosilacIme = params.getPodnosilacIme();
+		if (!podnosilacIme.equals("?podnosilacIme")) {
+			podnosilacIme += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacIme(podnosilacIme);
+		}
+		String podnosilacPrezime = params.getPodnosilacPrezime();
+		if (!podnosilacPrezime.equals("?podnosilacPrezime")) {
+			podnosilacPrezime += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setPodnosilacPrezime(podnosilacPrezime);
+		}
+		
+		try {
+			if (params.getOperator().equals("AND")) {
+				// ako unese kombinaciju primalac:
+				// ime+naziv || prezime+naziv || ime+prezime+naziv
+				// -> prazna lista
+				if ((!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) 
+					&& ((!params.getPodnosilacIme().equals("?podnosilacIme"))
+							|| (!params.getPodnosilacPrezime().equals("?podnosilacPrezime")))) {
+					obavestenjeIds = new ArrayList<String>();
+				} else {
+					// validna AND pretraga
+					if (!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) {
+						obavestenjeIds = QueryMetadata.query(
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaObavestenjeNaziv.rq", 
+								params.createNazivArray());
+					} else if ((!params.getPodnosilacIme().equals("?podnosilacIme")) || (!params.getPodnosilacPrezime().equals("?podnosilacPrezime"))) {
+						obavestenjeIds = QueryMetadata.query(
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaObavestenjeImePrezime.rq", 
+								params.createImePrezimeArray());
+					} else {
+						// samo po zajednickim parametrima
+						obavestenjeIds = QueryMetadata.query(
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaObavestenje.rq", 
+								params.createCommonArray());
+					}
+				}
+			} else {
+				vezanGradjanin = params.getVezanGradjanin();
+				if (vezanGradjanin.equals("?vezanGradjanin")) {
+					// dodajemo <> okolo
+					vezanGradjanin = "<>";
+					params.setVezanGradjanin(vezanGradjanin);
+				}
+				vezanZahtev = params.getVezanZahtev();
+				if (vezanGradjanin.equals("?vezanZahtev")) {
+					// dodajemo <> okolo
+					vezanGradjanin = "<>";
+					params.setVezanGradjanin(vezanGradjanin);
+				}
+				izdavacNaziv = params.getIzdavacNaziv();
+				if (izdavacNaziv.equals("?izdavacNaziv")) {
+					izdavacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setIzdavacNaziv(izdavacNaziv);
+				}
+				// naziv
+				podnosilacNaziv = params.getPodnosilacNaziv();
+				if (podnosilacNaziv.equals("?podnosilacNaziv")) {
+					podnosilacNaziv = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacNaziv(podnosilacNaziv);
+				}
+				// ime i prezime
+				podnosilacIme = params.getPodnosilacIme();
+				if (podnosilacIme.equals("?podnosilacIme")) {
+					podnosilacIme = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacIme(podnosilacIme);
+				}
+				podnosilacPrezime = params.getPodnosilacPrezime();
+				if (podnosilacPrezime.equals("?podnosilacPrezime")) {
+					podnosilacPrezime = "\"\"^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setPodnosilacPrezime(podnosilacPrezime);
+				}
+				if ((!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) 
+						&& ((!params.getPodnosilacIme().equals("?podnosilacIme"))
+								|| (!params.getPodnosilacPrezime().equals("?podnosilacPrezime")))) {
+					obavestenjeIds = QueryMetadata.query(
+							GRAPH_URI, 
+							QUERY_PATH + "naprednaObavestenjeORSve.rq", 
+							params.createAllArray());
+				} else {
+					if (!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) {
+						// naziv
+						obavestenjeIds = QueryMetadata.query(
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaObavestenjeORNaziv.rq", 
+								params.createNazivArray());
+					} else {
+						// ime i prezime
+						obavestenjeIds = QueryMetadata.query(
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaObavestenjeORImePrezime.rq", 
+								params.createImePrezimeArray());
+					}
+				}
+			}
+			obavestenja = new ListaObavestenja();
+			obavestenja.setObavestenje(obavestenjeRepository.findAllByGradjanin(obavestenjeIds));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return obavestenja;
 	}
 	

@@ -20,6 +20,7 @@ import com.xml.portal.poverenik.business.ZalbaCutanjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ListaZalbiCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.poverenik.dto.pretraga.ZalbaCutanjePretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/zalba-cutanje", produces = MediaType.APPLICATION_XML_VALUE)
@@ -70,6 +71,18 @@ public class ZalbaCutanjeService {
     			return ResponseEntity.status(500).body(greska);
     		}
     	}
+    }
+	
+    @GetMapping("/pretrazi")
+    public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {
+		ListaZalbiCutanje filtriraneZalbeCutanje = zalbaCutanjeBusiness.getAllByContent(content);
+		return new ResponseEntity<>(filtriraneZalbeCutanje, HttpStatus.OK);
+    }
+    
+    @PostMapping("/pretrazi-napredno")
+    public ResponseEntity<Object> naprednaPretraga(@RequestBody ZalbaCutanjePretraga params) {
+    	ListaZalbiCutanje filtriraneZalbeCutanje = zalbaCutanjeBusiness.getAllNapredna(params);
+		return new ResponseEntity<>(filtriraneZalbeCutanje, HttpStatus.OK);
     }
 	
     @GetMapping("/generisiHTML/{id}")

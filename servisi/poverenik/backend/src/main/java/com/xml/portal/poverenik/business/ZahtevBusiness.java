@@ -20,10 +20,13 @@ public class ZahtevBusiness {
 	
 	public static final String XSL_FO_FILE = "src/main/resources/data/xsl/zahtev_fo.xsl";
 
+	private final String KORISNIK_NAMESPACE = "http://korisnik/";
+	
+	private final String GRAPH_URI = "/poverenik/Zahtev";
+	private final String QUERY_PATH = "src/main/resources/data/sparql/napredna/zahtev/";
+	
 	@Autowired
 	private ZahtevRepository zahtevRepository;
-	
-	private final String KORISNIK_NAMESPACE = "http://korisnik/";
 	
 	public ListaZahteva getAll() {
 		ListaZahteva zahtevi = new ListaZahteva();
@@ -104,7 +107,7 @@ public class ZahtevBusiness {
 		
 		try {
 			if (params.getOperator().equals("AND")) {
-				// ako unese kombinaciju primalac:
+				// ako unese kombinaciju podnosilac:
 				// ime+naziv || prezime+naziv || ime+prezime+naziv
 				// -> prazna lista
 				if ((!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) 
@@ -115,20 +118,20 @@ public class ZahtevBusiness {
 					// validna AND pretraga
 					if (!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) {
 						zahtevIds = QueryMetadata.query(
-								"/poverenik/Zahtev", 
-								"src/main/resources/data/sparql/napredna/naprednaZahtevNaziv.rq", 
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaZahtevNaziv.rq", 
 								params.createNazivArray());
 					} else if ((!params.getPodnosilacIme().equals("?podnosilacIme")) || (!params.getPodnosilacPrezime().equals("?podnosilacPrezime"))) {
 						zahtevIds = QueryMetadata.query(
-								"/poverenik/Zahtev", 
-								"src/main/resources/data/sparql/napredna/naprednaZahtevImePrezime.rq", 
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaZahtevImePrezime.rq", 
 								params.createImePrezimeArray());
 					} else {
 						// samo po zajednickim parametrima
 						zahtevIds = QueryMetadata.query(
-								"/poverenik/Zahtev", 
-								"src/main/resources/data/sparql/napredna/naprednaZahtev.rq", 
-								params.createImePrezimeArray());
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaZahtev.rq", 
+								params.createCommonArray());
 					}
 				}
 			} else {
@@ -169,21 +172,21 @@ public class ZahtevBusiness {
 						&& ((!params.getPodnosilacIme().equals("?podnosilacIme"))
 								|| (!params.getPodnosilacPrezime().equals("?podnosilacPrezime")))) {
 					zahtevIds = QueryMetadata.query(
-							"/poverenik/Zahtev", 
-							"src/main/resources/data/sparql/napredna/naprednaZahtevORSve.rq", 
+							GRAPH_URI, 
+							QUERY_PATH + "naprednaZahtevORSve.rq", 
 							params.createAllArray());
 				} else {
 					if (!params.getPodnosilacNaziv().equals("?podnosilacNaziv")) {
 						// naziv
 						zahtevIds = QueryMetadata.query(
-								"/poverenik/Zahtev", 
-								"src/main/resources/data/sparql/napredna/naprednaZahtevORNaziv.rq", 
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaZahtevORNaziv.rq", 
 								params.createNazivArray());
 					} else {
 						// ime i prezime
 						zahtevIds = QueryMetadata.query(
-								"/poverenik/Zahtev", 
-								"src/main/resources/data/sparql/napredna/naprednaZahtevORImePrezime.rq", 
+								GRAPH_URI, 
+								QUERY_PATH + "naprednaZahtevORImePrezime.rq", 
 								params.createImePrezimeArray());
 					}
 				}

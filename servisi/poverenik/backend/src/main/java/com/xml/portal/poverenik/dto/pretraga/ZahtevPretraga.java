@@ -52,6 +52,13 @@ public class ZahtevPretraga {
 		return array;
 	}
 	
+	public List<String> createCommonArray() {
+		List<String> array = new ArrayList<String>();
+		array.add(this.vezanGradjanin);
+		array.add(this.primalacNaziv);
+		return array;
+	}
+	
 	public String getVezanGradjanin() {
 		return vezanGradjanin;
 	}

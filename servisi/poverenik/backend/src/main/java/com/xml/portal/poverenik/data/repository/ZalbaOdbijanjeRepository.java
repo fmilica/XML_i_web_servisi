@@ -8,12 +8,15 @@ import java.util.UUID;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
@@ -132,6 +135,55 @@ public class ZalbaOdbijanjeRepository {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<ZalbaOdbijanje> findAllByContent(String content) {
+		String xPath = "//*[contains(., '" + content + "')]";
+		List<ZalbaOdbijanje> pronadjeneZalbe = new ArrayList<ZalbaOdbijanje>();
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			ResourceIterator iter = query.getIterator();
+			XMLResource res;
+			while(iter.hasMoreResources()) {
+				res = (XMLResource)iter.nextResource();
+				try {
+					pronadjeneZalbe.add((ZalbaOdbijanje) unmarshaller.unmarshal(res.getContentAsDOM()));
+				} catch (ClassCastException | UnmarshalException e) {
+					// elementi ispod zahteva koji zadovoljavaju xpath
+					continue;
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pronadjeneZalbe;
+	}
+	
+	public List<ZalbaOdbijanje> findAllNapredna(List<String> zalbeOdbijanjeIds) {
+		Collection allZalbeOdbijanje = null;
+		List<ZalbaOdbijanje> zalbeOdbijanje = new ArrayList<ZalbaOdbijanje>();
+		try {
+			allZalbeOdbijanje = this.existManager.loadCollection(collectionId);
+			for (String id : zalbeOdbijanjeIds) {
+				XMLResource resource = this.existManager.load(collectionId, id);
+				if (resource != null) {
+					zalbeOdbijanje.add((ZalbaOdbijanje) unmarshaller.unmarshal(resource.getContentAsDOM()));
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (allZalbeOdbijanje != null) {
+				try {
+					allZalbeOdbijanje.close();
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		return zalbeOdbijanje;
 	}
 	
 	public String save(ZalbaOdbijanje zalbaOdbijanje) {
