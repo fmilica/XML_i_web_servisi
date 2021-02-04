@@ -12,7 +12,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'zalilac','adresa', 'kontaktTelefon', 
-                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje']
+                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   constructor(
     private zalbaCutanjeService: ZalbaCutanjeService
@@ -108,4 +108,19 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     link.click();
   }
 
+  generisiRDF(zalbaCutanjeId: string) {
+    this.zalbaCutanjeService.generisiRDF(zalbaCutanjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaCutanjeId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(zalbaCutanjeId: string) {
+    this.zalbaCutanjeService.generisiJSON(zalbaCutanjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaCutanjeId, "json");
+      }
+    );
+  }
 }

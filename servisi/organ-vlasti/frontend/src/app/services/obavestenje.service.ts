@@ -52,4 +52,18 @@ export class ObavestenjeService {
       headers: this.headers
     })
   }
+
+  generisiRDF(obavestenjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/generisiRDF/' + obavestenjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiJSON(obavestenjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/generisiJSON/' + obavestenjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

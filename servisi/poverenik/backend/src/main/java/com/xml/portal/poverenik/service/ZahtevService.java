@@ -22,6 +22,8 @@ import com.xml.portal.poverenik.business.ZahtevBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.zahtev.ListaZahteva;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
+import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
+import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 
 @RestController
 @RequestMapping(value = "poverenik/zahtev", produces = MediaType.APPLICATION_XML_VALUE)
@@ -124,6 +126,54 @@ public class ZahtevService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiRDF/{id}")
+	public ResponseEntity<Object> generisiRDF(@PathVariable("id") String id) throws Exception {
+
+    	Zahtev zahtev = zahtevBusiness.getById(id);
+		if (zahtev == null) {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = StoreMetadata.generisiRDF(zahtev);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja rdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiJSON/{id}")
+	public ResponseEntity<Object> generisiJSON(@PathVariable("id") String id) throws Exception {
+
+    	Zahtev zahtev = zahtevBusiness.getById(id);
+		if (zahtev == null) {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = QueryMetadata.generisiJSON("/poverenik/Zahtev", "http://zahtev", id);
+    	
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja json-a.");
 			return ResponseEntity.status(500).body(greska);
 		}
 	

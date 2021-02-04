@@ -15,7 +15,7 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'datumZalbe', 'mestoZalbe',
-                                'razresena', 'preuzimanje']
+                                'razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   ngOnInit(): void {
     this.zalbaCutanjeService.getAllGradjaninZalbeCutanje()
@@ -68,4 +68,19 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
     link.click();
   }
 
+  generisiRDF(zalbaCutanjeId: string) {
+    this.zalbaCutanjeService.generisiRDF(zalbaCutanjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaCutanjeId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(zalbaCutanjeId: string) {
+    this.zalbaCutanjeService.generisiJSON(zalbaCutanjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaCutanjeId, "json");
+      }
+    );
+  }
 }

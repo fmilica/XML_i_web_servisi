@@ -17,7 +17,7 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
   
   dataSource = [ ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'imePrezime', 'adresa', 'datumZahteva', 'informacije', 'preuzimanje'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'imePrezime', 'adresa', 'datumZahteva', 'informacije', 'preuzimanje', 'preuzimanjeMeta'];
 
   ngOnInit(): void {
     this.obavestenjeService.getAllObavestenja()
@@ -71,6 +71,22 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
     link.href = url;
     link.download = "obavestenje_"+id+"."+tip;
     link.click();
+  }
+
+  generisiRDF(zahtevId: string) {
+    this.obavestenjeService.generisiRDF(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(zahtevId: string) {
+    this.obavestenjeService.generisiJSON(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "json");
+      }
+    );
   }
 
 }
