@@ -20,6 +20,9 @@ import com.xml.portal.poverenik.business.ObavestenjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.obavestenje.ListaObavestenja;
 import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
+import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
+import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
+import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 
 @RestController
 @RequestMapping(value = "poverenik/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
@@ -103,6 +106,54 @@ public class ObavestenjeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiRDF/{id}")
+	public ResponseEntity<Object> generisiRDF(@PathVariable("id") String id) throws Exception {
+
+    	Obavestenje obavestenje = obavestenjeBusiness.getById(id);
+		if (obavestenje == null) {
+			Greska greska = new Greska("Obavestenje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = StoreMetadata.generisiRDF(obavestenje);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja rdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiJSON/{id}")
+	public ResponseEntity<Object> generisiJSON(@PathVariable("id") String id) throws Exception {
+
+    	Obavestenje obavestenje = obavestenjeBusiness.getById(id);
+		if (obavestenje == null) {
+			Greska greska = new Greska("Obavestenje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = QueryMetadata.generisiJSON("/poverenik/Obavestenje", "http://obavetsenje", id);
+    	
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja json-a.");
 			return ResponseEntity.status(500).body(greska);
 		}
 	

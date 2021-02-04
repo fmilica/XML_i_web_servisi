@@ -27,7 +27,7 @@ export class AllZahteviGradjaninComponent implements OnInit {
     }*/
   ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije', 'mesto', 'datum', 'preuzimanje'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije', 'mesto', 'datum', 'preuzimanje', 'preuzimanjeMeta'];
 
   ngOnInit(): void {
     this.zahtevService.getAllGradjaninZahtevi().subscribe(
@@ -117,6 +117,22 @@ export class AllZahteviGradjaninComponent implements OnInit {
     link.href = url;
     link.download = "zahtev_"+id+"."+tip;
     link.click();
+  }
+
+  generisiRDF(zahtevId: string) {
+    this.zahtevService.generisiRDF(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(zahtevId: string) {
+    this.zahtevService.generisiJSON(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "json");
+      }
+    );
   }
 
 }

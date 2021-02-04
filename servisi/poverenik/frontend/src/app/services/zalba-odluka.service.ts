@@ -52,4 +52,18 @@ export class ZalbaOdlukaService {
       headers: this.headers
     })
   }
+
+  generisiRDF(zalbaOdlukaId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiRDF/' + zalbaOdlukaId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiJSON(zalbaOdlukaId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiJSON/' + zalbaOdlukaId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

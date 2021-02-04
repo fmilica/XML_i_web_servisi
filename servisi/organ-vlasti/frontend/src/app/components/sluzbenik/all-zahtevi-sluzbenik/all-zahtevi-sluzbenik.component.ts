@@ -38,7 +38,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije',
                                 'mesto', 'datum', 'trazilacInformacija','adresaTrazioca', 'kontaktTelefon', 'razresen',
-                                'preuzimanje'];
+                                'preuzimanje', 'preuzimanjeMeta'];
 
   ngOnInit(): void {
     this.zahtevService.getAllZahtevi().subscribe(
@@ -196,5 +196,19 @@ export class AllZahteviSluzbenikComponent implements OnInit {
     console.log(this.obicnaForm.value)
   }
 
+  generisiRDF(zahtevId: string) {
+    this.zahtevService.generisiRDF(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "xml");
+      }
+    );
+  }
 
+  generisiJSON(zahtevId: string) {
+    this.zahtevService.generisiJSON(zahtevId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zahtevId, "json");
+      }
+    );
+  }
 }

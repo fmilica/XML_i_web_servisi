@@ -1,5 +1,7 @@
 package com.xml.portal.poverenik.data.metadatadb.api;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
@@ -16,15 +18,17 @@ import org.apache.jena.rdf.model.RDFNode;
 import com.xml.portal.poverenik.data.metadatadb.util.AuthenticationUtilities;
 import com.xml.portal.poverenik.data.metadatadb.util.AuthenticationUtilities.ConnectionProperties;
 import com.xml.portal.poverenik.data.metadatadb.util.FileUtil;
+import com.xml.portal.poverenik.data.metadatadb.util.SparqlUtil;
 
 public class QueryMetadata {
 
 	private static ConnectionProperties conn;
 	
 	public static void main(String[] args) throws IOException {
-		query("/poverenik/Zahtev", 
-				"src/main/resources/data/sparql/korisnikZahtevi.rq", 
-				"http://korisnik/pera@pera.com");
+		//query("/poverenik/Zahtev", 
+		//		"src/main/resources/data/sparql/napredna/ksenija.rq", 
+		//		new ArrayList<String>());
+		generisiJSON("/poverenik/Zahtev", "http://zahtev", "bf1c000a-20fb-49d6-98e1-d070e63c9a3f");
 	}
 	
 	public static List<String> query(String graphUri, String sparqlFilePath, String queryParam) throws IOException {
@@ -80,5 +84,19 @@ public class QueryMetadata {
 
 		System.out.println("[INFO] End.");
 		return result;
+	}
+	
+	public static String generisiJSON(String graphUri, String targetNamespace, String id) throws IOException {
+		conn = AuthenticationUtilities.loadProperties();
+		
+		String jsonFilePath = "src/main/resources/data/gen/jsonExportTemp";
+		
+		String condition = "<" + targetNamespace + "/" + id + "> ?p ?o";
+		String sparqlQuery = SparqlUtil.selectData(conn.dataEndpoint + graphUri, condition);
+		QueryExecution query = QueryExecutionFactory.sparqlService(conn.queryEndpoint, sparqlQuery);
+		ResultSet results = query.execSelect();
+		ResultSetFormatter.outputAsJSON(new FileOutputStream(new File(jsonFilePath)), results);
+		query.close();
+		return jsonFilePath;
 	}
 }

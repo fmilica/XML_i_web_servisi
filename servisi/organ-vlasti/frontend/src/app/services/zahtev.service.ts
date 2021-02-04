@@ -62,4 +62,18 @@ export class ZahtevService {
       headers: this.headers
     })
   }
+
+  generisiRDF(zahtevId: string) {
+    return this.http.get(environment.apiEndpoint + 'zahtev/generisiRDF/' + zahtevId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  generisiJSON(zahtevId: string) {
+    return this.http.get(environment.apiEndpoint + 'zahtev/generisiJSON/' + zahtevId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

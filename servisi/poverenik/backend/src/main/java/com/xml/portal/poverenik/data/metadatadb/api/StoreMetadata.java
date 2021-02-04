@@ -131,6 +131,28 @@ public class StoreMetadata {
 		System.out.println("[INFO] End.");
 	}
 	
+	public static String generisiRDF(Object xmlToGenerate) throws Exception {
+		conn = AuthenticationUtilities.loadProperties();
+		InputStream xmlContent = null;
+		
+		if (xmlToGenerate instanceof GenericXML) {
+			xmlContent = convertToInputStream((GenericXML) xmlToGenerate);
+		} else {
+			xmlContent = convertToInputStream((Document) xmlToGenerate);
+		}
+		
+		String rdfFilePath = "src/main/resources/data/gen/rdfExportTemp";
+		// Automatic extraction of RDF triples from XML file
+		MetadataExtractor metadataExtractor = new MetadataExtractor();
+		
+		System.out.println("[INFO] Extracting metadata from RDFa attributes...");
+		metadataExtractor.extractMetadata(
+				xmlContent, 
+				new FileOutputStream(new File(rdfFilePath)));
+		xmlContent.close();
+		return rdfFilePath;
+	}
+	
 	// Helper methods
 	private static InputStream convertToInputStream(GenericXML xmlToStore) throws IOException, JAXBException {
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
