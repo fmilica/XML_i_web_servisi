@@ -204,6 +204,17 @@ public class ZahtevBusiness {
 		return zahtevRepository.update(zahtevId, zahtev);
 	}
 	
+	public boolean deny(String zahtevId, Zahtev zahtev) {
+		zahtev.setOdbijen(true);
+		zahtev.setRazresen(true);
+		boolean d = zahtevRepository.deny(zahtevId, zahtev);
+		boolean u = zahtevRepository.update(zahtevId, zahtev);
+		if(d == true && u == true) {
+			return true;
+		}
+		return false;
+	}
+	
 	public String create(Zahtev zahtev, String userEmail) {
 		String documentId = null;
 		try {

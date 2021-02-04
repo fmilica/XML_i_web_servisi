@@ -199,6 +199,15 @@
                 </td>
             </ng-container>
 
+            <ng-container matColumnDef="odbijen">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Стање захтева </th>
+                <td matTooltip="Стање захтева" matTooltipPosition="above" mat-cell *matCellDef="let row" [ngSwitch]="row.odbijen">
+                    <div *ngSwitchCase="1">Одбијен</div>
+                    <div *ngSwitchCase="2"><button (click) = "odbijZahtev(row)">Одбиј захтев</button></div>
+                    <div *ngSwitchCase="3">/</div>
+                </td>
+            </ng-container>
+
             <ng-container matColumnDef="preuzimanje">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
                 <td matTooltip="Преузимање захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">

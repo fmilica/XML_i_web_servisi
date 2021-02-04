@@ -49,6 +49,13 @@ export class ZahtevService {
     })
   }
 
+  odbijZahtev(idZahteva: string) {
+    return this.http.put(environment.apiEndpoint + 'zahtev/odbij/' + idZahteva,{
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
   generisiPDF(zahtevId: string) {
     return this.http.get(environment.apiEndpoint + 'zahtev/generisiPDF/' + zahtevId, {
       responseType: 'arraybuffer',

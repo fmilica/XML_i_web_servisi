@@ -39,9 +39,13 @@ export class AllZahteviSluzbenikComponent implements OnInit {
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije',
                                 'mesto', 'datum', 'trazilacInformacija','adresaTrazioca', 'kontaktTelefon', 'razresen',
-                                'preuzimanje', 'preuzimanjeMeta'];
+                                'odbijen','preuzimanje', 'preuzimanjeMeta'];
 
   ngOnInit(): void {
+    this.fetchZahtevi();
+  }
+
+  fetchZahtevi(){
     this.zahtevService.getAllZahtevi().subscribe(
       (response) => {
         this.listaZahteva2Prikaz(response);
@@ -55,6 +59,12 @@ export class AllZahteviSluzbenikComponent implements OnInit {
         let data = [];
         allZahtevi[1].children.map(zahtev => {
           let emailPath = zahtev.attributes.href.split('/');
+          let odb = "2";
+          if(zahtev.attributes.odbijen === "true"){
+            odb = "1";
+          }else if(zahtev.attributes.razresen === "true"){
+            odb = "3"
+          }
           let zahtevPrikaz = {
             id: zahtev.attributes.id.substring(14),
             gradjaninEmail: emailPath[3],
@@ -71,6 +81,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
             adresaTrazioca: '',
             kontaktTelefon: '',
             razresen: zahtev.attributes.razresen,
+            odbijen: odb,
             //rascepkana adresa da je ne spajamo i ne razdvajamo stalno
             mestoTrazioc: '',
             ulicaTrazioc: '',
@@ -294,5 +305,16 @@ export class AllZahteviSluzbenikComponent implements OnInit {
         this.previewAndDownload(response, zahtevId, "json");
       }
     );
+  }
+
+  odbijZahtev(row: any){
+    console.log(row.id)
+    this.zahtevService.odbijZahtev(row.id).subscribe(
+      (response) => {
+        this.fetchZahtevi();
+    },
+    (error) =>{
+      this.fetchZahtevi();
+    })
   }
 }
