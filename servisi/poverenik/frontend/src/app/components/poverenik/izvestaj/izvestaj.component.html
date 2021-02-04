@@ -1,0 +1,102 @@
+<div class="ng-container row justify-content-md-center bottom">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSourceZahtevi">
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsZahtevi"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsZahtevi;">
+            </tr>
+
+            <ng-container matColumnDef="redniBroj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Редни број </th>
+                <td matTooltip="Редни број тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.redniBroj}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="trazilac">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Тражилац </th>
+                <td matTooltip="Тражилац захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.trazilac}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojPodnetihZahteva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Поднетих захтева </th>
+                <td matTooltip="Укупан број поднетих захтева овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojPodnetihZahteva}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojUsvojenihZahteva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Усвојених захтева </th>
+                <td matTooltip="Укупан број усвојених захтева овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojUsvojenihZahteva}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojOdbijenihZahteva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Одбијених захтева </th>
+                <td matTooltip="Укупан број одбијених захтева овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojOdbijenihZahteva}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojNerazresenihZahteva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Неразрешени захтеви </th>
+                <td matTooltip="Укупан број неразрешених захтева овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojNerazresenihZahteva}}
+                </td>
+            </ng-container>
+
+        </table>
+        
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+    </div>
+</div>
+
+<div class="ng-container row justify-content-md-center bottom">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSourceZalbe">
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsZalbe"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsZalbe;">
+            </tr>
+
+            <ng-container matColumnDef="redniBroj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Редни број </th>
+                <td matTooltip="Редни број тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.redniBroj}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="trazilac">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Тражилац </th>
+                <td matTooltip="Тражилац захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.trazilac}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojPodnetihZalbi">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Поднетих жалби </th>
+                <td matTooltip="Укупан број поднетих жалби овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojPodnetihZalbi}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojNepostupanjaZalbi">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Жалби због непоступања </th>
+                <td matTooltip="Укупан број жалби због непоступања овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojNepostupanjaZalbi}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="brojOdbijenihZalbi">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Одбијених жалби </th>
+                <td matTooltip="Укупан број одбијених жалби овог тражиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.brojOdbijenihZalbi}}
+                </td>
+            </ng-container>
+
+        </table>
+
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+    </div>
+</div>

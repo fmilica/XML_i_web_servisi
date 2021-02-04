@@ -58,6 +58,12 @@ export class ZalbaCutanjeService {
   obicnaPretraga(sve: string): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'zalba-cutanje/pretrazi?sadrzaj=' + sve, {
       responseType: 'text',
+    headers: this.headers
+    })
+  }
+  generisiRDF(zalbaCutanjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje/generisiRDF/' + zalbaCutanjeId, {
+      responseType: 'arraybuffer',
       headers: this.headers
     })
   }
@@ -65,6 +71,13 @@ export class ZalbaCutanjeService {
   naprednaPretraga(xmlDocument: string) {
     return this.http.post(environment.apiEndpoint + 'zalba-cutanje/pretrazi-napredno', xmlDocument, {
       responseType: 'text',
+      headers: this.headers
+    })
+  }
+
+  generisiJSON(zalbaCutanjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje/generisiJSON/' + zalbaCutanjeId, {
+      responseType: 'arraybuffer',
       headers: this.headers
     })
   }

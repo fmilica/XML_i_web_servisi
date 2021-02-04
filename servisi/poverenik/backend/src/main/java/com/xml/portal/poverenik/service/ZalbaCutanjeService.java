@@ -19,9 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.poverenik.business.ZalbaCutanjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
+import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ListaZalbiCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
 import com.xml.portal.poverenik.dto.pretraga.ZalbaCutanjePretraga;
+import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
+import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 
 @RestController
 @RequestMapping(value = "poverenik/zalba-cutanje", produces = MediaType.APPLICATION_XML_VALUE)
@@ -118,6 +121,54 @@ public class ZalbaCutanjeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiRDF/{id}")
+	public ResponseEntity<Object> generisiRDF(@PathVariable("id") String id) throws Exception {
+
+    	ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(id);
+		if (zalbaCutanje == null) {
+			Greska greska = new Greska("Zalba na cutanje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = StoreMetadata.generisiRDF(zalbaCutanje);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja rdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiJSON/{id}")
+	public ResponseEntity<Object> generisiJSON(@PathVariable("id") String id) throws Exception {
+
+    	ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(id);
+		if (zalbaCutanje == null) {
+			Greska greska = new Greska("Zalba na cutanje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = QueryMetadata.generisiJSON("/poverenik/ZalbaCutanje", "http://zalbacutanje", id);
+    	
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja json-a.");
 			return ResponseEntity.status(500).body(greska);
 		}
 	

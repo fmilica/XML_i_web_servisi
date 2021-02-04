@@ -1,7 +1,6 @@
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -9,7 +8,6 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
-
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -30,6 +28,8 @@ import { ResenjeComponent } from './components/poverenik/resenje/resenje.compone
 import { ZalbeCutanjePoverenikComponent } from './components/poverenik/zalbe-cutanje-poverenik/zalbe-cutanje-poverenik.component';
 import { ZalbeOdlukuPoverenikComponent } from './components/poverenik/zalbe-odluku-poverenik/zalbe-odluku-poverenik.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { IzvestajComponent } from './components/poverenik/izvestaj/izvestaj.component';
+import { AllIzvestajiComponent } from './components/poverenik/all-izvestaji/all-izvestaji.component';
 
 
 
@@ -48,7 +48,9 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     ZalbeOdlukuPoverenikComponent,
     ZalbeCutanjePoverenikComponent,
     ResenjaPoverenikComponent,
-    ResenjaGradjaninComponent
+    ResenjaGradjaninComponent,
+    IzvestajComponent,
+    AllIzvestajiComponent
   ],
   imports: [
     BrowserModule,

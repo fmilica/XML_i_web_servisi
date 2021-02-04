@@ -60,9 +60,23 @@ export class ObavestenjeService {
     })
   }
 
+  generisiRDF(obavestenjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/generisiRDF/' + obavestenjeId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
   naprednaPretraga(xmlDocument: string) {
     return this.http.post(environment.apiEndpoint + 'obavestenje/pretrazi-napredno', xmlDocument, {
       responseType: 'text',
+      headers: this.headers
+    })
+  }
+
+  generisiJSON(obavestenjeId: string) {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/generisiJSON/' + obavestenjeId, {
+      responseType: 'arraybuffer',
       headers: this.headers
     })
   }

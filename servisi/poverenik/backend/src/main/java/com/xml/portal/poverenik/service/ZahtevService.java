@@ -186,7 +186,7 @@ public class ZahtevService {
 
 		} catch (Exception e) {
 			e.printStackTrace();
-			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			Greska greska = new Greska("Greska prilikom generisanja json-a.");
 			return ResponseEntity.status(500).body(greska);
 		}
 	

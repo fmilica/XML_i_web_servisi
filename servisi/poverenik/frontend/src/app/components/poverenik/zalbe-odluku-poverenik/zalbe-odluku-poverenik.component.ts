@@ -36,7 +36,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
-                                'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje']
+                                'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   ngOnInit(): void {
     this.zalbaOdlukaService.getAllZalbeOdluka()
@@ -210,6 +210,21 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
     this.zalbaOdlukaService.naprednaPretraga(xmlDocument).subscribe(
       (response) => {
         this.listaZalbiOdluka2Prikaz(response);
+      });
+  }
+
+  generisiRDF(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiRDF(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiJSON(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "json");
       }
     );
   }

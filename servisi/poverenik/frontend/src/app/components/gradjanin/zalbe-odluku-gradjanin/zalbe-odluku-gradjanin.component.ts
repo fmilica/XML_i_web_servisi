@@ -29,7 +29,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
   ];
 
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
-                                'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje']
+                                'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   ngOnInit(): void {
     this.zalbaOdlukaService.getAllGradjaninZalbeOdluka()
@@ -99,5 +99,21 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
     link.href = url;
     link.download = "zalba_odbijanje_"+id+"."+tip;
     link.click();
+  }
+
+  generisiRDF(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiRDF(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(zalbaOdlukaId: string) {
+    this.zalbaOdlukaService.generisiJSON(zalbaOdlukaId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, zalbaOdlukaId, "json");
+      }
+    );
   }
 }

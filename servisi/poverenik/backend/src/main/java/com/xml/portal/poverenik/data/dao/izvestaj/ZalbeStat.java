@@ -98,4 +98,10 @@ public class ZalbeStat {
         this.ukupnoZbogOdbijanja = value;
     }
 
+	@Override
+	public String toString() {
+		return "ZalbeStat [ukupnoZalbi=" + ukupnoZalbi + ", ukupnoZbogNepostupanja=" + ukupnoZbogNepostupanja
+				+ ", ukupnoZbogOdbijanja=" + ukupnoZbogOdbijanja + "]";
+	}
+
 }

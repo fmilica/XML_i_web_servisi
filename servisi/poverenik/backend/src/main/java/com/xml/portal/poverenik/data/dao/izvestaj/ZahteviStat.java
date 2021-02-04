@@ -118,4 +118,11 @@ public class ZahteviStat {
         this.ukupnoNerazresenihZahteva = value;
     }
 
+	@Override
+	public String toString() {
+		return "ZahteviStat [ukupnoZahteva=" + ukupnoZahteva + ", ukupnoPrihvacenihZahteva=" + ukupnoPrihvacenihZahteva
+				+ ", ukupnoOdbijenihZahtevi=" + ukupnoOdbijenihZahtevi + ", ukupnoNerazresenihZahteva="
+				+ ukupnoNerazresenihZahteva + "]";
+	}
+
 }

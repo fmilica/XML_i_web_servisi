@@ -21,6 +21,7 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import com.ximpleware.extended.xpath.sym;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.xmldb.api.ExistManager;
 
@@ -139,11 +140,43 @@ public class ZahtevRepository {
 		}
 	}
 	
-	public long findAllByYear() {
+	
+	//ukupni zahtevi za godinu
+	public long findAllByYearAndPrihvaceni() {
 		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
 		//String xPath = "/Zahtev/contains(@datum, '2020')"; -> vraca true false
 		// -> zato je uvek vracao sve, vracao je dve false vrednosti
-		String xPath = "/Zahtev[contains(@datum,'" + year + "')]";
+		String xPath = "/Zahtev[contains(@datum,'" + year + "') and @razresen='true' and @odbijen='false']";
+		// vraca zahtev ceo ako zadovoljava uslov u uglastim
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearAndOdbijeni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		//String xPath = "/Zahtev/contains(@datum, '2020')"; -> vraca true false
+		// -> zato je uvek vracao sve, vracao je dve false vrednosti
+		String xPath = "/Zahtev[contains(@datum,'" + year + "') and @razresen='true' and @odbijen='true']";
+		// vraca zahtev ceo ako zadovoljava uslov u uglastim
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearAndNeazreseni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		//String xPath = "/Zahtev/contains(@datum, '2020')"; -> vraca true false
+		// -> zato je uvek vracao sve, vracao je dve false vrednosti
+		String xPath = "/Zahtev[contains(@datum,'" + year + "') and @razresen='false']";
 		// vraca zahtev ceo ako zadovoljava uslov u uglastim
 		try {
 			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
@@ -202,7 +235,162 @@ public class ZahtevRepository {
 		}
 		return zahtevi;
 	}
+
+	public long findAllByYear() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/Zahtev[contains(@datum,'" + year + "')]";
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//ukupni zahtevi za godinu
 	
+	
+	//ukupni zahtevi za gradjanina
+	public long findAllByYearGradjanin() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Ime) and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearGradjaninNerazreseni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Ime) "
+				+ "and @razresen='false'"
+				+ "and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearGradjaninPrihvaceni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Ime) "
+				+ "and @razresen='true'"
+				+ "and @odbijen='false'"
+				+ "and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearGradjaninOdbijeni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Ime) "
+				+ "and @razresen='true'"
+				+ "and @odbijen='true'"
+				+ "and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//ukupni zahtevi za gradjanina
+	
+	
+	//ukupni zahtevi za organizaciju
+	public long findAllByYearOrganizacija() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Naziv) and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearOrganizacijaNerazreseni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Naziv) "
+				+ "and @razresen='false'"
+				+ "and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearOrganizacijaPrihvaceni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Naziv) "
+				+ "and @razresen='true'"
+				+ "and @odbijen='false'"
+				+ "and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	
+	public long findAllByYearOrganizacijaOdbijeni() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zahtev:Zahtev[boolean(/zahtev:Zahtev/zahtev:Trazilac/tipovi:Naziv) "
+				+ "and @razresen='true'"
+				+ "and @odbijen='true'"
+				+ "and contains(@datum,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//ukupni zahtevi za organizaciju
+
 	public String save(Zahtev zahtev) {
 		StringWriter sw = new StringWriter();
 		try {

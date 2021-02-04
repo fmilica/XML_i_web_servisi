@@ -2,6 +2,7 @@ package com.xml.portal.poverenik.data.repository;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -202,4 +203,57 @@ public class ZalbaOdbijanjeRepository {
 			return null;
 		}
 	}
+	
+	//zabla na odbijanje po godini
+	public long findAllByYear() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/Zalba_odbijanje[contains(@datum_podnosenja_zalbe,'" + year + "')]";
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//zalba na odbijanje po godini
+
+	
+	//zalba na odbijanje po godini gradjanin
+	public long findAllByYearGradjanin() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zalbaodbijanje:Zalba_odbijanje[boolean(/zalbaodbijanje:Zalba_odbijanje/zalbaodbijanje:Podaci_o_zaliocu/tipovi:Ime) "
+				+ "and contains(@datum_podnosenja_zalbe,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//zalba na odbijanje po godini gradjanin
+	
+	
+	//zalba na odbijanje po godini gradjanin
+	public long findAllByYearOrganizacija() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zalbaodbijanje:Zalba_odbijanje[boolean(/zalbaodbijanje:Zalba_odbijanje/zalbaodbijanje:Podaci_o_zaliocu/tipovi:Naziv) "
+				+ "and contains(@datum_podnosenja_zalbe,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//zalba na odbijanje po godini gradjanin
+		
 }
