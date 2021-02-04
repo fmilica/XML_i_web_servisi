@@ -15,6 +15,10 @@
             [ngClass]="{'active': activeLink==='obavestenja'}">
             Преглед добијених обавештења
         </a>
+        <a class="nav-item nav-link nav-btn btn logout-span" role="button" tabindex="0"
+            (click)="logout()" (keyup.enter)="logout()">
+            Logout
+        </a>
     </div>
 
     <div class="nav nav-pills mr-auto" *ngIf="role==='ROLE_SLUZBENIK'">
@@ -27,6 +31,10 @@
             (click)="onClick('kreirana-obavestenja')" (keyup.enter)="onClick('kreirana-obavestenja')"
             [ngClass]="{'active': activeLink==='kreirana-obavestenja'}">
             Преглед креираних обавештења
+        </a>
+        <a class="nav-item nav-link nav-btn btn logout-span" role="button" tabindex="0"
+            (click)="logout()" (keyup.enter)="logout()">
+            Logout
         </a>
     </div>
 
