@@ -6,6 +6,8 @@ import { ZahtevService } from 'src/app/services/zahtev.service';
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
 import { ZahtevNaprednaPretragaDto } from 'src/app/model/zahtev-napredna-pretraga-dto';
+import { PismoDTO } from 'src/app/model/pismo-dto.model';
+import { EpostaService } from 'src/app/services/eposta.service';
 
 @Component({
   selector: 'app-all-zahtevi-sluzbenik',
@@ -20,7 +22,8 @@ export class AllZahteviSluzbenikComponent implements OnInit {
 
   constructor(
     private zahtevService: ZahtevService,
-    private router: Router
+    private router: Router,
+    private epostaService: EpostaService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -315,6 +318,31 @@ export class AllZahteviSluzbenikComponent implements OnInit {
     },
     (error) =>{
       this.fetchZahtevi();
+      let pismoDto: PismoDTO = {
+        primalac: 'igi.l.1999@gmail.com',//row.gradjaninEmail,
+        naslov: "Odbijanje zahteva",
+        sadrzaj: "Vas zahtev je odbijen",
+        prilog: ""
+      }
+      const options = {
+        declaration: {
+          include: false,
+        },
+      };
+
+      let obj = {
+        "@": {
+          "tipPriloga": "",
+          "xmlns":"http://pismo"
+      },
+
+      "primalac": 'igi.l.1999@gmail.com',
+      "naslov": "Odbijanje zahteva",
+      "sadrzaj": "Vas zahtev je odbijen",
+      "prilog": ""
+      }
+      
+      this.epostaService.posalji(JsonToXML.parse("pismo", obj)).subscribe((resp) => {console.log("Proslo")});
     })
   }
 }
