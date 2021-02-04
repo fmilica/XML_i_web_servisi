@@ -1,4 +1,4 @@
-package com.xml.portal.poverenik.service.soap.zahtev.endpoint;
+package com.xml.portal.poverenik.service.soap.endpoint;
 
 import javax.xml.ws.Endpoint;
 

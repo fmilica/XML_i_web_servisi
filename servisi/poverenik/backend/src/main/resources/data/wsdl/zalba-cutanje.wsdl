@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ZalbaCutanjeService"
+    targetNamespace="http://zalbacutanje"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://zalbacutanje"
+    >
+    
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://zalbacutanje" 
+                schemaLocation= "../schema/zalba_cutanje/zalbacutanje.xsd"/>  
+        </xs:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="sendZalbaCutanjeRequest">
+        <wsdl:part name="Zalba_cutanje" element="tns:Zalba_cutanje" />
+    </wsdl:message>
+    <wsdl:message name="sendZalbaCutanjeResponse" />
+    
+    
+    <wsdl:portType name="ZalbaCutanjeServicePortType">
+        <wsdl:operation name="sendZalbaCutanje">
+            <wsdl:input message="tns:sendZalbaCutanjeRequest" />
+            <wsdl:output message="tns:sendZalbaCutanjeResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="ZalbaCutanjeSoapBinding" type="tns:ZalbaCutanjeServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="sendZalbaCutanje">
+            <soap:operation soapAction="http://zalbacutanje/ws/getZalbaCutanje" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ZalbaCutanjeService">
+        <wsdl:port name="ZalbaCutanjeServiceSoapBinding" binding="tns:ZalbaCutanjeSoapBinding">
+            <soap:address location="http://localhost:8081/zalbacutanjePort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
