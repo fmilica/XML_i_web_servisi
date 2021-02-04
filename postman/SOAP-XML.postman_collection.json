@@ -1,0 +1,222 @@
+{
+	"info": {
+		"_postman_id": "597f3319-11d1-4030-87b0-4afba4d92c3d",
+		"name": "SOAP:XML",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "WSZalbaOdbijen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:zoc=\"http://zalbaodbijanje\">\r\n    <soapenv:Body>\r\n        <sendZalbaOdbijen xmlns=\"http://zalbaodbijanje\" xmlns:zoc=\"http://zalbaodbijanje\">\r\n            <zoz:Zalba_odbijanje xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:zoz=\"http://zalbaodbijanje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zalbaodbijen schema/zalba_odbijanje/zalba_odbijen.xsd\"\r\n    mesto_podnosenja_zalbe=\"Sabac\" datum_podnosenja_zalbe=\"2020-01-01\" datum_podnosenja_zahteva=\"2020-01-01\">\r\n                <zoz:Podaci_o_primaocu>\r\n                    <tipovi:Naziv property=\"pred:primalacNaziv\">Primalac</tipovi:Naziv>\r\n                    <tipovi:Sediste>\r\n                        <tipovi:Mesto>Mesto Primaoca</tipovi:Mesto>\r\n                        <tipovi:Ulica>Ulica primaoca</tipovi:Ulica>\r\n                        <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n                    </tipovi:Sediste>\r\n                </zoz:Podaci_o_primaocu>\r\n                <zoz:Podaci_o_zaliocu>\r\n                    <tipovi:Ime property=\"pred:podnosilacIme\">Zalilac</tipovi:Ime>\r\n                    <tipovi:Prezime property=\"pred:podnosilacPrezime\">Zaliocic</tipovi:Prezime>\r\n                    <tipovi:Adresa>\r\n                        <tipovi:Mesto>Mesto Zalioca</tipovi:Mesto>\r\n                        <tipovi:Ulica>Ulica zalioca</tipovi:Ulica>\r\n                        <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n                    </tipovi:Adresa>\r\n                </zoz:Podaci_o_zaliocu>\r\n                <zoz:Podaci_o_odluci broj_odluke=\"0\" godina=\"0\">\r\n                    <zoz:Naziv_donosioca_odluke>Donosioc odluke</zoz:Naziv_donosioca_odluke>\r\n                </zoz:Podaci_o_odluci>\r\n                <zoz:Telo_zalbe>\r\n                    <zoz:Razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</zoz:Razlog_zalbe>\r\n                    <zoz:Osnova_zalbe>\r\n                        <zoz:Clan></zoz:Clan>\r\n                        <zoz:Stav></zoz:Stav>\r\n                        <zoz:Zakon></zoz:Zakon>\r\n                    </zoz:Osnova_zalbe>\r\n                </zoz:Telo_zalbe>\r\n                <zoz:Podaci_o_podnosiocu_zalbe>\r\n                    <tipovi:Ime property=\"pred:podnosilacIme\">Podnosioc</tipovi:Ime>\r\n                    <tipovi:Prezime property=\"pred:podnosilacPrezime\">Podnosiocic</tipovi:Prezime>\r\n                    <tipovi:Adresa>\r\n                        <tipovi:Mesto>Mesto Podnosioca</tipovi:Mesto>\r\n                        <tipovi:Ulica>Adresa podnosioca</tipovi:Ulica>\r\n                        <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n                    </tipovi:Adresa>\r\n                    <tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>\r\n                </zoz:Podaci_o_podnosiocu_zalbe>\r\n            </zoz:Zalba_odbijanje>\r\n        </sendZalbaOdbijen>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/ws/zalbaodbijen",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ws",
+						"zalbaodbijen"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WSZalbaCutanje",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" >\r\n    <soapenv:Body>\r\n        <sendZalbaCutanje xmlns=\"http://zalbacutanje\" xmlns:zoc=\"http://zalbacutanje\">\r\n            <zoc:Zalba_cutanje xmlns=\"http://www.w3.org/ns/rdfa#\" xmlns:zoc=\"http://zalbacutanje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zalbacutanje schema/zalba_cutanje/zalbacutanje.xsd\"\r\n    mesto=\"Novi Sad\" datum_podnosenja_zahteva=\"2020-05-07\" datum_podnosenja_zalbe=\"2020-12-07\"\r\n    >\r\n                <zoc:Primalac_zalbe>\r\n                    <tipovi:Naziv property=\"pred:primalacNaziv\">Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</tipovi:Naziv>\r\n                    <tipovi:Sediste>\r\n                        <tipovi:Mesto>Beograd</tipovi:Mesto>\r\n                        <tipovi:Ulica>Bulevar kralja Aleksandra</tipovi:Ulica>\r\n                        <tipovi:Ulicni_broj>15</tipovi:Ulicni_broj>\r\n                    </tipovi:Sediste>\r\n                </zoc:Primalac_zalbe>\r\n                <zoc:Zalba>\r\n                    <zoc:Osnova_zalbe>\r\n                        <zoc:Clan></zoc:Clan>\r\n                        <zoc:Zakon></zoc:Zakon>\r\n                    </zoc:Osnova_zalbe>\r\n                    <zoc:Naziv_organa>Fakultet tehnickih nauka</zoc:Naziv_organa>\r\n                    <zoc:Razlog_zalbe>Nije postupio</zoc:Razlog_zalbe>\r\n                    <zoc:Podaci_o_zahtevu>Zahtevane informacije o polozenim predmetima Vlastislava Jakovljevica</zoc:Podaci_o_zahtevu>\r\n                    <zoc:Podnosilac_zalbe>\r\n                        <tipovi:Ime property=\"pred:podnosilacIme\">Vlastislav</tipovi:Ime>\r\n                        <tipovi:Prezime property=\"pred:podnosilacPrezime\">Jakovljevic</tipovi:Prezime>\r\n                        <tipovi:Adresa>\r\n                            <tipovi:Mesto>Novi Sad</tipovi:Mesto>\r\n                            <tipovi:Ulica>Zeleznicka</tipovi:Ulica>\r\n                            <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>\r\n                        </tipovi:Adresa>\r\n                        <tipovi:Kontakt_podaci>Kontakt telefon: 063/452498506</tipovi:Kontakt_podaci>\r\n                    </zoc:Podnosilac_zalbe>\r\n                </zoc:Zalba>\r\n            </zoc:Zalba_cutanje>\r\n        </sendZalbaCutanje>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/ws/zalbacutanje",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ws",
+						"zalbacutanje"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WSZahtev",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" >\r\n <soapenv:Body>\r\n    <getZahtev xmlns=\"http://zahtev\">\r\n        <id>6353a0c9-e7e7-4a11-b059-2dcc5675f43a</id>    \r\n    </getZahtev>    \r\n </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/ws/zahtev",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ws",
+						"zahtev"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WSIzvestaj",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns=\"http://izvestaj-service\">\r\n    <soapenv:Body>\r\n        <sendIzvestaj>\r\n            <Izvestaj xmlns=\"http://izvestaj\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://izvestaj schema/izvestaj.xsd\" id=\"dfadsa\">\r\n                <Zahtevi>\r\n                    <Gradjanin_zahtevi>\r\n                        <Ukupno_zahteva>55</Ukupno_zahteva>\r\n                        <Ukupno_prihvacenih_zahteva>40</Ukupno_prihvacenih_zahteva>\r\n                        <Ukupno_odbijenih_zahtevi>15</Ukupno_odbijenih_zahtevi>\r\n                        <Ukupno_nerazresenih_zahteva>0</Ukupno_nerazresenih_zahteva>\r\n                    </Gradjanin_zahtevi>\r\n                    <Organizacija_ukupno>\r\n                        <Ukupno_zahteva>64</Ukupno_zahteva>\r\n                        <Ukupno_prihvacenih_zahteva>54</Ukupno_prihvacenih_zahteva>\r\n                        <Ukupno_odbijenih_zahtevi>9</Ukupno_odbijenih_zahtevi>\r\n                        <Ukupno_nerazresenih_zahteva>1</Ukupno_nerazresenih_zahteva>\r\n                    </Organizacija_ukupno>\r\n                    <Zahtevi_ukupno>\r\n                        <Ukupno_zahteva>119</Ukupno_zahteva>\r\n                        <Ukupno_prihvacenih_zahteva>95</Ukupno_prihvacenih_zahteva>\r\n                        <Ukupno_odbijenih_zahtevi>21</Ukupno_odbijenih_zahtevi>\r\n                        <Ukupno_nerazresenih_zahteva>3</Ukupno_nerazresenih_zahteva>\r\n                    </Zahtevi_ukupno>\r\n                </Zahtevi>\r\n                <Zalbe>\r\n                    <Gradjanin_zalbe>\r\n                        <Ukupno_zalbi>28</Ukupno_zalbi>\r\n                        <Ukupno_zbog_nepostupanja>14</Ukupno_zbog_nepostupanja>\r\n                        <Ukupno_zbog_odbijanja>4</Ukupno_zbog_odbijanja>\r\n                    </Gradjanin_zalbe>\r\n                    <Organizacija_zalbe>\r\n                        <Ukupno_zalbi>17</Ukupno_zalbi>\r\n                        <Ukupno_zbog_nepostupanja>2</Ukupno_zbog_nepostupanja>\r\n                        <Ukupno_zbog_odbijanja>15</Ukupno_zbog_odbijanja>\r\n                    </Organizacija_zalbe>\r\n                    <Zalbe_ukupno>\r\n                        <Ukupno_zalbi>45</Ukupno_zalbi>\r\n                        <Ukupno_zbog_nepostupanja>16</Ukupno_zbog_nepostupanja>\r\n                        <Ukupno_zbog_odbijanja>19</Ukupno_zbog_odbijanja>\r\n                    </Zalbe_ukupno>\r\n                </Zalbe>\r\n            </Izvestaj>\r\n        </sendIzvestaj>\r\n    </soapenv:Body>\r\n</soapenv:Envelope>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/ws/izvestaj",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"ws",
+						"izvestaj"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceZalbaCutanje",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<zoc:Zalba_cutanje xmlns=\"http://www.w3.org/ns/rdfa#\" xmlns:zoc=\"http://zalbacutanje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    \r\n    mesto=\"Novi Sad\" datum_podnosenja_zahteva=\"2020-05-07\" datum_podnosenja_zalbe=\"2020-12-07\"\r\n    >\r\n        <zoc:Primalac_zalbe>\r\n            <tipovi:Naziv property=\"pred:primalacNaziv\">Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</tipovi:Naziv>\r\n            <tipovi:Sediste>\r\n                <tipovi:Mesto>Beograd</tipovi:Mesto>\r\n                <tipovi:Ulica>Bulevar kralja Aleksandra</tipovi:Ulica>\r\n                <tipovi:Ulicni_broj>15</tipovi:Ulicni_broj>\r\n            </tipovi:Sediste>\r\n        </zoc:Primalac_zalbe>\r\n        <zoc:Zalba>\r\n            <zoc:Osnova_zalbe>\r\n                <zoc:Clan></zoc:Clan>\r\n                <zoc:Zakon></zoc:Zakon>\r\n            </zoc:Osnova_zalbe>\r\n            <zoc:Naziv_organa>Fakultet tehnickih nauka</zoc:Naziv_organa>\r\n            <zoc:Razlog_zalbe>Nije postupio</zoc:Razlog_zalbe>\r\n            <zoc:Podaci_o_zahtevu>Zahtevane informacije o polozenim predmetima Vlastislava Jakovljevica</zoc:Podaci_o_zahtevu>\r\n            <zoc:Podnosilac_zalbe>\r\n                <tipovi:Ime property=\"pred:podnosilacIme\">Vlastislav</tipovi:Ime>\r\n                <tipovi:Prezime property=\"pred:podnosilacPrezime\">Jakovljevic</tipovi:Prezime>\r\n                <tipovi:Adresa>\r\n                    <tipovi:Mesto>Novi Sad</tipovi:Mesto>\r\n                    <tipovi:Ulica>Zeleznicka</tipovi:Ulica>\r\n                    <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>\r\n                </tipovi:Adresa>\r\n                <tipovi:Kontakt_podaci>Kontakt telefon: 063/452498506</tipovi:Kontakt_podaci>\r\n            </zoc:Podnosilac_zalbe>\r\n        </zoc:Zalba>\r\n    </zoc:Zalba_cutanje>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/poverenik/zalba-cutanje/send-zalba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poverenik",
+						"zalba-cutanje",
+						"send-zalba"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceIzvestaj",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<Izvestaj xmlns=\"http://izvestaj\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xsi:schemaLocation=\"http://izvestaj schema/izvestaj.xsd\" id=\"dfadsa\">\r\n    <Zahtevi>\r\n        <Gradjanin_zahtevi>\r\n            <Ukupno_zahteva>55</Ukupno_zahteva>\r\n            <Ukupno_prihvacenih_zahteva>40</Ukupno_prihvacenih_zahteva>\r\n            <Ukupno_odbijenih_zahtevi>15</Ukupno_odbijenih_zahtevi>\r\n            <Ukupno_nerazresenih_zahteva>0</Ukupno_nerazresenih_zahteva>\r\n        </Gradjanin_zahtevi>\r\n        <Organizacija_ukupno>\r\n            <Ukupno_zahteva>64</Ukupno_zahteva>\r\n            <Ukupno_prihvacenih_zahteva>54</Ukupno_prihvacenih_zahteva>\r\n            <Ukupno_odbijenih_zahtevi>9</Ukupno_odbijenih_zahtevi>\r\n            <Ukupno_nerazresenih_zahteva>1</Ukupno_nerazresenih_zahteva>\r\n        </Organizacija_ukupno>\r\n        <Zahtevi_ukupno>\r\n            <Ukupno_zahteva>119</Ukupno_zahteva>\r\n            <Ukupno_prihvacenih_zahteva>95</Ukupno_prihvacenih_zahteva>\r\n            <Ukupno_odbijenih_zahtevi>21</Ukupno_odbijenih_zahtevi>\r\n            <Ukupno_nerazresenih_zahteva>3</Ukupno_nerazresenih_zahteva>\r\n        </Zahtevi_ukupno>\r\n    </Zahtevi>\r\n    <Zalbe>\r\n        <Gradjanin_zalbe>\r\n            <Ukupno_zalbi>28</Ukupno_zalbi>\r\n            <Ukupno_zbog_nepostupanja>14</Ukupno_zbog_nepostupanja>\r\n            <Ukupno_zbog_odbijanja>4</Ukupno_zbog_odbijanja>\r\n        </Gradjanin_zalbe>\r\n        <Organizacija_zalbe>\r\n            <Ukupno_zalbi>17</Ukupno_zalbi>\r\n            <Ukupno_zbog_nepostupanja>2</Ukupno_zbog_nepostupanja>\r\n            <Ukupno_zbog_odbijanja>15</Ukupno_zbog_odbijanja>\r\n        </Organizacija_zalbe>\r\n        <Zalbe_ukupno>\r\n            <Ukupno_zalbi>45</Ukupno_zalbi>\r\n            <Ukupno_zbog_nepostupanja>16</Ukupno_zbog_nepostupanja>\r\n            <Ukupno_zbog_odbijanja>19</Ukupno_zbog_odbijanja>\r\n        </Zalbe_ukupno>\r\n    </Zalbe>\r\n</Izvestaj>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/poverenik/izvestaj/send-izvestaj",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poverenik",
+						"izvestaj",
+						"send-izvestaj"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ServiceZalbaOdbijen",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zoz:Zalba_odbijanje xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:zoz=\"http://zalbaodbijanje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zalbaodbijen schema/zalba_odbijanje/zalba_odbijen.xsd\"\r\n    mesto_podnosenja_zalbe=\"Sabac\" datum_podnosenja_zalbe=\"2020-01-01\" datum_podnosenja_zahteva=\"2020-01-01\">\r\n    <zoz:Podaci_o_primaocu>\r\n        <tipovi:Naziv property=\"pred:primalacNaziv\">Primalac</tipovi:Naziv>\r\n        <tipovi:Sediste>\r\n            <tipovi:Mesto>Mesto Primaoca</tipovi:Mesto>\r\n            <tipovi:Ulica>Ulica primaoca</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n        </tipovi:Sediste>\r\n    </zoz:Podaci_o_primaocu>\r\n    \r\n    <zoz:Podaci_o_zaliocu>\r\n        <tipovi:Ime property=\"pred:podnosilacIme\">Zalilac</tipovi:Ime>\r\n        <tipovi:Prezime property=\"pred:podnosilacPrezime\">Zaliocic</tipovi:Prezime>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Mesto Zalioca</tipovi:Mesto>\r\n            <tipovi:Ulica>Ulica zalioca</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n    </zoz:Podaci_o_zaliocu>\r\n    \r\n    <zoz:Podaci_o_odluci broj_odluke=\"0\" godina=\"0\">\r\n        <zoz:Naziv_donosioca_odluke>Donosioc odluke</zoz:Naziv_donosioca_odluke>\r\n    </zoz:Podaci_o_odluci>\r\n    \r\n    <zoz:Telo_zalbe>\r\n        <zoz:Razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</zoz:Razlog_zalbe>\r\n        <zoz:Osnova_zalbe>\r\n            <zoz:Clan></zoz:Clan>\r\n            <zoz:Stav></zoz:Stav>\r\n            <zoz:Zakon></zoz:Zakon>\r\n        </zoz:Osnova_zalbe>\r\n    </zoz:Telo_zalbe>\r\n    \r\n    <zoz:Podaci_o_podnosiocu_zalbe>\r\n        <tipovi:Ime property=\"pred:podnosilacIme\">Podnosioc</tipovi:Ime>\r\n        <tipovi:Prezime property=\"pred:podnosilacPrezime\">Podnosiocic</tipovi:Prezime>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Mesto Podnosioca</tipovi:Mesto>\r\n            <tipovi:Ulica>Adresa podnosioca</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n        <tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>\r\n    </zoz:Podaci_o_podnosiocu_zalbe>\r\n    \r\n</zoz:Zalba_odbijanje>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/poverenik/zalba-odbijen/send-zalba",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"poverenik",
+						"zalba-odbijen",
+						"send-zalba"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

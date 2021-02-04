@@ -158,6 +158,15 @@
 									</extraargs>
 									<wsdlLocation>classpath:wsdl/zalba-odbijanje.wsdl</wsdlLocation>
 								</wsdlOption>
+								
+								<wsdlOption>
+									<wsdl>${basedir}/src/main/resources/data/wsdl/izvestaj.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-impl</extraarg>
+										<extraarg>-verbose</extraarg>
+									</extraargs>
+									<wsdlLocation>classpath:wsdl/izvestaj.wsdl</wsdlLocation>
+								</wsdlOption>
 							</wsdlOptions>
 						</configuration>
 						<goals>

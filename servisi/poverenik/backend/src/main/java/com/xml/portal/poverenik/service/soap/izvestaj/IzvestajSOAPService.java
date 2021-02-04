@@ -1,5 +1,9 @@
-package com.xml.portal.poverenik.service.soap.zalba_cutanje;
+package com.xml.portal.poverenik.service.soap.izvestaj;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
@@ -17,21 +21,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
+import com.xml.portal.poverenik.data.dao.izvestaj.Izvestaj;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
 
 @RestController
-@RequestMapping(value = "poverenik/zalba-cutanje")
-public class ZalbaCutanjeSOAPService {
+@RequestMapping(value = "poverenik/izvestaj")
+public class IzvestajSOAPService {
 
-	@PostMapping(value = "/send-zalba", consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Void> sendZalbaCutanje(@RequestBody ZalbaCutanje zalba) throws Exception {
+	@PostMapping(value = "/send-izvestaj", consumes = MediaType.APPLICATION_XML_VALUE)
+	public ResponseEntity<Void> sendIzvestaj(@RequestBody Izvestaj izvestaj) throws Exception {
 
-		String soapEndpointUrl = "http://localhost:8081/ws/zalbacutanje";
+		String soapEndpointUrl = "http://localhost:8081/ws/izvestaj";
 
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory.createConnection();
@@ -48,11 +48,11 @@ public class ZalbaCutanjeSOAPService {
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document document = db.newDocument();
 
-		JAXBContext jc = JAXBContext.newInstance(ZalbaCutanje.class);
+		JAXBContext jc = JAXBContext.newInstance(Izvestaj.class);
 
 		// Marshal the Object to a Document
 		Marshaller marshaller = jc.createMarshaller();
-		marshaller.marshal(zalba, document);
+		marshaller.marshal(izvestaj, document);
 
 		SOAPBody soapBody = envelope.getBody();
 		soapBody.addDocument(document);

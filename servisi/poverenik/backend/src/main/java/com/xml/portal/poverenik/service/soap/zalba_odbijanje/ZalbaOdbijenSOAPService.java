@@ -1,5 +1,9 @@
-package com.xml.portal.poverenik.service.soap.zalba_cutanje;
+package com.xml.portal.poverenik.service.soap.zalba_odbijanje;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
@@ -17,21 +21,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ZalbaOdbijanje;
 
 @RestController
-@RequestMapping(value = "poverenik/zalba-cutanje")
-public class ZalbaCutanjeSOAPService {
+@RequestMapping(value = "poverenik/zalba-odbijen")
+public class ZalbaOdbijenSOAPService {
 
 	@PostMapping(value = "/send-zalba", consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Void> sendZalbaCutanje(@RequestBody ZalbaCutanje zalba) throws Exception {
-
-		String soapEndpointUrl = "http://localhost:8081/ws/zalbacutanje";
+	public ResponseEntity<Void> sendZalbaOdbijen(@RequestBody ZalbaOdbijanje zalba) throws Exception {
+		String soapEndpointUrl = "http://localhost:8081/ws/zalbaodbijen";
 
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory.createConnection();
@@ -48,7 +46,7 @@ public class ZalbaCutanjeSOAPService {
 		DocumentBuilder db = dbf.newDocumentBuilder();
 		Document document = db.newDocument();
 
-		JAXBContext jc = JAXBContext.newInstance(ZalbaCutanje.class);
+		JAXBContext jc = JAXBContext.newInstance(ZalbaOdbijanje.class);
 
 		// Marshal the Object to a Document
 		Marshaller marshaller = jc.createMarshaller();
@@ -73,6 +71,5 @@ public class ZalbaCutanjeSOAPService {
 		soapResponse.writeTo(System.out);
 		System.out.println();
 		return new ResponseEntity<Void>(HttpStatus.OK);
-
 	}
 }

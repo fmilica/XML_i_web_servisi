@@ -19,7 +19,7 @@ public class ZalbaOdbijenEndpointConfig {
 	ZalbaOdbijenServiceSoapBindingImpl zalbaOdbijenServiceSoapBindingImpl;
 	
 	@Bean(name = "zalbaOdbijenEndpointBean")
-	public Endpoint zahtevEndpoint() {
+	public Endpoint zalbaOdbijenEndpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, zalbaOdbijenServiceSoapBindingImpl);
 		endpoint.publish("/zalbaodbijen");
 		return endpoint;

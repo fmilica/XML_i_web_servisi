@@ -19,7 +19,7 @@ public class ZalbaCutanjeEndpointConfig {
 	ZalbaCutanjeServiceSoapBindingImpl zalbaCutanjeServiceSoapBindingImpl;
 
 	@Bean(name = "zalbaCutanjeEndpointBean")
-	public Endpoint zahtevEndpoint() {
+	public Endpoint zalbaCutanjeEndpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, zalbaCutanjeServiceSoapBindingImpl);
 		endpoint.publish("/zalbacutanje");
 		return endpoint;
