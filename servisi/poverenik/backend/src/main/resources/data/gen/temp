@@ -1,11 +1,14 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zahtev/1274e315-764d-4f86-9cd8-8b4deb674358">
+  <rdf:Description rdf:about="http://zalbacutanje/5e6366b1-9dee-4949-839b-591edc051381">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/c3e95709-12bb-449d-824f-c9c582519051"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://zalbacutanje/5e6366b1-9dee-4949-839b-591edc051381">
+    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Поверенику за информације од јавног значаја и заштиту података о личности</pred:primalacNaziv>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://zalbacutanje/5e6366b1-9dee-4949-839b-591edc051381">
     <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/1274e315-764d-4f86-9cd8-8b4deb674358">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Fakultet tehnickih nauka</pred:primalacNaziv>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/1274e315-764d-4f86-9cd8-8b4deb674358">
-    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ULTRA ORGaNIZACIJA</pred:podnosilacNaziv>
+  <rdf:Description rdf:about="http://zalbacutanje/5e6366b1-9dee-4949-839b-591edc051381">
+    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Адвокатска комора Србије</pred:podnosilacNaziv>
   </rdf:Description>
 </rdf:RDF>

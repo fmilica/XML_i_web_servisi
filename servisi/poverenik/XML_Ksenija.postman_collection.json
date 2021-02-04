@@ -1,0 +1,696 @@
+{
+	"info": {
+		"_postman_id": "8a94da55-16d7-46d3-8127-db58430aa156",
+		"name": "XML_Ksenija",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Zahtev",
+			"item": [
+				{
+					"name": "GetAllZahtevi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zahtev",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zahtev"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetGradjaninZahtevi",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zahtev/korisnik?userEmail=pera@pera.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zahtev",
+								"korisnik"
+							],
+							"query": [
+								{
+									"key": "userEmail",
+									"value": "pera@pera.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetZahtev ValidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zahtev/7b0b1ca6-1229-4289-bb63-d4641394df82",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zahtev",
+								"7b0b1ca6-1229-4289-bb63-d4641394df82"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetZahtev InvalidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zahtev/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zahtev",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateZahtev1",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zahtev:Zahtev xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:zahtev=\"http://zahtev\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zahtev schema/zahtev/zahtev.xsd\" \r\n    mesto=\"Сремска Митровицеа\" \r\n    datum=\"2021-02-04\"\r\n    >\r\n    <zahtev:Organ_vlasti>\r\n        <tipovi:Naziv>ФТН</tipovi:Naziv>\r\n        <tipovi:Sediste>Нови Сад</tipovi:Sediste>\r\n    </zahtev:Organ_vlasti>\r\n    <zahtev:Telo_zahteva>\r\n        <zahtev:Zakonska_osnova>\r\n            <zahtev:Clan>15</zahtev:Clan>\r\n            <zahtev:Stav>1</zahtev:Stav>\r\n            <zahtev:Zakon>Закон о слободном приступу информацијама од јавног значаја</zahtev:Zakon>\r\n            <zahtev:Sluzbeni_glasnik>\r\n                <tipovi:Naziv>Службени гласник РС</tipovi:Naziv>\r\n                <tipovi:Brojevi>\r\n                    <tipovi:Broj>120/04</tipovi:Broj>\r\n                    <tipovi:Broj>54/07</tipovi:Broj>\r\n                    <tipovi:Broj>104/09</tipovi:Broj>\r\n                    <tipovi:Broj>36/10</tipovi:Broj>\r\n                </tipovi:Brojevi>\r\n            </zahtev:Sluzbeni_glasnik>\r\n        </zahtev:Zakonska_osnova>\r\n        <zahtev:Zahtevi>\r\n            <zahtev:Obavestenje>\r\n            </zahtev:Obavestenje>\r\n            <zahtev:Kopija>\r\n            </zahtev:Kopija>\r\n            <zahtev:Dostavljanje_kopije>\r\n                <zahtev:Nacin_dostave>\r\n                    <zahtev:Posebna_dostava>\r\n                        <zahtev:Nacin_posebne_dostave>Голубом писмоношом</zahtev:Nacin_posebne_dostave>\r\n                    </zahtev:Posebna_dostava>\r\n                </zahtev:Nacin_dostave>\r\n            </zahtev:Dostavljanje_kopije>\r\n        </zahtev:Zahtevi>\r\n        <zahtev:Zahtevane_informacije>Информације о положеним предметима</zahtev:Zahtevane_informacije>\r\n    </zahtev:Telo_zahteva>\r\n    <zahtev:Trazilac>\r\n        <tipovi:Ime>Пера</tipovi:Ime>\r\n        <tipovi:Prezime>Перић</tipovi:Prezime>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Нови Сад</tipovi:Mesto>\r\n            <tipovi:Ulica>Железничка</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n        <tipovi:Kontakt_podaci>063/452498506</tipovi:Kontakt_podaci>\r\n    </zahtev:Trazilac>\r\n</zahtev:Zahtev>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/zahtev?userEmail=pera@pera.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zahtev"
+							],
+							"query": [
+								{
+									"key": "userEmail",
+									"value": "pera@pera.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateZahtev2",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zahtev:Zahtev xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:zahtev=\"http://zahtev\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zahtev schema/zahtev/zahtev.xsd\" \r\n    mesto=\"Сремска Митровицеа\" \r\n    datum=\"2021-02-04\"\r\n    >\r\n    <zahtev:Organ_vlasti>\r\n        <tipovi:Naziv>ФТН</tipovi:Naziv>\r\n        <tipovi:Sediste>Нови Сад</tipovi:Sediste>\r\n    </zahtev:Organ_vlasti>\r\n    <zahtev:Telo_zahteva>\r\n        <zahtev:Zakonska_osnova>\r\n            <zahtev:Clan>15</zahtev:Clan>\r\n            <zahtev:Stav>1</zahtev:Stav>\r\n            <zahtev:Zakon>Закон о слободном приступу информацијама од јавног значаја</zahtev:Zakon>\r\n            <zahtev:Sluzbeni_glasnik>\r\n                <tipovi:Naziv>Службени гласник РС</tipovi:Naziv>\r\n                <tipovi:Brojevi>\r\n                    <tipovi:Broj>120/04</tipovi:Broj>\r\n                    <tipovi:Broj>54/07</tipovi:Broj>\r\n                    <tipovi:Broj>104/09</tipovi:Broj>\r\n                    <tipovi:Broj>36/10</tipovi:Broj>\r\n                </tipovi:Brojevi>\r\n            </zahtev:Sluzbeni_glasnik>\r\n        </zahtev:Zakonska_osnova>\r\n        <zahtev:Zahtevi>\r\n            <zahtev:Uvid>\r\n            </zahtev:Uvid>\r\n            <zahtev:Dostavljanje_kopije>\r\n                <zahtev:Nacin_dostave>\r\n                    <zahtev:Dostava_postom>\r\n                    </zahtev:Dostava_postom>\r\n                </zahtev:Nacin_dostave>\r\n            </zahtev:Dostavljanje_kopije>\r\n        </zahtev:Zahtevi>\r\n        <zahtev:Zahtevane_informacije>Извештај о финансијама</zahtev:Zahtevane_informacije>\r\n    </zahtev:Telo_zahteva>\r\n    <zahtev:Trazilac>\r\n        <tipovi:Naziv>Адвокатска комора Србије</tipovi:Naziv>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Нови Сад</tipovi:Mesto>\r\n            <tipovi:Ulica>Краља Петра</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>35</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n        <tipovi:Kontakt_podaci>063/452498506</tipovi:Kontakt_podaci>\r\n    </zahtev:Trazilac>\r\n</zahtev:Zahtev>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/zahtev?userEmail=pera@pera.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zahtev"
+							],
+							"query": [
+								{
+									"key": "userEmail",
+									"value": "pera@pera.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateZahtev3",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Resenje",
+			"item": [
+				{
+					"name": "GetResenje ValidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/resenje/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"resenje",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetResenje InvalidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/resenje/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"resenje",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateResenje",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<res:Resenje xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:res=\"http://resenje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://resenje resenje.xsd\" \r\n    broj_resenja=\"000-00-0000/0000-00\" \r\n    datum_resenja=\"2006-05-04\" \r\n    id=\"ID01\"\r\n    vocab=\"http://www.xml.com/predicate/\"\r\n    about=\"http://resenje/ID1\">\r\n    <res:Opis_zalbe razlog_zalbe=\"nepostupanje\" datum_zahteva=\"2006-05-04\">\r\n        Повереник за информације од јавног значаја и заштиту података о личности, \r\n        у поступку по алби коју је изјавио AA, због непоступања Учитељског факултета \r\n        у Призрену са привременим седиштем у Лепосавићу, ул. Немањина бб, \r\n        по његовом захтеву од 16.04.2020. године за приступ информацијама од \r\n        јавног значаја, на основу члана 35. став 1. тачка 5. Закона о слободном приступу\r\n        информацијама од јавног значаја („Сл. гласник РС“, бр. 120/04, 54/07, 104/09 и 36/10),\r\n        а у вези са чланом 4. тачка 22. Закона о заштити података о личности \r\n        („Сл. гласник РС“, број 87/18), као и члана 23. и члана 24. став 4. \r\n        Закона о слободном приступу информацијама од јавног значаја и члана 173. став 2. \r\n        Закона о општем управном поступку („Сл. гласник РС“, бр. 18/2016 и 95/2018-аутентично тумачење), \r\n        доноси\r\n        <res:Podnosilac_zalbe>\r\n            <res:Ime property=\"pred:zalilacIme\">Mihailo</res:Ime>\r\n            <res:Prezime property=\"pred:zalilacPrezime\">Grujic</res:Prezime>\r\n        </res:Podnosilac_zalbe>\r\n        <res:Organ_vlasti>\r\n            <tipovi:Naziv property=\"pred:optuzeniNaziv\">Uciteljski fakultet u Prizrenu</tipovi:Naziv>\r\n            <tipovi:Sediste>\r\n                <tipovi:Mesto>Leposavic</tipovi:Mesto>\r\n                <tipovi:Ulica>Nemanjina</tipovi:Ulica>\r\n                <tipovi:Ulicni_broj>bb</tipovi:Ulicni_broj>\r\n            </tipovi:Sediste>\r\n        </res:Organ_vlasti>\r\n        <res:Zakonska_osnova_resenja>\r\n            <res:Zakonska_osnova>\r\n                <res:Clan>35</res:Clan>\r\n                <res:Stav>1</res:Stav>\r\n                <res:Tacka>5</res:Tacka>\r\n                <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                <res:Sluzbeni_glasnik>\r\n                    <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>\r\n                    <tipovi:Brojevi>\r\n                        <tipovi:Broj>120/04</tipovi:Broj>\r\n                        <tipovi:Broj>54/07</tipovi:Broj>\r\n                        <tipovi:Broj>104/09</tipovi:Broj>\r\n                        <tipovi:Broj>36/10</tipovi:Broj>\r\n                    </tipovi:Brojevi>\r\n                </res:Sluzbeni_glasnik>\r\n            </res:Zakonska_osnova>\r\n            <res:Zakonska_osnova>\r\n                <res:Clan>4</res:Clan>\r\n                <res:Tacka>22</res:Tacka>\r\n                <res:Zakon>Закона о заштити података о личности</res:Zakon>\r\n                <res:Sluzbeni_glasnik>\r\n                    <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>\r\n                    <tipovi:Brojevi>\r\n                        <tipovi:Broj>87/18</tipovi:Broj>\r\n                    </tipovi:Brojevi>\r\n                </res:Sluzbeni_glasnik>\r\n            </res:Zakonska_osnova>\r\n            <res:Zakonska_osnova>\r\n                <res:Clan>23</res:Clan>\r\n                <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n            </res:Zakonska_osnova>\r\n            <res:Zakonska_osnova>\r\n                <res:Clan>24</res:Clan>\r\n                <res:Stav>4</res:Stav>\r\n                <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n            </res:Zakonska_osnova>\r\n            <res:Zakonska_osnova>\r\n                <res:Clan>173</res:Clan>\r\n                <res:Stav>2</res:Stav>\r\n                <res:Zakon>Закона о општем управном поступку</res:Zakon>\r\n                <res:Sluzbeni_glasnik>\r\n                    <tipovi:Naziv>Službeni glasnik RS</tipovi:Naziv>\r\n                    <tipovi:Brojevi>\r\n                        <tipovi:Broj>18/16</tipovi:Broj>\r\n                        <tipovi:Broj>95/18</tipovi:Broj>\r\n                    </tipovi:Brojevi>\r\n                </res:Sluzbeni_glasnik>\r\n            </res:Zakonska_osnova>\r\n        </res:Zakonska_osnova_resenja>\r\n    </res:Opis_zalbe>\r\n    <res:Odluka>\r\n        <res:Nalozi>\r\n            <res:Nalog rok_izvrsenja=\"5\">\r\n                I Налаже се Учитељском факултету у Призрену са привременим \r\n                седиштем у Лепосавићу, да без одлагања, а најкасније у року \r\n                од пет дана од дана пријема овог решења, обавести АА, \r\n                да ли поседује тражене информације односно документ у \r\n                коме су исте садржане, и то: Уговор о раду који је као последњи\r\n                потписан између тог Факултета и ББ, те да му, уколико такав \r\n                документ поседује достави копију истог електронском поштом на\r\n                адресу … или поштом, с тим што ће пре достављања заштитити и \r\n                учинити недоступним податке о личности којима би се повредило \r\n                право на приватност лица на које се информације односе, \r\n                као што су: адреса становања, лични матични број грађана, име \r\n                оца, радни стаж, просечна оцена студирања и сл. уколико су \r\n                такви подаци садржани у траженом документу.\r\n            </res:Nalog>\r\n            <res:Nalog rok_izvrsenja=\"7\">\r\n                II О извршењу решења Учитељски факултет у Призрену са привременим\r\n                седиштем у Лепосавићу, ће обавестити Повереника у року од седам \r\n                дана од пријема овог решења.\r\n            </res:Nalog>\r\n        </res:Nalozi>\r\n    </res:Odluka>\r\n    <res:Obrazlozenje>\r\n        <res:Postupak_zalioca prilozene_kopije=\"true\">\r\n            <res:Podnosenje_zalbe datum_zalbe=\"2020-05-07\"\r\n                vocab=\"http://www.xml.com/predicate/\"\r\n                about=\"http://resenje/ID1\"\r\n                rel=\"pred:vezanaZalba\"\r\n                href=\"http://zalbacutanje/ID1\">\r\n                АА, као тражилац информација, изјавио је дана 07.05.2020. \r\n                године жалбу Поверенику, због непоступања Учитељског факултета \r\n                у Призрену са привременим седиштем у Лепосавићу\r\n            </res:Podnosenje_zalbe>\r\n            <res:Podnosenje_zahteva datum_zahteva=\"2020-04-16\"\r\n                vocab=\"http://www.xml.com/predicate/\"\r\n                about=\"http://resenje/ID1\"\r\n                rel=\"pred:vezanZahtev\"\r\n                href=\"http://zahtev/ID1\">\r\n                по његовом захтеву од 16.04.2020. године за приступ информацијама\r\n                од јавног значаја и у прилогу доставио копију истог.\r\n            </res:Podnosenje_zahteva>\r\n        </res:Postupak_zalioca>\r\n        <res:Prosledjivanje_zalbe datum_prosledjivanja=\"2020-05-11\">\r\n            Поступајући по жалби, Повереник је дана 11.05.2020. године упутио \r\n            исту на изјашњење Учитељском факултету у Призрену са привременим \r\n            седиштем у Лепосавићу, као органу власти у смислу члана 3. \r\n            Закона о слободном приступу информацијама од јавног значаја и\r\n            затражио да се изјасни о наводима жалбе, посебно о разлозима \r\n            непоступања у законском року по поднетом захтеву у складу са \r\n            одредбама члана 16. ст.1-9. или ст. 10. Закона,\r\n            <res:Zakonska_osnova_prosledjivanja>\r\n                <res:Zakonska_osnova>\r\n                    <res:Clan>3</res:Clan>\r\n                    <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                </res:Zakonska_osnova>\r\n                <res:Zakonska_osnova>\r\n                    <res:Clan>16</res:Clan>\r\n                    <res:Stav>10</res:Stav>\r\n                    <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                </res:Zakonska_osnova>\r\n            </res:Zakonska_osnova_prosledjivanja>\r\n        </res:Prosledjivanje_zalbe>\r\n        <res:Odgovor_na_zalbu rok_za_odgovor=\"8\">\r\n            поводом чега није добио одговор.\r\n        </res:Odgovor_na_zalbu>\r\n        <res:Razlozi_odluke>\r\n            По разматрању жалбе и осталих списа овог предмета, \r\n            донета је одлука као у диспозитиву решења из следећих разлога:\r\n            <res:Detaljan_opis_podnetog_zahteva>\r\n                Увидом у списе предмета утврђено је да је АА, дана 16.04.2020. године, \r\n                поднео Учитељском факултету у Призрену са привременим седиштем у Лепосавићу, \r\n                захтев за приступ информацијама од јавног значаја, електронском поштом, \r\n                којим је тражио информације од јавног значаја, ближе наведенe у ставу \r\n                I диспозитива овог решења.\r\n            </res:Detaljan_opis_podnetog_zahteva>\r\n            <res:Detaljan_opis_odgovora_na_zahtev>\r\n                Такође је увидом у списе предмета утврђено да по захтеву жалиоца \r\n                од 16.04.2020. године, орган власти није поступио, што је био дужан да \r\n                учини без одлагања, а најкасније у року од 15 дана од пријема захтева \r\n                те да жалиоца, у смислу члана 16. став 1. Закона о слободном приступу \r\n                информацијама од јавног значаја, обавести да ли поседује тражене \r\n                информације и да му, уколико исте поседује, стави на увид документ \r\n                који исте садржи односно изда му или достави копију документа у коме \r\n                су тражене информације садржане, или да у супротном донесе решење о \r\n                одбијању захтева, у смислу става 10. истог члана.\r\n                <res:Zakonska_osnova_odgovora>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>16</res:Clan>\r\n                        <res:Stav>1</res:Stav>\r\n                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>16</res:Clan>\r\n                        <res:Stav>10</res:Stav>\r\n                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                </res:Zakonska_osnova_odgovora>\r\n            </res:Detaljan_opis_odgovora_na_zahtev>\r\n            <res:Obrazlozenje_odluke tip_odluke=\"osnovana\">\r\n                <res:Detaljan_opis_odluke>\r\n                    Имајући у виду да орган власти по захтеву жалиоца од 16.04.2020. године није поступио у\r\n                    складу са наведеним одредбама Закона о слободном приступу информацијама од јавног значаја, а\r\n                    да није оправдао разлоге непоступања по поднетом захтеву, Повереник је у поступку по жалби, на\r\n                    основу члана 23. и члана 24. ст. 1. и 4. Закона о слободном приступу информацијама од јавног\r\n                    значаја и члана 173. ст. 2. Закона о општем управном поступку, одлучио као у ставу I диспозитива\r\n                    овог решења, нашавши да је жалба основана, односно да је неспорно право жалиоца на тражене\r\n                    информације у смислу члана 5. Закона о слободном приступу информацијама од јавног значаја, по\r\n                    коме свако има право да му буде саопштено да ли орган власти поседује или му је доступна одређена\r\n                    информација од јавног значаја, као и да му се информација, уколико је у поседу органа, учини\r\n                    доступном, на начин како је то наложено у ставу I диспозитива овог решења, што је у складу са\r\n                    одредбом члана 12. Закона о слободном приступу информацијама од јавног значаја, која предвиђа\r\n                    могућност издвајања тражене информације од јавног значаја од осталих информација садржаних у\r\n                    документу у које орган власти није дужан да тражиоцу омогући увид, јер би се доступношћу тим\r\n                    информацијама повредило право на приватност и заштиту података о личности лица на која се\r\n                    тражене информације односе.\r\n                    Учитељски факултет у Призрену са привременим седиштем у Лепосавићу, је дужан да о\r\n                    извршењу решења из става I диспозитива, обавести Повереника у складу са чланом 24. став 3. Закона\r\n                    о слободном приступу информацијама од јавног значаја.\r\n                </res:Detaljan_opis_odluke>\r\n                <res:Zakonske_osnove_odluke>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>23</res:Clan>\r\n                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>24</res:Clan>\r\n                        <res:Stav>1</res:Stav>\r\n                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>24</res:Clan>\r\n                        <res:Stav>4</res:Stav>\r\n                        <res:Zakon>Закон о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>173</res:Clan>\r\n                        <res:Stav>2</res:Stav>\r\n                        <res:Zakon>Закона о општем управном поступку</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>5</res:Clan>\r\n                        <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>12</res:Clan>\r\n                        <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                    <res:Zakonska_osnova>\r\n                        <res:Clan>24</res:Clan>\r\n                        <res:Stav>3</res:Stav>\r\n                        <res:Zakon>Закона о слободном приступу информацијама од јавног значаја</res:Zakon>\r\n                    </res:Zakonska_osnova>\r\n                </res:Zakonske_osnove_odluke>\r\n            </res:Obrazlozenje_odluke>\r\n        </res:Razlozi_odluke>\r\n        <res:Zalba_na_resenje rok_za_tuzbu=\"30\" taksa_tuzbe=\"3.9E2\" zakon=\"Закон о управним споровима\" sud=\"Управни суд у Београду\">\r\n            Против овог решења није допуштена жалба већ се, у складу са Законом о управним споровима, \r\n            може покренути управни спор тужбом Управном суду у Београду, у року од 30 дана од дана \r\n            пријема решења. Такса на тужбу износи 390,00 динара.\r\n        </res:Zalba_na_resenje>\r\n    </res:Obrazlozenje>\r\n    <res:Poverenik>\r\n        <res:Ime property=\"pred:izdavacIme\">Aa</res:Ime>\r\n        <res:Prezime property=\"pred:izdavacPrezime\">Aa</res:Prezime>\r\n    </res:Poverenik>\r\n</res:Resenje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/resenje",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"resenje"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ZalbaCutanje",
+			"item": [
+				{
+					"name": "GetZalbaCutanje ValidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zalba-cutanje/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zalba-cutanje",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetZalbaCutanje InvalidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zalba-cutanje/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zalba-cutanje",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateZalbaCutanje",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zoc:Zalba_cutanje xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:zoc=\"http://zalbacutanje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zalbacutanje schema/zalba_cutanje/zalbacutanje.xsd\"\r\n    mesto=\"Нови Сад\" datum_podnosenja_zahteva=\"2020-05-07\" datum_podnosenja_zalbe=\"2020-12-07\"\r\n    >\r\n    <zoc:Primalac_zalbe>\r\n        <tipovi:Naziv>Поверенику за информације од јавног значаја и заштиту података о личности</tipovi:Naziv>\r\n        <tipovi:Sediste>\r\n            <tipovi:Mesto>Београд</tipovi:Mesto>\r\n            <tipovi:Ulica>Булевар краља Александра</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>15</tipovi:Ulicni_broj>\r\n        </tipovi:Sediste>\r\n    </zoc:Primalac_zalbe>\r\n    <zoc:Zalba>\r\n        <zoc:Osnova_zalbe>\r\n            <zoc:Clan>22</zoc:Clan>\r\n            <zoc:Zakon>Закона о слободном приступу информацијама од јавног значаја</zoc:Zakon>\r\n        </zoc:Osnova_zalbe>\r\n        <zoc:Naziv_organa>ФТН</zoc:Naziv_organa>\r\n        <zoc:Razlog_zalbe>није поступио</zoc:Razlog_zalbe>\r\n        <zoc:Podaci_o_zahtevu>Извештај о финансијама</zoc:Podaci_o_zahtevu>\r\n        <zoc:Podnosilac_zalbe>\r\n            <tipovi:Naziv>Адвокатска комора Србије</tipovi:Naziv>\r\n            <tipovi:Adresa>\r\n                <tipovi:Mesto>Нови Сад</tipovi:Mesto>\r\n                <tipovi:Ulica>Краља Петра</tipovi:Ulica>\r\n                <tipovi:Ulicni_broj>35</tipovi:Ulicni_broj>\r\n            </tipovi:Adresa>\r\n            <tipovi:Kontakt_podaci>063/452498506</tipovi:Kontakt_podaci>\r\n        </zoc:Podnosilac_zalbe>\r\n    </zoc:Zalba>\r\n</zoc:Zalba_cutanje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/zalba-cutanje?zahtevId=c3e95709-12bb-449d-824f-c9c582519051&userEmail=pera@pera.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zalba-cutanje"
+							],
+							"query": [
+								{
+									"key": "zahtevId",
+									"value": "c3e95709-12bb-449d-824f-c9c582519051"
+								},
+								{
+									"key": "userEmail",
+									"value": "pera@pera.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "ZalbaOdbijanje",
+			"item": [
+				{
+					"name": "GetZalbaOdbijanje ValidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zalba-odbijanje/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zalba-odbijanje",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetZalbaOdbijanje InvalidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/zalba-odbijanje/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zalba-odbijanje",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateZalbaOdbijanje",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<zoz:Zalba_odbijanje xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:zoz=\"http://zalbaodbijanje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://zalbaodbijen zalba_odbijen.xsd\"\r\n    mesto_podnosenja_zalbe=\"Sabac\" datum_podnosenja_zalbe=\"2020-01-01\" datum_podnosenja_zahteva=\"2020-01-01\"\r\n    \r\n    vocab=\"http://www.xml.com/predicate/\"\r\n\r\n    rel=\"pred:vezanZahtev\"\r\n    href=\"http://zahtev/ID1\">\r\n    <zoz:podaci_o_primaocu>\r\n        <tipovi:Naziv property=\"pred:primalacNaziv\">Primalac</tipovi:Naziv>\r\n        <tipovi:Sediste>\r\n            <tipovi:Mesto>Mesto Primaoca</tipovi:Mesto>\r\n            <tipovi:Ulica>Ulica primaoca</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n        </tipovi:Sediste>\r\n    </zoz:podaci_o_primaocu>\r\n    \r\n    <zoz:podaci_o_zaliocu>\r\n        <tipovi:Ime property=\"pred:podnosilacIme\">Zalilac</tipovi:Ime>\r\n        <tipovi:Prezime property=\"pred:podnosilacPrezime\">Zaliocic</tipovi:Prezime>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Mesto Zalioca</tipovi:Mesto>\r\n            <tipovi:Ulica>Ulica zalioca</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n    </zoz:podaci_o_zaliocu>\r\n    \r\n    <zoz:podaci_o_odluci broj_odluke=\"0\" godina=\"0\">\r\n        <zoz:naziv_donosioca_odluke>Donosioc odluke</zoz:naziv_donosioca_odluke>\r\n    </zoz:podaci_o_odluci>\r\n    \r\n    <zoz:telo_zalbe>\r\n        <zoz:razlog_zalbe>Neprofesionilazam uzeli ste mi 10 poena</zoz:razlog_zalbe>\r\n        <zoz:osnova_zalbe>\r\n            <zoz:Clan></zoz:Clan>\r\n            <zoz:Stav></zoz:Stav>\r\n            <zoz:Zakon></zoz:Zakon>\r\n        </zoz:osnova_zalbe>\r\n    </zoz:telo_zalbe>\r\n    \r\n    <zoz:podaci_o_podnosiocu_zalbe>\r\n        <tipovi:Ime property=\"pred:podnosilacIme\">Podnosioc</tipovi:Ime>\r\n        <tipovi:Prezime property=\"pred:podnosilacPrezime\">Podnosiocic</tipovi:Prezime>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Mesto Podnosioca</tipovi:Mesto>\r\n            <tipovi:Ulica>Adresa podnosioca</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>1</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n        <tipovi:Kontakt_podaci></tipovi:Kontakt_podaci>\r\n    </zoz:podaci_o_podnosiocu_zalbe>\r\n    \r\n</zoz:Zalba_odbijanje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/zalba-odbijanje",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"zalba-odbijanje"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Obavestenje",
+			"item": [
+				{
+					"name": "GetObavestenje ValidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/obavestenje/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"obavestenje",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetObavestenje InvalidId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/obavestenje/5",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"obavestenje",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CreateObavestenje",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<obv:Obavestenje xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n    xmlns:obv=\"http://obavestenje\"\r\n    xmlns:tipovi=\"http://tipovi\"\r\n    xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n    xmlns:pred=\"http://www.xml.com/predicate/\"\r\n    xsi:schemaLocation=\"http://obavestenje obavestenje.xsd\" \r\n    dostavljeno=\"imenovanom\" \r\n    datum=\"2020-02-01\"\r\n    >\r\n    <obv:Organ_vlasti>\r\n        <tipovi:Naziv property=\"pred:izdavacNaziv\">Факултет техничких наука</tipovi:Naziv>\r\n        <tipovi:Sediste>Нови Сад</tipovi:Sediste>\r\n    </obv:Organ_vlasti>\r\n    <obv:Broj_predmeta>1</obv:Broj_predmeta>\r\n    <obv:Podnosilac>\r\n        <tipovi:Ime property=\"pred:podnosilacIme\">Пера</tipovi:Ime>\r\n        <tipovi:Prezime property=\"pred:podnosilacPrezime\">Перић</tipovi:Prezime>\r\n        <tipovi:Adresa>\r\n            <tipovi:Mesto>Нови Сад</tipovi:Mesto>\r\n            <tipovi:Ulica>Железничка</tipovi:Ulica>\r\n            <tipovi:Ulicni_broj>23</tipovi:Ulicni_broj>\r\n        </tipovi:Adresa>\r\n    </obv:Podnosilac>\r\n    <obv:Uvid_u_dokument>\r\n        <obv:Zakonska_osnova>\r\n            <obv:Clan>16</obv:Clan>\r\n            <obv:Stav>1</obv:Stav>\r\n            <obv:Zakon>Закон о слободном приступу информацијама од јавног значаја</obv:Zakon>\r\n        </obv:Zakonska_osnova>\r\n        <obv:Datum_potrazivanja>2020-01-30</obv:Datum_potrazivanja>\r\n        <obv:Opis_trazene_informacije>Информације о положеним предметима</obv:Opis_trazene_informacije>\r\n        <obv:Podaci_o_uvidu>\r\n            <obv:Datum>2020-02-02</obv:Datum>\r\n            <obv:Vreme>15:30</obv:Vreme>\r\n            <obv:Pocetno_vreme>12</obv:Pocetno_vreme>\r\n            <obv:Krajnje_vreme>17</obv:Krajnje_vreme>\r\n            <obv:Mesto_uvida>\r\n                <tipovi:Mesto>Нови Сад</tipovi:Mesto>\r\n                <tipovi:Ulica>Трг Доситеја Обрадовића</tipovi:Ulica>\r\n                <tipovi:Ulicni_broj>4</tipovi:Ulicni_broj>\r\n                <obv:Kancelarijski_broj>F-13</obv:Kancelarijski_broj>\r\n            </obv:Mesto_uvida>\r\n        </obv:Podaci_o_uvidu>\r\n    </obv:Uvid_u_dokument>\r\n    <obv:Ukupan_trosak_kopija valuta=\"RSD\" ziro_racun=\"840-742328-843-30\" poziv_na_broj=\"97\">30</obv:Ukupan_trosak_kopija>\r\n</obv:Obavestenje>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/obavestenje?zahtevId=66672e21-9e90-44ae-a6a8-333af79e4aa6&userEmail=pera@pera.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"obavestenje"
+							],
+							"query": [
+								{
+									"key": "zahtevId",
+									"value": "66672e21-9e90-44ae-a6a8-333af79e4aa6"
+								},
+								{
+									"key": "userEmail",
+									"value": "pera@pera.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllObavestenja",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/obavestenje",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"obavestenje"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllGradjaninObavestenja",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8081/poverenik/obavestenje/korisnik?userEmail=pera@pera.com",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"obavestenje",
+								"korisnik"
+							],
+							"query": [
+								{
+									"key": "userEmail",
+									"value": "pera@pera.com"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Korisnik",
+			"item": [
+				{
+					"name": "Prijava uspesna",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<UserLoginDto>\r\n    <email>pera@pera.com</email>\r\n    <password>pera</password>\r\n</UserLoginDto>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/korisnik/prijava",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"korisnik",
+								"prijava"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prijava nepostojeci email",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<kor:Korisnik xmlns:kor=\"http://korisnik\"\r\n xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\"\r\n xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n xsi:schemaLocation=\"http://korisnik korisnik.xsd\" uloga=\"uloga1\">\r\n    <kor:Ime></kor:Ime>\r\n    <kor:Prezime></kor:Prezime>\r\n    <kor:Email>random@random.com</kor:Email>\r\n    <kor:Lozinka>pera</kor:Lozinka>\r\n</kor:Korisnik>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/korisnik/prijava",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"korisnik",
+								"prijava"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Prijava pogresna lozinka",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<kor:Korisnik xmlns:kor=\"http://korisnik\"\r\n xmlns=\"http://www.w3.org/ns/rdfa#\"\r\n xmlns:pred=\"http://www.ftn.uns.ac.rs/rdf/examples/predicate/\"\r\n xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n xsi:schemaLocation=\"http://korisnik korisnik.xsd\" uloga=\"uloga1\">\r\n    <kor:Ime></kor:Ime>\r\n    <kor:Prezime></kor:Prezime>\r\n    <kor:Email>evaj.evadesign@gmail.com</kor:Email>\r\n    <kor:Lozinka>mika</kor:Lozinka>\r\n</kor:Korisnik>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/korisnik/prijava",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"korisnik",
+								"prijava"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Registracija",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "<UserRegisterDto>\r\n    <email>novi@novi.com</email>\r\n    <password>novi</password>\r\n    <name>Novi</name>\r\n    <surname>Novi</surname>\r\n</UserRegisterDto>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8081/poverenik/korisnik/registracija",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"poverenik",
+								"korisnik",
+								"registracija"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

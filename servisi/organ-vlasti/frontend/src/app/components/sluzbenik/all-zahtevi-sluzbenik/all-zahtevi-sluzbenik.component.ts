@@ -54,8 +54,10 @@ export class AllZahteviSluzbenikComponent implements OnInit {
         let allZahtevi: any = txml.parse(xmlResponse);
         let data = [];
         allZahtevi[1].children.map(zahtev => {
+          let emailPath = zahtev.attributes.href.split('/');
           let zahtevPrikaz = {
             id: zahtev.attributes.id.substring(14),
+            gradjaninEmail: emailPath[3],
             nazivOrgana: zahtev.children[0].children[0].children[0],
             sedisteOrgana: zahtev.children[0].children[1].children[0],
             obavestenje: 'false',
@@ -148,6 +150,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
   createObavestenje(row: any) {
     let zahtevDto: ZahtevDto = {
       id: row.id,
+      gradjaninEmail: row.gradjaninEmail,
       nazivOrganaVlasti: row.nazivOrgana,
       sedisteOrganaVlasti: row.sedisteOrgana,
       mesto: row.mestoTrazioc,

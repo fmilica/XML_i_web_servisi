@@ -103,7 +103,7 @@ export class NewObavestenjeComponent implements OnInit {
       this.toastr.error('Молимо Вас да исправно попуните форму!')
       return
     }
-    this.obavestenjeService.createObavestenje(xmlDocument, this.zahtevDto.id)
+    this.obavestenjeService.createObavestenje(xmlDocument, this.zahtevDto.id, this.zahtevDto.gradjaninEmail)
       .subscribe((response) => {
         this.toastr.success('Успешно сте креирали обавештење! Можете да га видите у "Преглед креираних обавештења".')
         this.zahtevService.resiZahtev(this.zahtevDto.id)

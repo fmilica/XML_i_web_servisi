@@ -3,5 +3,6 @@ export interface ZalbaCutanjeNaprednaPretragaDto {
     PodnosilacIme: string,
     PodnosilacPrezime: string,
     PodnosilacNaziv: string,
+    VezanGradjanin: string,
     Operator: string
 }

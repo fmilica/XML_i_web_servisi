@@ -62,8 +62,6 @@ public class ObjectFactory {
     	korisnik.setLozinka(registracija.getLozinka());
     	korisnik.setIme(registracija.getIme());
     	korisnik.setPrezime(registracija.getPrezime());
-    	korisnik.setVocab("http://www.xml.com/predicate/");
-    	korisnik.setAbout(registracija.getEmail());
     	return korisnik;
     }
     

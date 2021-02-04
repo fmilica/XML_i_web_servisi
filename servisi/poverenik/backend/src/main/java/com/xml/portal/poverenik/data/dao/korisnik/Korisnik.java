@@ -74,10 +74,6 @@ public class Korisnik implements UserDetails {
     protected String lozinka;
     @XmlAttribute(name = "uloga")
     protected String uloga;
-    @XmlAttribute(name = "vocab")
-    protected String vocab;
-    @XmlAttribute(name = "about")
-    protected String about;
 
     /**
      * Gets the value of the ime property.
@@ -197,20 +193,6 @@ public class Korisnik implements UserDetails {
      */
     public void setUloga(String value) {
         this.uloga = value;
-    }
-    
-    public String getVocab() {
-    	return vocab;
-    }
-    public void setVocab(String value) {
-    	this.vocab = value;
-    }
-    
-    public String getAbout() {
-    	return about;
-    }
-    public void setAbout(String value) {
-    	this.about = value;
     }
 
 	@Override

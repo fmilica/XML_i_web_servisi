@@ -193,6 +193,17 @@ public class ZalbaCutanjeBusiness {
 			zalbaCutanje.getZalba().getPodnosilacZalbe().setVocab("http://www.xml.com/predicate/");
 			zalbaCutanje.getZalba().getPodnosilacZalbe().setRel("pred:vezanGradjanin");
 			zalbaCutanje.getZalba().getPodnosilacZalbe().setHref("http://korisnik/" + userEmail);
+			zalbaCutanje.getPrimalacZalbe().getNaziv().setProperty("pred:primalacNaziv");
+			if (zalbaCutanje.getZalba().getPodnosilacZalbe().getNaziv() != null) {
+				// ima naziv
+				zalbaCutanje.getZalba().getPodnosilacZalbe().getNaziv().setProperty("pred:podnosilacNaziv");
+			} else {
+				// ima ime i prezime
+				zalbaCutanje.getZalba().getPodnosilacZalbe().getIme().setProperty("pred:podnosilacIme");
+				zalbaCutanje.getZalba().getPodnosilacZalbe().getPrezime().setProperty("pred:podnosilacPrezime");
+			}
+			// kada se kreira -> nije razresena
+			zalbaCutanje.setRazresen(false);
 			// cuvanje u bazama
 			documentId = zalbaCutanjeRepository.save(zalbaCutanje);
 		} catch (Exception e) {

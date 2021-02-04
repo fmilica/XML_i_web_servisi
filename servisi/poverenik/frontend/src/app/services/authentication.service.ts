@@ -25,12 +25,14 @@ import { environment } from "src/environments/environment";
     
     register(userRegisterXml: string): Observable<any> {
       return this.http.post(environment.apiEndpoint + 'korisnik/registracija', userRegisterXml, {
+        responseType: 'text',
         headers: this.headers,
         observe: 'response'
       });
     }
     login(userLoginXml: string): Observable<any> {
       return this.http.post(environment.apiEndpoint + 'korisnik/prijava', userLoginXml, {
+        responseType: 'text',
         headers: this.headers,
         observe: 'response',
       });

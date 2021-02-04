@@ -34,6 +34,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       podnosilacIme: new FormControl(),
       podnosilacPrezime: new FormControl(),
       podnosilacNaziv: new FormControl(),
+      vezaniGradjanin: new FormControl(),
       operator: new FormControl()
     })
   }
@@ -154,6 +155,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       PodnosilacIme: '?podnosilacIme',
       PodnosilacPrezime: '?podnosilacPrezime',
       PodnosilacNaziv: '?podnosilacNaziv',
+      VezanGradjanin: '?vezanGradjanin',
       Operator: 'AND'
     }
 
@@ -175,6 +177,11 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     let podnosilacNaziv = this.metaDataForm.get('podnosilacNaziv').value;
     if(podnosilacNaziv) {
       naprednaDto.PodnosilacNaziv = "\"" + podnosilacNaziv + "\""
+    }
+
+    let vezanGradjanin = this.metaDataForm.get('vezaniGradjanin').value;
+    if(vezanGradjanin) {
+      naprednaDto.VezanGradjanin = 'http://korisnik/' + vezanGradjanin
     }
 
     let operator = this.metaDataForm.get('operator').value;

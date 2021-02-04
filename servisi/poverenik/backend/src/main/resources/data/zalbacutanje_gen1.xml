@@ -8,7 +8,7 @@
     mesto="Novi Sad" datum_podnosenja_zahteva="2020-05-07" datum_podnosenja_zalbe="2020-12-07"
     >
     <zoc:Primalac_zalbe>
-        <tipovi:Naziv property="pred:primalacNaziv">Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</tipovi:Naziv>
+        <tipovi:Naziv>Povereniku za informacije od javnog znacaja i zastitu podataka o licnosti</tipovi:Naziv>
         <tipovi:Sediste>
             <tipovi:Mesto>Beograd</tipovi:Mesto>
             <tipovi:Ulica>Bulevar kralja Aleksandra</tipovi:Ulica>
@@ -17,15 +17,15 @@
     </zoc:Primalac_zalbe>
     <zoc:Zalba>
         <zoc:Osnova_zalbe>
-            <zoc:Clan></zoc:Clan>
+            <zoc:Clan>22</zoc:Clan>
             <zoc:Zakon></zoc:Zakon>
         </zoc:Osnova_zalbe>
         <zoc:Naziv_organa>Fakultet tehnickih nauka</zoc:Naziv_organa>
         <zoc:Razlog_zalbe>Nije postupio</zoc:Razlog_zalbe>
         <zoc:Podaci_o_zahtevu>Zahtevane informacije o polozenim predmetima Vlastislava Jakovljevica</zoc:Podaci_o_zahtevu>
         <zoc:Podnosilac_zalbe>
-            <tipovi:Ime property="pred:podnosilacIme">Vlastislav</tipovi:Ime>
-            <tipovi:Prezime property="pred:podnosilacPrezime">Jakovljevic</tipovi:Prezime>
+            <tipovi:Ime>Vlastislav</tipovi:Ime>
+            <tipovi:Prezime>Jakovljevic</tipovi:Prezime>
             <tipovi:Adresa>
                 <tipovi:Mesto>Novi Sad</tipovi:Mesto>
                 <tipovi:Ulica>Zeleznicka</tipovi:Ulica>

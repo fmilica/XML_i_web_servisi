@@ -193,6 +193,26 @@ public class ZalbaOdbijanjeBusiness {
 			zalbaOdbijanje.getPodaciOPodnosiocuZalbe().setVocab("http://www.xml.com/predicate/");
 			zalbaOdbijanje.getPodaciOPodnosiocuZalbe().setRel("pred:vezanGradjanin");
 			zalbaOdbijanje.getPodaciOPodnosiocuZalbe().setHref("http://korisnik/" + userEmail);
+			// property
+			zalbaOdbijanje.getPodaciOPrimaocu().getNaziv().setProperty("pred:primalacNaziv");
+			if (zalbaOdbijanje.getPodaciOZaliocu().getNaziv() != null) {
+				// ima naziv
+				zalbaOdbijanje.getPodaciOZaliocu().getNaziv().setProperty("pred:podnosilacNaziv");
+			} else {
+				// ima ime i prezime
+				zalbaOdbijanje.getPodaciOZaliocu().getIme().setProperty("pred:podnosilacIme");
+				zalbaOdbijanje.getPodaciOZaliocu().getPrezime().setProperty("pred:podnosilacPrezime");
+			}
+			if (zalbaOdbijanje.getPodaciOPodnosiocuZalbe().getNaziv() != null) {
+				// ima naziv
+				zalbaOdbijanje.getPodaciOPodnosiocuZalbe().getNaziv().setProperty("pred:podnosilacNaziv");
+			} else {
+				// ima ime i prezime
+				zalbaOdbijanje.getPodaciOPodnosiocuZalbe().getIme().setProperty("pred:podnosilacIme");
+				zalbaOdbijanje.getPodaciOPodnosiocuZalbe().getPrezime().setProperty("pred:podnosilacPrezime");
+			}
+			// kada se kreira -> nije razresena
+			zalbaOdbijanje.setRazresen(false);
 			// cuvanje u bazama
 			documentId = zalbaOdbijanjeRepository.save(zalbaOdbijanje);
 		} catch (Exception e) {

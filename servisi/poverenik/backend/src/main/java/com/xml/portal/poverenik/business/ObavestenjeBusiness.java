@@ -213,6 +213,16 @@ public class ObavestenjeBusiness {
 			obavestenje.getPodnosilac().setVocab("http://www.xml.com/predicate/");
 			obavestenje.getPodnosilac().setRel("pred:vezanGradjanin");
 			obavestenje.getPodnosilac().setHref("http://korisnik/" + userEmail);
+			// vezivanje ostalih metapodataka
+			obavestenje.getOrganVlasti().getNaziv().setProperty("pred:izdavacNaziv");
+			if (obavestenje.getPodnosilac().getNaziv() != null) {
+				// ima naziv
+				obavestenje.getPodnosilac().getNaziv().setProperty("pred:podnosilacNaziv");
+			} else {
+				// ima ime i prezime
+				obavestenje.getPodnosilac().getIme().setProperty("pred:podnosilacIme");
+				obavestenje.getPodnosilac().getPrezime().setProperty("pred:podnosilacPrezime");
+			}
 			// cuvanje u bazama
 			documentId = obavestenjeRepository.save(obavestenje);
 		} catch (Exception e) {
