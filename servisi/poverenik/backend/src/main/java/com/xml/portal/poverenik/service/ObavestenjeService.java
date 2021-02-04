@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +21,14 @@ import com.xml.portal.poverenik.business.ObavestenjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.obavestenje.ListaObavestenja;
 import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
+import com.xml.portal.poverenik.dto.pretraga.ObavestenjePretraga;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 
 @RestController
 @RequestMapping(value = "poverenik/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
+@CrossOrigin(origins = "https://localhost:4200")
 public class ObavestenjeService {
 
 	@Autowired
@@ -73,6 +76,18 @@ public class ObavestenjeService {
     			Greska greska = new Greska("Greska u kreiranju metapodataka Obavestenja.");
     			return ResponseEntity.status(500).body(greska);    		}
     	}
+    }
+	
+    @GetMapping("/pretrazi")
+    public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {
+		ListaObavestenja filtriranaObavestenja = obavestenjeBusiness.getAllByContent(content);
+		return new ResponseEntity<>(filtriranaObavestenja, HttpStatus.OK);
+    }
+    
+    @GetMapping("/pretrazi-napredno")
+    public ResponseEntity<Object> naprednaPretraga(@RequestBody ObavestenjePretraga params) {
+    	ListaObavestenja filtriranaObavestenja = obavestenjeBusiness.getAllNapredna(params);
+		return new ResponseEntity<>(filtriranaObavestenja, HttpStatus.OK);
     }
 	
 	@GetMapping("/generisiHTML/{id}")

@@ -99,6 +99,8 @@ public class ZalbaOdbijanje implements GenericXML {
     @XmlAttribute(name = "datum_podnosenja_zahteva")
     @XmlSchemaType(name = "date")
     protected XMLGregorianCalendar datumPodnosenjaZahteva;
+    @XmlAttribute(name = "razresen")
+    protected boolean razresen;
     @XmlAttribute(name = "vocab")
     protected String vocab;
     @XmlAttribute(name = "about")
@@ -322,6 +324,13 @@ public class ZalbaOdbijanje implements GenericXML {
      */
     public void setDatumPodnosenjaZahteva(XMLGregorianCalendar value) {
         this.datumPodnosenjaZahteva = value;
+    }
+    
+    public boolean getRazresen() {
+    	return razresen;
+    }
+    public void setRazresen(boolean value) {
+    	this.razresen = value;
     }
     
     public String getVocab() {

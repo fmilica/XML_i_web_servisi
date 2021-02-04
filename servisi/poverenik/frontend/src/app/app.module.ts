@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatRadioModule } from '@angular/material/radio';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
@@ -66,6 +67,7 @@ import { AllIzvestajiComponent } from './components/poverenik/all-izvestaji/all-
     MatTabsModule,
     BrowserAnimationsModule,
     MatTooltipModule,
+    MatRadioModule,
     ToastrModule.forRoot(),
   ],
   providers: [

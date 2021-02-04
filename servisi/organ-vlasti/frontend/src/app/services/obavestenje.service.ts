@@ -31,8 +31,7 @@ export class ObavestenjeService {
     });
   }
 
-  createObavestenje(xmlDocument: string, id: string) {
-    let email =  this.authService.getLoggedInUserEmail();
+  createObavestenje(xmlDocument: string, id: string, email: string) {
     return this.http.post(environment.apiEndpoint + 'obavestenje?zahtevId=' + id +'&userEmail=' + email, xmlDocument, {
       responseType: 'text',
       headers: this.headers
@@ -53,9 +52,24 @@ export class ObavestenjeService {
     })
   }
 
+  //Pretrage
+  obicnaPretraga(sve: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/pretrazi?sadrzaj=' + sve, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
   generisiRDF(obavestenjeId: string) {
     return this.http.get(environment.apiEndpoint + 'obavestenje/generisiRDF/' + obavestenjeId, {
       responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  naprednaPretraga(xmlDocument: string) {
+    return this.http.post(environment.apiEndpoint + 'obavestenje/pretrazi-napredno', xmlDocument, {
+      responseType: 'text',
       headers: this.headers
     })
   }

@@ -83,7 +83,7 @@ export class RegisterComponent implements OnInit {
       (response) => {
         this.toastr.success('Успешна регистрација! Можете се пријавити.');
         this.registerForm.reset();
-        //this.router.navigate(['login-register/login']);
+        this.router.navigate(['prijava-registracija/prijava']);
       },
       (error) => {
         if (error.status === 400) {

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,11 +22,13 @@ import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ListaZalbiCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.poverenik.dto.pretraga.ZalbaCutanjePretraga;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 
 @RestController
 @RequestMapping(value = "poverenik/zalba-cutanje", produces = MediaType.APPLICATION_XML_VALUE)
+@CrossOrigin(origins = "https://localhost:4200")
 public class ZalbaCutanjeService {
 
 	@Autowired
@@ -73,6 +76,18 @@ public class ZalbaCutanjeService {
     			return ResponseEntity.status(500).body(greska);
     		}
     	}
+    }
+	
+    @GetMapping("/pretrazi")
+    public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {
+		ListaZalbiCutanje filtriraneZalbeCutanje = zalbaCutanjeBusiness.getAllByContent(content);
+		return new ResponseEntity<>(filtriraneZalbeCutanje, HttpStatus.OK);
+    }
+    
+    @PostMapping("/pretrazi-napredno")
+    public ResponseEntity<Object> naprednaPretraga(@RequestBody ZalbaCutanjePretraga params) {
+    	ListaZalbiCutanje filtriraneZalbeCutanje = zalbaCutanjeBusiness.getAllNapredna(params);
+		return new ResponseEntity<>(filtriraneZalbeCutanje, HttpStatus.OK);
     }
 	
     @GetMapping("/generisiHTML/{id}")

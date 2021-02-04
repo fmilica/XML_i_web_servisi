@@ -31,14 +31,17 @@ public class QueryMetadata {
 		generisiJSON("/poverenik/Zahtev", "http://zahtev", "bf1c000a-20fb-49d6-98e1-d070e63c9a3f");
 	}
 	
-	public static List<String> query(String graphUri, String sparqlFilePath, String queryParam) throws IOException {
+	public static List<String> query(String graphUri, String sparqlFilePath, List<String> queryParams) throws IOException {
 		conn = AuthenticationUtilities.loadProperties();
+		
+		// Setup queryParams
+		queryParams.add(0, conn.dataEndpoint + graphUri);
 		
 		// Querying the named graph with a referenced SPARQL query
 		System.out.println("[INFO] Loading SPARQL query from file \"" + sparqlFilePath + "\"");
 		String sparqlQuery = String.format(FileUtil.readFile(sparqlFilePath, StandardCharsets.UTF_8), 
-				conn.dataEndpoint + graphUri, queryParam);
-		
+				queryParams.toArray());
+
 		System.out.println(sparqlQuery);
 		
 		// Create a QueryExecution that will access a SPARQL service over HTTP

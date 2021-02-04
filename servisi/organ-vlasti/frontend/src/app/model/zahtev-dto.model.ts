@@ -1,5 +1,6 @@
 export interface ZahtevDto {
     id: string,
+    gradjaninEmail: string,
     nazivOrganaVlasti: string,
     sedisteOrganaVlasti: string,
     mesto: string,

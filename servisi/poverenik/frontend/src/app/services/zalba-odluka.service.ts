@@ -53,6 +53,14 @@ export class ZalbaOdlukaService {
     })
   }
 
+  //Pretrage
+  obicnaPretraga(sve: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/pretrazi?sadrzaj=' + sve, {
+      responseType: 'text',
+    headers: this.headers
+    })
+  }
+
   generisiRDF(zalbaOdlukaId: string) {
     return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiRDF/' + zalbaOdlukaId, {
       responseType: 'arraybuffer',
@@ -60,6 +68,13 @@ export class ZalbaOdlukaService {
     })
   }
 
+  naprednaPretraga(xmlDocument: string) {
+    return this.http.post(environment.apiEndpoint + 'zalba-odbijanje/pretrazi-napredno', xmlDocument, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+  
   generisiJSON(zalbaOdlukaId: string) {
     return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiJSON/' + zalbaOdlukaId, {
       responseType: 'arraybuffer',

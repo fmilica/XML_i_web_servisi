@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { ZahtevService } from 'src/app/services/zahtev.service';
 import * as txml from 'txml';
+import * as JsonToXML from 'js2xmlparser';
+import { ZahtevNaprednaPretragaDto } from 'src/app/model/zahtev-napredna-pretraga-dto';
 
 @Component({
   selector: 'app-all-zahtevi-sluzbenik',
@@ -43,12 +44,20 @@ export class AllZahteviSluzbenikComponent implements OnInit {
   ngOnInit(): void {
     this.zahtevService.getAllZahtevi().subscribe(
       (response) => {
-        let xmlResponse = response
+        this.listaZahteva2Prikaz(response);
+      }
+    );
+  }
+
+  listaZahteva2Prikaz(response) {
+    let xmlResponse = response
         let allZahtevi: any = txml.parse(xmlResponse);
         let data = [];
         allZahtevi[1].children.map(zahtev => {
+          let emailPath = zahtev.attributes.href.split('/');
           let zahtevPrikaz = {
             id: zahtev.attributes.id.substring(14),
+            gradjaninEmail: emailPath[3],
             nazivOrgana: zahtev.children[0].children[0].children[0],
             sedisteOrgana: zahtev.children[0].children[1].children[0],
             obavestenje: 'false',
@@ -136,13 +145,12 @@ export class AllZahteviSluzbenikComponent implements OnInit {
           data.push(zahtevPrikaz);
         })
         this.dataSource = data;
-      }
-    );
   }
 
   createObavestenje(row: any) {
     let zahtevDto: ZahtevDto = {
       id: row.id,
+      gradjaninEmail: row.gradjaninEmail,
       nazivOrganaVlasti: row.nazivOrgana,
       sedisteOrganaVlasti: row.sedisteOrgana,
       mesto: row.mestoTrazioc,
@@ -189,11 +197,87 @@ export class AllZahteviSluzbenikComponent implements OnInit {
   }
 
   obicnaPretraga() {
-    console.log(this.obicnaForm.value)
+    let unos = this.obicnaForm.get('sve').value;
+    if(!unos) {
+      this.zahtevService.getAllZahtevi().subscribe(
+        (response) => {
+          this.listaZahteva2Prikaz(response);
+        }
+      );
+    } else {
+      this.zahtevService.obicnaPretraga(unos)
+      .subscribe( response => {
+        this.listaZahteva2Prikaz(response)
+      })
+    }
   }
 
   metapodaciPretraga() {
-    console.log(this.obicnaForm.value)
+    let naprednaDto: ZahtevNaprednaPretragaDto = {
+      VezanGradjanin: '?vezanGradjanin',
+      PrimalacNaziv: '?primalacNaziv',
+      PodnosilacIme: '?podnosilacIme',
+      PodnosilacPrezime: '?podnosilacPrezime',
+      PodnosilacNaziv: '?podnosilacNaziv',
+      Operator: 'AND'
+    }
+    
+    let vezanGradjanin = this.metaDataForm.get('vezaniGradjanin').value;
+    if(vezanGradjanin) {
+      naprednaDto.VezanGradjanin = 'http://korisnik/' + vezanGradjanin
+    }
+
+    let primalacNaziv = this.metaDataForm.get('primalacNaziv').value;
+    if(primalacNaziv) {
+      naprednaDto.PrimalacNaziv = "\"" + primalacNaziv + "\""
+    }
+
+    let podnosilacIme = this.metaDataForm.get('podnosilacIme').value;
+    if(podnosilacIme) {
+      naprednaDto.PodnosilacIme = "\"" + podnosilacIme + "\""
+    }
+
+    let podnosilacPrezime = this.metaDataForm.get('podnosilacPrezime').value;
+    if(podnosilacPrezime) {
+      naprednaDto.PodnosilacPrezime = "\"" + podnosilacPrezime + "\""
+    }
+
+    let podnosilacNaziv = this.metaDataForm.get('podnosilacNaziv').value;
+    if(podnosilacNaziv) {
+      naprednaDto.PodnosilacNaziv = "\"" + podnosilacNaziv + "\""
+    }
+
+    let operator = this.metaDataForm.get('operator').value;
+    if(operator) {
+      naprednaDto.Operator = operator
+    }
+
+    if(!vezanGradjanin && !primalacNaziv && !podnosilacIme && !podnosilacPrezime && !podnosilacNaziv  && operator === 'OR') {
+      this.zahtevService.getAllZahtevi().subscribe(
+        (response) => {
+          this.listaZahteva2Prikaz(response);
+        }
+      );
+      return
+    }
+
+    const options = {
+      declaration: {
+        include: false,
+      },
+    };
+
+    let xmlDocument: string = JsonToXML.parse(
+      'ZahtevNaprednaPretragaDto',
+      naprednaDto,
+      options
+    );
+
+    this.zahtevService.naprednaPretraga(xmlDocument).subscribe(
+      (response) => {
+        this.listaZahteva2Prikaz(response);
+      }
+    );
   }
 
   generisiRDF(zahtevId: string) {

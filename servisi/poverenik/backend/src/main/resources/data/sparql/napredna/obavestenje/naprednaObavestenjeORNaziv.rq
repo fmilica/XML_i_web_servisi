@@ -1,0 +1,20 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) obavestenja po naprednoj pretrazi
+
+SELECT DISTINCT ?obavestenje FROM <%s>
+WHERE { 
+	{
+		?obavestenje <http://www.xml.com/predicate/izdavacNaziv> %s .
+	}
+	UNION
+	{
+		?obavestenje <http://www.xml.com/predicate/vezanGradjanin> %s .
+	}
+	UNION
+	{
+		?obavestenje <http://www.xml.com/predicate/podnosilacNaziv> %s .
+	}
+	UNION
+	{
+		?obavestenje <http://www.xml.com/predicate/vezanZahtev> %s .
+	}
+}

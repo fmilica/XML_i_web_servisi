@@ -132,6 +132,8 @@ public class TOrganVlasti {
         protected String value;
         @XmlAttribute(name = "property")
         protected String property;
+        @XmlAttribute(name = "datetype")
+        protected String datetype = "xs:string";
 
         /**
          * Gets the value of the value property.
@@ -181,6 +183,29 @@ public class TOrganVlasti {
             this.property = value;
         }
 
+        /**
+         * Gets the value of the datetype property.
+         * 
+         * @return
+         *     possible object is
+         *     {@link String }
+         *     
+         */
+        public String getDatetype() {
+        	return datetype;
+        }
+
+        /**
+         * Sets the value of the datetype property.
+         * 
+         * @param value
+         *     allowed object is
+         *     {@link String }
+         *     
+         */
+        public void setDatetype(String value) {
+            this.datetype = value;
+        }
     }
 
 }
