@@ -109,7 +109,6 @@
                     </xs:complexType>
                 </xs:element>
             </xs:sequence>
-            <xs:attribute name="prilozene_kopije" type="xs:boolean"/>
         </xs:complexType>
     </xs:element>
     <xs:element name="Prosledjivanje_zalbe">
@@ -125,7 +124,6 @@
             <xs:simpleContent>
                 <xs:extension base="xs:string">
                     <xs:attribute name="datum_odgovora" type="xs:date"/>
-                    <xs:attribute name="rok_za_odgovor" type="xs:positiveInteger"/>
                 </xs:extension>
             </xs:simpleContent>
         </xs:complexType>
@@ -135,23 +133,11 @@
             <xs:sequence>
                 <xs:element name="Detaljan_opis_podnetog_zahteva" type="xs:string"/>
                 <xs:element name="Detaljan_opis_odgovora_na_zahtev">
-                    <xs:complexType mixed="true">
-                        <xs:sequence>
-                            <xs:element name="Zakonska_osnova_odgovora" type="res:TZakonske_osnove"
-                            />
-                        </xs:sequence>
-                    </xs:complexType>
-                </xs:element>
-                <xs:element name="Obrazlozenje_odluke">
-                    <xs:complexType>
-                        <xs:sequence>
-                            <xs:element name="Detaljan_opis_odluke" type="xs:string"/>
-                            <xs:element name="Zakonske_osnove_odluke" type="res:TZakonske_osnove"/>
-                        </xs:sequence>
-                        <xs:attribute name="tip_odluke" type="res:Tip_resenja" use="required"/>
-                    </xs:complexType>
-                </xs:element>
+				<xs:element name="Detaljan_opis_odluke" type="xs:string"/>
+				<xs:element name="Zakonske_osnove_odluke" type="res:TZakonske_osnove"/>
+				<xs:element name="Zakonska_osnova_odgovora" type="res:TZakonske_osnove"/>
             </xs:sequence>
+			<xs:attribute name="tip_odluke" type="res:Tip_resenja" use="required"/>
         </xs:complexType>
     </xs:element>
     <xs:element

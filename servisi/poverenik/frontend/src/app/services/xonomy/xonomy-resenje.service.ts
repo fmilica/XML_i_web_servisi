@@ -34,9 +34,40 @@ export class XonomyResenjeService {
           'xsi:schemaLocation': {
             isInvisible: true,
           },
+          broj_resenja: {
+            title: 'Број решења',
+            validate: function(jsAttribute){
+              //Make sure item/@mesto is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Број решења је обавезан атрибут."}
+              );
+              }
+            },
+            hasText: true,
+            asker: Xonomy.askString,
+          }
         },
       },
+      // Opis zalbe
       'res:Opis_zalbe': {
+        attributes: {
+          razlog_zalbe: {
+            title: 'Разлог жалбе',
+            validate: function(jsAttribute){
+              //Make sure item/@mesto is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Разлог жалбе је обавезан атрибут."}
+              );
+              }
+            },
+            hasText: true,
+            asker: Xonomy.askString,
+          }
+        },
         hasText: true,
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
@@ -268,6 +299,17 @@ export class XonomyResenjeService {
             caption: "Обмотај тагом <res:Nalog>",
             action: Xonomy.wrap,
             actionParameter: {template: '<res:Nalog rok_izvrsenja="" xmlns:res="http://resenje">$</res:Nalog>', placeholder: "$"},
+            hideIf: function (jsElement) {
+              return jsElement.hasChildElement("res:Odbijanje")
+            },
+          },
+          {
+            caption: "Обмотај тагом <res:Odbijanje>",
+            action: Xonomy.wrap,
+            actionParameter: {template: '<res:Odbijanje razlog_odbijanja="" xmlns:res="http://resenje">$</res:Odbijanje>', placeholder: "$"},
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("res:Nalog") || jsElement.hasChildElement("res:Odbijanje"))
+            },
           }
         ]
       },
@@ -287,6 +329,25 @@ export class XonomyResenjeService {
         },
         menu: [{
           caption: "Уклони таг <Nalog>",
+          action: Xonomy.unwrap
+        }]
+      },
+      'res:Odbijanje': {
+        attributes: {
+          'razlog_odbijanja': {
+            validate: function(jsAttribute){
+              //Make sure item/@razlog_odbijanja is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Разлог одбијања је обавезан атрибут."}
+              );
+              }
+            },
+          }
+        },
+        menu: [{
+          caption: "Уклони таг <Odbijanje>",
           action: Xonomy.unwrap
         }]
       },
@@ -355,6 +416,19 @@ export class XonomyResenjeService {
       },
       //Odgovor na zalbu
       'res:Odgovor_na_zalbu': {
+        attributes: {
+          'datum_odgovora': {
+            validate: function(jsAttribute){
+              //Make sure item/@razlog_odbijanja is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Датум одговора је обавезан атрибут."}
+              );
+              }
+            },
+          }
+        },
         hasText: true,
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
@@ -368,6 +442,19 @@ export class XonomyResenjeService {
       },
       //Razlozi odluke
       'res:Razlozi_odluke': {
+        attributes: {
+          'tip_odluke': {
+            validate: function(jsAttribute){
+              //Make sure item/@tip_odluke is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Тип одлуке је обавезан атрибут."}
+              );
+              }
+            },
+          }
+        },
         hasText: true,
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
@@ -401,7 +488,7 @@ export class XonomyResenjeService {
             action: Xonomy.wrap,
             actionParameter: {template: '<res:Detaljan_opis_odluke xmlns:res="http://resenje">$</res:Detaljan_opis_odluke>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("res:Detaljan_opis_odluke>")
+              return jsElement.hasChildElement("res:Detaljan_opis_odluke")
             }
           },
           {
@@ -442,7 +529,6 @@ export class XonomyResenjeService {
           action: Xonomy.unwrap
         }]
       },
-      //Obrazlozenje odluke
       'res:Detaljan_opis_odluke': {
         hasText: true,
         oneliner: true,
@@ -451,6 +537,7 @@ export class XonomyResenjeService {
           action: Xonomy.unwrap
         }]
       },
+      // Zalba na resenje
       'res:Zalba_na_resenje': {
         hasText: true,
         validate: function (jsElement:any) {

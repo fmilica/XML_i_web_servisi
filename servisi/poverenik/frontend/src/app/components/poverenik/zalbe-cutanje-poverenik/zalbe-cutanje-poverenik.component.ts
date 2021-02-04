@@ -61,7 +61,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         podaci: zalba.children[1].children[3].children[0],
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto,
-        razresena: 'Да',
+        razresena: zalba.attributes.razresena,
         zalilac: '',
         adresa: '',
         kontaktTelefon: '',
@@ -105,6 +105,19 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       data.push(zalbaPrikaz);
     })
     this.dataSource = data;
+  }
+
+  createResenje(row: any) {
+/*     let zalbaDto: ZalbaDto = {
+      id: row.id
+      datumPodnosenja: row.datum
+    } 
+      let zahtevDto: ZahtevDto = {
+        id: row.id
+        datumPodnosenja: row.datum
+        
+      }
+    */
   }
 
   generisiPDF(obavestenjeId: string) {
@@ -232,4 +245,6 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       }
     );
   }
+
+
 }
