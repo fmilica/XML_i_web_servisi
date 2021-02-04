@@ -11,6 +11,7 @@ import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.data.repository.ObavestenjeRepository;
+import com.xml.portal.poverenik.dto.pretraga.ObavestenjePretraga;
 import com.xml.portal.poverenik.transformator.DokumentiTransformator;
 
 public class ObavestenjeBusiness {
@@ -56,6 +57,18 @@ public class ObavestenjeBusiness {
 			e.printStackTrace();
 		}
 		return loaded;
+	}
+	
+	public ListaObavestenja getAllByContent(String content) {
+		ListaObavestenja filtriranaObavestenja = new ListaObavestenja();
+		filtriranaObavestenja.setObavestenje(obavestenjeRepository.findAllByContent(content));
+		return filtriranaObavestenja;
+	}
+	
+	public ListaObavestenja getAllNapredna(ObavestenjePretraga params) {
+		List<String> obavestenjeIds;
+		ListaObavestenja obavestenja = null;
+		return obavestenja;
 	}
 	
 	public String create(Obavestenje obavestenje, String zahtevId, String userEmail) {
