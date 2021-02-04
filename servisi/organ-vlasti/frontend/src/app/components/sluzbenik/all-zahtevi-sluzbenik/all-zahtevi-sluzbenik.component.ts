@@ -8,6 +8,7 @@ import * as JsonToXML from 'js2xmlparser';
 import { ZahtevNaprednaPretragaDto } from 'src/app/model/zahtev-napredna-pretraga-dto';
 import { PismoDTO } from 'src/app/model/pismo-dto.model';
 import { EpostaService } from 'src/app/services/eposta.service';
+import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 
 @Component({
   selector: 'app-all-zahtevi-sluzbenik',
@@ -23,7 +24,8 @@ export class AllZahteviSluzbenikComponent implements OnInit {
   constructor(
     private zahtevService: ZahtevService,
     private router: Router,
-    private epostaService: EpostaService
+    private epostaService: EpostaService,
+    private obavestenjeService: ObavestenjeService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -181,6 +183,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
       zahtevDto.prezimePodnosioca = row.prezime
     }
     this.zahtevService.odabraniZahtev.next(zahtevDto)
+    this.obavestenjeService.novo_obavestenje.next(true)
     this.router.navigate(['novo-obavestenje'])
   }
 
@@ -311,7 +314,6 @@ export class AllZahteviSluzbenikComponent implements OnInit {
   }
 
   odbijZahtev(row: any){
-    console.log(row.id)
     this.zahtevService.odbijZahtev(row.id).subscribe(
       (response) => {
         this.fetchZahtevi();

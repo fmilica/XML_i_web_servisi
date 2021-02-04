@@ -26,7 +26,6 @@ export class AllObavestenjaGradjaninComponent implements OnInit {
           let allObavestenja: any =  txml.parse(xmlResponse);
           let data = []
           allObavestenja[1].children.map(obavestenje => {
-            console.log(obavestenje)
             let obavestenjePrikaz = {
               id: obavestenje.attributes.id.substring(19),
               nazivOrgana: obavestenje.children[0].children[0].children[0],

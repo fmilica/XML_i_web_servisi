@@ -46,7 +46,9 @@
             <ng-container matColumnDef="dostava">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Начин доставе </th>
                 <td matTooltip="Достављање копије документа који садржи тражену иформацију" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.dostava}}
+                    <div *ngIf="row.dostava === 'false'; then nema else ima"></div>
+                    <ng-template #nema><mat-icon>close</mat-icon></ng-template>
+                    <ng-template #ima>{{row.dostava}}</ng-template>
                 </td>
             </ng-container>
 
@@ -68,6 +70,13 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум захтева </th>
                 <td matTooltip="Датум подношења захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     {{row.datum}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="status">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Статус захтева </th>
+                <td matTooltip="Статус захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.status}}
                 </td>
             </ng-container>
 

@@ -10,6 +10,7 @@ import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-oba
 import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
 import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/new-obavestenje.component';
 import { LoginGuard } from './guards/login-guard.service';
+import { ObavestenjeGuard } from './guards/obavestenje-guard.service';
 import { RoleGuard } from './guards/role-guard.service';
 
 const routes: Routes = [
@@ -56,7 +57,7 @@ const routes: Routes = [
   {
     path: 'novo-obavestenje',
     component: NewObavestenjeComponent,
-    canActivate: [RoleGuard],
+    canActivate: [RoleGuard, ObavestenjeGuard],
     data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {

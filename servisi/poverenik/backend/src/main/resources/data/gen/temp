@@ -1,11 +1,14 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zahtev/f9e018ea-d944-414d-803e-c9cf212dd44a">
+  <rdf:Description rdf:about="http://obavestenje/d5ce18f7-827b-4f02-9711-70cdb39a688c">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/8f7b2c75-7ad8-47b6-92bc-cc29352e9b51"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://obavestenje/d5ce18f7-827b-4f02-9711-70cdb39a688c">
+    <pred:izdavacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">b</pred:izdavacNaziv>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://obavestenje/d5ce18f7-827b-4f02-9711-70cdb39a688c">
     <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/f9e018ea-d944-414d-803e-c9cf212dd44a">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:primalacNaziv>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/f9e018ea-d944-414d-803e-c9cf212dd44a">
-    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Адвокатска комора Србије</pred:podnosilacNaziv>
+  <rdf:Description rdf:about="http://obavestenje/d5ce18f7-827b-4f02-9711-70cdb39a688c">
+    <pred:podnosilacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">v</pred:podnosilacNaziv>
   </rdf:Description>
 </rdf:RDF>
