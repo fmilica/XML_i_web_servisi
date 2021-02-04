@@ -16,6 +16,7 @@ import org.xmldb.api.modules.XMLResource;
 import org.xmldb.api.modules.XPathQueryService;
 import org.xmldb.api.modules.XUpdateQueryService;
 
+import java.util.ArrayList;
 import com.xml.portal.poverenik.data.xmldb.util.AuthenticationUtilities;
 import com.xml.portal.poverenik.data.xmldb.util.AuthenticationUtilities.ConnectionProperties;
 
@@ -158,6 +159,27 @@ public class ExistManager {
 			XPathQueryService xpathService = (XPathQueryService) col.getService("XPathQueryService", "1.0");
 			xpathService.setProperty("indent", "yes");
 			xpathService.setNamespace("", targetNamespace);
+			result = xpathService.query(xpathExp);
+		} finally {
+			if (col != null) {
+				col.close();
+			}
+		}
+		return result;
+	}
+	
+	public ResourceSet retrievePokusaj(String collectionUri, String xpathExp, ArrayList<String> targetNamespace) throws Exception  {
+		createConnection();
+		Collection col = null;
+		ResourceSet result = null;
+		try {
+			col = DatabaseManager.getCollection(conn.uri + collectionUri);
+			col.setProperty(OutputKeys.INDENT, "yes");
+			XPathQueryService xpathService = (XPathQueryService) col.getService("XPathQueryService", "1.0");
+			xpathService.setProperty("indent", "yes");
+			xpathService.setNamespace(targetNamespace.get(0).substring(7), targetNamespace.get(0));
+			xpathService.setNamespace(targetNamespace.get(1).substring(7), targetNamespace.get(1));
+			//xpathService.setNamespace("", targetNamespace);
 			result = xpathService.query(xpathExp);
 		} finally {
 			if (col != null) {

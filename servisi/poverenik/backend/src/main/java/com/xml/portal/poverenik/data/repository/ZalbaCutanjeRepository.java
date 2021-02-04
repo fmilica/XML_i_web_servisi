@@ -2,6 +2,7 @@ package com.xml.portal.poverenik.data.repository;
 
 import java.io.StringWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,6 +15,7 @@ import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
@@ -150,4 +152,59 @@ public class ZalbaCutanjeRepository {
 			return null;
 		}
 	}
+	
+	//zalbe na cutanje po godini
+	public long findAllByYear() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		//String xPath = "/Zahtev/contains(@datum, '2020')"; -> vraca true false
+		// -> zato je uvek vracao sve, vracao je dve false vrednosti
+		String xPath = "/Zalba_cutanje[contains(@datum_podnosenja_zalbe,'" + year + "')]";
+		// vraca zahtev ceo ako zadovoljava uslov u uglastim
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//zalbe na cutanje po godini
+	
+	
+	//zalbe na cutanje po godini gradjanin
+	public long findAllByYearGradjanin() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zalbacutanje:Zalba_cutanje[boolean(/zalbacutanje:Zalba_cutanje/zalbacutanje:Zalba/zalbacutanje:Podnosilac_zalbe/tipovi:Ime) "
+				+ "and contains(@datum_podnosenja_zalbe,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//zalbe na cutanje po godini gradjanin
+	
+	
+	//zalbe na cutanje po godini organizacija
+	public long findAllByYearOrganizacija() {
+		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
+		String xPath = "/zalbacutanje:Zalba_cutanje[boolean(/zalbacutanje:Zalba_cutanje/zalbacutanje:Zalba/zalbacutanje:Podnosilac_zalbe/tipovi:Naziv) "
+				+ "and contains(@datum_podnosenja_zalbe,'"+ year +"')]";
+		ArrayList<String> a = new ArrayList<String>();
+		a.add(TARGET_NAMESPACE);
+		a.add("http://tipovi");
+		try {
+			ResourceSet query = this.existManager.retrievePokusaj(collectionId, xPath, a);
+			return query.getSize();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return 0;
+		}
+	}
+	//zalbe na cutanje po godini organizacija
 }
