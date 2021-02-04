@@ -52,4 +52,19 @@ export class ZalbaOdlukaService {
       headers: this.headers
     })
   }
+
+  //Pretrage
+  obicnaPretraga(sve: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/pretrazi?sadrzaj=' + sve, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
+  naprednaPretraga(xmlDocument: string) {
+    return this.http.post(environment.apiEndpoint + 'zalba-odbijanje/pretrazi-napredno', xmlDocument, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }
