@@ -235,6 +235,11 @@ public class ResenjeRepository {
 			if (zalilacPrezime != null) {
 				zalilacPrezime.setAttribute("property", "pred:zalilacPrezime");
 			}
+			list = resenje.getElementsByTagNameNS("*", "Naziv_zalilac");
+			Element zalilacNaziv = (Element)list.item(0);
+			if (zalilacNaziv != null) {
+				zalilacNaziv.setAttribute("property", "pred:zalilacNaziv");
+			}
 			// optuzeni organ vlasti naziv
 			list = resenje.getElementsByTagNameNS("*", "Naziv_organa_vlasti");
 			Element organVlastiNaziv = (Element)list.item(0);

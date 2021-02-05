@@ -111,6 +111,13 @@
             Prezime Gradjanina koji je izrekao Zalbu (zbog cutanja ili odbijanja).
         </rdfs:comment>
     </rdf:Property>
+    <!-- Property zalilacNaziv -->
+    <rdf:Property rdf:ID="zalilacNaziv">
+        <rdfs:label>zalilacNaziv</rdfs:label>
+        <rdfs:comment>
+            Naziv Gradjanina koji je izrekao Zalbu (zbog cutanja ili odbijanja).
+        </rdfs:comment>
+    </rdf:Property>
     
     <!-- Veza vezanZahtev -->
     <rdf:Property rdf:ID="vezanZahtev">
