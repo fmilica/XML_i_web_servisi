@@ -416,5 +416,16 @@ public class ZahtevRepository {
 			return false;
 		}
 	}
+	
+	public boolean deny(String zahtevId, Zahtev zahtev) {
+		String xPath = "/zahtev:Zahtev/@odbijen";
+		try {
+			this.existManager.update(collectionId, zahtevId, xPath, "true", UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 
 }

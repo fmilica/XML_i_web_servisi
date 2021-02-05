@@ -27,7 +27,8 @@ export class AllZahteviGradjaninComponent implements OnInit {
     }*/
   ];
 
-  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije', 'mesto', 'datum', 'preuzimanje', 'preuzimanjeMeta'];
+  displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije', 
+                                'mesto', 'datum', 'status', 'preuzimanje', 'preuzimanjeMeta'];
 
   ngOnInit(): void {
     this.zahtevService.getAllGradjaninZahtevi().subscribe(
@@ -35,9 +36,7 @@ export class AllZahteviGradjaninComponent implements OnInit {
         let xmlResponse = response
         let allZahtevi: any = txml.parse(xmlResponse);
         let data = [];
-        console.log(allZahtevi)
         allZahtevi[1].children.map(zahtev => {
-          console.log(zahtev)
           let zahtevPrikaz = {
             id: zahtev.attributes.id.substring(14),
             nazivOrgana: zahtev.children[0].children[0].children[0],
@@ -48,7 +47,8 @@ export class AllZahteviGradjaninComponent implements OnInit {
             dostava: 'false',
             informacije: zahtev.children[1].children[2].children[0],
             mesto: zahtev.attributes.mesto,
-            datum: zahtev.attributes.datum
+            datum: zahtev.attributes.datum,
+            status: 'Послат'
           }
           for(let potrazeno of zahtev.children[1].children[1].children) {
             switch (potrazeno.tagName) {
@@ -85,6 +85,13 @@ export class AllZahteviGradjaninComponent implements OnInit {
               default:
                 break;
             }
+          }
+          if(zahtev.attributes.odbijen === 'true' && zahtev.attributes.razresen === 'true') {
+            zahtevPrikaz.status = 'Одбијен'
+          } else if( zahtev.attributes.odbijen === 'false' && zahtev.attributes.razresen === 'true' ) {
+            zahtevPrikaz.status = 'Прихваћен'
+          } else {
+            zahtevPrikaz.status = 'Послат'
           }
           data.push(zahtevPrikaz);
         })

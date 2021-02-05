@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthenticationService } from './authentication.service';
 
@@ -10,6 +10,8 @@ import { AuthenticationService } from './authentication.service';
 export class ObavestenjeService {
 
   private headers = new HttpHeaders({ 'Content-Type': 'application/xml' });
+
+  public novo_obavestenje: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private http: HttpClient,

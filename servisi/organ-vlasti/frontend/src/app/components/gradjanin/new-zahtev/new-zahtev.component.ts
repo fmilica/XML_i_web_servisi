@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { XonomyZahtevService } from 'src/app/services/xonomy/xonomy-zahtev.service';
 import { ZahtevService } from 'src/app/services/zahtev.service';
@@ -14,7 +15,8 @@ export class NewZahtevComponent implements OnInit {
   constructor(
     private xonomyZahtevService: XonomyZahtevService,
     private zahtevService: ZahtevService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -82,7 +84,8 @@ export class NewZahtevComponent implements OnInit {
     }
     this.zahtevService.createZahtev(xmlDocument)
       .subscribe((response) => {
-        this.toastr.success('Успешно сте поднели захтев! Можете да га видите у "Преглед поднетих захтева".')
+        this.toastr.success('Успешно сте поднели захтев!')
+        this.router.navigate(['zahtevi'])
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')

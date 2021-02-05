@@ -6,6 +6,9 @@ import { ZahtevService } from 'src/app/services/zahtev.service';
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
 import { ZahtevNaprednaPretragaDto } from 'src/app/model/zahtev-napredna-pretraga-dto';
+import { PismoDTO } from 'src/app/model/pismo-dto.model';
+import { EpostaService } from 'src/app/services/eposta.service';
+import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 
 @Component({
   selector: 'app-all-zahtevi-sluzbenik',
@@ -20,7 +23,9 @@ export class AllZahteviSluzbenikComponent implements OnInit {
 
   constructor(
     private zahtevService: ZahtevService,
-    private router: Router
+    private router: Router,
+    private epostaService: EpostaService,
+    private obavestenjeService: ObavestenjeService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -39,9 +44,13 @@ export class AllZahteviSluzbenikComponent implements OnInit {
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'obavestenje', 'uvid', 'kopija', 'dostava', 'informacije',
                                 'mesto', 'datum', 'trazilacInformacija','adresaTrazioca', 'kontaktTelefon', 'razresen',
-                                'preuzimanje', 'preuzimanjeMeta'];
+                                'odbijen','preuzimanje', 'preuzimanjeMeta'];
 
   ngOnInit(): void {
+    this.fetchZahtevi();
+  }
+
+  fetchZahtevi(){
     this.zahtevService.getAllZahtevi().subscribe(
       (response) => {
         this.listaZahteva2Prikaz(response);
@@ -55,6 +64,12 @@ export class AllZahteviSluzbenikComponent implements OnInit {
         let data = [];
         allZahtevi[1].children.map(zahtev => {
           let emailPath = zahtev.attributes.href.split('/');
+          let odb = "2";
+          if(zahtev.attributes.odbijen === "true"){
+            odb = "1";
+          }else if(zahtev.attributes.razresen === "true"){
+            odb = "3"
+          }
           let zahtevPrikaz = {
             id: zahtev.attributes.id.substring(14),
             gradjaninEmail: emailPath[3],
@@ -71,6 +86,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
             adresaTrazioca: '',
             kontaktTelefon: '',
             razresen: zahtev.attributes.razresen,
+            odbijen: odb,
             //rascepkana adresa da je ne spajamo i ne razdvajamo stalno
             mestoTrazioc: '',
             ulicaTrazioc: '',
@@ -167,6 +183,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
       zahtevDto.prezimePodnosioca = row.prezime
     }
     this.zahtevService.odabraniZahtev.next(zahtevDto)
+    this.obavestenjeService.novo_obavestenje.next(true)
     this.router.navigate(['novo-obavestenje'])
   }
 
@@ -294,5 +311,40 @@ export class AllZahteviSluzbenikComponent implements OnInit {
         this.previewAndDownload(response, zahtevId, "json");
       }
     );
+  }
+
+  odbijZahtev(row: any){
+    this.zahtevService.odbijZahtev(row.id).subscribe(
+      (response) => {
+        this.fetchZahtevi();
+    },
+    (error) =>{
+      this.fetchZahtevi();
+      let pismoDto: PismoDTO = {
+        primalac: 'igi.l.1999@gmail.com',//row.gradjaninEmail,
+        naslov: "Odbijanje zahteva",
+        sadrzaj: "Vas zahtev je odbijen",
+        prilog: ""
+      }
+      const options = {
+        declaration: {
+          include: false,
+        },
+      };
+
+      let obj = {
+        "@": {
+          "tipPriloga": "",
+          "xmlns":"http://pismo"
+      },
+
+      "primalac": 'igi.l.1999@gmail.com',
+      "naslov": "Odbijanje zahteva",
+      "sadrzaj": "Vas zahtev je odbijen",
+      "prilog": ""
+      }
+      
+      this.epostaService.posalji(JsonToXML.parse("pismo", obj)).subscribe((resp) => {console.log("Proslo")});
+    })
   }
 }

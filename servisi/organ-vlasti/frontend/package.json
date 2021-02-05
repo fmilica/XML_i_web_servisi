@@ -24,6 +24,7 @@
     "@auth0/angular-jwt": "^5.0.2",
     "bootstrap": "^4.6.0",
     "file-saver": "^2.0.5",
+    "js-base64": "^3.6.0",
     "js2xmlparser": "^4.0.1",
     "ngx-toastr": "^13.2.0",
     "rxjs": "~6.6.0",

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
@@ -22,7 +23,8 @@ export class NewObavestenjeComponent implements OnInit {
     private xonomyObavestenjeService: XonomyObavestenjeService,
     private zahtevService: ZahtevService,
     private toastr: ToastrService,
-    private obavestenjeService: ObavestenjeService) {}
+    private obavestenjeService: ObavestenjeService,
+    private router: Router) {}
 
   ngOnInit(
 
@@ -105,9 +107,11 @@ export class NewObavestenjeComponent implements OnInit {
     }
     this.obavestenjeService.createObavestenje(xmlDocument, this.zahtevDto.id, this.zahtevDto.gradjaninEmail)
       .subscribe((response) => {
-        this.toastr.success('Успешно сте креирали обавештење! Можете да га видите у "Преглед креираних обавештења".')
+        this.toastr.success('Успешно сте креирали обавештење!')
+        this.router.navigate(['kreirana-obavestenja'])
         this.zahtevService.resiZahtev(this.zahtevDto.id)
           .subscribe()
+        this.obavestenjeService.novo_obavestenje.next(false)
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')

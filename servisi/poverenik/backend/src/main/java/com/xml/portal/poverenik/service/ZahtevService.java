@@ -96,6 +96,29 @@ public class ZahtevService {
 		}
     }
     
+    @PutMapping(path = "/odbij/{id}")
+    public ResponseEntity<Object> odbijZahtev(@PathVariable("id") String id) {
+		Zahtev zahtev = zahtevBusiness.getById(id);
+		if (zahtev == null) {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		} else if (zahtev.getRazresen() == true) {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom je vec razresen.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
+		} else if (zahtev.getOdbijen() == true){
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom je vec odbijen.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
+		}
+		else {
+			boolean updated = zahtevBusiness.deny(id, zahtev);
+			if (!updated) {
+				Greska greska = new Greska("Greska u izmeni Zahteva.");
+				return ResponseEntity.status(500).body(greska);
+			}
+			return new ResponseEntity<>(zahtev, HttpStatus.OK);
+		}
+    }
+    
     @GetMapping("/pretrazi")
     public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {
 		ListaZahteva filtriraniZahtevi = zahtevBusiness.getAllByContent(content);

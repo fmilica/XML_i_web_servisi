@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { ZalbaCutanjeNaprednaPretragaDto } from 'src/app/model/zalba-cutanje-napredna-pretraga-dto';
-import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
+import { FormGroup, FormControl } from '@angular/forms';
+import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje-service';
+import { ZalbaCutanjeNaprednaPretragaDto } from 'src/app/model/zalba-cutanje-napredna-pretraga-dto';
 
 @Component({
-  selector: 'app-zalbe-cutanje-poverenik',
-  templateUrl: './zalbe-cutanje-poverenik.component.html',
-  styleUrls: ['./zalbe-cutanje-poverenik.component.sass']
+  selector: 'app-zalbe-cutanje',
+  templateUrl: './zalbe-cutanje.component.html',
+  styleUrls: ['./zalbe-cutanje.component.sass']
 })
-export class ZalbeCutanjePoverenikComponent implements OnInit {
+export class ZalbeCutanjeComponent implements OnInit {
 
   dataSource = [ ];
 
@@ -61,7 +61,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         podaci: zalba.children[1].children[3].children[0],
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto,
-        razresena: zalba.attributes.razresena,
+        razresena: 'Да',
         zalilac: '',
         adresa: '',
         kontaktTelefon: '',
@@ -105,19 +105,6 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       data.push(zalbaPrikaz);
     })
     this.dataSource = data;
-  }
-
-  createResenje(row: any) {
-/*     let zalbaDto: ZalbaDto = {
-      id: row.id
-      datumPodnosenja: row.datum
-    } 
-      let zahtevDto: ZahtevDto = {
-        id: row.id
-        datumPodnosenja: row.datum
-        
-      }
-    */
   }
 
   generisiPDF(obavestenjeId: string) {
@@ -245,6 +232,5 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       }
     );
   }
-
 
 }

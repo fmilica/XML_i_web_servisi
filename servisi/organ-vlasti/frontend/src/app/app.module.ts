@@ -9,6 +9,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -28,6 +29,10 @@ import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/
 import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
 import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-obavestenja-sluzbenik/all-obavestenja-sluzbenik.component';
 import { AuthInterceptorService } from './interceptors/auth-interceptor.service';
+import { ZalbeCutanjeComponent } from './components/sluzbenik/zalbe-cutanje/zalbe-cutanje.component';
+import { ZalbeOdlukaComponent } from './components/sluzbenik/zalbe-odluka/zalbe-odluka.component';
+import { ResenjaComponent } from './components/sluzbenik/resenja/resenja.component';
+import { DialogComponent } from './components/sluzbenik/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +46,11 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     AllObavestenjaGradjaninComponent,
     NewObavestenjeComponent,
     AllZahteviSluzbenikComponent,
-    AllObavestenjaSluzbenikComponent
+    AllObavestenjaSluzbenikComponent,
+    ZalbeCutanjeComponent,
+    ZalbeOdlukaComponent,
+    ResenjaComponent,
+    DialogComponent
   ],
   imports: [
     AppRoutingModule, 
@@ -59,6 +68,7 @@ import { AuthInterceptorService } from './interceptors/auth-interceptor.service'
     MatTooltipModule,
     MatRadioModule,
     MatButtonModule,
+    MatDialogModule,
     ToastrModule.forRoot()
   ],
   providers: [

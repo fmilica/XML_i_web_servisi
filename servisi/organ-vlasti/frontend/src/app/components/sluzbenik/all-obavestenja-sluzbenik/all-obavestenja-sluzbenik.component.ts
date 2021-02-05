@@ -52,19 +52,31 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
     let allObavestenja: any =  txml.parse(xmlResponse);
     let data = []
     allObavestenja[1].children.map(obavestenje => {
-      //console.log(obavestenje)
+      console.log(obavestenje)
       let obavestenjePrikaz = {
         id: obavestenje.attributes.id.substring(19),
         nazivOrgana: obavestenje.children[0].children[0].children[0],
         sedisteOrgana: obavestenje.children[0].children[1].children[0],
         brojPredmeta: obavestenje.children[1].children[0],
         datum: obavestenje.attributes.datum,
-        imePrezime: obavestenje.children[2].children[0].children[0] + ' ' + obavestenje.children[2].children[1].children[0],
-        adresa: obavestenje.children[2].children[2].children[1].children[0] + ', ' + 
-        obavestenje.children[2].children[2].children[2].children[0] + ' ' + obavestenje.children[2].children[2].children[0].children[0],
+        imePrezime: '',
+        adresa: '',
         datumZahteva: obavestenje.children[3].children[1].children[0],
         informacije: obavestenje.children[3].children[2].children[0]
       }
+      //ime i prezime
+      if(obavestenje.children[2].length === 3) {
+        obavestenjePrikaz.imePrezime =  obavestenje.children[2].children[0].children[0] + ' ' + obavestenje.children[2].children[1].children[0]
+        obavestenjePrikaz.adresa = obavestenje.children[2].children[2].children[1].children[0] + ', ' + 
+        obavestenje.children[2].children[2].children[2].children[0] + ' ' + obavestenje.children[2].children[2].children[0].children[0]
+      }
+      //naziv 
+      else {
+        obavestenjePrikaz.imePrezime =  obavestenje.children[2].children[0].children[0]
+        obavestenjePrikaz.adresa = obavestenje.children[2].children[1].children[1].children[0] + ', ' + 
+        obavestenje.children[2].children[1].children[2].children[0] + ' ' + obavestenje.children[2].children[1].children[0].children[0]
+      }
+
       data.push(obavestenjePrikaz);
     })
     this.dataSource = data;
