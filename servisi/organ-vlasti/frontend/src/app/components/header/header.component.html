@@ -28,6 +28,16 @@
             [ngClass]="{'active': activeLink==='kreirana-obavestenja'}">
             Преглед креираних обавештења
         </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('zalbe-cutanje')" (keyup.enter)="onClick('zalbe-cutanje')"
+            [ngClass]="{'active': activeLink==='zalbe-cutanje'}">
+            Преглед жалби на ћутање
+        </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('zalbe-odluka')" (keyup.enter)="onClick('zalbe-odluka')"
+            [ngClass]="{'active': activeLink==='zalbe-odluka'}">
+            Преглед жалби на одлуку
+        </a>
     </div>
 
     <div class="ml-auto" *ngIf="role!==''">

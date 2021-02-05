@@ -1,0 +1,204 @@
+<form [formGroup]="obicnaForm">
+    <div class="row">
+        <div class="col-md-2.5 left top">
+            <mat-label>Основна претрага:</mat-label>
+        </div>
+        <!-- Sve -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по текстуалном садржају</mat-label>
+                    <input matInput formControlName="sve" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Pretraga -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="obicnaPretraga()">
+                Претрага жалби одлуке
+            </button>
+        </div>
+    </div>
+</form>
+
+<form [formGroup]="metaDataForm">
+    <div class="row">
+        <div class="col-md-1.25 left top">
+            <mat-label matTooltip="Претрага по метаподацима" 
+            matTooltipPosition="above">Напредна претрага:</mat-label>
+        </div> 
+        <!-- Naziv organa vlasti kom je upucena zalba -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по називу органа против ког је жалба</mat-label>
+                    <input matInput formControlName="primalacNaziv" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Ime podnosioca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по имену подносиоца жалбе</mat-label>
+                    <input matInput formControlName="podnosilacIme" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Prezime podnosioca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по презимену подносиоца жалбе</mat-label>
+                    <input matInput formControlName="podnosilacPrezime" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Naziv podnosioca -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по називу подносиоца жалбе</mat-label>
+                    <input matInput formControlName="podnosilacNaziv" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Vezani gradjanin -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по везаном грађанину</mat-label>
+                    <input matInput formControlName="vezaniGradjanin" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-1.5 left">
+            <mat-label>Начин напредне претраге:</mat-label>
+        </div>
+        <div class="col-md-7">
+            <mat-radio-group formControlName="operator" aria-label="Начин претраге">
+                <mat-radio-button value="AND" [checked] = 'true'>Жалба ћутање мора да задовољи све параметре</mat-radio-button>
+                <mat-radio-button value="OR">Жалба ћутање мора да задовољи бар један параметар</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <!-- Filter -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="metapodaciPretraga()">
+                Претрага жалби одлуке
+            </button>
+        </div>
+    </div>
+</form>
+<div class="ng-container row justify-content-md-center">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSource">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+            <ng-container matColumnDef="naziv">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив жалиоца </th>
+                <td matTooltip="Назив жалиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.naziv}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adresa">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса жалиоца </th>
+                <td matTooltip="Адреса жалиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.adresa}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="organVlasti">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Орган власти </th>
+                <td matTooltip="Назив органа власти који је донео одлуку" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.organVlasti}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="broj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Број одлуке </th>
+                <td matTooltip="Број одлуке" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.broj}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="godina">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Година одлуке </th>
+                <td matTooltip="Година одлуке" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.godina}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datumZahteva">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум захтева </th>
+                <td matTooltip="Датум подношења захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datumZahteva}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="razlogZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разлог жалбе </th>
+                <td matTooltip="Разлог жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.razlogZalbe}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="nazivPodnosioca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив подносиоца </th>
+                <td matTooltip="Назив подносиоца жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.nazivPodnosioca}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="adresaPodnosioca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Адреса подносиоца </th>
+                <td matTooltip="Адреса подносиоца жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.adresaPodnosioca}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datumZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум жалбе </th>
+                <td matTooltip="Датум подношења жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datumZalbe}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mestoZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Место жалбе </th>
+                <td matTooltip="Место подношења жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.mestoZalbe}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="razresena">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
+                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <div *ngIf="row.razresena === 'true'; then tekst else dugme"></div>
+                    <ng-template #tekst>Разрешена</ng-template>
+                    <ng-template #dugme><button (click) = "openDialog(row)">Изјасни се</button></ng-template>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="preuzimanje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
+                <td matTooltip="Преузимање жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a (click)="generisiPDF(row.id)" class="link">PDF</a><a (click)="generisiHTML(row.id)" class="link">HTML</a>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="preuzimanjeMeta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми метаподатке</th>
+                <td matTooltip="Преузимање метаподатака жалбе на одлуку" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a (click)="generisiRDF(row.id)" class="link">RDF</a><a (click)="generisiJSON(row.id)" class="link">JSON</a>
+                </td>
+            </ng-container>
+        </table>
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<h2 mat-dialog-title>Изјашњење на жалбу</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field id="text-input" appearance="fill" class="form-field">
+            <mat-label>Објашњење</mat-label>
+            <input type="text" id="text-input-field" matInput formControlName="text">
+            <mat-error id = "name-error" *ngIf="form.get('text')?.invalid">{{getTextErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <button 
+            mat-raised-button class="btn btn-purple" 
+            type="submit"
+            [disabled]="form.invalid">
+            Create
+        </button>
+        <button mat-raised-button class="btn btn-purple separate" (click)="close()" type="button">Cancel</button>
+    </form>
+</mat-dialog-content>
+
