@@ -30,7 +30,7 @@ public class ZalbaOdbijenSOAPService {
 
 	@PostMapping(value = "/send-zalba", consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Void> sendZalbaOdbijen(@RequestBody ZalbaOdbijanje zalba) throws Exception {
-		String soapEndpointUrl = "http://localhost:8081/ws/zalbaodbijen";
+		String soapEndpointUrl = "http://localhost:8082/ws/zalbaodbijen";
 
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory.createConnection();
