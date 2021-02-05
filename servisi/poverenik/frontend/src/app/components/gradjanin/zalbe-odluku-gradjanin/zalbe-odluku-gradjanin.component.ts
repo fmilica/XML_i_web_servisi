@@ -50,7 +50,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
               razlogZalbe: zalba.children[3].children[0].children[0],
               datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
               mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-              razresena: 'Да'
+              razresena: zalba.attributes.razresen
             }
             //podaci o zaliocu
             if (zalba.children[1].children.length === 3) {

@@ -33,7 +33,7 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
               podaci: zalba.children[1].children[3].children[0],
               datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
               mestoZalbe: zalba.attributes.mesto,
-              razresena: 'Да'
+              razresena: zalba.attributes.razresen
             }
             data.push(zalbaPrikaz);
           })

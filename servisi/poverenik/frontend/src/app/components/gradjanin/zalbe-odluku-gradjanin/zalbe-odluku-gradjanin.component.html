@@ -71,7 +71,8 @@
             <ng-container matColumnDef="razresena">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
                 <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.razresena}}
+                    <mat-icon *ngIf = "row.razresena === 'true'">done</mat-icon>
+                    <mat-icon *ngIf = "row.razresena === 'false'">close</mat-icon>
                 </td>
             </ng-container>
 
