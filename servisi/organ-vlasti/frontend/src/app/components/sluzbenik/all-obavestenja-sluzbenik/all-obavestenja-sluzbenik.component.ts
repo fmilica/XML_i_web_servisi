@@ -4,11 +4,20 @@ import { ObavestenjeNaprednaPretragaDto } from 'src/app/model/obavestenje-napred
 import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ZahtevService } from 'src/app/services/zahtev.service';
 
 @Component({
   selector: 'app-all-obavestenja-sluzbenik',
   templateUrl: './all-obavestenja-sluzbenik.component.html',
-  styleUrls: ['./all-obavestenja-sluzbenik.component.sass']
+  styleUrls: ['./all-obavestenja-sluzbenik.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AllObavestenjaSluzbenikComponent implements OnInit {
 
@@ -17,7 +26,8 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
   metaDataForm: FormGroup;
 
   constructor(
-    private obavestenjeService: ObavestenjeService
+    private obavestenjeService: ObavestenjeService,
+    private zahtevService: ZahtevService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -35,6 +45,16 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
   }
 
   dataSource = [ ];
+  
+  fetchedZahtev = {
+    nazivOrgana: "",
+    sedisteOrgana: "",
+    informacije: "",
+    mesto: "",
+    datum: ""
+  }
+
+  expandedElement: any | null;
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'imePrezime', 'adresa', 'datumZahteva', 'informacije', 'preuzimanje', 'preuzimanjeMeta'];
 
@@ -62,7 +82,8 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
         imePrezime: '',
         adresa: '',
         datumZahteva: obavestenje.children[3].children[1].children[0],
-        informacije: obavestenje.children[3].children[2].children[0]
+        informacije: obavestenje.children[3].children[2].children[0],
+        zahtevId: obavestenje.attributes.href.substring(14)
       }
       //ime i prezime
       if(obavestenje.children[2].length === 3) {
@@ -213,6 +234,26 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
         this.previewAndDownload(response, zahtevId, "json");
       }
     );
+  }
+  
+  fetchZahtev(zahtevId: string){
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        let zahtev: any =  txml.parse(xmlResponse);
+        zahtev.map( z => {
+          let zahtevPrikaz = {
+            nazivOrgana: zahtev[1].children[0].children[0].children[0],
+            sedisteOrgana: zahtev[1].children[0].children[1].children[0],
+            dostava: 'false',
+            informacije: zahtev[1].children[1].children[2].children[0],
+            mesto: zahtev[1].attributes.mesto,
+            datum: zahtev[1].attributes.datum
+          }
+          this.fetchedZahtev = zahtevPrikaz
+        })
+      }
+    )
   }
 
 }
