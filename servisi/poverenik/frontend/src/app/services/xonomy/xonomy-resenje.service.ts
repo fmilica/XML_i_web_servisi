@@ -34,9 +34,53 @@ export class XonomyResenjeService {
           'xsi:schemaLocation': {
             isInvisible: true,
           },
+          broj_resenja: {
+            title: 'Број решења',
+            validate: function(jsAttribute){
+              //Make sure item/@mesto is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Број решења је обавезан атрибут."}
+              );
+              }
+            },
+            hasText: true,
+            asker: Xonomy.askString,
+          },
+          'tip_odluke': {
+            asker: Xonomy.askPicklist,
+            askerParameter: ["основана", "неоснована", "поништена"],
+            validate: function(jsAttribute){
+              //Make sure item/@razlog_odbijanja is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Тип одлуке је обавезан атрибут."}
+              );
+              }
+            },
+          }
         },
       },
+      // Opis zalbe
       'res:Opis_zalbe': {
+        attributes: {
+          razlog_zalbe: {
+            title: 'Разлог жалбе',
+            asker: Xonomy.askPicklist,
+            askerParameter: ["непоступање", "непоступање у целости", "непоступање у законском року", "одбијање/одбацивање"],
+            validate: function(jsAttribute){
+              //Make sure item/@mesto is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Разлог жалбе је обавезан атрибут."}
+              );
+              }
+            },
+          }
+        },
         hasText: true,
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
@@ -49,59 +93,61 @@ export class XonomyResenjeService {
         },
         inlineMenu: [
           {
-            caption: "Обмотај тагом <res:ImeZalilac>",
+            caption: "Обмотај тагом <res:Ime_zalilac>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:ImeZalilac xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/"  property="pred:zalilacIme">$</res:ImeZalilac>', placeholder: "$"},
+            actionParameter: {template: '<res:Ime_zalilac xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/"  property="pred:zalilacIme">$</res:Ime_zalilac>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return (jsElement.hasChildElement("res:ImeZalilac") || jsElement.hasChildElement("res:NazivZalilac"))
+              return (jsElement.hasChildElement("res:Ime_zalilac") || jsElement.hasChildElement("res:Naziv_zalilac"))
             }
           }, 
           {
-            caption: "Обмотај тагом <res:PrezimeZalilac>",
+            caption: "Обмотај тагом <res:Prezime_zalilac>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:PrezimeZalilac xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/"  property="pred:zalilacPrezime">$</res:PrezimeZalilac>', placeholder: "$"},
+            actionParameter: {template: '<res:Prezime_zalilac xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/"  property="pred:zalilacPrezime">$</res:Prezime_zalilac>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return (jsElement.hasChildElement("res:PrezimeZalilac") || jsElement.hasChildElement("res:NazivZalilac"))
+              return (jsElement.hasChildElement("res:Prezime_zalilac") || jsElement.hasChildElement("res:Naziv_zalilac"))
             },
           },
           {
-            caption: "Обмотај тагом <res:NazivZalilac>",
+            caption: "Обмотај тагом <res:Naziv_zalilac>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:NazivZalilac xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/"  property="pred:zalilacNaziv">$</res:NazivZalilac>', placeholder: "$"},
+            actionParameter: {template: '<res:Naziv_zalilac xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/"  property="pred:zalilacNaziv">$</res:Naziv_zalilac>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return (jsElement.hasChildElement("res:ImeZalilac") || jsElement.hasChildElement("res:NazivZalilac"))
+              return (jsElement.hasChildElement("res:Ime_zalilac") 
+              || jsElement.hasChildElement("res:Prezime_zalilac") 
+              || jsElement.hasChildElement("res:Naziv_zalilac"))
             }
           },
           {
-            caption: "Обмотај тагом <res:NazivOrganaVlasti>",
+            caption: "Обмотај тагом <res:Naziv_organa_vlasti>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:NazivOrganaVlasti xmlns:res="http://resenje">$</res:NazivOrganaVlasti>', placeholder: "$"},
+            actionParameter: {template: '<res:Naziv_organa_vlasti xmlns:res="http://resenje">$</res:Naziv_organa_vlasti>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("res:NazivOrganaVlasti")
+              return jsElement.hasChildElement("res:Naziv_organa_vlasti")
             },
           },
           {
-            caption: "Обмотај тагом <res:MestoOrganaVlasti>",
+            caption: "Обмотај тагом <res:Mesto_organa_vlasti>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:MestoOrganaVlasti xmlns:res="http://resenje">$</res:MestoOrganaVlasti>', placeholder: "$"},
+            actionParameter: {template: '<res:Mesto_organa_vlasti xmlns:res="http://resenje">$</res:Mesto_organa_vlasti>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("res:MestoOrganaVlasti")
+              return jsElement.hasChildElement("res:Mesto_organa_vlasti")
             },
           },
           {
-            caption: "Обмотај тагом <res:UlicaOrganaVlasti>",
+            caption: "Обмотај тагом <res:Ulica_organa_vlasti>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:UlicaOrganaVlasti xmlns:res="http://resenje">$</res:UlicaOrganaVlasti>', placeholder: "$"},
+            actionParameter: {template: '<res:Ulica_organa_vlasti xmlns:res="http://resenje">$</res:Ulica_organa_vlasti>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("res:UlicaOrganaVlasti")
+              return jsElement.hasChildElement("res:Ulica_organa_vlasti")
             },
           },
           {
-            caption: "Обмотај тагом <res:Ulicni_brojOrganaVlasti>",
+            caption: "Обмотај тагом <res:Ulicni_broj_organa_vlasti>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:Ulicni_brojOrganaVlasti xmlns:res="http://resenje">$</res:Ulicni_brojOrganaVlasti>', placeholder: "$"},
+            actionParameter: {template: '<res:Ulicni_broj_organa_vlasti xmlns:res="http://resenje">$</res:Ulicni_broj_organa_vlasti>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("res:Ulicni_brojOrganaVlasti")
+              return jsElement.hasChildElement("res:Ulicni_broj_organa_vlasti")
             },
           },
           {
@@ -125,19 +171,19 @@ export class XonomyResenjeService {
             actionParameter: {template: '<res:Zakon xmlns:res="http://resenje">$</res:Zakon>', placeholder: "$"},
           },
           {
-            caption: "Обмотај тагом <res:NazivSluzbenogGlasnika>",
+            caption: "Обмотај тагом <res:Naziv_sluzbenog_glasnika>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:NazivSluzbenogGlasnika xmlns:res="http://resenje">$</res:NazivSluzbenogGlasnika>', placeholder: "$"},
+            actionParameter: {template: '<res:Naziv_sluzbenog_glasnika xmlns:res="http://resenje">$</res:Naziv_sluzbenog_glasnika>', placeholder: "$"},
           },
           {
-            caption: "Обмотај тагом <res:BrojSluzbenogGlasnika>",
+            caption: "Обмотај тагом <res:Broj_sluzbenog_glasnika>",
             action: Xonomy.wrap,
-            actionParameter: {template: '<res:BrojSluzbenogGlasnika xmlns:res="http://resenje">$</res:BrojSluzbenogGlasnika>', placeholder: "$"},
+            actionParameter: {template: '<res:Broj_sluzbenog_glasnika xmlns:res="http://resenje">$</res:Broj_sluzbenog_glasnika>', placeholder: "$"},
           },
         ]
       },
       //Tagovi unutar opis zalbe
-      'res:ImeZalilac': {
+      'res:Ime_zalilac': {
         oneliner: true,
         attributes: {
           property: {
@@ -146,12 +192,12 @@ export class XonomyResenjeService {
         },
         hasText: true,
         menu: [{
-          caption: "Уклони таг <ImeZalilac>",
+          caption: "Уклони таг <Ime_zalilac>",
           action: Xonomy.unwrap
         }]
 
       },
-      'res:PrezimeZalilac': {
+      'res:Prezime_zalilac': {
         oneliner: true,
         attributes: {
           property: {
@@ -160,11 +206,11 @@ export class XonomyResenjeService {
         },
         hasText: true,
         menu: [{
-          caption: "Уклони таг <PrezimeZalilac>",
+          caption: "Уклони таг <Prezime_zalilac>",
           action: Xonomy.unwrap
         }]
       },
-      'res:NazivZalilac': {
+      'res:Naziv_zalilac': {
         oneliner: true,
         attributes: {
           property: {
@@ -173,36 +219,36 @@ export class XonomyResenjeService {
         },
         hasText: true,
         menu: [{
-          caption: "Уклони таг <NazivZalilac>",
+          caption: "Уклони таг <Naziv_zalilac>",
           action: Xonomy.unwrap
         }]
       },
-      'res:NazivOrganaVlasti': {
+      'res:Naziv_organa_vlasti': {
         oneliner: true,
         hasText: true,
         menu: [{
-          caption: "Уклони таг <NazivOrganaVlasti>",
+          caption: "Уклони таг <Naziv_organa_vlasti>",
           action: Xonomy.unwrap
         }]
       },
-      'res:MestoOrganaVlasti': {
+      'res:Mesto_organa_vlasti': {
         oneliner: true,
         menu: [{
-          caption: "Уклони таг <MestoOrganaVlasti>",
+          caption: "Уклони таг <Mesto_organa_vlasti>",
           action: Xonomy.unwrap
         }]
       },
-      'res:UlicaOrganaVlasti': {
+      'res:Ulica_organa_vlasti': {
         oneliner: true,
         menu: [{
-          caption: "Уклони таг <UlicaOrganaVlasti>",
+          caption: "Уклони таг <Ulica_organa_vlasti>",
           action: Xonomy.unwrap
         }]
       },
-      'res:Ulicni_brojOrganaVlasti': {
+      'res:Ulicni_broj_organa_vlasti': {
         oneliner: true,
         menu: [{
-          caption: "Уклони таг <Ulicni_brojOrganaVlasti>",
+          caption: "Уклони таг <Ulicni_broj_organa_vlasti>",
           action: Xonomy.unwrap
         }]
       },
@@ -236,17 +282,17 @@ export class XonomyResenjeService {
         }]
       },
       //Sluzbeni glasnik tagovi
-      'res:NazivSluzbenogGlasnika': {
+      'res:Naziv_sluzbenog_glasnika': {
         oneliner: true,
         menu: [{
-          caption: "Уклони таг <NazivSluzbenogGlasnika>",
+          caption: "Уклони таг <Naziv_sluzbenog_glasnika>",
           action: Xonomy.unwrap
         }]
       },
-      'res:BrojSluzbenogGlasnika': {
+      'res:Broj_sluzbenog_glasnika': {
         oneliner: true,
         menu: [{
-          caption: "Уклони таг <BrojSluzbenogGlasnika>",
+          caption: "Уклони таг <Broj_sluzbenog_glasnika>",
           action: Xonomy.unwrap
         }]
       },
@@ -268,12 +314,25 @@ export class XonomyResenjeService {
             caption: "Обмотај тагом <res:Nalog>",
             action: Xonomy.wrap,
             actionParameter: {template: '<res:Nalog rok_izvrsenja="" xmlns:res="http://resenje">$</res:Nalog>', placeholder: "$"},
+            hideIf: function (jsElement) {
+              return jsElement.hasChildElement("res:Odbijanje")
+            },
+          },
+          {
+            caption: "Обмотај тагом <res:Odbijanje>",
+            action: Xonomy.wrap,
+            actionParameter: {template: '<res:Odbijanje razlog_odbijanja="" xmlns:res="http://resenje">$</res:Odbijanje>', placeholder: "$"},
+            hideIf: function (jsElement) {
+              return (jsElement.hasChildElement("res:Nalog") || jsElement.hasChildElement("res:Odbijanje"))
+            },
           }
         ]
       },
       'res:Nalog': {
         attributes: {
           'rok_izvrsenja': {
+            hasText: true,
+            asker: Xonomy.askString,
             validate: function(jsAttribute){
               //Make sure item/@rok_izvrsenja is not an empty string:
               if(jsAttribute.value=="") {
@@ -290,10 +349,17 @@ export class XonomyResenjeService {
           action: Xonomy.unwrap
         }]
       },
+      'res:Odbijanje': {
+        menu: [{
+          caption: "Уклони таг <Odbijanje>",
+          action: Xonomy.unwrap
+        }]
+      },
 
       //Obrazlozenje
-      //Postupak zalioca
-      //Podnosenje zalbe
+        //Postupak zalioca
+          //Podnosenje zalbe
+          //Podnosenje zahteva
       'res:Podnosenje_zalbe': {
         hasText: true,
         validate: function (jsElement:any) {
@@ -318,6 +384,7 @@ export class XonomyResenjeService {
           }
         },
       },
+        //Prosledjivanje zalbe
       'res:Prosledjivanje_zalbe': {
         hasText: true,
         validate: function (jsElement:any) {
@@ -353,8 +420,23 @@ export class XonomyResenjeService {
           },
         ]
       },
-      //Odgovor na zalbu
-      'res:Odgovor_na_zalbu': {
+        //Izjasnjenje o zalbi
+      'res:Izjasnjenje_o_zalbi': {
+        attributes: {
+          'datum_izjasnjenja': {
+            hasText: true,
+            asker: Xonomy.askString,
+            validate: function(jsAttribute){
+              //Make sure item/@datum_izjasnjenja is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Датум изјашњења је обавезан атрибут."}
+              );
+              }
+            },
+          }
+        },
         hasText: true,
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
@@ -401,7 +483,7 @@ export class XonomyResenjeService {
             action: Xonomy.wrap,
             actionParameter: {template: '<res:Detaljan_opis_odluke xmlns:res="http://resenje">$</res:Detaljan_opis_odluke>', placeholder: "$"},
             hideIf: function (jsElement) {
-              return jsElement.hasChildElement("res:Detaljan_opis_odluke>")
+              return jsElement.hasChildElement("res:Detaljan_opis_odluke")
             }
           },
           {
@@ -426,6 +508,7 @@ export class XonomyResenjeService {
           },
         ]
       },
+      //Razlozi odluke unutrasnji
       'res:Detaljan_opis_podnetog_zahteva': {
         hasText: true,
         oneliner: true,
@@ -442,7 +525,6 @@ export class XonomyResenjeService {
           action: Xonomy.unwrap
         }]
       },
-      //Obrazlozenje odluke
       'res:Detaljan_opis_odluke': {
         hasText: true,
         oneliner: true,
@@ -451,6 +533,7 @@ export class XonomyResenjeService {
           action: Xonomy.unwrap
         }]
       },
+      // Zalba na resenje
       'res:Zalba_na_resenje': {
         hasText: true,
         validate: function (jsElement:any) {

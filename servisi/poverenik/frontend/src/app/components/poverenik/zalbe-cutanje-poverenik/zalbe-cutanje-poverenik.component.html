@@ -172,9 +172,11 @@
             </ng-container>
 
             <ng-container matColumnDef="razresena">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Статус жалбе </th>
                 <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.razresena}}
+                    <div *ngIf="row.razresen === 'true'; then tekst else dugme"></div>
+                    <ng-template #tekst>Разрешена</ng-template>
+                    <ng-template #dugme><button (click) = "createResenje(row)">Креирај Решење</button></ng-template>
                 </td>
             </ng-container>
 

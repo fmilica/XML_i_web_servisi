@@ -4,15 +4,25 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.StringWriter;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.xml.portal.poverenik.data.dao.resenje.DOMParser;
+import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
-import com.xml.portal.poverenik.data.xmldb.api.RetrieveXML;
-import com.xml.portal.poverenik.data.xmldb.api.StoreXML;
+import com.xml.portal.poverenik.data.repository.ResenjeRepository;
+import com.xml.portal.poverenik.dto.ResenjePrikazDTO;
+import com.xml.portal.poverenik.dto.pretraga.ResenjePretraga;
 import com.xml.portal.poverenik.transformator.DokumentiTransformator;
 
 public class ResenjeBusiness {
@@ -21,44 +31,194 @@ public class ResenjeBusiness {
 	
 	public static final String XSL_FO_FILE = "src/main/resources/data/xsl/resenje_fo.xsl";
 	
-	public Document getById(String id) {
-		Object ret = null;
+	private final String KORISNIK_NAMESPACE = "http://korisnik/";
+	
+	private final String GRAPH_URI = "/poverenik/Resenje";
+	private final String QUERY_PATH = "src/main/resources/data/sparql/napredna/resenje/";
+	
+	private static JAXBContext context;
+	private static Marshaller marshaller;
+
+	@Autowired
+	private ResenjeRepository resenjeRepository;
+	
+	public ResenjeBusiness() {
 		try {
-			ret = RetrieveXML.retrieve(null, id);
+			ResenjeBusiness.context = JAXBContext.newInstance(ResenjePrikazDTO.class);
+			ResenjeBusiness.marshaller = context.createMarshaller();
+			ResenjeBusiness.marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			ResenjeBusiness.marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Object getAll() {
+		List<Object> resenja = resenjeRepository.findAll();
+		String allResenja = toResenjePrikazList(resenja);
+		return allResenja;
+	}
+	
+	public Object getAllByGradjanin(String userEmail) {
+		List<String> resenjaIds;
+		String allResenja = "";
+		try {
+			List<String> userQuery = new ArrayList<String>();
+			userQuery.add(this.KORISNIK_NAMESPACE + userEmail);
+			resenjaIds = QueryMetadata.query(
+					"/poverenik/Resenje", 
+					"src/main/resources/data/sparql/korisnikResenja.rq", 
+					userQuery);
+			List<Object> resenja = resenjeRepository.findAllByGradjanin(resenjaIds);
+			allResenja = toResenjePrikazList(resenja);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return allResenja;
+	}
+	
+	public Object getById(String id) {
+		Object loaded = null;
+		try {
+			loaded = resenjeRepository.findById(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (ret != null) {
-			return stringToDocument((String)ret);
+		if (loaded != null) {
+			return loaded;
 		}
 		return null;
 	}
 	
-	public Document create(String inputXML) {
+	public Object getAllByContent(String content) {
+		List<Object> resenja = resenjeRepository.findAllByContent(content);
+		String allResenja = toResenjePrikazList(resenja);
+		return allResenja;
+	}
+	
+	public Object getAllNapredna(ResenjePretraga params) {
+		List<String> resenjaIds;
+		String allResenja = "";
 		
-		Document resenje = stringToDocument(inputXML);
+		String vezanGradjanin = params.getVezanGradjanin();
+		if (!vezanGradjanin.equals("?vezanGradjanin")) {
+			// dodajemo <> okolo
+			vezanGradjanin = "<" + vezanGradjanin + ">";
+			params.setVezanGradjanin(vezanGradjanin);
+		}
 		
-		Object ret = null;
+		String optuzeniNaziv = params.getOptuzeniNaziv();
+		if (!optuzeniNaziv.equals("?optuzeniNaziv")) {
+			optuzeniNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+			params.setOptuzeniNaziv(optuzeniNaziv);
+		}
+		
 		try {
-			ret = StoreXML.store(resenje);
+			if (params.getOperator().equals("AND")) {
+				resenjaIds = QueryMetadata.query(
+						GRAPH_URI, 
+						QUERY_PATH + "naprednaResenjeAND.rq", 
+						params.createAllArray());
+			} else {
+				vezanGradjanin = params.getVezanGradjanin();
+				if (vezanGradjanin.equals("?vezanGradjanin")) {
+					// dodajemo <> okolo
+					vezanGradjanin = "<>";
+					params.setVezanGradjanin(vezanGradjanin);
+				}
+				optuzeniNaziv = params.getOptuzeniNaziv();
+				if (!optuzeniNaziv.equals("?optuzeniNaziv")) {
+					optuzeniNaziv += "^^<http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral>";
+					params.setOptuzeniNaziv(optuzeniNaziv);
+				}
+				resenjaIds = QueryMetadata.query(
+						GRAPH_URI, 
+						QUERY_PATH + "naprednaResenjeOR.rq", 
+						params.createAllArray());
+			}
+			List<Object> resenja = resenjeRepository.findAllByGradjanin(resenjaIds);
+			allResenja = toResenjePrikazList(resenja);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (ret != null) {
-			return (Document)ret;
-		}
-		return null;
+		return allResenja;
 	}
 	
-	public String storeMetadata(Document resenje) {
+	public String create(String resenje, String zahtevId, String zalbaId, String userEmail) {
+		
+		Document resenjeDoc = stringToDocument(resenje);
+		
+		String documentId = resenjeRepository.save(resenjeDoc, zahtevId, zalbaId, userEmail);
+		
+		return documentId;
+	}
+	
+	public String storeMetadata(String resenjeString) {
 		try {
+			Document resenje = stringToDocument(resenjeString);
 			StoreMetadata.store(resenje);
-			// dobavljanje id-a
-			NodeList nodeList = resenje.getChildNodes();
-			Element resenjeElem = (Element)nodeList.item(0);
-			String id = resenjeElem.getAttribute("id");
-			return id;
+			NodeList list = resenje.getElementsByTagNameNS("*", "Resenje");
+			Element resenjeElem = (Element)list.item(0);
+			String resenjeId = resenjeElem.getAttribute("id");
+			return resenjeId;
 		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String generateHTML(String id) throws Exception {
+		DokumentiTransformator transformer = null;
+
+		try {
+			transformer = new DokumentiTransformator();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		String resenje = this.resenjeRepository.findByIdRaw(id);
+		//Object zahtev = RetrieveXML.retrieveRaw(null, id);
+
+		String ok = "";
+		String htmlPath = "src/main/resources/data/html/resenje_" + id + ".html";
+
+		try {
+			ok = transformer.generateHTML(resenje, htmlPath, XSL_FILE);
+			if (ok.length()>0)
+				return htmlPath;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String generatePDF(String id) throws Exception {
+		DokumentiTransformator transformer = null;
+
+		try {
+			transformer = new DokumentiTransformator();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		String resenje = this.resenjeRepository.findByIdRaw(id);
+		//Object zahtev = RetrieveXML.retrieveRaw(null, id);
+
+		String ok = "";
+		String pdfPath = "src/main/resources/data/pdf/resenje_" + id + ".pdf";
+
+		try {
+			ok = transformer.generatePDF(resenje, pdfPath, XSL_FO_FILE);
+			if (ok.length()>0)
+				return pdfPath;
+			else
+				return null;
+		} catch (Exception e) {
+			e.printStackTrace();
 			return null;
 		}
 	}
@@ -84,57 +244,92 @@ public class ResenjeBusiness {
 		return resenje;
 	}
 	
-	public String generateHTML(String id) throws Exception {
-		DokumentiTransformator transformer = null;
-
-		try {
-			transformer = new DokumentiTransformator();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-		
-		Object zahtev = RetrieveXML.retrieveRaw(null, id);
-
-		String ok = "";
-		String htmlPath = "src/main/resources/data/html/resenje_" + id + ".html";
-
-		try {
-			ok = transformer.generateHTML(zahtev.toString(), htmlPath, XSL_FILE);
-			if (ok.length()>0)
-				return htmlPath;
-			else
-				return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
+//	private String toResenjaList(List<Object> resenja) {
+//		String allResenja = "<ListaResenja>\n";
+//		for (Object o : resenja) {
+//			allResenja += (String)o + '\n';
+//		}
+//		allResenja += "</ListaResenja>";
+//		return allResenja;
+//	}
 	
-	public String generatePDF(String id) throws Exception {
-		DokumentiTransformator transformer = null;
+	private String toResenjePrikazList(List<Object> resenja) {
+		String allResenja = "<ListaResenja>\n";
+		for (Object resenjeString : resenja) {
+			ResenjePrikazDTO resenjePrikaz = new ResenjePrikazDTO();
+			
+			Document resenjeDoc = stringToDocument((String)resenjeString);
+			
+			NodeList list = resenjeDoc.getElementsByTagNameNS("*", "Resenje");
+			Element resenje = (Element)list.item(0);
+			
+			String resenjeIdUri = resenje.getAttribute("id");
+			String[] resenjeIdUriList = resenjeIdUri.split("/");
+			String resenjeId = resenjeIdUriList[resenjeIdUriList.length - 1];
+			resenjePrikaz.setResenjeId(resenjeId);
+			
+			String resenjeDatum = resenje.getAttribute("datum_resenja");
+			resenjePrikaz.setResenjeDatum(resenjeDatum);
+			
+			String tipOdluke = resenje.getAttribute("tip_odluke");
+			resenjePrikaz.setResenjeDatum(tipOdluke);
+			
+			String userEmailUri = resenje.getAttribute("href");
+			String[] userEmailUiList = userEmailUri.split("/");
+			String userEmail = userEmailUiList[userEmailUiList.length - 1];
+			resenjePrikaz.setUserEmail(userEmail);
+			
+			list = resenje.getElementsByTagNameNS("*", "Naziv_organa_vlasti");
+			Element nazivOrganaVlastiElem = (Element)list.item(0);
+			String nazivOrganaVlasti = nazivOrganaVlastiElem.getTextContent();
+			resenjePrikaz.setOptuzeniOrganVlasti(nazivOrganaVlasti);
+			
+			list = resenje.getElementsByTagNameNS("*", "Podnosenje_zalbe");
+			Element podnosenjeZalbe = (Element)list.item(0);
+			String zalbaIdUri = podnosenjeZalbe.getAttribute("href");
+			String[] zalbaIdUriList = zalbaIdUri.split("/");
+			String zalbaId = zalbaIdUriList[zalbaIdUriList.length - 1];
+			resenjePrikaz.setZalbaId(zalbaId);
+			
+			list = resenje.getElementsByTagNameNS("*", "Podnosenje_zahteva");
+			Element podnosenjeZahteva = (Element)list.item(0);
+			String zahtevIdUri = podnosenjeZahteva.getAttribute("href");
+			String[] zahtevIdUriList = zahtevIdUri.split("/");
+			String zahtevId = zahtevIdUriList[zahtevIdUriList.length - 1];
+			resenjePrikaz.setZalbaId(zahtevId);
+			
+			list = resenje.getElementsByTagNameNS("*", "Ime_zalilac");
+			Element imeZalilacElem = (Element)list.item(0);
+			if (imeZalilacElem != null) {
+				String imeZalilac = imeZalilacElem.getTextContent();
+				resenjePrikaz.setZalilacIme(imeZalilac);	
+			}
 
-		try {
-			transformer = new DokumentiTransformator();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
+			list = resenje.getElementsByTagNameNS("*", "Prezime_zalilac");
+			Element prezimeZalilacElem = (Element)list.item(0);
+			if (prezimeZalilacElem != null) {
+				String prezimeZalilac = prezimeZalilacElem.getTextContent();
+				resenjePrikaz.setZalilacPrezime(prezimeZalilac);	
+			}
+
+			list = resenje.getElementsByTagNameNS("*", "Naziv_zalilac");
+			Element nazivZalilacElem = (Element)list.item(0);
+			if (nazivZalilacElem != null) {
+				String nazivZalilac = nazivZalilacElem.getTextContent();
+				resenjePrikaz.setZalilacNaziv(nazivZalilac);	
+			}
+			
+			StringWriter sw = new StringWriter();
+			try {
+				ResenjeBusiness.marshaller.marshal(resenjePrikaz, sw);
+			} catch (JAXBException e) {
+				e.printStackTrace();
+			}
+			String resenjePrikazString = sw.toString();
+
+			allResenja += resenjePrikazString + '\n';
 		}
-		
-		Object zahtev = RetrieveXML.retrieveRaw(null, id);
-
-		String ok = "";
-		String pdfPath = "src/main/resources/data/pdf/resenje_" + id + ".pdf";
-
-		try {
-			ok = transformer.generatePDF(zahtev.toString(), pdfPath, XSL_FO_FILE);
-			if (ok.length()>0)
-				return pdfPath;
-			else
-				return null;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		}
+		allResenja += "</ListaResenja>";
+		return allResenja;
 	}
 }

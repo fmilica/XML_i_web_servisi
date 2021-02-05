@@ -144,10 +144,10 @@ public class ObavestenjeBusiness {
 					params.setVezanGradjanin(vezanGradjanin);
 				}
 				vezanZahtev = params.getVezanZahtev();
-				if (vezanGradjanin.equals("?vezanZahtev")) {
+				if (vezanZahtev.equals("?vezanZahtev")) {
 					// dodajemo <> okolo
-					vezanGradjanin = "<>";
-					params.setVezanGradjanin(vezanGradjanin);
+					vezanZahtev = "<>";
+					params.setVezanGradjanin(vezanZahtev);
 				}
 				izdavacNaziv = params.getIzdavacNaziv();
 				if (izdavacNaziv.equals("?izdavacNaziv")) {
