@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://pismo" xmlns:ps="http://pismo">
+    <xs:element name="pismo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="primalac" type="xs:string"></xs:element>
+                <xs:element name="naslov" type="xs:string"></xs:element>
+                <xs:element name="sadrzaj" type="xs:string"></xs:element>
+                <xs:element name="prilog" type="xs:base64Binary"></xs:element>
+            </xs:sequence>
+            <xs:attribute name="tipPriloga"></xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    
+</xs:schema>

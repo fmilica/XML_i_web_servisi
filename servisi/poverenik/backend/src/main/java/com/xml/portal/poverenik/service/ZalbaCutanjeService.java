@@ -27,7 +27,7 @@ import com.xml.portal.poverenik.dto.pretraga.ZalbaCutanjePretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/zalba-cutanje", produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ZalbaCutanjeService {
 
 	@Autowired

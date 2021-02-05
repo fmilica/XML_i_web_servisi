@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ps:pismo xmlns:ps="http://pismo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pismo schema/pismo/pismo.xsd ">
+  <ps:primalac>ps:primalac</ps:primalac>
+  <ps:naslov>ps:naslov</ps:naslov>
+  <ps:sadrzaj>ps:sadrzaj</ps:sadrzaj>
+  <ps:prilog>MA==</ps:prilog>
+</ps:pismo>

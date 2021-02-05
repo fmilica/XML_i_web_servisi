@@ -1,0 +1,6 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) zalbi cutanje vezanog za jednog korisnika
+
+SELECT ?zalbaCutanje FROM <%s>
+WHERE { 
+  ?zalbaCutanje <http://www.xml.com/predicate/vezanGradjanin> <%s> .
+}

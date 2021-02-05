@@ -56,6 +56,13 @@
         </a>
     </div>
 
+    <div class="ml-auto" *ngIf="role!==''">
+        <a class="nav-item nav-link nav-btn btn ml-auto" role="button" tabindex="0"
+            (click)="logout()" (keyup.enter)="logout()">
+            Излогуј се
+        </a>
+    </div>
+
     <div id="user-btn-group" class="nav nav-pill mr-auto" *ngIf="role===''" style="padding-top: 46px;">
 
     </div>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://zalbaodbijanje" xmlns:zoz="http://zalbaodbijanje"
+    xmlns:tipovi="http://tipovi" xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
+    <xs:element name="Zalba_odbijanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Podaci_o_primaocu" type="tipovi:TPoverenik"> </xs:element>
+                <xs:element name="Podaci_o_zaliocu" type="tipovi:TLice"> </xs:element>
+                <xs:element name="Podaci_o_odluci">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Naziv_donosioca_odluke" type="xs:string">
+                            </xs:element>
+                        </xs:sequence>
+                        <xs:attribute name="broj_odluke" type="xs:int"> </xs:attribute>
+                        <xs:attribute name="godina" type="xs:int"> </xs:attribute>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Telo_zalbe" type="zoz:TTelo"> </xs:element>
+                <xs:element name="Podaci_o_podnosiocu_zalbe">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="tipovi:TLice_kontakt">
+                                <xs:attribute name="vocab" type="xs:string"/>
+                                <xs:attribute name="about" type="xs:string"/>
+                                <xs:attribute name="rel" type="xs:string"/>
+                                <xs:attribute name="href" type="xs:string"/>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+            <xs:attribute name="mesto_podnosenja_zalbe" type="xs:string"> </xs:attribute>
+            <xs:attribute name="datum_podnosenja_zalbe" type="xs:string"/>
+            <xs:attribute name="datum_podnosenja_zahteva" type="xs:date"> </xs:attribute>
+            <xs:attribute name="razresen" type="xs:boolean"/>
+            <xs:attribute name="vocab" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="TTelo">
+        <xs:sequence>
+            <xs:element name="Razlog_zalbe" type="xs:string"> </xs:element>
+            <xs:element name="Osnova_zalbe" type="zoz:TZakonska_osnova"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TZakonska_osnova">
+        <xs:sequence>
+            <xs:element default="22" name="Clan" type="xs:positiveInteger"/>
+            <xs:element default="1" name="Stav" type="xs:positiveInteger"/>
+            <xs:element default="Закон о слободном приступу информацијама од јавног значаја"
+                name="Zakon" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

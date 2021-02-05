@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { XonomyZalbaOdlukaService } from 'src/app/services/xonomy/xonomy-zalba-odluka.service';
 import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
@@ -12,14 +13,25 @@ declare const Xonomy: any;
 })
 export class ZalbaOdlukaComponent implements OnInit {
 
+  form: FormGroup;
+  unetId = false;
+
   constructor(
     private xonomyZalbaOdlukaService: XonomyZalbaOdlukaService,
     private zalbaOdlukaService: ZalbaOdlukaService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService) { 
+      this.unetId = false;
+      this.form = new FormGroup({
+        id: new FormControl('', [Validators.required])
+      })
+    }
 
   ngOnInit(): void {}
 
-  ngAfterViewInit(){
+  ngAfterViewInit(){ }
+
+  podnesiZalbu() {
+    this.unetId = true;
     let element = document.getElementById('zalbaOdluka');
     let specification = this.xonomyZalbaOdlukaService.zalbaOdlukaSpecification;
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>`+
@@ -90,4 +102,13 @@ export class ZalbaOdlukaComponent implements OnInit {
       });
   }
 
+  getRequiredFieldErrorMessage(fieldName: string): string {
+    if (this.form.controls[fieldName].touched) {
+      return this.form.controls[fieldName].hasError('required')
+        ? 'Обавезно поље'
+        : '';
+    }
+
+    return '';
+  }
 }

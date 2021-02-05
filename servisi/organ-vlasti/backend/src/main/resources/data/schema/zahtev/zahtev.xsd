@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://zahtev" xmlns:zahtev="http://zahtev" xmlns:tipovi="http://tipovi"
+    xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
+    <xs:element name="Zahtev">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Organ_vlasti" type="tipovi:TOrgan_vlasti"/>
+                <xs:element ref="zahtev:Telo_zahteva"> </xs:element>
+                <xs:element name="Trazilac" type="tipovi:TLice_kontakt"> </xs:element>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+            <xs:attribute name="mesto">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="([A-Z][a-z]+)(\s[A-Z][a-z]+)*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+            <xs:attribute name="datum" type="xs:date"/>
+            <xs:attribute name="razresen" type="xs:boolean"/>
+            <xs:attribute name="odbijen" type="xs:boolean"/>
+            <xs:attribute name="vocab" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Telo_zahteva">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Zakonska_osnova" type="zahtev:TZakonska_osnova"> </xs:element>
+                <xs:element ref="zahtev:Zahtevi"> </xs:element>
+                <xs:element name="Zahtevane_informacije" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Zahtevi">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" name="Obavestenje" type="xs:string"/>
+                <xs:element minOccurs="0" name="Uvid" type="xs:string"/>
+                <xs:element minOccurs="0" name="Kopija" type="xs:string"/>
+                <xs:element minOccurs="0" name="Dostavljanje_kopije">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element ref="zahtev:Nacin_dostave"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Nacin_dostave">
+        <xs:complexType>
+            <xs:choice>
+                <xs:element name="Dostava_postom" type="xs:string"/>
+                <xs:element name="Dostava_elektronskom_postom" type="xs:string"/>
+                <xs:element name="Dostava_faksom" type="xs:string"/>
+                <xs:element name="Posebna_dostava">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="Nacin_posebne_dostave">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:minLength value="1"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TZakonska_osnova">
+        <xs:sequence>
+            <xs:element name="Clan" fixed="15" type="xs:positiveInteger"/>
+            <xs:element name="Stav" fixed="1" type="xs:positiveInteger"/>
+            <xs:element name="Zakon"
+                fixed="Zakon o slobodnom pristupu informacijama od javnog značaja" type="xs:string"/>
+            <xs:element name="Sluzbeni_glasnik" type="tipovi:TSluzbeni_glasnik"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

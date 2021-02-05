@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { XonomyZalbaCutanjeService } from 'src/app/services/xonomy/xonomy-zalba-cutanje.service';
 import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
@@ -12,14 +13,26 @@ declare const Xonomy: any;
   styleUrls: ['./zalba-cutanje.component.sass'],
 })
 export class ZalbaCutanjeComponent implements OnInit {
+
+  form: FormGroup;
+  unetId = false;
+
   constructor(
     private xonomyZalbaCutanjeService: XonomyZalbaCutanjeService,
     private zalbaCutanjeService: ZalbaCutanjeService,
-    private toastr: ToastrService) {}
+    private toastr: ToastrService) {
+      this.unetId = false;
+      this.form = new FormGroup({
+        id: new FormControl('', [Validators.required])
+      })
+    }
 
   ngOnInit(): void {}
 
-  ngAfterViewInit() {
+  ngAfterViewInit() { }
+
+  podnesiZalbu() {
+    this.unetId = true;
     let element = document.getElementById('zalbaCutanje');
     let specification = this.xonomyZalbaCutanjeService.zalbaCutanjeSpecification;
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
@@ -62,6 +75,16 @@ export class ZalbaCutanjeComponent implements OnInit {
                     `</zoc:Zalba_cutanje>`;
 
     Xonomy.render(xmlString, element, specification);
+  }
+
+  getRequiredFieldErrorMessage(fieldName: string): string {
+    if (this.form.controls[fieldName].touched) {
+      return this.form.controls[fieldName].hasError('required')
+        ? 'Обавезно поље'
+        : '';
+    }
+
+    return '';
   }
 
   send() {

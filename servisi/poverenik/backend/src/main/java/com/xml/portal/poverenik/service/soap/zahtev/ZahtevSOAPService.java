@@ -1,5 +1,12 @@
 package com.xml.portal.poverenik.service.soap.zahtev;
 
+import java.io.ByteArrayOutputStream;
+import java.io.OutputStream;
+import java.io.StringWriter;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
@@ -9,16 +16,28 @@ import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import com.xml.portal.poverenik.business.ZahtevBusiness;
+import com.xml.portal.poverenik.data.dao.exception.Greska;
+import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
+import com.xml.portal.poverenik.data.repository.ZahtevRepository;
 
 @RestController
-@RequestMapping(value = "poverenik/zahtev")
+@RequestMapping(value = "poverenik/soap/zahtev")
 public class ZahtevSOAPService {
+	
+	@Autowired
+	private ZahtevBusiness zahtevBusiness;
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> getZahtev(@PathVariable String id) throws Exception {
 		String soapEndpointUrl = "http://localhost:8082/ws/zahtev";
@@ -61,6 +80,21 @@ public class ZahtevSOAPService {
 		System.out.println("Response SOAP Message:");
 		soapResponse.writeTo(System.out);
 		System.out.println();
-		return new ResponseEntity<Object>(soapResponse.getSOAPBody(), HttpStatus.OK);
+		
+		JAXBContext context = JAXBContext.newInstance(Zahtev.class);
+		Unmarshaller unmarshaller = context.createUnmarshaller();
+		
+		SOAPBody body = soapResponse.getSOAPBody();
+		NodeList list = body.getElementsByTagNameNS("*", "Zahtev");
+		Element zahtevElem = (Element)list.item(0);
+		if (zahtevElem != null) {
+			Zahtev zahtev = (Zahtev) unmarshaller.unmarshal(zahtevElem);
+			String documentId = zahtevBusiness.saveToDB(zahtev);
+			System.out.println(documentId);
+			return new ResponseEntity<Object>(soapResponse.getSOAPBody(), HttpStatus.OK);
+		} else {
+			Greska greska = new Greska("Zahtev sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
 	}
 }

@@ -1,3 +1,21 @@
-<mat-hint>Пређите преко назива отварајућег тага за детаљнији опис.</mat-hint>
+<div *ngIf = "unetId === false">
+    <form [formGroup] = "form">
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field class="form-field" appearance="fill">
+                    <mat-label>Унесите id захтева на који желите да поднесете жалбу на одлуку: </mat-label>
+                    <input matInput formControlName="id">
+                    <mat-error *ngIf="form.get('id')?.invalid">{{getRequiredFieldErrorMessage('id')}}</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-2">
+                <button [disabled] = "form.invalid" mat-raised-button class="align" class="btn-purple btn bottom" (click)="podnesiZalbu()">
+                    Одабир захтева
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+<mat-hint *ngIf = "unetId === true">Пређите преко назива отварајућег тага за детаљнији опис.</mat-hint>
 <div id="zalbaOdluka"></div>
-<button (click) = "send()" mat-raised-button class="btn btn-purple">Пошаљи жалбу на одлуку</button>
+<button *ngIf = "unetId === true" (click) = "send()" mat-raised-button class="btn btn-purple">Пошаљи жалбу на одлуку</button>

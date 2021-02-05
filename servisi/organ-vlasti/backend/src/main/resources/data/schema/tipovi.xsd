@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://tipovi" xmlns:tipovi="http://tipovi">
+    <xs:simpleType name="TMesto">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([A-Z][a-z]+)(\s[A-Z][a-z]+)*"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:complexType name="TAdresa">
+        <xs:sequence>
+            <xs:element name="Mesto" type="tipovi:TMesto"> </xs:element>
+            <xs:element name="Ulica">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="([A-Z][a-z]+)(\s[A-Z]?[a-z]+)*"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="Ulicni_broj">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:pattern value="([1-9][0-9]*)|(bb)"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TOrgan_vlasti">
+        <xs:sequence>
+            <xs:element name="Naziv">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Sediste" type="tipovi:TMesto"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TOrgan_vlasti_adresa">
+        <xs:sequence>
+            <xs:element name="Naziv">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Sediste" type="tipovi:TAdresa"> </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TPoverenik">
+        <xs:sequence>
+            <xs:element
+                default="Повереникy за информације од јавног значаја и заштиту података о личности"
+                name="Naziv">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="xs:string">
+                            <xs:attribute name="property" type="xs:string"/>
+                            <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="Sediste" type="tipovi:TAdresa"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TLice">
+        <xs:sequence>
+            <xs:choice>
+                <xs:sequence>
+                    <xs:element name="Ime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute fixed="xs:string" name="datetype" type="xs:string"
+                                    />
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                    <xs:element name="Prezime">
+                        <xs:complexType>
+                            <xs:simpleContent>
+                                <xs:extension base="xs:string">
+                                    <xs:attribute name="property" type="xs:string"/>
+                                    <xs:attribute fixed="xs:string" name="datetype" type="xs:string"
+                                    />
+                                </xs:extension>
+                            </xs:simpleContent>
+                        </xs:complexType>
+                    </xs:element>
+                </xs:sequence>
+                <xs:element name="Naziv">
+                    <xs:complexType>
+                        <xs:simpleContent>
+                            <xs:extension base="xs:string">
+                                <xs:attribute name="property" type="xs:string"/>
+                                <xs:attribute fixed="xs:string" name="datetype" type="xs:string"/>
+                            </xs:extension>
+                        </xs:simpleContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:choice>
+            <xs:element name="Adresa" type="tipovi:TAdresa"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="TLice_kontakt">
+        <xs:complexContent>
+            <xs:extension base="tipovi:TLice">
+                <xs:sequence>
+                    <xs:element name="Kontakt_podaci" type="xs:string"/>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:complexType name="TSluzbeni_glasnik">
+        <xs:sequence>
+            <xs:element fixed="Službeni glasnik RS" name="Naziv" type="xs:string"/>
+            <xs:element name="Brojevi">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element maxOccurs="unbounded" name="Broj">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                    <xs:pattern value="[1-9][0-9]*\/([0-9]){2}"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
