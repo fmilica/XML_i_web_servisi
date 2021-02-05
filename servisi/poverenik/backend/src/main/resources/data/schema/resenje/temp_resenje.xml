@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<res:Resenje xmlns:res="http://resenje" xmlns="http://www.w3.org/ns/rdfa#" xmlns:pred="http://www.xml.com/predicate/" xmlns:tipovi="http://tipovi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" about="http://resenje/9c8efdbd-6d40-44e7-ad8a-b45f36e97ece" broj_resenja="123" datum_resenja="2021-02-04" href="http://korisnik/pera@pera.com" id="http://resenje/9c8efdbd-6d40-44e7-ad8a-b45f36e97ece" rel="pred:vezanGradjanin" tip_odluke="основана" vocab="http://www.xml.com/predicate/" xsi:schemaLocation="http://resenje resenje.xsd">
+<res:Resenje xmlns="http://www.w3.org/ns/rdfa#" xmlns:res="http://resenje" xmlns:pred="http://www.xml.com/predicate/" xmlns:tipovi="http://tipovi" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1" broj_resenja="123" datum_resenja="2021-02-04" href="http://korisnik/pera@pera.com" id="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1" rel="pred:vezanGradjanin" tip_odluke="основана" vocab="http://www.xml.com/predicate/" xsi:schemaLocation="http://resenje resenje.xsd">
   <res:Opis_zalbe razlog_zalbe="непоступање">Повереник за информације од јавног значаја и заштиту података о личности, 
         у поступку по алби коју је изјавио <res:Ime_zalilac property="pred:zalilacIme">Петар</res:Ime_zalilac> <res:Prezime_zalilac property="pred:zalilacPrezime">Перић</res:Prezime_zalilac>, због непоступања <res:Naziv_organa_vlasti property="pred:optuzeniNaziv">ФТН</res:Naziv_organa_vlasti>
         у <res:Mesto_organa_vlasti>Новом Саду</res:Mesto_organa_vlasti> ул. <res:Ulica_organa_vlasti>Немањина</res:Ulica_organa_vlasti> <res:Ulicni_broj_organa_vlasti>24</res:Ulicni_broj_organa_vlasti>, 
@@ -25,10 +24,10 @@
                 дана од пријема овог решења.</res:Odluka>
   <res:Obrazlozenje>
     <res:Postupak_zalioca>
-      <res:Podnosenje_zalbe about="http://resenje/9c8efdbd-6d40-44e7-ad8a-b45f36e97ece" datum_zalbe="2020-06-09" href="http://zalbacutanje/3951d075-c8a0-4797-8faa-4101aab3cfbc" rel="pred:vezanaZalba" vocab="http://www.xml.com/predicate/">АА, као тражилац информација, изјавио је дана 07.05.2020. 
+      <res:Podnosenje_zalbe about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1" datum_zalbe="2020-06-09" href="http://zalbacutanje/c01a3a77-25b6-4ed6-9a91-2b3f635e2921" rel="pred:vezanaZalba" vocab="http://www.xml.com/predicate/">АА, као тражилац информација, изјавио је дана 07.05.2020. 
                 године жалбу Поверенику, због непоступања Учитељског факултета 
                 у Призрену са привременим седиштем у Лепосавићу</res:Podnosenje_zalbe>
-      <res:Podnosenje_zahteva about="http://resenje/9c8efdbd-6d40-44e7-ad8a-b45f36e97ece" datum_zahteva="2020-05-08" href="http://zahtev/f02f39f0-7d69-4a44-96ac-a5b377f4d8e3" rel="pred:vezanZahtev" vocab="http://www.xml.com/predicate/">по његовом захтеву од 16.04.2020. године за приступ информацијама
+      <res:Podnosenje_zahteva about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1" datum_zahteva="2020-05-08" href="http://zahtev/26249929-1fc6-40d7-b3b7-ac283a8beb47" rel="pred:vezanZahtev" vocab="http://www.xml.com/predicate/">по његовом захтеву од 16.04.2020. године за приступ информацијама
                 од јавног значаја и у прилогу доставио копију истог.</res:Podnosenje_zahteva>
     </res:Postupak_zalioca>
     <res:Prosledjivanje_zalbe datum_prosledjivanja="2020-06-15">Поступајући по жалби, Повереник је дана 11.05.2020. године упутио 
