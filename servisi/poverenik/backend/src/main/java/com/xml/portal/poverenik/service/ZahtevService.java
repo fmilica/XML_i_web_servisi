@@ -46,7 +46,7 @@ public class ZahtevService {
 		return new ResponseEntity<>(zahtevi, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/preuzmi/{id}")
 	public ResponseEntity<Object> getZahtev(@PathVariable("id") String id) {
 		Zahtev zahtev = zahtevBusiness.getById(id);
 		if (zahtev == null) {

@@ -16,6 +16,16 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
    obicnaForm: FormGroup;
    metaDataForm: FormGroup;
 
+  fetchedZahtev = {
+    nazivOrgana: "",
+    sedisteOrgana: "",
+    informacije: "",
+    mesto: "",
+    datum: ""
+  }
+
+  expandedElement: any | null;
+
   constructor(
     private zalbaOdlukaService: ZalbaOdlukaService
   ) { 
@@ -65,7 +75,8 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         adresaPodnosioca: '',
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-        razresena: 'Да'
+        razresena: 'Да',
+        zahtev: zalba.attributes.href.substring(14)
       }
       //podaci o zaliocu
       if (zalba.children[1].children.length === 3) {
@@ -227,5 +238,26 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         this.previewAndDownload(response, zalbaOdlukaId, "json");
       }
     );
+  }
+
+  fetchZahtev(zahtevId: string){
+    //TODO dobaviti zahtev preko SOAP i odkomentarisati linije u html
+    /*this.zahtevService.getZahtevById(zahtevId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        let zahtev: any =  txml.parse(xmlResponse);
+        zahtev.map( z => {
+          let zahtevPrikaz = {
+            nazivOrgana: zahtev[1].children[0].children[0].children[0],
+            sedisteOrgana: zahtev[1].children[0].children[1].children[0],
+            dostava: 'false',
+            informacije: zahtev[1].children[1].children[2].children[0],
+            mesto: zahtev[1].attributes.mesto,
+            datum: zahtev[1].attributes.datum
+          }
+          this.fetchedZahtev = zahtevPrikaz
+        })
+      }
+    )*/
   }
 }

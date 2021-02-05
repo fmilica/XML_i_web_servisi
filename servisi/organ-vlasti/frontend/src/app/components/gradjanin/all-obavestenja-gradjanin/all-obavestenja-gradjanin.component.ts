@@ -1,22 +1,41 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { ObavestenjeService } from 'src/app/services/obavestenje.service';
+import { ZahtevService } from 'src/app/services/zahtev.service';
 import * as txml from 'txml';
 
 @Component({
   selector: 'app-all-obavestenja',
   templateUrl: './all-obavestenja-gradjanin.component.html',
-  styleUrls: ['./all-obavestenja-gradjanin.component.sass']
+  styleUrls: ['./all-obavestenja-gradjanin.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class AllObavestenjaGradjaninComponent implements OnInit {
 
   constructor(
-    private obavestenjeService: ObavestenjeService
+    private obavestenjeService: ObavestenjeService,
+    private zahtevService: ZahtevService
   ) { }
 
   dataSource = [ ];
 
   displayedColumns: string[] = ['nazivOrgana', 'sedisteOrgana', 'brojPredmeta', 'datum', 'datumZahteva', 'informacije','danCasovi', 'vreme', 'adresaOrgana', 'brojKancelarije', 'preuzimanje', 'preuzimanjeMeta'];
 
+  fetchedZahtev = {
+    nazivOrgana: "",
+    sedisteOrgana: "",
+    informacije: "",
+    mesto: "",
+    datum: ""
+  }
+  
+  expandedElement: any | null;
 
   ngOnInit(): void {
     this.obavestenjeService.getAllGradjaninObavestenja()
@@ -39,7 +58,8 @@ export class AllObavestenjaGradjaninComponent implements OnInit {
               adresaOrgana: obavestenje.children[3].children[3].children[4].children[1].children[0] + ' ' +
                obavestenje.children[3].children[3].children[4].children[2].children[0] + ', ' + 
                obavestenje.children[3].children[3].children[4].children[0].children[0],
-              brojKancelarije: obavestenje.children[3].children[3].children[4].children[3].children[0]
+              brojKancelarije: obavestenje.children[3].children[3].children[4].children[3].children[0],
+              zahtevId: obavestenje.attributes.href.substring(14)
             }
             data.push(obavestenjePrikaz);
           })
@@ -88,5 +108,25 @@ export class AllObavestenjaGradjaninComponent implements OnInit {
         this.previewAndDownload(response, zahtevId, "json");
       }
     );
+  }
+  
+  fetchZahtev(zahtevId: string){
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        let zahtev: any =  txml.parse(xmlResponse);
+        zahtev.map( z => {
+          let zahtevPrikaz = {
+            nazivOrgana: zahtev[1].children[0].children[0].children[0],
+            sedisteOrgana: zahtev[1].children[0].children[1].children[0],
+            dostava: 'false',
+            informacije: zahtev[1].children[1].children[2].children[0],
+            mesto: zahtev[1].attributes.mesto,
+            datum: zahtev[1].attributes.datum
+          }
+          this.fetchedZahtev = zahtevPrikaz
+        })
+      }
+    )
   }
 }
