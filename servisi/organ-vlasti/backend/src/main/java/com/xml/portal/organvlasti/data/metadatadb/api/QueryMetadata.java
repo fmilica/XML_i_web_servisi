@@ -28,7 +28,8 @@ public class QueryMetadata {
 		//query("/organvlasti/Zahtev", 
 		//		"src/main/resources/data/sparql/napredna/ksenija.rq", 
 		//		new ArrayList<String>());
-		generisiJSON("/organvlasti/Zahtev", "http://zahtev", "bf1c000a-20fb-49d6-98e1-d070e63c9a3f");
+		//generisiJSON("/organvlasti/Zahtev", "http://zahtev", "bf1c000a-20fb-49d6-98e1-d070e63c9a3f");
+		
 	}
 	
 	public static List<String> query(String graphUri, String sparqlFilePath, List<String> queryParams) throws IOException {
@@ -102,4 +103,5 @@ public class QueryMetadata {
 		query.close();
 		return jsonFilePath;
 	}
+
 }
