@@ -1,0 +1,7 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) resenja po naprednoj pretrazi
+
+SELECT ?resenje FROM <%s>
+WHERE { 
+  ?resenje <http://www.xml.com/predicate/vezanGradjanin> %s .
+  ?resenje <http://www.xml.com/predicate/optuzeniNaziv> %s .
+}
