@@ -38,6 +38,11 @@
             [ngClass]="{'active': activeLink==='zalbe-odluka'}">
             Преглед жалби на одлуку
         </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('resenje')" (keyup.enter)="onClick('resenje')"
+            [ngClass]="{'active': activeLink==='resenje'}">
+            Преглед решења
+        </a>
     </div>
 
     <div class="ml-auto" *ngIf="role!==''">
