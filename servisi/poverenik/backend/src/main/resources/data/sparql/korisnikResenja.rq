@@ -1,0 +1,6 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) resenja vezanog za jednog korisnika
+
+SELECT ?resenje FROM <%s>
+WHERE { 
+  ?resenje <http://www.xml.com/predicate/vezanGradjanin> <%s> .
+}

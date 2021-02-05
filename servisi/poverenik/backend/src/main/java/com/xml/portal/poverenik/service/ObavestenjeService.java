@@ -21,10 +21,9 @@ import com.xml.portal.poverenik.business.ObavestenjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.obavestenje.ListaObavestenja;
 import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
-import com.xml.portal.poverenik.dto.pretraga.ObavestenjePretraga;
-import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
+import com.xml.portal.poverenik.dto.pretraga.ObavestenjePretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
@@ -84,7 +83,7 @@ public class ObavestenjeService {
 		return new ResponseEntity<>(filtriranaObavestenja, HttpStatus.OK);
     }
     
-    @GetMapping("/pretrazi-napredno")
+    @PostMapping("/pretrazi-napredno")
     public ResponseEntity<Object> naprednaPretraga(@RequestBody ObavestenjePretraga params) {
     	ListaObavestenja filtriranaObavestenja = obavestenjeBusiness.getAllNapredna(params);
 		return new ResponseEntity<>(filtriranaObavestenja, HttpStatus.OK);

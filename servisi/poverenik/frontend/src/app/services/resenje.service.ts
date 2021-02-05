@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { environment } from "src/environments/environment";
+import { ResenjeDto } from "../model/resenje-dto.model";
 import { ZahtevDto } from "../model/zahtev-dto.model";
 import { ZalbaDto } from "../model/zalba-dto.model";
 
@@ -13,7 +14,8 @@ import { ZalbaDto } from "../model/zalba-dto.model";
 
     zahtevDto: ZahtevDto = {
         id: "1",
-        datumPodnosenja: "2020-05-08"
+        datumPodnosenja: "2020-05-08",
+        userEmail: "pera@pera.com"
     }
 
     zalbaDto: ZalbaDto = {
@@ -31,8 +33,10 @@ import { ZalbaDto } from "../model/zalba-dto.model";
       private http: HttpClient
     ) { }
 
-    createResenje(xmlDocument: string, zahtevId: string, zalbaId: string, email: String) {
-        return this.http.post(environment.apiEndpoint + 'resenje?zahtevId=' + zahtevId + '&zalbaId=' + zalbaId + '&userEmail=' + email, xmlDocument, {
+    createResenje(resenjeDto: ResenjeDto) {
+        return this.http.post(environment.apiEndpoint + 'resenje?'+
+        'zahtevId='+resenjeDto.zahtevId+'&zalbaId='+resenjeDto.zalbaId+
+        '&userEmail='+resenjeDto.userEmail, resenjeDto.sadrzaj, {
           responseType: 'text',
           headers: this.headers
         })

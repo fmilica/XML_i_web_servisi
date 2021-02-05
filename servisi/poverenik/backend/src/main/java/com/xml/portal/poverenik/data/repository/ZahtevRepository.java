@@ -21,7 +21,6 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
-import com.ximpleware.extended.xpath.sym;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.xmldb.api.ExistManager;
 

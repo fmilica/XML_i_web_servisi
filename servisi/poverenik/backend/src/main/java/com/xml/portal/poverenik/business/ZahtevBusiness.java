@@ -206,6 +206,8 @@ public class ZahtevBusiness {
 	
 	public String create(Zahtev zahtev, String userEmail) {
 		String documentId = null;
+		// podaci zbog pretrage
+		zahtev = this.setZahteviData(zahtev);
 		try {
 			// vezivanje zahteva i korisnika
 			zahtev.setVocab("http://www.xml.com/predicate/");
@@ -293,6 +295,40 @@ public class ZahtevBusiness {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	private Zahtev setZahteviData(Zahtev zahtev) {
+		if (zahtev.getTeloZahteva().getZahtevi().getKopija() != null) {
+			zahtev.getTeloZahteva().getZahtevi().setKopija("kopija/копија");
+		}
+		if (zahtev.getTeloZahteva().getZahtevi().getObavestenje() != null) {
+			zahtev.getTeloZahteva().getZahtevi().setObavestenje("obaveštenje/обавештење");
+		}
+		if (zahtev.getTeloZahteva().getZahtevi().getUvid() != null) {
+			zahtev.getTeloZahteva().getZahtevi().setUvid("uvid/увид");
+		}
+		if (zahtev.getTeloZahteva().getZahtevi()
+				.getDostavljanjeKopije().getNacinDostave()
+				.getDostavaElektronskomPostom() != null) {
+			zahtev.getTeloZahteva().getZahtevi()
+			.getDostavljanjeKopije().getNacinDostave()
+			.setDostavaElektronskomPostom("elekstronskom poštom/електронском поштом");
+		}
+		if (zahtev.getTeloZahteva().getZahtevi()
+				.getDostavljanjeKopije().getNacinDostave()
+				.getDostavaFaksom() != null) {
+			zahtev.getTeloZahteva().getZahtevi()
+			.getDostavljanjeKopije().getNacinDostave()
+			.setDostavaFaksom("faksom/факсом");
+		}
+		if (zahtev.getTeloZahteva().getZahtevi()
+				.getDostavljanjeKopije().getNacinDostave()
+				.getDostavaPostom() != null) {
+			zahtev.getTeloZahteva().getZahtevi()
+			.getDostavljanjeKopije().getNacinDostave()
+			.setDostavaPostom("poštom/поштом");
+		}
+		return zahtev;
 	}
 	
 }

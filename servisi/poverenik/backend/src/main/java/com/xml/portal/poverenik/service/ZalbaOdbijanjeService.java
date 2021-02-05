@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.poverenik.business.ZalbaOdbijanjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
-import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ListaZalbiOdbijanje;
 import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ZalbaOdbijanje;
-import com.xml.portal.poverenik.dto.pretraga.ZalbaOdbijanjePretraga;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
+import com.xml.portal.poverenik.dto.pretraga.ZalbaOdbijanjePretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/zalba-odbijanje", produces = MediaType.APPLICATION_XML_VALUE)

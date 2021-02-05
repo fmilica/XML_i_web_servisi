@@ -1,0 +1,12 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) resenja po naprednoj pretrazi
+
+SELECT DISTINCT ?resenje FROM <%s>
+WHERE { 
+	{
+		?resenje <http://www.xml.com/predicate/vezanGradjanin> %s .
+	}
+	UNION
+	{
+		?resenje <http://www.xml.com/predicate/optuzeniNaziv> %s .
+	}
+}

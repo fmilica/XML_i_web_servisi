@@ -77,9 +77,6 @@ public class StoreXML {
 
             String id = "ID" + (col.getResourceCount() + 1);
             documentId = documentId + id + ".xml";
-            if(xmlToStore instanceof Korisnik) {
-            	//documentId = ((Korisnik)xmlToStore).getId() + ".xml";
-            }
             
             System.out.println("\t- collection ID: " + collectionId);
         	System.out.println("\t- document ID: " + documentId);
