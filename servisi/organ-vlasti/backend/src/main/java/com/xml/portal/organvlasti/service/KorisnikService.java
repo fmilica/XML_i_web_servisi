@@ -24,7 +24,7 @@ import com.xml.portal.organvlasti.security.TokenUtils;
 
 @RestController
 @RequestMapping(value = "organvlasti/korisnik", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4201")
 public class KorisnikService {
 
 	@Autowired

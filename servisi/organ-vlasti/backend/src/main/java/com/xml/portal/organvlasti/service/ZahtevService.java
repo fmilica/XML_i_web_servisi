@@ -28,7 +28,7 @@ import com.xml.portal.organvlasti.dto.pretraga.ZahtevPretraga;
 
 @RestController
 @RequestMapping(value = "organvlasti/zahtev", produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4201")
 public class ZahtevService {
 
 	@Autowired

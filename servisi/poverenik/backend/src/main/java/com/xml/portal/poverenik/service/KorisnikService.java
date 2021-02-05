@@ -24,7 +24,7 @@ import com.xml.portal.poverenik.security.TokenUtils;
 
 @RestController
 @RequestMapping(value = "poverenik/korisnik", consumes = MediaType.APPLICATION_XML_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class KorisnikService {
 
 	@Autowired

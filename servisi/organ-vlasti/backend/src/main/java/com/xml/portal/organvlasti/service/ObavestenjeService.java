@@ -27,7 +27,7 @@ import com.xml.portal.organvlasti.dto.pretraga.ObavestenjePretraga;
 
 @RestController
 @RequestMapping(value = "organvlasti/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4201")
 public class ObavestenjeService {
 
 	@Autowired
