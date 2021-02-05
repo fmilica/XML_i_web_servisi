@@ -234,13 +234,13 @@ export class ZalbeOdlukaComponent implements OnInit {
 
  openDialog(row: any): void {
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.data = { culturalSiteId: 1, culturalSiteName: 'Name'};
+  dialogConfig.data = { zalbaId: row.id };
   dialogConfig.width = '900px';
   const dialogRef = this.izjasnjenjeDialog.open(DialogComponent, dialogConfig);
 
-  /*dialogRef.afterClosed().subscribe(value => {
-    this.newsListComponent.fetchNews(this.culturalSiteId);
-  });*/
+  dialogRef.afterClosed().subscribe(value => {
+    console.log("zatvorio se")
+  });
 }
 
 }

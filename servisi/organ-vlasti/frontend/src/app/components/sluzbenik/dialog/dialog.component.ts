@@ -13,7 +13,7 @@ export class DialogComponent {
 
   constructor(
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { culturalSiteId: number, culturalSiteName: string}
+    @Inject(MAT_DIALOG_DATA) public data: { zalbaId: string }
   ) { 
     this.form = new FormGroup({
       text: new FormControl('', [Validators.required])
@@ -28,6 +28,7 @@ export class DialogComponent {
     if (this.form.invalid) {
         return;
     }
+    console.log(this.data)
     //TO-DO TREBA DA POSALJE MEJL ILI XML DOKUMENT ILI STA GOD OVDE
     this.dialogRef.close();
   }

@@ -34,6 +34,13 @@ export class ZahtevService {
     });
   }
 
+  getZahtevById(zahtevId: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'zahtev/preuzmi/' + zahtevId, {
+      responseType: 'text',
+      headers: this.headers
+    });
+  }
+
   createZahtev(xmlDocument: string) {
     let email =  this.authService.getLoggedInUserEmail();
     return this.http.post(environment.apiEndpoint + 'zahtev?userEmail=' + email, xmlDocument, {

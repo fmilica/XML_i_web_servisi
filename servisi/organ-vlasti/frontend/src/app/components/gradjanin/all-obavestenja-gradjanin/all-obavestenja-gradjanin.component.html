@@ -1,9 +1,13 @@
 <div class="ng-container row justify-content-md-center">
     <div class="col-md-11">
-        <table mat-table [dataSource]="dataSource">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                class="example-element-row"
+                [class.example-expanded-row]="expandedElement === row"
+                (click)="expandedElement = expandedElement === row ? null : row; fetchZahtev(row.zahtevId)">
             </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
             <ng-container matColumnDef="nazivOrgana">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив органа </th>
@@ -88,6 +92,21 @@
                     <a (click)="generisiRDF(row.id)" class="link">RDF</a><a (click)="generisiJSON(row.id)" class="link">JSON</a>
                 </td>
             </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="example-element-description">
+                        <div class="row">
+                            Везан захтев: {{fetchedZahtev.nazivOrgana}}, {{fetchedZahtev.sedisteOrgana}}, {{fetchedZahtev.informacije}}, {{fetchedZahtev.mesto}}, {{fetchedZahtev.datum}}
+                        </div>
+                    </div>
+                </div>
+                </td>
+            </ng-container>
+
         </table>
         <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
     </div>
