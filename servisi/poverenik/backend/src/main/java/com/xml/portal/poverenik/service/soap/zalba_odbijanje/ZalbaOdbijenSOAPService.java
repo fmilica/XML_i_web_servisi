@@ -24,7 +24,7 @@ import org.w3c.dom.Document;
 import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ZalbaOdbijanje;
 
 @RestController
-@RequestMapping(value = "poverenik/zalba-odbijen")
+@RequestMapping(value = "poverenik/soap/zalba-odbijen")
 public class ZalbaOdbijenSOAPService {
 
 	@PostMapping(value = "/send-zalba", consumes = MediaType.APPLICATION_XML_VALUE)

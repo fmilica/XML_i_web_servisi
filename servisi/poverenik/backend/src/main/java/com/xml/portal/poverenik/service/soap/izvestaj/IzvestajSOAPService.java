@@ -25,7 +25,7 @@ import com.xml.portal.poverenik.data.dao.izvestaj.Izvestaj;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
 
 @RestController
-@RequestMapping(value = "poverenik/izvestaj")
+@RequestMapping(value = "poverenik/soap/izvestaj")
 public class IzvestajSOAPService {
 
 	@PostMapping(value = "/send-izvestaj", consumes = MediaType.APPLICATION_XML_VALUE)

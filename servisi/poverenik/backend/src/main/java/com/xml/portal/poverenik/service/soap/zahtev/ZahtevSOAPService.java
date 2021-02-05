@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "poverenik/zahtev")
+@RequestMapping(value = "poverenik/soap/zahtev")
 public class ZahtevSOAPService {
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Object> getZahtev(@PathVariable String id) throws Exception {
