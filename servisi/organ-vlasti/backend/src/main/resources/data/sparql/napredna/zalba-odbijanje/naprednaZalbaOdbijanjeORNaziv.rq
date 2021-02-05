@@ -1,0 +1,16 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) zalbi odbijanje po naprednoj pretrazi
+
+SELECT DISTINCT ?zalbaOdbijanje FROM <%s>
+WHERE { 
+	{
+		?zalbaOdbijanje <http://www.xml.com/predicate/vezanGradjanin> %s .
+	}
+	UNION
+	{
+		?zalbaOdbijanje <http://www.xml.com/predicate/primalacNaziv> %s .
+	}
+	UNION
+	{
+		?zalbaOdbijanje <http://www.xml.com/predicate/podnosilacNaziv> %s .
+	}
+}

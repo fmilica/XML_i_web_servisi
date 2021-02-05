@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+	targetNamespace="http://korisnik" xmlns:kor="http://korisnik">
+	<xs:element name="Lista_korisnika">
+		<xs:complexType>
+			<xs:sequence maxOccurs="unbounded" minOccurs="0">
+				<xs:element ref="kor:Korisnik"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Korisnik">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Ime" type="xs:string"/>
+				<xs:element name="Prezime" type="xs:string"/>
+				<xs:element name="Email" type="xs:string"/>
+				<xs:element name="Lozinka" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute name="uloga">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ROLE_GRADJANIN"/>
+						<xs:enumeration value="ROLE_SLUZBENIK"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:attribute>
+			<xs:attribute name="vocab" type="xs:string"/>
+			<xs:attribute name="about" type="xs:string"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

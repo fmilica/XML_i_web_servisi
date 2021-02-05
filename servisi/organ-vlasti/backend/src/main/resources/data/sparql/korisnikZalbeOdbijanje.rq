@@ -1,0 +1,6 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) zalbi odbijanje vezanog za jednog korisnika
+
+SELECT ?zalbaOdbijanje FROM <%s>
+WHERE { 
+  ?zalbaOdbijanje <http://www.xml.com/predicate/vezanGradjanin> <%s> .
+}

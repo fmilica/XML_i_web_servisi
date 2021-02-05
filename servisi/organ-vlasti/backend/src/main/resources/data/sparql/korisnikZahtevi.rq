@@ -1,0 +1,6 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) zahteva vezanog za jednog korisnika
+
+SELECT ?zahtev FROM <%s>
+WHERE { 
+  ?zahtev <http://www.xml.com/predicate/vezanGradjanin> <%s> .
+}
