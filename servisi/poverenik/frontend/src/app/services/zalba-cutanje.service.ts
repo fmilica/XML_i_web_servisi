@@ -58,7 +58,7 @@ export class ZalbaCutanjeService {
   obicnaPretraga(sve: string): Observable<any> {
     return this.http.get(environment.apiEndpoint + 'zalba-cutanje/pretrazi?sadrzaj=' + sve, {
       responseType: 'text',
-    headers: this.headers
+      headers: this.headers
     })
   }
   generisiRDF(zalbaCutanjeId: string) {
@@ -78,6 +78,14 @@ export class ZalbaCutanjeService {
   generisiJSON(zalbaCutanjeId: string) {
     return this.http.get(environment.apiEndpoint + 'zalba-cutanje/generisiJSON/' + zalbaCutanjeId, {
       responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
+
+  //salje soap poziv sa id-jem zahteva
+  posaljiZahtevId(zahtevId: string) {
+    return this.http.get(environment.apiEndpoint + 'soap/zahtev/' + zahtevId, {
+      responseType: 'text',
       headers: this.headers
     })
   }

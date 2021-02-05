@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { XonomyZalbaCutanjeService } from 'src/app/services/xonomy/xonomy-zalba-cutanje.service';
 import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
-import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
+import * as txml from 'txml';
 
 declare const Xonomy: any;
 
@@ -16,6 +17,7 @@ export class ZalbaCutanjeComponent implements OnInit {
 
   form: FormGroup;
   unetId = false;
+  zahtevDto;
 
   constructor(
     private xonomyZalbaCutanjeService: XonomyZalbaCutanjeService,
@@ -32,8 +34,32 @@ export class ZalbaCutanjeComponent implements OnInit {
   ngAfterViewInit() { }
 
   podnesiZalbu() {
-    this.unetId = true;
-    let element = document.getElementById('zalbaCutanje');
+    let xmlResponse;
+    let zahtev;
+    let zahtevId = this.form.get('id').value;
+    this.zalbaCutanjeService.posaljiZahtevId(zahtevId).subscribe(
+      response => {
+        this.unetId = true;
+        xmlResponse = txml.parse(response);
+        zahtev = xmlResponse[3].children[0].children[0]
+        let zahtevDate = new Date(Number(zahtev.attributes.datum.split('-')[0]), Number(zahtev.attributes.datum.split('-')[1])-1, Number(zahtev.attributes.datum.slice(0, -1).split('-')[2]))
+        let danasnjiDatum = new Date()
+        danasnjiDatum.setDate(danasnjiDatum.getDate() - 15)
+        if(zahtev.attributes.odbijen === 'false\\' && zahtev.attributes.razresen === 'false\\' && danasnjiDatum >= zahtevDate) {
+          console.log('Moze da se zali')
+        }
+        else{
+          this.toastr.error("Не можете да поднесете жалбу на ћутање за послат ID захтева")
+          return
+        }
+        console.log(zahtev)
+      },
+      err => {
+        this.toastr.error('Захтев са задатим Id не постоји!')
+        return
+      }
+    )
+    /*let element = document.getElementById('zalbaCutanje');
     let specification = this.xonomyZalbaCutanjeService.zalbaCutanjeSpecification;
     let xmlString = `<?xml version="1.0" encoding="UTF-8"?>
                      <zoc:Zalba_cutanje xmlns="http://www.w3.org/ns/rdfa#"
@@ -74,7 +100,7 @@ export class ZalbaCutanjeComponent implements OnInit {
                       `</zoc:Zalba>`+
                     `</zoc:Zalba_cutanje>`;
 
-    Xonomy.render(xmlString, element, specification);
+    Xonomy.render(xmlString, element, specification);*/
   }
 
   getRequiredFieldErrorMessage(fieldName: string): string {

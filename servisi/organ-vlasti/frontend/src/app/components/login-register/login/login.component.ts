@@ -74,7 +74,7 @@ export class LoginComponent implements OnInit {
         if (error.status === 401) {
           this.toastr.error('Невалидна електронска пошта или лозинка.');
         } else {
-          this.toastr.error('503 Сервер недоступан');
+          this.toastr.error('Невалидна електронска пошта или лозинка.');
         }
         this.loginForm.reset();
       }
