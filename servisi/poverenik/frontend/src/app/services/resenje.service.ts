@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ResenjeDto } from "../model/resenje-dto.model";
 import { ZahtevDto } from "../model/zahtev-dto.model";
@@ -41,4 +41,11 @@ import { ZalbaDto } from "../model/zalba-dto.model";
           headers: this.headers
         })
     }
+
+    getAllResenja(): Observable<any> {
+      return this.http.get(environment.apiEndpoint + 'resenje', {
+        responseType: 'text',
+        headers: this.headers
+      })
+  }
 }

@@ -56,6 +56,15 @@ public class ObavestenjeService {
 		}
 	}
 	
+	@GetMapping("postoji/{id}")
+	public ResponseEntity<Object> getObavestenjeZaZahtev(@PathVariable("id") String id) {
+		boolean obavestenjePostoji = obavestenjeBusiness.getByZahtevId(id);
+		if(!obavestenjePostoji) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+    	return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
 	/*
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addObavestenje(@RequestBody Obavestenje obavestenje,

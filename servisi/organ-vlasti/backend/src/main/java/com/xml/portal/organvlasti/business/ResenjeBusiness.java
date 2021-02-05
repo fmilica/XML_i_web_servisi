@@ -20,6 +20,7 @@ import org.w3c.dom.NodeList;
 import com.xml.portal.organvlasti.data.dao.resenje.DOMParser;
 import com.xml.portal.organvlasti.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.organvlasti.data.metadatadb.api.StoreMetadata;
+import com.xml.portal.organvlasti.data.repository.ObavestenjeRepository;
 import com.xml.portal.organvlasti.data.repository.ResenjeRepository;
 import com.xml.portal.organvlasti.dto.ResenjePrikazDTO;
 import com.xml.portal.organvlasti.dto.pretraga.ResenjePretraga;
@@ -41,6 +42,9 @@ public class ResenjeBusiness {
 
 	@Autowired
 	private ResenjeRepository resenjeRepository;
+	
+	@Autowired
+	private ObavestenjeRepository obavestenjeRepository;
 	
 	public ResenjeBusiness() {
 		try {
@@ -272,7 +276,7 @@ public class ResenjeBusiness {
 			resenjePrikaz.setResenjeDatum(resenjeDatum);
 			
 			String tipOdluke = resenje.getAttribute("tip_odluke");
-			resenjePrikaz.setResenjeDatum(tipOdluke);
+			resenjePrikaz.setIshodResenja(tipOdluke);
 			
 			String userEmailUri = resenje.getAttribute("href");
 			String[] userEmailUiList = userEmailUri.split("/");
@@ -289,34 +293,45 @@ public class ResenjeBusiness {
 			String zalbaIdUri = podnosenjeZalbe.getAttribute("href");
 			String[] zalbaIdUriList = zalbaIdUri.split("/");
 			String zalbaId = zalbaIdUriList[zalbaIdUriList.length - 1];
-			resenjePrikaz.setZalbaId(zalbaId);
+			resenjePrikaz.setZalbaId(zalbaIdUri);
 			
 			list = resenje.getElementsByTagNameNS("*", "Podnosenje_zahteva");
 			Element podnosenjeZahteva = (Element)list.item(0);
 			String zahtevIdUri = podnosenjeZahteva.getAttribute("href");
 			String[] zahtevIdUriList = zahtevIdUri.split("/");
 			String zahtevId = zahtevIdUriList[zahtevIdUriList.length - 1];
-			resenjePrikaz.setZalbaId(zahtevId);
+			resenjePrikaz.setZahtevId(zahtevId);
 			
+			String zalilac = "";
 			list = resenje.getElementsByTagNameNS("*", "Ime_zalilac");
 			Element imeZalilacElem = (Element)list.item(0);
 			if (imeZalilacElem != null) {
 				String imeZalilac = imeZalilacElem.getTextContent();
-				resenjePrikaz.setZalilacIme(imeZalilac);	
+				zalilac += imeZalilac + " ";
+				//resenjePrikaz.setZalilacIme(imeZalilac);	
 			}
 
 			list = resenje.getElementsByTagNameNS("*", "Prezime_zalilac");
 			Element prezimeZalilacElem = (Element)list.item(0);
 			if (prezimeZalilacElem != null) {
 				String prezimeZalilac = prezimeZalilacElem.getTextContent();
-				resenjePrikaz.setZalilacPrezime(prezimeZalilac);	
+				zalilac += prezimeZalilac;
+				//resenjePrikaz.setZalilacPrezime(prezimeZalilac);	
 			}
 
 			list = resenje.getElementsByTagNameNS("*", "Naziv_zalilac");
 			Element nazivZalilacElem = (Element)list.item(0);
 			if (nazivZalilacElem != null) {
 				String nazivZalilac = nazivZalilacElem.getTextContent();
-				resenjePrikaz.setZalilacNaziv(nazivZalilac);	
+				zalilac += nazivZalilac;
+				//resenjePrikaz.setZalilacNaziv(nazivZalilac);	
+			}
+			resenjePrikaz.setZalilacNaziv(zalilac);	
+			
+			if(obavestenjeRepository.findByZahtevId(zahtevId)) {
+				resenjePrikaz.setImaObavestenje("true");
+			}else {
+				resenjePrikaz.setImaObavestenje("false");
 			}
 			
 			StringWriter sw = new StringWriter();

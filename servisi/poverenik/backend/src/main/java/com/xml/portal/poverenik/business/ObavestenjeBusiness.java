@@ -62,6 +62,15 @@ public class ObavestenjeBusiness {
 		return loaded;
 	}
 	
+	public boolean getByZahtevId(String id) {
+		try {
+			return obavestenjeRepository.findByZahtevId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 	public ListaObavestenja getAllByContent(String content) {
 		ListaObavestenja filtriranaObavestenja = new ListaObavestenja();
 		filtriranaObavestenja.setObavestenje(obavestenjeRepository.findAllByContent(content));

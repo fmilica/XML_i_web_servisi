@@ -23,6 +23,13 @@ export class ZalbaOdlukaService {
     })
   }
 
+  getById(zalbaId: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/' + zalbaId, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
   getAllGradjaninZalbeOdluka(): Observable<any> {
     let email = this.authService.getLoggedInUserEmail();
     return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/korisnik?userEmail=' + email, {

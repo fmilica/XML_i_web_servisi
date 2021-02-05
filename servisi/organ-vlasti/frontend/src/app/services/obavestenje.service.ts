@@ -24,6 +24,13 @@ export class ObavestenjeService {
       headers: this.headers
     });
   }
+  
+  getByZahtevId(zahtevId): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'obavestenje/postoji/' + zahtevId, {
+      responseType: 'text',
+      headers: this.headers
+    });
+  }
 
   getAllGradjaninObavestenja(): Observable<any> {
     let email =  this.authService.getLoggedInUserEmail();
