@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.organvlasti.business.ResenjeBusiness;
 import com.xml.portal.organvlasti.data.dao.exception.Greska;
+import com.xml.portal.organvlasti.data.metadatadb.api.QueryMetadata;
+import com.xml.portal.organvlasti.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.organvlasti.dto.ResenjeDTO;
 import com.xml.portal.organvlasti.dto.pretraga.ResenjePretraga;
 
@@ -53,6 +55,7 @@ public class ResenjeService {
 		}
 	}
 	
+	/*
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addResenje(@RequestBody String resenje,
 								    		@RequestParam String zahtevId,
@@ -73,6 +76,7 @@ public class ResenjeService {
     		}
     	}
     }
+    */
 	
     @GetMapping("/pretrazi")
     public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {
@@ -117,6 +121,54 @@ public class ResenjeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiRDF/{id}")
+	public ResponseEntity<Object> generisiRDF(@PathVariable("id") String id) throws Exception {
+
+    	Object resenje = resenjeBusiness.getById(id);
+		if (resenje == null) {
+			Greska greska = new Greska("Resenje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = StoreMetadata.generisiRDF(resenje);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja rdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiJSON/{id}")
+	public ResponseEntity<Object> generisiJSON(@PathVariable("id") String id) throws Exception {
+
+    	Object resenje = resenjeBusiness.getById(id);
+		if (resenje == null) {
+			Greska greska = new Greska("Resenje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = QueryMetadata.generisiJSON("/organvlasti/Resenje", "http://resenje", id);
+    	
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja json-a.");
 			return ResponseEntity.status(500).body(greska);
 		}
 	

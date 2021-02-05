@@ -42,7 +42,7 @@ public class IzvestajService {
 	}
 	
 	@GetMapping("/generisi")
-	private ResponseEntity<Object> generisiIzvestaj(){
+	public ResponseEntity<Object> generisiIzvestaj(){
 		Izvestaj izvestaj = izvestajBusiness.generisiIzvestaj();
 		return new ResponseEntity<Object>(izvestaj, HttpStatus.OK);
 	}

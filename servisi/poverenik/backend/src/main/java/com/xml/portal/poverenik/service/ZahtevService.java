@@ -57,6 +57,7 @@ public class ZahtevService {
 		}
 	}
 	
+	/*
     @PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addZahtev(@RequestBody Zahtev zahtev, 
     										@RequestParam String userEmail) {
@@ -76,7 +77,9 @@ public class ZahtevService {
     		}
     	}
     }
+    */
     
+	/*
     @PutMapping(path = "/{id}")
     public ResponseEntity<Object> resiZahtev(@PathVariable("id") String id) {
 		Zahtev zahtev = zahtevBusiness.getById(id);
@@ -95,6 +98,7 @@ public class ZahtevService {
 			return new ResponseEntity<>(zahtev, HttpStatus.OK);
 		}
     }
+    */
     
     @PutMapping(path = "/odbij/{id}")
     public ResponseEntity<Object> odbijZahtev(@PathVariable("id") String id) {
