@@ -1,26 +1,14 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
+  <rdf:Description rdf:about="http://zahtev/725fcf56-d049-47a8-a370-55d8dfb80da3">
     <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:zalilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Петар</pred:zalilacIme>
+  <rdf:Description rdf:about="http://zahtev/725fcf56-d049-47a8-a370-55d8dfb80da3">
+    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:primalacNaziv>
   </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:zalilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Перић</pred:zalilacPrezime>
+  <rdf:Description rdf:about="http://zahtev/725fcf56-d049-47a8-a370-55d8dfb80da3">
+    <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Пера</pred:podnosilacIme>
   </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:optuzeniNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:optuzeniNaziv>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:vezanaZalba xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zalbacutanje/c01a3a77-25b6-4ed6-9a91-2b3f635e2921"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/26249929-1fc6-40d7-b3b7-ac283a8beb47"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:izdavacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Повереник</pred:izdavacIme>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://resenje/c1f3463c-e59b-469c-b595-54964840daf1">
-    <pred:izdavacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Презиме</pred:izdavacPrezime>
+  <rdf:Description rdf:about="http://zahtev/725fcf56-d049-47a8-a370-55d8dfb80da3">
+    <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Перић</pred:podnosilacPrezime>
   </rdf:Description>
 </rdf:RDF>

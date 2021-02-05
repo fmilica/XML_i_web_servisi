@@ -49,7 +49,7 @@ public class ZahtevServiceSoapBindingImpl implements ZahtevServicePortType {
         	return zahtevBusiness.getById(id);
         } catch (java.lang.Exception ex) {
             ex.printStackTrace();
-            throw new RuntimeException(ex);
+            return null;
         }
     }
 

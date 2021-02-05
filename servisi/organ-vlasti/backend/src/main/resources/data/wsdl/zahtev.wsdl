@@ -42,7 +42,7 @@
     </wsdl:binding>
     <wsdl:service name="ZahtevService">
         <wsdl:port name="ZahtevServiceSoapBinding" binding="tns:ZahtevServiceSoapBinding">
-            <soap:address location="http://localhost:8081/zahtevPort" />
+            <soap:address location="http://localhost:8082/zahtevPort" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>
