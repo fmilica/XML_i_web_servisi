@@ -245,6 +245,11 @@ public class ZahtevBusiness {
 		return documentId;
 	}
 	
+	public String saveToDB(Zahtev zahtev) {
+		String documentId = zahtevRepository.save(zahtev);
+		return documentId;
+	}
+	
 	public boolean storeMetadata(Zahtev zahtev) {
 		try {
 			StoreMetadata.store(zahtev);
