@@ -24,6 +24,13 @@ export class ZalbaCutanjeService {
     })
   }
 
+  getById(zalbaId: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'zalba-cutanje/' + zalbaId, {
+      responseType: 'text',
+      headers: this.headers
+    })
+}
+
   getAllGradjaninZalbeCutanje(): Observable<any> {
     let email = this.authService.getLoggedInUserEmail();
     return this.http.get(environment.apiEndpoint + 'zalba-cutanje?userEmail=' + email, {

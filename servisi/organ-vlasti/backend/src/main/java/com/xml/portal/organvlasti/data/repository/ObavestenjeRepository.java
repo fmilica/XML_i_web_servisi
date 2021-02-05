@@ -123,6 +123,21 @@ public class ObavestenjeRepository {
 		}
 	}
 	
+	public boolean findByZahtevId(String documentId) {
+		//href="http://zahtev//b84e9584-5d86-4cd8-a534-2ebe3b4546c3"
+		String xPath = "/Obavestenje[@href='http://zahtev//"+ documentId +"']";
+		try {
+			ResourceSet obv = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			if(obv.getSize() == 0) {
+				return false;
+			}
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public String findByIdRaw(String documentId) {
 		try {
 			XMLResource resource = this.existManager.loadRaw(collectionId, documentId);

@@ -9,6 +9,7 @@ import { RegisterComponent } from './components/login-register/register/register
 import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-obavestenja-sluzbenik/all-obavestenja-sluzbenik.component';
 import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
 import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/new-obavestenje.component';
+import { ResenjaComponent } from './components/sluzbenik/resenja/resenja.component';
 import { ZalbeCutanjeComponent } from './components/sluzbenik/zalbe-cutanje/zalbe-cutanje.component';
 import { ZalbeOdlukaComponent } from './components/sluzbenik/zalbe-odluka/zalbe-odluka.component';
 import { LoginGuard } from './guards/login-guard.service';
@@ -83,6 +84,12 @@ const routes: Routes = [
   {
     path: 'zalbe-odluka',
     component: ZalbeOdlukaComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
+  },
+  {
+    path: 'resenje',
+    component: ResenjaComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_SLUZBENIK' }
   }
