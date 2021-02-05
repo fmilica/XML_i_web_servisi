@@ -81,4 +81,12 @@ export class ZalbaOdlukaService {
       headers: this.headers
     })
   }
+
+  //salje soap poziv sa id-jem zahteva
+  posaljiZahtevId(zahtevId: string) {
+    return this.http.get(environment.apiEndpoint + 'soap/zahtev/' + zahtevId, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }
