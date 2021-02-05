@@ -23,6 +23,13 @@ import { AuthenticationService } from "./authentication.service";
         })
     }
 
+    getById(zalbaId: string): Observable<any> {
+      return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/' + zalbaId, {
+        responseType: 'text',
+        headers: this.headers
+      })
+    }
+
     generisiPDF(zalbaOdlukaId: string) {
         return this.http.get(environment.apiEndpoint + 'zalba-odbijanje/generisiPDF/' + zalbaOdlukaId, {
           responseType: 'arraybuffer',

@@ -5,7 +5,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"
                 class="example-element-row"
                 [class.example-expanded-row]="expandedElement === row"
-                (click)="expandedElement = expandedElement === row ? null : row; fetchDokumente(row.zahtevId, row.zalbaId)">
+                (click)="expandedElement = expandedElement === row ? null : row; fetchDokumente(row.zahtevId, row.zalbaId, row.vrstaZalbe)">
             </tr>
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
 
@@ -52,7 +52,9 @@
                     <div class="example-element-description">
                         <div class="row">
                             Везан захтев: {{fetchedZahtev.nazivOrgana}}, {{fetchedZahtev.sedisteOrgana}}, {{fetchedZahtev.informacije}}, {{fetchedZahtev.mesto}}, {{fetchedZahtev.datum}}
-                            Везана жалба: {{fetchedZalba.nazivOrgana}}, 
+                        </div>
+                        <div class="row">
+                            Везана жалба: {{fetchedZalba.tip}}, креирана: {{fetchedZalba.datumZalbe}}, {{fetchedZalba.razresena}} 
                         </div>
                     </div>
                 </div>

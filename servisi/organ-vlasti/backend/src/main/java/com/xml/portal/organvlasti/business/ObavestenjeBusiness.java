@@ -293,4 +293,13 @@ public class ObavestenjeBusiness {
 		}
 	}
 	
+	public boolean getByZahtevId(String id) {
+		try {
+			return obavestenjeRepository.findByZahtevId(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
 }

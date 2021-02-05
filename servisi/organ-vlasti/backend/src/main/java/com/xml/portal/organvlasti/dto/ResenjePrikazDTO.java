@@ -29,6 +29,8 @@ public class ResenjePrikazDTO {
 	protected String optuzeniOrganVlasti;
 	@XmlElement(name = "IshodResenja", required = true)
 	protected String ishodResenja;
+	@XmlElement(name = "ImaObavestenje", required = true)
+	protected String imaObavestenje;
 
 	public String getResenjeId() {
 		return resenjeId;
@@ -89,6 +91,12 @@ public class ResenjePrikazDTO {
 	}
 	public void setIshodResenja(String ishodResenja) {
 		this.ishodResenja = ishodResenja;
+	}
+	public String getImaObavestenje() {
+		return imaObavestenje;
+	}
+	public void setImaObavestenje(String imaObavestenje) {
+		this.imaObavestenje = imaObavestenje;
 	}
 	
 }
