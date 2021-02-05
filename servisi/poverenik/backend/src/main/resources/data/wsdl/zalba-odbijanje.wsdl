@@ -8,49 +8,26 @@
     xmlns:odg="http://odgovor">
     <wsdl:types>
         <xs:schema>
-            <xs:import namespace="http://zalbaodbijanje" 
-                schemaLocation= "../schema/zalba_odbijanje/zalba_odbijen.xsd"/>  
-        </xs:schema>
-        <xs:schema>
             <xs:import namespace="http://odgovor" schemaLocation="../schema/odgovor/odgovor.xsd"></xs:import>
         </xs:schema>
     </wsdl:types>
     
-    <wsdl:message name="sendZalbaOdbijenRequest">
-        <wsdl:part name="ZalbaOdbijanje" element="tns:Zalba_odbijanje"/>
-    </wsdl:message>
-    <wsdl:message name="sendZalbaOdbijenResponse">
-    </wsdl:message>
-    
-    <wsdl:message name="sendOdgovorRequest">
+    <wsdl:message name="receiveOdgovorRequest">
         <wsdl:part name="Odgovor" element="odg:Odgovor"></wsdl:part>
     </wsdl:message>
-    <wsdl:message name="sendOdgovorResponse" />
+    <wsdl:message name="receiveOdgovorResponse" />
     
     <wsdl:portType name="ZalbaOdbijenServicePortType">
-        <wsdl:operation name="sendZalbaOdbijen">
-            <wsdl:input message="tns:sendZalbaOdbijenRequest" />
-            <wsdl:output message="tns:sendZalbaOdbijenResponse" />
-        </wsdl:operation>
-        <wsdl:operation name="sendOdgovor">
-            <wsdl:input message="tns:sendOdgovorRequest" />
-            <wsdl:output message="tns:sendOdgovorResponse" />
+        <wsdl:operation name="receiveOdgovor">
+            <wsdl:input message="tns:receiveOdgovorRequest" />
+            <wsdl:output message="tns:receiveOdgovorResponse" />
         </wsdl:operation>
     </wsdl:portType>
     
     <wsdl:binding name="ZalbaOdbijenSoapBinding" type="tns:ZalbaOdbijenServicePortType">
         <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
-        <wsdl:operation name="sendZalbaOdbijen">
-            <soap:operation soapAction="http://zalbaodbijanje/ws/sendZalbaOdbijen" />
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        <wsdl:operation name="sendOdgovor">
-            <soap:operation soapAction="http://zalbaodbijanje/ws/sendOdgovor" />
+        <wsdl:operation name="receiveOdgovor">
+            <soap:operation soapAction="http://zalbaodbijanje/ws/receiveOdgovor" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>

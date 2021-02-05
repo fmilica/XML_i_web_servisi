@@ -4,56 +4,34 @@
     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:tns="http://zalbacutanje"
     xmlns:odg="http://odgovor"
+    xmlns:tns="http://zalbacutanje"
     >
     
     <wsdl:types>
-        <xs:schema>
-            <xs:import namespace="http://zalbacutanje" 
-                schemaLocation= "../schema/zalba_cutanje/zalbacutanje.xsd"/>  
-        </xs:schema>
         <xs:schema>
             <xs:import namespace="http://odgovor" schemaLocation="../schema/odgovor/odgovor.xsd"></xs:import>
         </xs:schema>
     </wsdl:types>
     
-    <wsdl:message name="sendZalbaCutanjeRequest">
-        <wsdl:part name="Zalba_cutanje" element="tns:Zalba_cutanje" />
-    </wsdl:message>
-    <wsdl:message name="sendZalbaCutanjeResponse" />
-    
-    <wsdl:message name="sendOdgovorRequest">
+    <wsdl:message name="receiveOdgovorRequest">
         <wsdl:part name="Odgovor" element="odg:Odgovor"></wsdl:part>
     </wsdl:message>
-    <wsdl:message name="sendOdgovorResponse" />
+    <wsdl:message name="receiveOdgovorResponse" />
     
     
     <wsdl:portType name="ZalbaCutanjeServicePortType">
-        <wsdl:operation name="sendZalbaCutanje">
-            <wsdl:input message="tns:sendZalbaCutanjeRequest" />
-            <wsdl:output message="tns:sendZalbaCutanjeResponse" />
-        </wsdl:operation>
-        <wsdl:operation name="sendOdgovor">
-            <wsdl:input message="tns:sendOdgovorRequest" />
-            <wsdl:output message="tns:sendOdgovorResponse" />
+        <wsdl:operation name="receiveOdgovor">
+            <wsdl:input message="tns:receiveOdgovorRequest" />
+            <wsdl:output message="tns:receiveOdgovorResponse" />
         </wsdl:operation>
     </wsdl:portType>
     
     <wsdl:binding name="ZalbaCutanjeSoapBinding" type="tns:ZalbaCutanjeServicePortType">
         <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
-        <wsdl:operation name="sendZalbaCutanje">
-            <soap:operation soapAction="http://zalbacutanje/ws/getZalbaCutanje" />
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-        
-        <wsdl:operation name="sendOdgovor">
-            <soap:operation soapAction="http://zalbacutanje/ws/sendOdgovor" />
+
+        <wsdl:operation name="receiveOdgovor">
+            <soap:operation soapAction="http://zalbacutanje/ws/receiveOdgovor" />
             <wsdl:input>
                 <soap:body use="literal"/>
             </wsdl:input>
