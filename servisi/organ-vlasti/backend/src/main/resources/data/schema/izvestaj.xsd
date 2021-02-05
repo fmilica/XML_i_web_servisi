@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://izvestaj" xmlns:izv="http://izvestaj">
+    <xs:element name="Izvestaj">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="izv:Zahtevi"/>
+                <xs:element ref="izv:Zalbe"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID" use="required"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Zahtevi">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Gradjanin_zahtevi" type="izv:Zahtevi_stat"/>
+                <xs:element name="Organizacija_ukupno" type="izv:Zahtevi_stat"/>
+                <xs:element name="Zahtevi_ukupno" type="izv:Zahtevi_stat"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Zalbe">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Gradjanin_zalbe" type="izv:Zalbe_stat"/>
+                <xs:element name="Organizacija_zalbe" type="izv:Zalbe_stat"/>
+                <xs:element name="Zalbe_ukupno" type="izv:Zalbe_stat"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="Zahtevi_stat">
+        <xs:sequence>
+            <xs:element name="Ukupno_zahteva" type="xs:int"/>
+            <xs:element name="Ukupno_prihvacenih_zahteva" type="xs:int"/>
+            <xs:element name="Ukupno_odbijenih_zahtevi" type="xs:int"/>
+            <xs:element name="Ukupno_nerazresenih_zahteva" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="Zalbe_stat">
+        <xs:sequence>
+            <xs:element name="Ukupno_zalbi" type="xs:int"/>
+            <xs:element name="Ukupno_zbog_nepostupanja" type="xs:int"/>
+            <xs:element name="Ukupno_zbog_odbijanja" type="xs:int"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

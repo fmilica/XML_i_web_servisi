@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+    targetNamespace="http://zalbacutanje" xmlns:zoc="http://zalbacutanje"
+    xmlns:tipovi="http://tipovi" xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
+    <xs:import namespace="http://tipovi" schemaLocation="../tipovi.xsd"/>
+    <xs:element name="Zalba_cutanje">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Primalac_zalbe" type="tipovi:TPoverenik"/>
+                <xs:element ref="zoc:Zalba"/>
+            </xs:sequence>
+            <xs:attribute name="id" type="xs:ID"/>
+            <xs:attribute name="datum" type="xs:date"/>
+            <xs:attribute name="mesto" type="xs:string"/>
+            <xs:attribute name="datum_podnosenja_zahteva" type="xs:date"> </xs:attribute>
+            <xs:attribute name="datum_podnosenja_zalbe" type="xs:string"> </xs:attribute>
+            <xs:attribute name="razresen" type="xs:boolean"/>
+            <xs:attribute name="vocab" type="xs:string"/>
+            <xs:attribute name="about" type="xs:string"/>
+            <xs:attribute name="rel" type="xs:string"/>
+            <xs:attribute name="href" type="xs:string"/>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Zalba">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Osnova_zalbe" type="zoc:TZakonska_osnova"/>
+                <xs:element name="Naziv_organa" type="xs:string"/>
+                <xs:element name="Razlog_zalbe">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:enumeration value="Nije postupio"/>
+                            <xs:enumeration value="Nije postupio u celosti"/>
+                            <xs:enumeration value="U zakonskom roku"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Podaci_o_zahtevu" type="xs:string"/>
+                <xs:element name="Podnosilac_zalbe">
+                    <xs:complexType>
+                        <xs:complexContent>
+                            <xs:extension base="tipovi:TLice_kontakt">
+                                <xs:attribute name="vocab" type="xs:string"/>
+                                <xs:attribute name="about" type="xs:string"/>
+                                <xs:attribute name="rel" type="xs:string"/>
+                                <xs:attribute name="href" type="xs:string"/>
+                            </xs:extension>
+                        </xs:complexContent>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="TZakonska_osnova">
+        <xs:sequence>
+            <xs:element name="Clan" type="xs:positiveInteger" default="22"/>
+            <xs:element name="Zakon" type="xs:string"
+                default="Закон о слободном приступу информацијама од јавног значаја"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

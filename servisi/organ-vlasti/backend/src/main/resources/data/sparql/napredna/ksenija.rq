@@ -1,0 +1,23 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) zahteva po naprednoj pretrazi
+
+SELECT * FROM <%s>
+WHERE { 
+	{
+  		?zahtev ?p ?o
+  	}
+  	.
+  	{
+  		{
+  			  ?zahtev <http://www.xml.com/predicate/vezanGradjanin> ?a .
+			  ?zahtev <http://www.xml.com/predicate/primalacNaziv> ?b .
+			  ?zahtev <http://www.xml.com/predicate/podnosilacIme> ?v .
+			  ?zahtev <http://www.xml.com/predicate/podnosilacPrezime> ?g .
+  		}
+  		UNION
+  		{
+	  		  ?zahtev <http://www.xml.com/predicate/vezanGradjanin> ?a .
+			  ?zahtev <http://www.xml.com/predicate/primalacNaziv> ?b .
+			  ?zahtev <http://www.xml.com/predicate/podnosilacNaziv> ?h .
+  		}
+  	}
+}

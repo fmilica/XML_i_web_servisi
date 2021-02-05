@@ -1,0 +1,10 @@
+# Vraca sve id-eve (=imena fajlova -> brzi pristup) obavestenja po naprednoj pretrazi
+
+SELECT ?obavestenje FROM <%s>
+WHERE { 
+  ?obavestenje <http://www.xml.com/predicate/izdavacNaziv> %s .
+  ?obavestenje <http://www.xml.com/predicate/vezanGradjanin> %s .
+  ?obavestenje <http://www.xml.com/predicate/podnosilacIme> %s .
+  ?obavestenje <http://www.xml.com/predicate/podnosilacPrezime> %s .
+  ?obavestenje <http://www.xml.com/predicate/vezanZahtev> %s .
+}
