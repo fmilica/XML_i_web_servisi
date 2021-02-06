@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
@@ -11,7 +12,8 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class HeaderComponent implements OnInit {
   constructor(
     private router: Router,
-    private authenticationService: AuthenticationService) {}
+    private authenticationService: AuthenticationService,
+    private toastr: ToastrService) {}
 
   activeLink = '';
   role = '';
@@ -35,5 +37,10 @@ export class HeaderComponent implements OnInit {
   onClick(path: string): void {
     this.activeLink = path;
     this.router.navigate([path]);
+  }
+
+  logout(): void {
+    this.authenticationService.logout();
+    this.toastr.success('Успешно сте се излоговали!');
   }
 }

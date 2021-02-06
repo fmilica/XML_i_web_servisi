@@ -27,7 +27,7 @@ import com.xml.portal.organvlasti.dto.pretraga.ZalbaOdbijanjePretraga;
 
 @RestController
 @RequestMapping(value = "organvlasti/zalba-odbijanje", produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4201")
 public class ZalbaOdbijanjeService {
 
 	@Autowired
@@ -56,6 +56,7 @@ public class ZalbaOdbijanjeService {
 		}
 	}
 	
+	/*
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addZalbaOdbijanje(@RequestBody ZalbaOdbijanje zalbaOdbijanje,
 													@RequestParam String zahtevId,
@@ -77,6 +78,7 @@ public class ZalbaOdbijanjeService {
     		}
     	}
     }
+    */
 	
     @GetMapping("/pretrazi")
     public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {

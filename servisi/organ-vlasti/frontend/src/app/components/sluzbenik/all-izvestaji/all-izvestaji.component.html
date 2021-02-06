@@ -1,0 +1,59 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-md-2.5 left top">
+            <mat-label>Основна претрага:</mat-label>
+        </div>
+        <!-- Datum -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по датуму</mat-label>
+                    <input matInput formControlName="datum">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Pretraga -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="obicnaPretraga()">
+                Претрага обавештења
+            </button>
+        </div>
+    </div>
+</form>
+<div class="ng-container row justify-content-md-center bottom">
+    <div class="col-md-11">
+        <button tabindex="0" (click)="generisiIzvistaj()" class="generisi">Генериши извештај</button>
+    </div>
+</div>
+<div class="ng-container row justify-content-md-center">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSource">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+            </tr>
+
+            <ng-container matColumnDef="godisnjiIzvestaj">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Годишњи извештај </th>
+                <td matTooltip="Назив органа власти који није поступио" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.godisnjiIzvestaj}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datumGenerisanja">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум генерисања </th>
+                <td matTooltip="Разлог жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datumGenerisanja}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="pregled">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преглед </th>
+                <td matTooltip="Разлог жалбе" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <button tabindex="0" (click)="pregledIzvestaja(row.id)" class="generisi">Преглед</button>
+                </td>
+            </ng-container>
+
+        </table>
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+    </div>
+</div>

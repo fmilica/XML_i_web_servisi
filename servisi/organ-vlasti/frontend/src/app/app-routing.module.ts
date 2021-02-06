@@ -6,9 +6,12 @@ import { NewZahtevComponent } from './components/gradjanin/new-zahtev/new-zahtev
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { LoginComponent } from './components/login-register/login/login.component';
 import { RegisterComponent } from './components/login-register/register/register.component';
+import { AllIzvestajiComponent } from './components/sluzbenik/all-izvestaji/all-izvestaji.component';
 import { AllObavestenjaSluzbenikComponent } from './components/sluzbenik/all-obavestenja-sluzbenik/all-obavestenja-sluzbenik.component';
 import { AllZahteviSluzbenikComponent } from './components/sluzbenik/all-zahtevi-sluzbenik/all-zahtevi-sluzbenik.component';
+import { IzvestajiComponent } from './components/sluzbenik/izvestaji/izvestaji.component';
 import { NewObavestenjeComponent } from './components/sluzbenik/new-obavestenje/new-obavestenje.component';
+import { ResenjaComponent } from './components/sluzbenik/resenja/resenja.component';
 import { ZalbeCutanjeComponent } from './components/sluzbenik/zalbe-cutanje/zalbe-cutanje.component';
 import { ZalbeOdlukaComponent } from './components/sluzbenik/zalbe-odluka/zalbe-odluka.component';
 import { LoginGuard } from './guards/login-guard.service';
@@ -83,6 +86,24 @@ const routes: Routes = [
   {
     path: 'zalbe-odluka',
     component: ZalbeOdlukaComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
+  },
+  {
+    path: 'resenje',
+    component: ResenjaComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
+  },
+  {
+    path: 'izvestaj/:id',
+    component: IzvestajiComponent,
+    canActivate: [RoleGuard],
+    data: { expectedRoles: 'ROLE_SLUZBENIK' }
+  },
+  {
+    path: 'izvestaji',
+    component: AllIzvestajiComponent,
     canActivate: [RoleGuard],
     data: { expectedRoles: 'ROLE_SLUZBENIK' }
   }

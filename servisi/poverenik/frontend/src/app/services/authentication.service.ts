@@ -99,4 +99,11 @@ import { environment } from "src/environments/environment";
       return '';
     }
   }
+
+  logout() {
+    localStorage.removeItem('jwtToken');
+    localStorage.removeItem('expiresIn');
+    this.router.navigate(['prijava-registracija/prijava']);
+    this.role.next('');
+  }
 }

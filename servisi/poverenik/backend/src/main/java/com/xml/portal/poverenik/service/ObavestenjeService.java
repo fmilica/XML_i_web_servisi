@@ -27,7 +27,7 @@ import com.xml.portal.poverenik.dto.pretraga.ObavestenjePretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ObavestenjeService {
 
 	@Autowired
@@ -56,6 +56,16 @@ public class ObavestenjeService {
 		}
 	}
 	
+	@GetMapping("postoji/{id}")
+	public ResponseEntity<Object> getObavestenjeZaZahtev(@PathVariable("id") String id) {
+		boolean obavestenjePostoji = obavestenjeBusiness.getByZahtevId(id);
+		if(!obavestenjePostoji) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+    	return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	/*
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addObavestenje(@RequestBody Obavestenje obavestenje,
     											@RequestParam String zahtevId,
@@ -76,6 +86,7 @@ public class ObavestenjeService {
     			return ResponseEntity.status(500).body(greska);    		}
     	}
     }
+	*/
 	
     @GetMapping("/pretrazi")
     public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {

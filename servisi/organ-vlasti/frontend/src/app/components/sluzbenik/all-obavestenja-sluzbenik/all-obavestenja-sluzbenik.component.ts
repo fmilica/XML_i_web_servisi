@@ -86,7 +86,7 @@ export class AllObavestenjaSluzbenikComponent implements OnInit {
         zahtevId: obavestenje.attributes.href.substring(14)
       }
       //ime i prezime
-      if(obavestenje.children[2].length === 3) {
+      if(obavestenje.children[2].children.length === 3) {
         obavestenjePrikaz.imePrezime =  obavestenje.children[2].children[0].children[0] + ' ' + obavestenje.children[2].children[1].children[0]
         obavestenjePrikaz.adresa = obavestenje.children[2].children[2].children[1].children[0] + ', ' + 
         obavestenje.children[2].children[2].children[2].children[0] + ' ' + obavestenje.children[2].children[2].children[0].children[0]

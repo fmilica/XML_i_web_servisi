@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +19,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.poverenik.business.ResenjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
+import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
+import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.dto.ResenjeDTO;
 import com.xml.portal.poverenik.dto.pretraga.ResenjePretraga;
 
 @RestController
 @RequestMapping(value = "poverenik/resenje", produces = "application/xml;charset=utf-8")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ResenjeService {
 
 	@Autowired
@@ -115,6 +119,54 @@ public class ResenjeService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			Greska greska = new Greska("Greska prilikom generisanja pdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiRDF/{id}")
+	public ResponseEntity<Object> generisiRDF(@PathVariable("id") String id) throws Exception {
+
+    	Object resenje = resenjeBusiness.getById(id);
+		if (resenje == null) {
+			Greska greska = new Greska("Resenje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = StoreMetadata.generisiRDF(resenje);
+		
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja rdf-a.");
+			return ResponseEntity.status(500).body(greska);
+		}
+	
+	}
+    
+    @GetMapping("/generisiJSON/{id}")
+	public ResponseEntity<Object> generisiJSON(@PathVariable("id") String id) throws Exception {
+
+    	Object resenje = resenjeBusiness.getById(id);
+		if (resenje == null) {
+			Greska greska = new Greska("Resenje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		}
+		
+    	String path = QueryMetadata.generisiJSON("/poverenik/Resenje", "http://resenje", id);
+    	
+		try {
+			File file = new File(path);
+			FileInputStream stream = new FileInputStream(file);
+			return new ResponseEntity<>(IOUtils.toByteArray(stream), HttpStatus.OK);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Greska greska = new Greska("Greska prilikom generisanja json-a.");
 			return ResponseEntity.status(500).body(greska);
 		}
 	

@@ -30,11 +30,6 @@
 
     <div id="user-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_SLUZBENIK'">
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('resenje')" (keyup.enter)="onClick('resenje')"
-            [ngClass]="{'active': activeLink==='resenje'}">
-            Креирање Решења
-        </a>
-        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('zalbe-odluka')" (keyup.enter)="onClick('zalbe-odluka')"
             [ngClass]="{'active': activeLink==='zalbe-odluka'}">
             Жалбе на одлуку
@@ -53,6 +48,13 @@
             (click)="onClick('izvestaji')" (keyup.enter)="onClick('izvestaji')"
             [ngClass]="{'active': activeLink==='izvestaji'}">
             Извештаји
+        </a>
+    </div>
+
+    <div class="ml-auto" *ngIf="role!==''">
+        <a class="nav-item nav-link nav-btn btn ml-auto" role="button" tabindex="0"
+            (click)="logout()" (keyup.enter)="logout()">
+            Излогуј се
         </a>
     </div>
 

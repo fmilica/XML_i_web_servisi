@@ -118,4 +118,10 @@ public class IzvestajBusiness {
 		String documentId = izvestajRepository.copy(izvestaj);
 		return documentId;
 	}
+	
+	public ListaIzvestaj getAllByContent(String content) {
+		ListaIzvestaj filtriraniIzvestaji = new ListaIzvestaj();
+		filtriraniIzvestaji.setIzvestaj(izvestajRepository.findAllByDatumContaining(content));
+		return filtriraniIzvestaji;
+	}
 }

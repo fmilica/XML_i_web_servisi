@@ -4,6 +4,10 @@ import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
 import { ZalbaOdlukaNaprednaPretragaDto } from 'src/app/model/zalba-odluka-napredna-pretraga-dto';
+import { ZalbaDto } from 'src/app/model/zalba-dto.model';
+import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
+import { ResenjeService } from 'src/app/services/resenje.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-zalbe-odluku-poverenik',
@@ -12,9 +16,9 @@ import { ZalbaOdlukaNaprednaPretragaDto } from 'src/app/model/zalba-odluka-napre
 })
 export class ZalbeOdlukuPoverenikComponent implements OnInit {
 
-   //formе za pretragu
-   obicnaForm: FormGroup;
-   metaDataForm: FormGroup;
+  //formе za pretragu
+  obicnaForm: FormGroup;
+  metaDataForm: FormGroup;
 
   fetchedZahtev = {
     nazivOrgana: "",
@@ -27,7 +31,9 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   expandedElement: any | null;
 
   constructor(
-    private zalbaOdlukaService: ZalbaOdlukaService
+    private zalbaOdlukaService: ZalbaOdlukaService,
+    private resenjeService: ResenjeService,
+    private router: Router
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -62,10 +68,12 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
     let allZalbe: any = txml.parse(xmlResponse);
     let data = []
     allZalbe[1].children.map(zalba => {
+      let emailPath = zalba.children[4].attributes.href.split('/');
       let zalbaPrikaz = {
         naziv: '',
         adresa: '',
         id: zalba.attributes.id.substring(22),
+        userEmail: emailPath[3],
         organVlasti: zalba.children[2].children[0].children[0],
         broj: zalba.children[2].attributes.broj_odluke,
         godina: zalba.children[2].attributes.godina,
@@ -75,7 +83,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         adresaPodnosioca: '',
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-        razresena: 'Да',
+        razresena: zalba.attributes.razresena,
         zahtev: zalba.attributes.href.substring(14)
       }
       //podaci o zaliocu
@@ -113,6 +121,23 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
       data.push(zalbaPrikaz);
     })
     this.dataSource = data;
+  }
+
+  createResenje(row: any) {
+    let zalbaDto: ZalbaDto = {
+      id : row.id,
+      fullId: 'http://zalbaodbijanje/' + row.id,
+      datumPodnosenja : row.datumZalbe
+    }
+    let zahtevDto : ZahtevDto = {
+      id: row.zahtev,
+      datumPodnosenja: row.datumZahteva,
+      userEmail: row.userEmail
+    }
+    this.resenjeService.odabraniZahtev.next(zahtevDto);
+    this.resenjeService.odabranaZalba.next(zalbaDto);
+    this.resenjeService.novo_resenje.next(true)
+    this.router.navigate(['resenje']);
   }
 
   generisiPDF(zalbaOdlukaId: string) {

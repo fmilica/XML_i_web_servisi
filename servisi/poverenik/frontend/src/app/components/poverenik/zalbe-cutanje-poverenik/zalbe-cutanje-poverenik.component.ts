@@ -5,6 +5,12 @@ import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
 import * as txml from 'txml';
 import * as JsonToXML from 'js2xmlparser';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ZahtevService } from 'src/app/services/zahtev.service';
+import { ZalbaDto } from 'src/app/model/zalba-dto.model';
+import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
+import { ResenjeService } from 'src/app/services/resenje.service';
+import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-zalbe-cutanje-poverenik',
@@ -41,7 +47,10 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   metaDataForm: FormGroup;
 
   constructor(
-    private zalbaCutanjeService: ZalbaCutanjeService
+    private zalbaCutanjeService: ZalbaCutanjeService,
+    private zahtevService: ZahtevService,
+    private resenjeService: ResenjeService,
+    private router: Router
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -71,8 +80,10 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     let allZalbe: any = txml.parse(xmlResponse);
     let data = []
     allZalbe[1].children.map(zalba => {
+      let emailPath = zalba.children[1].children[4].attributes.href.split('/');
       let zalbaPrikaz = {
         id: zalba.attributes.id.substring(20),
+        userEmail: emailPath[3],
         organVlasti: zalba.children[1].children[1].children[0],
         razlogZalbe: zalba.children[1].children[2].children[0],
         datumZahteva: zalba.attributes.datum_podnosenja_zahteva,
@@ -127,16 +138,20 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   }
 
   createResenje(row: any) {
-/*     let zalbaDto: ZalbaDto = {
-      id: row.id
-      datumPodnosenja: row.datum
-    } 
-      let zahtevDto: ZahtevDto = {
-        id: row.id
-        datumPodnosenja: row.datum
-        
-      }
-    */
+    let zalbaDto: ZalbaDto = {
+      id : row.id,
+      fullId: 'http://zalbacutanje/' + row.id,
+      datumPodnosenja : row.datumZalbe
+    }
+    let zahtevDto : ZahtevDto = {
+      id: row.zahtev,
+      datumPodnosenja: row.datumZahteva,
+      userEmail: row.userEmail
+    }
+    this.resenjeService.odabraniZahtev.next(zahtevDto);
+    this.resenjeService.odabranaZalba.next(zalbaDto);
+    this.resenjeService.novo_resenje.next(true)
+    this.router.navigate(['resenje']);
   }
 
   generisiPDF(obavestenjeId: string) {
@@ -267,7 +282,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   
   fetchZahtev(zahtevId: string){
     //TODO dobaviti zahtev preko SOAP i odkomentarisati linije u html
-    /*this.zahtevService.getZahtevById(zahtevId).subscribe(
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
       (response) => {
         let xmlResponse = response;
         let zahtev: any =  txml.parse(xmlResponse);
@@ -283,6 +298,6 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
           this.fetchedZahtev = zahtevPrikaz
         })
       }
-    )*/
+    )
   }
 }

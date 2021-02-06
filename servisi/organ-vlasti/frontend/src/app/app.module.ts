@@ -33,6 +33,8 @@ import { ZalbeCutanjeComponent } from './components/sluzbenik/zalbe-cutanje/zalb
 import { ZalbeOdlukaComponent } from './components/sluzbenik/zalbe-odluka/zalbe-odluka.component';
 import { ResenjaComponent } from './components/sluzbenik/resenja/resenja.component';
 import { DialogComponent } from './components/sluzbenik/dialog/dialog.component';
+import { IzvestajiComponent } from './components/sluzbenik/izvestaji/izvestaji.component';
+import { AllIzvestajiComponent } from './components/sluzbenik/all-izvestaji/all-izvestaji.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { DialogComponent } from './components/sluzbenik/dialog/dialog.component'
     ZalbeCutanjeComponent,
     ZalbeOdlukaComponent,
     ResenjaComponent,
-    DialogComponent
+    DialogComponent,
+    IzvestajiComponent,
+    AllIzvestajiComponent
   ],
   imports: [
     AppRoutingModule, 

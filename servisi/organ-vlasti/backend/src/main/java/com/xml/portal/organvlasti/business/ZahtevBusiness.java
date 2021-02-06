@@ -319,25 +319,28 @@ public class ZahtevBusiness {
 			zahtev.getTeloZahteva().getZahtevi().setUvid("uvid/увид");
 		}
 		if (zahtev.getTeloZahteva().getZahtevi()
+				.getDostavljanjeKopije() != null) {
+			if (zahtev.getTeloZahteva().getZahtevi()
+					.getDostavljanjeKopije().getNacinDostave()
+					.getDostavaElektronskomPostom() != null) {
+				zahtev.getTeloZahteva().getZahtevi()
 				.getDostavljanjeKopije().getNacinDostave()
-				.getDostavaElektronskomPostom() != null) {
-			zahtev.getTeloZahteva().getZahtevi()
-			.getDostavljanjeKopije().getNacinDostave()
-			.setDostavaElektronskomPostom("elekstronskom poštom/електронском поштом");
-		}
-		if (zahtev.getTeloZahteva().getZahtevi()
+				.setDostavaElektronskomPostom("elekstronskom poštom/електронском поштом");
+			}
+			if (zahtev.getTeloZahteva().getZahtevi()
+					.getDostavljanjeKopije().getNacinDostave()
+					.getDostavaFaksom() != null) {
+				zahtev.getTeloZahteva().getZahtevi()
 				.getDostavljanjeKopije().getNacinDostave()
-				.getDostavaFaksom() != null) {
-			zahtev.getTeloZahteva().getZahtevi()
-			.getDostavljanjeKopije().getNacinDostave()
-			.setDostavaFaksom("faksom/факсом");
-		}
-		if (zahtev.getTeloZahteva().getZahtevi()
+				.setDostavaFaksom("faksom/факсом");
+			}
+			if (zahtev.getTeloZahteva().getZahtevi()
+					.getDostavljanjeKopije().getNacinDostave()
+					.getDostavaPostom() != null) {
+				zahtev.getTeloZahteva().getZahtevi()
 				.getDostavljanjeKopije().getNacinDostave()
-				.getDostavaPostom() != null) {
-			zahtev.getTeloZahteva().getZahtevi()
-			.getDostavljanjeKopije().getNacinDostave()
-			.setDostavaPostom("poštom/поштом");
+				.setDostavaPostom("poštom/поштом");
+			}	
 		}
 		return zahtev;
 	}

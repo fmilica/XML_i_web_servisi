@@ -387,6 +387,21 @@ export class XonomyResenjeService {
         //Prosledjivanje zalbe
       'res:Prosledjivanje_zalbe': {
         hasText: true,
+        attributes: {
+          'datum_prosledjivanja': {
+            hasText: true,
+            asker: Xonomy.askString,
+            validate: function(jsAttribute){
+              //Make sure item/@datum_izjasnjenja is not an empty string:
+              if(jsAttribute.value=="") {
+                Xonomy.warnings.push({
+                htmlID: jsAttribute.htmlID,
+                text: "Датум прослеђивања је обавезан атрибут."}
+              );
+              }
+            },
+          }
+        },
         validate: function (jsElement:any) {
           if (jsElement.getText() == "") {
             Xonomy.warnings.push({

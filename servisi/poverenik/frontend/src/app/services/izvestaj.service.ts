@@ -30,8 +30,8 @@ export class IzvestajService {
     })
   }
 
-  generisiIzvestaj(): Observable<any> {
-    return this.http.get(environment.apiEndpoint + 'izvestaj/generisi', {
+  obicnaPretraga(datum: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'izvestaj/pretrazi?sadrzaj=' + datum, {
       responseType: 'text',
       headers: this.headers
     })

@@ -27,7 +27,7 @@ import com.xml.portal.organvlasti.dto.pretraga.ObavestenjePretraga;
 
 @RestController
 @RequestMapping(value = "organvlasti/obavestenje", produces = MediaType.APPLICATION_XML_VALUE)
-@CrossOrigin(origins = "https://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4201")
 public class ObavestenjeService {
 
 	@Autowired
@@ -54,6 +54,15 @@ public class ObavestenjeService {
 		} else {
 	    	return new ResponseEntity<>(obavestenje, HttpStatus.OK);
 		}
+	}
+	
+	@GetMapping("postoji/{id}")
+	public ResponseEntity<Object> getObavestenjeZaZahtev(@PathVariable("id") String id) {
+		boolean obavestenjePostoji = obavestenjeBusiness.getByZahtevId(id);
+		if(!obavestenjePostoji) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+    	return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)

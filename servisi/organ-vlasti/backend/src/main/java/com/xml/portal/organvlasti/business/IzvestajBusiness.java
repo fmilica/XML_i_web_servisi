@@ -18,6 +18,7 @@ import com.xml.portal.organvlasti.data.dao.izvestaj.Zalbe;
 import com.xml.portal.organvlasti.data.dao.izvestaj.ZalbeStat;
 import com.xml.portal.organvlasti.data.dao.obavestenje.ListaObavestenja;
 import com.xml.portal.organvlasti.data.dao.obavestenje.Obavestenje;
+import com.xml.portal.organvlasti.data.dao.zahtev.ListaZahteva;
 import com.xml.portal.organvlasti.data.repository.IzvestajRepository;
 import com.xml.portal.organvlasti.data.repository.ZahtevRepository;
 import com.xml.portal.organvlasti.data.repository.ZalbaCutanjeRepository;
@@ -112,5 +113,11 @@ public class IzvestajBusiness {
 			e.printStackTrace();
 		}
 		return loaded;
+	}
+	
+	public ListaIzvestaj getAllByContent(String content) {
+		ListaIzvestaj filtriraniIzvestaji = new ListaIzvestaj();
+		filtriraniIzvestaji.setIzvestaj(izvestajRepository.findAllByDatumContaining(content));
+		return filtriraniIzvestaji;
 	}
 }

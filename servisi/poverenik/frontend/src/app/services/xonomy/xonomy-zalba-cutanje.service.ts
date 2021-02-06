@@ -122,15 +122,7 @@ export class XonomyZalbaCutanjeService {
         isInvisible: true,
       },
       'zoc:Naziv_organa':{
-        validate: function (jsElement:any) {
-          if (jsElement.getText() == "") {
-            Xonomy.warnings.push({
-              htmlID: jsElement.htmlID,
-              text: "Назив органа је обавезно поље!"
-            }
-            );
-          }
-        },
+        isReadOnly: true,
         hasText: true,
         asker: Xonomy.askString,
         title: 'Назив органа власти'
