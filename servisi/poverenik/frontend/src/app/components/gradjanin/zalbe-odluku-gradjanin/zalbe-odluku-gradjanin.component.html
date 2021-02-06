@@ -77,10 +77,11 @@
             </ng-container>
 
             <ng-container matColumnDef="razresena">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
-                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    <mat-icon *ngIf = "row.razresena === 'true'">done</mat-icon>
-                    <mat-icon *ngIf = "row.razresena === 'false'">close</mat-icon>
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Статус жалбе </th>
+                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row" [ngSwitch]="row.razresena">
+                    <div *ngSwitchCase="'razresena'">Разрешенa</div>
+                    <div *ngSwitchCase="'odustani'"><button (click) = "odustaniOdZalbe(row)">Одустани</button></div>
+                    <div *ngSwitchCase="'prekinuta'">Oдустао</div>
                 </td>
             </ng-container>
 

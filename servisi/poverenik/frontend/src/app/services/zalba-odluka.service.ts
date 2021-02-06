@@ -104,4 +104,11 @@ export class ZalbaOdlukaService {
     }
     )
   }
+
+  odustaniOdZalbe(zalbaId: string){
+    return this.http.put(environment.apiEndpoint + 'zalba-odbijanje/odustani/' + zalbaId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }

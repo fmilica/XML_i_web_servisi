@@ -163,7 +163,7 @@
                                 <fo:table-row>
                                     <fo:table-cell text-align="left" margin-top="30px">
                                         <fo:block>
-                                            U <fo:inline>
+                                            U <fo:inline text-decoration="underline">
                                                 <xsl:value-of select="zahtev:Zahtev/@mesto"/>
                                             </fo:inline>
                                         </fo:block>
@@ -173,7 +173,7 @@
                                                 substring($dt,1,4),'-',
                                                 substring($dt,6,2),'-',
                                                 substring($dt,9,2)))"/>
-                                            dana <xsl:value-of select="format-date($date,'[D].[M].[Y].')"/> godine
+                                            dana <fo:inline  text-decoration="underline"><xsl:value-of select="format-date($date,'[D].[M].[Y].')"/></fo:inline> godine
                                         </fo:block>
                                     </fo:table-cell>
                                     <fo:table-cell text-align="right" margin-top="10px">

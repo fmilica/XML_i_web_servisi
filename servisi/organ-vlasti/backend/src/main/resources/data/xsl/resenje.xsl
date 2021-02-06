@@ -76,7 +76,7 @@
                             </tr>
                         </table>
                         <div>
-                            <xsl:variable name="zahtevD" select="res:Resenje/res:Opis_zalbe/@datum_zahteva"/>
+                            <xsl:variable name="zahtevD" select="res:Resenje/res:Obrazlozenje/res:Postupak_zalioca/res:Podnosenje_zahteva/@datum_zahteva"/>
                             <xsl:variable name="z" select="xs:string(concat(
                                 substring($zahtevD,9,2),'.',
                                 substring($zahtevD,6,2),'.',
@@ -132,13 +132,13 @@
                         <div class="tekst">
                             Takodje je uvidom u spise predmeta utvrdjeno da po zahtevu zalioca od <xsl:value-of select="$zahtevS"/> godine, organ vlasti
                             <xsl:choose>
-                                <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'непоступање'">
+                                <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'nepostupanje'">
                                     nije postupio, sto je duzan da ucini bez odlaganja, najkasnije u roku od 15 dana od primanja zahteva
                                 </xsl:when>
-                                <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'непоступање у целости'">
+                                <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'nepostupanje u celosti'">
                                     nije postupio u celosti 
                                 </xsl:when>
-                                <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'непоступање у законском року'">
+                                <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'nepostupanje u zakonskom roku'">
                                     nije postupio u zakonskom roku 
                                 </xsl:when>
                                 <xsl:otherwise>
@@ -151,15 +151,22 @@
                             <xsl:choose>
                                 <xsl:when test="res:Resenje/@tip_odluke = 'основана'">
                                     <div class="tekst">
-                                        Imajuci u vidu da organ vlasti po zahtevu zalioca od <xsl:value-of select="$zahtevS"/> godine nije postupio sa navedenim odredbama <xsl:value-of select="res:Resenje/res:Obrazlozenje/res:Razlozi_odluke/res:Detaljan_opis_odgovora_na_zahtev/res:Zakonska_osnova_odgovora/res:Zakonska_osnova/res:Zakon"/>
-                                        , a da nije opravdao razloge nepostupanja po podnetom zahtevu, Poverenik je u postupku po zalbi, na osnovu
-                                        <xsl:for-each select="res:Resenje/res:Obrazlozenje/res:Razlozi_odluke/res:Obrazlozenje_odluke/res:Zakonske_osnove_odluke/res:Zakonska_osnova">
-                                            clana <xsl:value-of select="res:Clan"/>. 
-                                            <xsl:if test="boolean(res:Stav)">
-                                                st. <xsl:value-of select="res:Stav"/>.
-                                            </xsl:if>
-                                            <xsl:value-of select="res:Zakon"/>
-                                        </xsl:for-each>
+                                        Imajuci u vidu da organ vlasti po zahtevu zalioca od <xsl:value-of select="$zahtevS"/> godine nije postupio sa navedenim odredbama Закона о слободном приступу информацијама од јавног значаја
+                                        , a da nije opravdao razloge nepostupanja po podnetom zahtevu, Poverenik je u postupku po zalbi, na osnovu zakona одлучио
+										, нашавши да је жалба основана, односно да је неспорно право жалиоца на тражене
+										информације у смислу Закона о слободном приступу информацијама од јавног значаја, по
+										коме свако има право да му буде саопштено да ли орган власти поседује или му је доступна одређена
+										информација од јавног значаја, као и да му се информација, уколико је у поседу органа, учини
+										доступном, што је у складу са одредбом Закона о слободном приступу информацијама од јавног значаја, која предвиђа
+										могућност издвајања тражене информације од јавног значаја од осталих информација садржаних у
+										документу у које орган власти није дужан да тражиоцу омогући увид, јер би се доступношћу тим
+										информацијама повредило право на приватност и заштиту података о личности лица на која се
+										тражене информације односе.
+                                    </div>
+									<div class="tekst">
+                                        <xsl:value-of select="res:Resenje/res:Opis_zalbe/res:Naziv_organa_vlasti"/>, је дужан да о
+										извршењу решења, обавести Повереника у складу са Законом
+										о слободном приступу информацијама од јавног значаја.
                                     </div>
                                     <div>
                                         <xsl:variable name="taksa" select="format-number(res:Resenje/res:Obrazlozenje/res:Zalba_na_resenje/@taksa_tuzbe,  '.##')"/>

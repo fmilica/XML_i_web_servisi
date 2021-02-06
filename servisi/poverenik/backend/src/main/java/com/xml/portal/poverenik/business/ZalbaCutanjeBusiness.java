@@ -231,6 +231,11 @@ public class ZalbaCutanjeBusiness {
 	public boolean izjasnjenjeTrue(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
 		zalbaCutanje.setIzjasnjen(true);
 		return zalbaCutanjeRepository.izjasnjenjeTrue(zalbaCutanjeId, zalbaCutanje);
+  }
+  
+	public boolean odustani(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
+		zalbaCutanje.setPrekinut(true);
+		return zalbaCutanjeRepository.odustanak(zalbaCutanjeId, zalbaCutanje);
 	}
 	
 	public boolean storeMetadata(ZalbaCutanje zalbaCutanje) {

@@ -63,7 +63,7 @@
                         substring($dt1,9,2),'.',
                         substring($dt1,6,2),'.',
                         substring($dt1,1,4),'.'))"/>
-                    <fo:block text-indent="1rem" margin-top="10px">
+                    <fo:block text-indent="20px" margin-top="10px">
                         Na osnovu clana <xsl:value-of select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Zakonska_osnova/obv:Clan"/>
                         . st. <xsl:value-of select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Zakonska_osnova/obv:Stav"/>. 
                         <xsl:value-of select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Zakonska_osnova/obv:Zakon"/>, postupajuci po
@@ -92,13 +92,13 @@
                             mozete <fo:inline font-weight="bold">izvrsiti uvid</fo:inline> u dokument/e u kome je sadrzana trazena informacija
                     </fo:block>
                     <fo:block>Tom prilikom, na Vas zahtev, moze Vam se izdati i kopija dokumenta sa trazenom informacijom</fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Troskovi su utvrdjeni Uredbom Vlade Republike Srbije ("Sl. glasnik RS", br 8/06), i to:
                         kopija strane A4 formata iznosi 3 dinara, A3 formata 6 dinara, CD 35 dinara, diskete 20 dinara,
                         DVD 40 dinara, audio-disketa - 150 dinara, video-kaseta 300 dinara, pretvaranje jedne strane
                         dokumenta iz fizickog u elektronski oblik - 30 dinara.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Iznos ukupnih troskova izrade kopije dokumenta po vasem zahtevu iznosi 
                         <fo:inline text-decoration="underline"><xsl:value-of select="obv:Obavestenje/obv:Ukupan_trosak_kopija"/></fo:inline> dinara i uplacuje se 
                         na ziro-racun Budzeta Republike Srbije br. <xsl:value-of select="obv:Obavestenje/obv:Ukupan_trosak_kopija/@ziro_racun"/>

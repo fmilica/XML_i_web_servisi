@@ -38,6 +38,10 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
                                 'razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   ngOnInit(): void {
+    this.fetchZalbe()
+  }
+
+  fetchZalbe() {
     this.zalbaCutanjeService.getAllGradjaninZalbeCutanje()
       .subscribe(
         (response) => {
@@ -45,6 +49,12 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
           let allZalbe: any = txml.parse(xmlResponse);
           let data = []
           allZalbe[1].children.map(zalba => {
+            let status = "razresena";
+            if(zalba.attributes.prekinut === "true"){
+              status = "prekinuta"
+            }else if(zalba.attributes.razresen === "false"){
+              status = "odustani"
+            }
             let zalbaPrikaz = {
               id: zalba.attributes.id.substring(20),
               organVlasti: zalba.children[1].children[1].children[0],
@@ -53,7 +63,7 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
               podaci: zalba.children[1].children[3].children[0],
               datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
               mestoZalbe: zalba.attributes.mesto,
-              razresena: zalba.attributes.razresen,
+              razresena: status,
               zahtev: zalba.attributes.href.substring(14)
             }
             data.push(zalbaPrikaz);
@@ -122,6 +132,17 @@ export class ZalbeCutanjeGradjaninComponent implements OnInit {
           }
           this.fetchedZahtev = zahtevPrikaz
         })
+      }
+    )
+  }
+
+  odustaniOdZalbe(row: any){
+    this.zalbaCutanjeService.odustaniOdZalbe(row.id).subscribe(
+      (response) => {
+        this.fetchZalbe();
+      },
+      (error) => {
+        this.fetchZalbe();
       }
     )
   }

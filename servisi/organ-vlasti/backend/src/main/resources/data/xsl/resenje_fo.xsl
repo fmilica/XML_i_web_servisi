@@ -25,10 +25,10 @@
             
             <fo:page-sequence master-reference="resenje-page">
                 <fo:flow flow-name="xsl-region-body" font-family="Times New Roman">
-                    <fo:table>
+                    <fo:table width="100%" margin-bottom="10px">
                         <fo:table-body>
                             <fo:table-row>
-                                <fo:table-cell text-align="right" margin-bottom="10px">
+                                <fo:table-cell text-align="left" margin-bottom="10px">
                                     <fo:block>
                                         <xsl:value-of select="res:Resenje/@tip_odluke"/>
                                     </fo:block>
@@ -36,7 +36,7 @@
                                         <xsl:value-of select="res:Resenje/@broj_resenja"/>
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell text-align="left" margin-top="10px">
+                                <fo:table-cell text-align="right" margin-top="10px">
                                     <fo:block>
                                         <xsl:variable name="datum" select="res:Resenje/@datum_resenja"/>
                                         <xsl:variable name="dt" select="xs:string(concat(
@@ -50,7 +50,7 @@
                         </fo:table-body>
                     </fo:table>
                     <fo:block>
-                        <xsl:variable name="zahtevD" select="res:Resenje/res:Opis_zalbe/@datum_zahteva"/>
+                        <xsl:variable name="zahtevD" select="res:Resenje/res:Obrazlozenje/res:Postupak_zalioca/res:Podnosenje_zahteva/@datum_zahteva"/>
                         <xsl:variable name="z" select="xs:string(concat(
                             substring($zahtevD,9,2),'.',
                             substring($zahtevD,6,2),'.',
@@ -65,13 +65,13 @@
                     <fo:block text-align="center" margin-top="10px" margin-bottom="10px">R E S E Nj E</fo:block>
                     <fo:block>
                         <xsl:for-each select="res:Resenje/res:Odluka/res:Nalozi/res:Nalog">
-                            <fo:block text-indent="1rem">
+                            <fo:block text-indent="20px">
                                 <xsl:value-of select="."/>
                             </fo:block>
                         </xsl:for-each>
                     </fo:block>
                     <fo:block text-align="center" margin-top="10px" margin-bottom="10px">O b r a z l o z e nj e</fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         <xsl:variable name="zalba" select="res:Resenje/res:Obrazlozenje/res:Postupak_zalioca/res:Podnosenje_zalbe/@datum_zalbe"/>
                         <xsl:variable name="za" select="xs:string(concat(
                             substring($zalba,9,2),'.',
@@ -86,7 +86,7 @@
                         , kao trazilac informacija, izjavio je dana <xsl:value-of select="$za"/> godine zalbu povereniku, zbog <xsl:value-of select="res:Resenje/res:Opis_zalbe/@razlog_zalbe"/><xsl:value-of select="$space"/>
                         <xsl:value-of select="res:Resenje/res:Opis_zalbe/res:Naziv_organa_vlasti"/> po njegovom zahtevu od <xsl:value-of select="$zahtevS"/> godine za pristup informacijama od javnog znacaja i u prilogu dostavio kopiju istog.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         <xsl:variable name="prosl" select="res:Resenje/res:Obrazlozenje/res:Prosledjivanje_zalbe/@datum_prosledjivanja"/>
                         <xsl:variable name="p" select="xs:string(concat(
                             substring($prosl,9,2),'.',
@@ -96,14 +96,14 @@
                         <xsl:value-of select="res:Resenje/res:Opis_zalbe/res:Naziv_organa_vlasti"/>, kao organu vlasti u smislu zakona 
                         po kom je zatrazeno da se izjasni o navodima zalbe, posebno o razlozima nepostupanja u zakonskom roku po podnetom zahtevu.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Po razmatranju zalbe i ostalih spisa ovog predmeta, doneta je odluka kao u dispozitivu resenja iz sledecih razloga:
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Uvidom u spise predmeta utvrdjeno je da je <xsl:value-of select="res:Resenje/res:Opis_zalbe/res:Ime_zalilac"/><xsl:value-of select="$space"/><xsl:value-of select="res:Resenje/res:Opis_zalbe/res:Prezime_zalilac"/>, dana 
                         <xsl:value-of select="$zahtevS"/> godine, podneo <xsl:value-of select="res:Resenje/res:Opis_zalbe/res:Naziv_organa_vlasti"/> zahtev za pristup informacijama od javnog znacaja.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Takodje je uvidom u spise predmeta utvrdjeno da po zahtevu zalioca od <xsl:value-of select="$zahtevS"/> godine, organ vlasti
                         <xsl:choose>
                             <xsl:when test="res:Resenje/res:Opis_zalbe/@razlog_zalbe = 'непоступање'">
@@ -121,7 +121,7 @@
                         </xsl:choose>
                         u smislu zakona po kom je zatrazeno da se izjasni o navodima zalbe, posebno o razlozima nepostupanja u zakonskom roku po podnetom zahtevu.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         <xsl:choose>
                             <xsl:when test="res:Resenje/@tip_odluke = 'основана'">
                                 <div class="tekst">
@@ -144,7 +144,7 @@
                             </xsl:when>
                         </xsl:choose>
                     </fo:block>
-                    <fo:block text-align="right">POVERENIK</fo:block>
+                    <fo:block text-align="right" margin-top="10px">POVERENIK</fo:block>
                     <fo:block text-align="right">
                         <xsl:value-of select="res:Resenje/res:Poverenik/res:Ime"/><xsl:value-of select="$space"/>
                         <xsl:value-of select="res:Resenje/res:Poverenik/res:Prezime"/>
