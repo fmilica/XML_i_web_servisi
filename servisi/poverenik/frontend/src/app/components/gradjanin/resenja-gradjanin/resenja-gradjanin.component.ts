@@ -31,7 +31,7 @@ export class ResenjaGradjaninComponent implements OnInit {
   dataSource = [
    ];
 
-  displayedColumns: string[] = ['zalilac', 'organVlasti', 'ishod', 'emailZalioca', 'datumResenja'];
+  displayedColumns: string[] = ['zalilac', 'organVlasti', 'ishod', 'emailZalioca', 'datumResenja', 'preuzimanje', 'preuzimanjeMeta'];
 
   fetchedZahtev = {
     nazivOrgana: "",
@@ -139,6 +139,48 @@ export class ResenjaGradjaninComponent implements OnInit {
         }
       )
     }
+  }
+
+  generisiPDF(resenjeId: string) {
+    this.resenjeService.generisiPDF(resenjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, resenjeId, "pdf");
+      }
+    );
+  }
+
+  generisiHTML(resenjeId: string) {
+    this.resenjeService.generisiHTML(resenjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, resenjeId, "html");
+      }
+    );
+  }
+
+  previewAndDownload(response: any, id: string, tip: string){
+    let type = "application/"+tip;
+    let blob = new Blob([response], { type: type});
+    let url = window.URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = "resenje_"+id+"."+tip;
+    link.click();
+  }
+
+  generisiRDF(resenjeId: string) {
+    this.resenjeService.generisiRDF(resenjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, resenjeId, "xml");
+      }
+    );
+  }
+
+  generisiJSON(resenjeId: string) {
+    this.resenjeService.generisiJSON(resenjeId).subscribe(
+      (response) => {
+        this.previewAndDownload(response, resenjeId, "json");
+      }
+    );
   }
 
 }

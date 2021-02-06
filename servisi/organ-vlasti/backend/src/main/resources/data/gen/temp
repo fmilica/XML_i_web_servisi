@@ -1,23 +1,26 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
-    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/4c294d38-952b-4824-b49d-af10b62e9161"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Primalac</pred:primalacNaziv>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
-    <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Zalilac</pred:podnosilacIme>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
-    <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Zaliocic</pred:podnosilacPrezime>
-  </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
     <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
-    <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Podnosioc</pred:podnosilacIme>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:zalilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Петар</pred:zalilacIme>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zalbaodbijanje/849e55b7-61c1-45ee-9b91-51c45f7da089">
-    <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Podnosiocic</pred:podnosilacPrezime>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:zalilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Перић</pred:zalilacPrezime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:optuzeniNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:optuzeniNaziv>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:vezanaZalba xmlns:pred="http://www.xml.com/predicate/" rdf:resource="849e55b7-61c1-45ee-9b91-51c45f7da089"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/13396d98-a5dc-4789-a0ea-507efa545faf"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:izdavacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Повереник</pred:izdavacIme>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/e1da8b3a-bfdb-4e84-8af8-96b313a49f57">
+    <pred:izdavacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Презиме</pred:izdavacPrezime>
   </rdf:Description>
 </rdf:RDF>
