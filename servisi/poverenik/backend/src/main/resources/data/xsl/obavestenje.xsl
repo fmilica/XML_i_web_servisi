@@ -97,7 +97,7 @@
                         <div class="obavestenje"><b>o stavljanju na uvid dokument koji sadrzi</b></div>
                         <div class="obavestenje_opis"><b>trazenu informaciju i o izradi kopije</b></div>
                         <div class="tekst">
-                            <xsl:variable name="dt1" select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Podaci_o_uvidu/obv:Datum"/>
+                            <xsl:variable name="dt1" select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Datum_potrazivanja"/>
                             <xsl:variable name="date1" select="xs:string(concat(
                                 substring($dt1,9,2),'.',
                                 substring($dt1,6,2),'.',

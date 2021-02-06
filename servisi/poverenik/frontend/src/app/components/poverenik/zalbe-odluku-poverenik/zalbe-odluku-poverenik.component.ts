@@ -8,11 +8,20 @@ import { ZalbaDto } from 'src/app/model/zalba-dto.model';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { ResenjeService } from 'src/app/services/resenje.service';
 import { Router } from '@angular/router';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ZahtevService } from 'src/app/services/zahtev.service';
 
 @Component({
   selector: 'app-zalbe-odluku-poverenik',
   templateUrl: './zalbe-odluku-poverenik.component.html',
-  styleUrls: ['./zalbe-odluku-poverenik.component.sass']
+  styleUrls: ['./zalbe-odluku-poverenik.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ZalbeOdlukuPoverenikComponent implements OnInit {
 
@@ -33,6 +42,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   constructor(
     private zalbaOdlukaService: ZalbaOdlukaService,
     private resenjeService: ResenjeService,
+    private zahtevService: ZahtevService,
     private router: Router
   ) { 
     this.obicnaForm = new FormGroup({
@@ -267,7 +277,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
 
   fetchZahtev(zahtevId: string){
     //TODO dobaviti zahtev preko SOAP i odkomentarisati linije u html
-    /*this.zahtevService.getZahtevById(zahtevId).subscribe(
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
       (response) => {
         let xmlResponse = response;
         let zahtev: any =  txml.parse(xmlResponse);
@@ -283,6 +293,6 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
           this.fetchedZahtev = zahtevPrikaz
         })
       }
-    )*/
+    )
   }
 }

@@ -64,35 +64,35 @@
                     <div class="sadrzaj">
                         <div class="naslov"><b>ZALBA PROTIV ODLUKE ORGANA VLASTI KOJOJM JE</b></div>
                         <div class="naslov_opis"><b><u>ODBIJEN ILI ODBACEN ZAHTEV</u> ZA PRISTUP INFORMACIJI</b></div>
-                        <div><b><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Naziv"/></b></div>
+                        <div><b><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Naziv"/></b></div>
                         <div>
-                            Adresa za postu: <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Sediste/tipovi:Mesto"/>, 
-                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Sediste/tipovi:Ulica"/> br. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Sediste/tipovi:Ulicni_broj"/>
+                            Adresa za postu: <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Mesto"/>, 
+                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Ulica"/> br. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Ulicni_broj"/>
                         </div>
                         <div class="zalba"><b>Z A L B A</b></div>
                         <div class="centriran_tekst">
                             <xsl:choose>
-                                <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Naziv)">
+                                <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv)">
                                     <div>
-                                        (<u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Naziv"/></u>
+                                        (<u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv"/></u>
                                     </div>
                                 </xsl:when>
                                 <xsl:otherwise>
                                     <div>
-                                        (<u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Prezime"/></u>
+                                        (<u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Prezime"/></u>
                                     </div>
                                 </xsl:otherwise>
                             </xsl:choose>
                         </div>
-                        <div class="centriran_tekst"><u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulica"/>
-                            <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
-                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Adresa/tipovi:Mesto"/></u>)
+                        <div class="centriran_tekst"><u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulica"/>
+                            <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
+                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Mesto"/></u>)
                         </div>
                         <div class="centriran_tekst">Ime, prezime, odnosno naziv, adresa i sediste zalioca</div>
                         <div class="centriran_tekst">protiv resenja-zakljucka</div>
-                        <div class="centriran_tekst">(<u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/zoz:naziv_donosioca_odluke"/></u>)</div>
+                        <div class="centriran_tekst">(<u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/zoz:Naziv_donosioca_odluke"/></u>)</div>
                         <div class="centriran_tekst">(naziv organa koji je doneo odluku)</div>
-                        <div>Broj <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/@broj_odluke"/></u> od <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/@godina"/></u> godine.</div>
+                        <div>Broj <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/@broj_odluke"/></u> od <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/@godina"/></u> godine.</div>
                         <div class="tekst">
                             <xsl:variable name="zahtev" select="zoz:Zalba_odbijanje/@datum_podnosenja_zahteva"/>
                             <xsl:variable name="z" select="xs:string(concat(
@@ -103,17 +103,17 @@
                             sa elementima odluke), suprotno zakonu, odbijen-odbacen je moj zahtev koji sam podneo/la-
                             uputio/la dana <u><xsl:value-of select="$z"/></u> godine i tako mi uskraceno-onemoguceno ostvarivanje ustavnog i 
                             zakonskog prava na slobodan pristup informacijama od javnog znacaja. Odluku pobijam u 
-                            celosti, odnosno u delu kojim <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:razlog_zalbe"/></u>
-                            jer nije zasnovana na <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Zakon"/>.
+                            celosti, odnosno u delu kojim <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Razlog_zalbe"/></u>
+                            jer nije zasnovana na <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Zakon"/>.
                         </div>
                         <div class="tekst">
                             Na osnovu iznetih razloga, predlazem da Poverenik uvazi moju zalbu, ponisti
                             odluka prvostepenog organa i omoguci mi pristup trazenoj/im informaciji/ma.
                         </div>
                         <div class="tekst">
-                            Zalbu podnosim blagovremeno, u zakonskom roku utvrdjenom u clanu <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Clan"/>. 
-                            st. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Stav"/>. 
-                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Zakon"/>
+                            Zalbu podnosim blagovremeno, u zakonskom roku utvrdjenom u clanu <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Clan"/>. 
+                            st. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Stav"/>. 
+                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Zakon"/>
                         </div>
                         <div>
                             <table>
@@ -133,26 +133,26 @@
                                         <div class="desno">
                                             <div>
                                                 <xsl:choose>
-                                                    <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Naziv)">
+                                                    <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Naziv)">
                                                         <div>
-                                                            <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Naziv"/></u>
+                                                            <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Naziv"/></u>
                                                         </div>
                                                     </xsl:when>
                                                     <xsl:otherwise>
                                                         <div>
-                                                            <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Prezime"/></u>
+                                                            <u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Prezime"/></u>
                                                         </div>
                                                     </xsl:otherwise>
                                                 </xsl:choose>   
                                             </div>
                                             <div>Podnosilac zalbe/Ime i prezime</div>
                                             <div><u>
-                                                <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulica"/>
-                                                <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
-                                                <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Mesto"/>
+                                                <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulica"/>
+                                                <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
+                                                <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Mesto"/>
                                             </u></div>
                                             <div>adresa</div>
-                                            <div><u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Kontakt_podaci"/></u></div>
+                                            <div><u><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Kontakt_podaci"/></u></div>
                                             <div>drugi podaci za kontakt</div>
                                         </div>
                                     </td>

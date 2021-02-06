@@ -58,7 +58,7 @@
                     <fo:block font-weight="bold" margin-top="20px" text-align="center">O B A V E S T E Nj E</fo:block>
                     <fo:block font-weight="bold" text-align="center">o stavljanju na uvid dokument koji sadrzi</fo:block>
                     <fo:block font-weight="bold" text-align="center">trazenu informaciju i o izradi kopije</fo:block>
-                    <xsl:variable name="dt1" select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Podaci_o_uvidu/obv:Datum"/>
+                    <xsl:variable name="dt1" select="obv:Obavestenje/obv:Uvid_u_dokument/obv:Datum_potrazivanja"/>
                     <xsl:variable name="date1" select="xs:string(concat(
                         substring($dt1,9,2),'.',
                         substring($dt1,6,2),'.',
