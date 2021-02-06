@@ -55,13 +55,14 @@ export class DialogComponent {
     );
 
     if(this.data.tipZalbe==='zalbacutanje'){
-      this.zalbaCutanjeService.posaljiOdgovor(xmlDocument).subscribe(()=>{console.log("poslao")});
+      this.zalbaCutanjeService.posaljiOdgovor(xmlDocument).subscribe(() => {
+        this.dialogRef.close();
+      });
     }else{
-      this.zalbaOdlukaService.posaljiOdgovor(xmlDocument).subscribe(()=>{console.log("poslao")});
+      this.zalbaOdlukaService.posaljiOdgovor(xmlDocument).subscribe(() => {
+        this.dialogRef.close();
+      });
     }
-
-    //TO-DO TREBA DA POSALJE MEJL ILI XML DOKUMENT ILI STA GOD OVDE
-    this.dialogRef.close();
   }
 
   getTextErrorMessage(): string {

@@ -1,5 +1,9 @@
 package com.xml.portal.organvlasti.service.soap.zalba_cutanje;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.Marshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
 import javax.xml.soap.SOAPConnection;
@@ -8,6 +12,7 @@ import javax.xml.soap.SOAPEnvelope;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.soap.SOAPPart;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,27 +21,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
+import com.xml.portal.organvlasti.business.ZalbaCutanjeBusiness;
 import com.xml.portal.organvlasti.data.dao.odgovor.Odgovor;
 import com.xml.portal.organvlasti.data.dao.zalba_cutanje.ZalbaCutanje;
 import com.xml.portal.organvlasti.dto.OdgovorDTO;
-import com.xml.portal.organvlasti.data.dao.exception.Greska;
 
 @RestController
 @RequestMapping(value = "organvlasti/soap/zalba-cutanje")
 public class ZalbaCutanjeSOAPService {
 
-
+    @Autowired
+    private ZalbaCutanjeBusiness zalbaCutanjeBusiness;
+	
 	@PostMapping(value = "/send-odgovor", consumes = MediaType.APPLICATION_XML_VALUE)
 	public ResponseEntity<Void> sendOdgovor(@RequestBody OdgovorDTO odgovorDTO) throws Exception {
+		
+        // postavljanje vrednosti izjasnjenje zahteva na true
+        ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(odgovorDTO.getId_zalbe());
+        zalbaCutanjeBusiness.izjasnjenjeTrue(odgovorDTO.getId_zalbe(), zalbaCutanje);
+		
 		String soapEndpointUrl = "http://localhost:8081/ws/zalbacutanje";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory.createConnection();

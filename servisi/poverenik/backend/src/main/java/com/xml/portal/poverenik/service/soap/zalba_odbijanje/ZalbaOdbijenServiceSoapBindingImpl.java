@@ -49,8 +49,8 @@ public class ZalbaOdbijenServiceSoapBindingImpl implements ZalbaOdbijenServicePo
         System.out.println("Kreirana izjava: " + id);
         
         // postavljanje vrednosti izjasnjenje zahteva na true
-        ZalbaOdbijanje zalbaOdbijanje = zalbaOdbijanjeBusiness.getById(odgovor.getId());
-        zalbaOdbijanjeBusiness.izjasnjenjeTrue(odgovor.getId(), zalbaOdbijanje);
+        ZalbaOdbijanje zalbaOdbijanje = zalbaOdbijanjeBusiness.getById(odgovor.getIdZalbe());
+        zalbaOdbijanjeBusiness.izjasnjenjeTrue(odgovor.getIdZalbe(), zalbaOdbijanje);
         
         try {
         	

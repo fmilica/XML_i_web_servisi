@@ -221,6 +221,11 @@ public class ZalbaOdbijanjeBusiness {
 		return documentId;
 	}
 	
+	public boolean izjasnjenjeTrue(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		zalbaOdbijanje.setIzjasnjen(true);
+		return zalbaOdbijanjeRepository.izjasnjenjeTrue(zalbaOdbijanjeId, zalbaOdbijanje);
+	}
+	
 	public boolean storeMetadata(ZalbaOdbijanje zalbaOdbijanje) {
 		try {
 			StoreMetadata.store(zalbaOdbijanje);

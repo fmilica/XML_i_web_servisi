@@ -26,7 +26,7 @@ export class ZalbeCutanjeComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'zalilac','adresa', 'kontaktTelefon', 
-                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje', 'preuzimanjeMeta']
+                                'datumZalbe', 'mestoZalbe', 'status', 'preuzimanje', 'preuzimanjeMeta']
 
 
   //formе za pretragu
@@ -85,7 +85,11 @@ export class ZalbeCutanjeComponent implements OnInit {
         podaci: zalba.children[1].children[3].children[0],
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto,
-        razresena: 'Да',
+        razresena: zalba.attributes.razresen,
+        izjasnjena: zalba.attributes.izjasnjen,
+        prekinuta: zalba.attributes.prekinut,
+        ceka: zalba.attributes.ceka,
+        status: '',
         zalilac: '',
         adresa: '',
         kontaktTelefon: '',
@@ -126,6 +130,13 @@ export class ZalbeCutanjeComponent implements OnInit {
         zalbaPrikaz.brojTrazioc = zalba.children[1].children[4].children[1].children[2].children[0]
       
         zalbaPrikaz.kontaktTelefon = zalba.children[1].children[4].children[2].children[0]
+      }
+      if(zalbaPrikaz.razresena === 'true') {
+        zalbaPrikaz.status = 'razresena';
+      } else if (zalbaPrikaz.izjasnjena === 'false') {
+        zalbaPrikaz.status = 'izjasniSe'
+      } else if(zalbaPrikaz.izjasnjena === 'true') {
+        zalbaPrikaz.status = 'izjasnjen'
       }
       data.push(zalbaPrikaz);
     })
@@ -284,7 +295,12 @@ export class ZalbeCutanjeComponent implements OnInit {
     const dialogRef = this.izjasnjenjeDialog.open(DialogComponent, dialogConfig);
   
     dialogRef.afterClosed().subscribe(value => {
-      console.log("zatvorio se")
+      this.zalbaCutanjeService.getAllZalbeCutanje()
+      .subscribe(
+        (response) => {
+          this.listaZalbiCutanje2Prikaz(response)
+        }
+      )
     });
   }
 

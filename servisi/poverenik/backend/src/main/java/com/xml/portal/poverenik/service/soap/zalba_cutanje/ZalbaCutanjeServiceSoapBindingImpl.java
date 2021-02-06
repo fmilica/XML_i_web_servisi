@@ -49,8 +49,8 @@ public class ZalbaCutanjeServiceSoapBindingImpl implements ZalbaCutanjeServicePo
         System.out.println("Kreirana izjava: " + id);
         
         // postavljanje vrednosti izjasnjenje zahteva na true
-        ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(odgovor.getId());
-        zalbaCutanjeBusiness.izjasnjenjeTrue(odgovor.getId(), zalbaCutanje);
+        ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(odgovor.getIdZalbe());
+        zalbaCutanjeBusiness.izjasnjenjeTrue(odgovor.getIdZalbe(), zalbaCutanje);
         
         try {
         } catch (java.lang.Exception ex) {

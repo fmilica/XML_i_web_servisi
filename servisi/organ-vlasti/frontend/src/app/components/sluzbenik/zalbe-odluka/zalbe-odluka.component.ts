@@ -59,7 +59,7 @@ export class ZalbeOdlukaComponent implements OnInit {
  dataSource = [ ];
 
  displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
-                               'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
+                               'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','status', 'preuzimanje', 'preuzimanjeMeta']
 
  ngOnInit(): void {
    this.zalbaOdlukaService.getAllZalbeOdluka()
@@ -90,6 +90,10 @@ export class ZalbeOdlukaComponent implements OnInit {
        datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
        mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
        razresena: zalba.attributes.razresen,
+       izjasnjena: zalba.attributes.izjasnjen,
+       prekinuta: zalba.attributes.prekinut,
+       ceka: zalba.attributes.ceka,
+       status: 'razresena',
        zahtev: zalba.attributes.href.substring(14)
      }
      //podaci o zaliocu
@@ -124,6 +128,14 @@ export class ZalbeOdlukaComponent implements OnInit {
        zalba.children[4].children[1].children[2].children[0] + ', ' + 
        zalba.children[4].children[1].children[0].children[0]
      }
+     // postavljanje akcije na osnovu atributa
+     if(zalbaPrikaz.razresena === 'true') {
+      zalbaPrikaz.status = 'razresena';
+    } else if (zalbaPrikaz.izjasnjena === 'false') {
+      zalbaPrikaz.status = 'izjasniSe'
+    } else if(zalbaPrikaz.izjasnjena === 'true') {
+      zalbaPrikaz.status = 'izjasnjen'
+    }
      data.push(zalbaPrikaz);
    })
    this.dataSource = data;
