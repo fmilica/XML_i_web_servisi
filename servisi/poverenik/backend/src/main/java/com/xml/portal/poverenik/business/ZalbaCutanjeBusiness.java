@@ -204,12 +204,19 @@ public class ZalbaCutanjeBusiness {
 			}
 			// kada se kreira -> nije razresena
 			zalbaCutanje.setRazresen(false);
+			// kada se kreira -> nije izjasnjena
+			zalbaCutanje.setIzjasnjen(false);
 			// cuvanje u bazama
 			documentId = zalbaCutanjeRepository.save(zalbaCutanje);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return documentId;
+	}
+	
+	public boolean update(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
+		zalbaCutanje.setRazresen(true);
+		return zalbaCutanjeRepository.update(zalbaCutanjeId, zalbaCutanje);
 	}
 	
 	public boolean storeMetadata(ZalbaCutanje zalbaCutanje) {

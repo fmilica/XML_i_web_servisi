@@ -204,6 +204,17 @@ public class ZalbaOdbijanjeRepository {
 		}
 	}
 	
+	public boolean update(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		String xPath = "/Zalba_odbijanje/@razresen";
+		try {
+			this.existManager.update(collectionId, zalbaOdbijanjeId, xPath, "true", UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	//zabla na odbijanje po godini
 	public long findAllByYear() {
 		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";

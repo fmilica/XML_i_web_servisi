@@ -73,6 +73,8 @@ public class ZalbaCutanje implements GenericXML {
     protected XMLGregorianCalendar datumPodnosenjaZalbe;
     @XmlAttribute(name = "mesto")
     protected String mesto;
+    @XmlAttribute(name = "izjasnjen")
+    protected boolean izjasnjen;
     @XmlAttribute(name = "razresen")
     protected boolean razresen;
     @XmlAttribute(name = "vocab")
@@ -226,6 +228,13 @@ public class ZalbaCutanje implements GenericXML {
      */
     public void setMesto(String value) {
         this.mesto = value;
+    }
+    
+    public boolean getIzjasnjen() {
+    	return izjasnjen;
+    }
+    public void setIzjasnjen(boolean value) {
+    	this.izjasnjen = value;
     }
     
     public boolean getRazresen() {

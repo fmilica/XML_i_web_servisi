@@ -101,6 +101,8 @@ public class ZalbaOdbijanje implements GenericXML {
     protected XMLGregorianCalendar datumPodnosenjaZahteva;
     @XmlAttribute(name = "razresen")
     protected boolean razresen;
+    @XmlAttribute(name = "izjasnjen")
+    protected boolean izjasnjen;
     @XmlAttribute(name = "vocab")
     protected String vocab;
     @XmlAttribute(name = "about")
@@ -331,6 +333,13 @@ public class ZalbaOdbijanje implements GenericXML {
     }
     public void setRazresen(boolean value) {
     	this.razresen = value;
+    }
+    
+    public boolean getIzjasnjen() {
+    	return izjasnjen;
+    }
+    public void setIzjasnjen(boolean value) {
+    	this.izjasnjen = value;
     }
     
     public String getVocab() {

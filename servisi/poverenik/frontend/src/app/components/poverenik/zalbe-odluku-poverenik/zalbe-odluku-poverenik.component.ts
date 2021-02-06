@@ -93,7 +93,8 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         adresaPodnosioca: '',
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-        razresena: zalba.attributes.razresena,
+        razresena: zalba.attributes.razresen,
+        izjasnjena: zalba.attributes.izjasnjen,
         zahtev: zalba.attributes.href.substring(14)
       }
       //podaci o zaliocu

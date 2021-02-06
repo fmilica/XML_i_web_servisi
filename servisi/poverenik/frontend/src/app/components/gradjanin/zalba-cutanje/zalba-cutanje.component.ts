@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { XonomyZalbaCutanjeService } from 'src/app/services/xonomy/xonomy-zalba-cutanje.service';
@@ -23,7 +24,8 @@ export class ZalbaCutanjeComponent implements OnInit {
     private xonomyZalbaCutanjeService: XonomyZalbaCutanjeService,
     private zalbaCutanjeService: ZalbaCutanjeService,
     private toastr: ToastrService,
-    private authService: AuthenticationService) {
+    private authService: AuthenticationService,
+    private router: Router) {
       this.unetId = false;
       this.form = new FormGroup({
         id: new FormControl('', [Validators.required])
@@ -128,7 +130,8 @@ export class ZalbaCutanjeComponent implements OnInit {
     }
     this.zalbaCutanjeService.createZalbaCutanje(xmlDocument, this.form.get('id').value)
       .subscribe((response) => {
-        this.toastr.success('Успешно сте поднели жалбу због ћутања! Можете да је видите у "Жалбе на ћутање".')
+        this.toastr.success('Успешно сте поднели жалбу због ћутања!')
+        this.router.navigate(['moje-zalbe-cutanje'])
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')

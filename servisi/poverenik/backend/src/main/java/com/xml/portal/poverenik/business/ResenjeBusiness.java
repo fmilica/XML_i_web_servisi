@@ -18,6 +18,8 @@ import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
 import com.xml.portal.poverenik.data.dao.resenje.DOMParser;
+import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ZalbaOdbijanje;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.poverenik.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.poverenik.data.repository.ObavestenjeRepository;
@@ -42,6 +44,10 @@ public class ResenjeBusiness {
 
 	@Autowired
 	private ResenjeRepository resenjeRepository;
+	@Autowired
+	private ZalbaCutanjeBusiness zalbaCutanjeBusiness;
+	@Autowired
+	private ZalbaOdbijanjeBusiness zalbaOdbijanjeBusiness;
 	
 	@Autowired
 	private ObavestenjeRepository obavestenjeRepository;
@@ -153,6 +159,18 @@ public class ResenjeBusiness {
 		Document resenjeDoc = stringToDocument(resenje);
 		
 		String documentId = resenjeRepository.save(resenjeDoc, zahtevId, zalbaId, userEmail);
+		
+		if (zalbaId.contains("zalbacutanje")) {
+			String[] list = zalbaId.split("/");
+			zalbaId = list[list.length - 1];
+			ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(zalbaId);
+			zalbaCutanjeBusiness.update(zalbaId, zalbaCutanje);
+		} else {
+			String[] list = zalbaId.split("/");
+			zalbaId = list[list.length - 1];
+			ZalbaOdbijanje zalbaOdbijanje = zalbaOdbijanjeBusiness.getById(zalbaId);
+			zalbaOdbijanjeBusiness.update(zalbaId, zalbaOdbijanje);
+		}
 		
 		return documentId;
 	}

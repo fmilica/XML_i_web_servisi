@@ -213,12 +213,19 @@ public class ZalbaOdbijanjeBusiness {
 			}
 			// kada se kreira -> nije razresena
 			zalbaOdbijanje.setRazresen(false);
+			// kada se kreira -> nije izjasnjena
+			zalbaOdbijanje.setIzjasnjen(false);
 			// cuvanje u bazama
 			documentId = zalbaOdbijanjeRepository.save(zalbaOdbijanje);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return documentId;
+	}
+	
+	public boolean update(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		zalbaOdbijanje.setRazresen(true);
+		return zalbaOdbijanjeRepository.update(zalbaOdbijanjeId, zalbaOdbijanje);
 	}
 	
 	public boolean storeMetadata(ZalbaOdbijanje zalbaOdbijanje) {

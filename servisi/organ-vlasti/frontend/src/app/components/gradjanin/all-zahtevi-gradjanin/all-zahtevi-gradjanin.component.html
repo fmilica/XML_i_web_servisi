@@ -5,6 +5,13 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
 
+            <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Id захтева </th>
+                <td matTooltip="Id захтева" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.id}}
+                </td>
+            </ng-container>
+
             <ng-container matColumnDef="nazivOrgana">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив органа </th>
                 <td matTooltip="Назив органа коме је упућен захтев" matTooltipPosition="above" mat-cell *matCellDef="let row">

@@ -98,7 +98,6 @@ public class DOMParser implements ErrorHandler {
 			// Print stack trace...
 			embeddedException.printStackTrace();
 			
-			System.exit(0);
 			
 		} catch (SAXException e) {
 			e.printStackTrace();

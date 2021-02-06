@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 import { XonomyZalbaOdlukaService } from 'src/app/services/xonomy/xonomy-zalba-odluka.service';
@@ -23,7 +24,8 @@ export class ZalbaOdlukaComponent implements OnInit {
     private xonomyZalbaOdlukaService: XonomyZalbaOdlukaService,
     private zalbaOdlukaService: ZalbaOdlukaService,
     private toastr: ToastrService,
-    private authService: AuthenticationService) { 
+    private authService: AuthenticationService,
+    private router: Router) { 
       this.unetId = false;
       this.form = new FormGroup({
         id: new FormControl('', [Validators.required])
@@ -122,7 +124,9 @@ export class ZalbaOdlukaComponent implements OnInit {
     }
     this.zalbaOdlukaService.createZalbaOdluka(xmlDocument, '1ae8a7c6-e341-47aa-a5cf-945ed2b8985a')
       .subscribe((response) => {
-        this.toastr.success('Успешно сте поднели жалбу на одлуку! Можете да је видите у "Жалбе на одлуку".')
+        this.toastr.success('Успешно сте поднели жалбу на одлуку!.')
+        this.router.navigate(['moje-zalbe-odluka'])
+
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')
