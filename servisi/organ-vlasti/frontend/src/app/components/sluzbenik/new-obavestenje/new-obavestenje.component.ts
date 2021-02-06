@@ -3,9 +3,13 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Subscription } from 'rxjs';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
+import { EpostaService } from 'src/app/services/eposta.service';
 import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 import { XonomyObavestenjeService } from 'src/app/services/xonomy/xonomy-obavestenje.service';
 import { ZahtevService } from 'src/app/services/zahtev.service';
+
+import * as JsonToXML from 'js2xmlparser';
+import { arrayBufferToBase64 } from 'src/app/util/util';
 
 declare const Xonomy: any;
 
@@ -24,7 +28,8 @@ export class NewObavestenjeComponent implements OnInit {
     private zahtevService: ZahtevService,
     private toastr: ToastrService,
     private obavestenjeService: ObavestenjeService,
-    private router: Router) {}
+    private router: Router,
+    private epostaService: EpostaService) {}
 
   ngOnInit(
 
@@ -99,6 +104,27 @@ export class NewObavestenjeComponent implements OnInit {
     this.subscription.unsubscribe()
   }
 
+  posalji(){
+    this.obavestenjeService.generisiPDF("9f58a067-cec5-4323-bba2-4ac8d1110ca0").subscribe((response)=>{
+      let bajtovi = response;
+      let base64Bajtovi = arrayBufferToBase64(bajtovi)
+      let obj = {
+        "@": {
+          "tipPriloga": "pdf",
+          "xmlns":"http://pismo"
+      },
+  
+      "primalac": this.zahtevDto.gradjaninEmail,
+      "naslov": "Обавештење",
+      "sadrzaj": "Креирано је обавештење",
+      "prilog": base64Bajtovi
+      }
+  
+      this.epostaService.posalji(JsonToXML.parse("pismo", obj)).subscribe((resp) => {console.log("Proslo")});
+    })
+    
+  }
+
   send() {
     let xmlDocument =  Xonomy.harvest();
     if(Xonomy.warnings.length !== 0) {
@@ -108,6 +134,29 @@ export class NewObavestenjeComponent implements OnInit {
     this.obavestenjeService.createObavestenje(xmlDocument, this.zahtevDto.id, this.zahtevDto.gradjaninEmail)
       .subscribe((response) => {
         this.toastr.success('Успешно сте креирали обавештење!')
+        
+        const options = {
+          declaration: {
+            include: false,
+          },
+        };
+        console.log(response)
+
+        
+  
+        let obj = {
+          "@": {
+            "tipPriloga": "",
+            "xmlns":"http://pismo"
+        },
+  
+        "primalac": 'igi.l.1999@gmail.com',//this.zahtevDto.gradjaninEmail
+        "naslov": "Obavestenje",
+        "sadrzaj": "Kreirano je ",
+        "prilog": ""
+        }
+        
+        // this.epostaService.posalji(JsonToXML.parse("pismo", obj)).subscribe((resp) => {console.log("Proslo")});
         this.router.navigate(['kreirana-obavestenja'])
         this.zahtevService.resiZahtev(this.zahtevDto.id)
           .subscribe()
@@ -115,6 +164,7 @@ export class NewObavestenjeComponent implements OnInit {
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')
+          this.posalji();
         });
   }
 }

@@ -96,4 +96,12 @@ export class ZalbaOdlukaService {
       headers: this.headers
     })
   }
+
+  posaljiZalbu(xmlDocument: string){
+    return this.http.post(environment.apiEndpoint + 'soap/zalba-odbijen/send-zalba', xmlDocument,{
+      responseType: 'text',
+      headers: this.headers
+    }
+    )
+  }
 }

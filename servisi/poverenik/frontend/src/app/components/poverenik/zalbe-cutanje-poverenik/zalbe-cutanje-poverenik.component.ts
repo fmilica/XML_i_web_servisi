@@ -316,5 +316,14 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         })
       }
     )
+  } 
+
+  posaljiZalbu(zalbaId: string){
+    this.zalbaCutanjeService.getById(zalbaId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        this.zalbaCutanjeService.posaljiZalbu(xmlResponse).subscribe(()=>{console.log("poslao")})
+        })
+      
   }
 }
