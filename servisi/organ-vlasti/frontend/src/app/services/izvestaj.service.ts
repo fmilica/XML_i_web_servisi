@@ -50,4 +50,11 @@ export class IzvestajService {
       headers: this.headers
     })
   }
+
+  posaljiIzjasnjenje(xmlDocument: string){
+    return this.http.post(environment.apiEndpoint + "organvlasti/soap/zalba-cutanje/send-odgovor", xmlDocument,{
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }

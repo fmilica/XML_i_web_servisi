@@ -97,6 +97,22 @@ export class ZalbaCutanjeService {
     })
   }
 
+  posaljiZalbu(xmlDocument: string){
+    return this.http.post(environment.apiEndpoint + 'soap/zalba-cutanje/send-zalba', xmlDocument,{
+      responseType: 'text',
+      headers: this.headers
+    }
+    )
+  }
+
+  cekanjeTrue(zalbaId: string){
+    return this.http.get(environment.apiEndpoint + 'ceka/' + zalbaId, {
+      responseType: 'text',
+      headers: this.headers
+    }
+    )
+  }
+
   odustaniOdZalbe(zalbaId: string){
     return this.http.put(environment.apiEndpoint + 'zalba-cutanje/odustani/' + zalbaId, {
       responseType: 'arraybuffer',

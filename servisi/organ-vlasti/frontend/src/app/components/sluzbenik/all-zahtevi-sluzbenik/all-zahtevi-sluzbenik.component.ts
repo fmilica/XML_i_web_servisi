@@ -320,17 +320,6 @@ export class AllZahteviSluzbenikComponent implements OnInit {
     },
     (error) =>{
       this.fetchZahtevi();
-      let pismoDto: PismoDTO = {
-        primalac: 'igi.l.1999@gmail.com',//row.gradjaninEmail,
-        naslov: "Odbijanje zahteva",
-        sadrzaj: "Vas zahtev je odbijen",
-        prilog: ""
-      }
-      const options = {
-        declaration: {
-          include: false,
-        },
-      };
 
       let obj = {
         "@": {
@@ -338,7 +327,7 @@ export class AllZahteviSluzbenikComponent implements OnInit {
           "xmlns":"http://pismo"
       },
 
-      "primalac": 'igi.l.1999@gmail.com',
+      "primalac": row.gradjaninEmail,
       "naslov": "Odbijanje zahteva",
       "sadrzaj": "Vas zahtev je odbijen",
       "prilog": ""

@@ -208,6 +208,8 @@ public class ZalbaCutanjeBusiness {
 			zalbaCutanje.setIzjasnjen(false);
 			// kada se kreira -> nije prekinuta
 			zalbaCutanje.setPrekinut(false);
+			// kada se kreira -> ne ceka na odgovor
+			zalbaCutanje.setCeka(false);
 			// cuvanje u bazama
 			documentId = zalbaCutanjeRepository.save(zalbaCutanje);
 		} catch (Exception e) {
@@ -221,6 +223,16 @@ public class ZalbaCutanjeBusiness {
 		return zalbaCutanjeRepository.update(zalbaCutanjeId, zalbaCutanje);
 	}
 	
+	public boolean cekanjeTrue(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
+		zalbaCutanje.setCeka(true);
+		return zalbaCutanjeRepository.cekanjeTrue(zalbaCutanjeId, zalbaCutanje);
+	}
+	
+	public boolean izjasnjenjeTrue(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
+		zalbaCutanje.setIzjasnjen(true);
+		return zalbaCutanjeRepository.izjasnjenjeTrue(zalbaCutanjeId, zalbaCutanje);
+  }
+  
 	public boolean odustani(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
 		zalbaCutanje.setPrekinut(true);
 		return zalbaCutanjeRepository.odustanak(zalbaCutanjeId, zalbaCutanje);

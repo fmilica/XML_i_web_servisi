@@ -212,6 +212,11 @@ public class ZalbaCutanjeBusiness {
 		return documentId;
 	}
 	
+	public boolean izjasnjenjeTrue(String zalbaCutanjeId, ZalbaCutanje zalbaCutanje) {
+		zalbaCutanje.setIzjasnjen(true);
+		return zalbaCutanjeRepository.izjasnjenjeTrue(zalbaCutanjeId, zalbaCutanje);
+	}
+	
 	public boolean storeMetadata(ZalbaCutanje zalbaCutanje) {
 		try {
 			StoreMetadata.store(zalbaCutanje);

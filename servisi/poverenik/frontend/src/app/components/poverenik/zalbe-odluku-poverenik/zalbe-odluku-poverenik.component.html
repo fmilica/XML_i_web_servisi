@@ -188,6 +188,7 @@
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Статус жалбе </th>
                 <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row" [ngSwitch]="row.status">
                     <div *ngSwitchCase="'posaljiNaIzjasnjenje'"><button (click) = "posaljiNaIzjasnjenje(row)">Пошаљи на изјашњење</button></div>
+                    <div *ngSwitchCase="'ceka'">Чекање на изјашњење</div>
                     <div *ngSwitchCase="'kreirajResenje'"><button (click) = "createResenje(row)">Креирај Решење</button></div>
                     <div *ngSwitchCase="'odustao'">Одустао</div>
                     <div *ngSwitchCase="'razresena'">Разрешена</div>

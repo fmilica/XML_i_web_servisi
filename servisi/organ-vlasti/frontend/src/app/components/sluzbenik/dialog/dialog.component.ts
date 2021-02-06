@@ -2,6 +2,11 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import * as JsonToXML from 'js2xmlparser';
+import { IzjasnjenjeDto } from 'src/app/model/izjasnjenje-dto.model';
+import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje-service';
+import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka-service';
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -12,8 +17,10 @@ export class DialogComponent {
   form: FormGroup;
 
   constructor(
+    public zalbaCutanjeService: ZalbaCutanjeService,
+    public zalbaOdlukaService: ZalbaOdlukaService,
     public dialogRef: MatDialogRef<DialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: { zalbaId: string }
+    @Inject(MAT_DIALOG_DATA) public data: { zalbaId: string, tipZalbe: string }
   ) { 
     this.form = new FormGroup({
       text: new FormControl('', [Validators.required])
@@ -29,8 +36,33 @@ export class DialogComponent {
         return;
     }
     console.log(this.data)
-    //TO-DO TREBA DA POSALJE MEJL ILI XML DOKUMENT ILI STA GOD OVDE
-    this.dialogRef.close();
+    
+    let izjasnjenjeDto :IzjasnjenjeDto = {
+      id_zalbe : this.data.zalbaId,
+      izjasnjenje: this.form.get('text').value
+    }
+
+    const options = {
+      declaration: {
+        include: false,
+      },
+    };
+
+    let xmlDocument: string = JsonToXML.parse(
+      'OdgovorDTO',
+      izjasnjenjeDto,
+      options
+    );
+
+    if(this.data.tipZalbe==='zalbacutanje'){
+      this.zalbaCutanjeService.posaljiOdgovor(xmlDocument).subscribe(() => {
+        this.dialogRef.close();
+      });
+    }else{
+      this.zalbaOdlukaService.posaljiOdgovor(xmlDocument).subscribe(() => {
+        this.dialogRef.close();
+      });
+    }
   }
 
   getTextErrorMessage(): string {

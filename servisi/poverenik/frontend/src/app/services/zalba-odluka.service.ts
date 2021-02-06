@@ -97,6 +97,14 @@ export class ZalbaOdlukaService {
     })
   }
 
+  posaljiZalbu(xmlDocument: string){
+    return this.http.post(environment.apiEndpoint + 'soap/zalba-odbijen/send-zalba', xmlDocument,{
+      responseType: 'text',
+      headers: this.headers
+    }
+    )
+  }
+
   odustaniOdZalbe(zalbaId: string){
     return this.http.put(environment.apiEndpoint + 'zalba-odbijanje/odustani/' + zalbaId, {
       responseType: 'arraybuffer',

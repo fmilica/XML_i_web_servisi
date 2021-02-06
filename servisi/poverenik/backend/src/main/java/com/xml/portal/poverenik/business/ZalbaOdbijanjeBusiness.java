@@ -218,6 +218,8 @@ public class ZalbaOdbijanjeBusiness {
 			zalbaOdbijanje.setIzjasnjen(false);
 			// kada se kreira -> nije prekinuta
 			zalbaOdbijanje.setPrekinut(false);
+			// kada se kreira -> ne ceka na odgovor
+			zalbaOdbijanje.setCeka(false);
 			// cuvanje u bazama
 			documentId = zalbaOdbijanjeRepository.save(zalbaOdbijanje);
 		} catch (Exception e) {
@@ -229,6 +231,16 @@ public class ZalbaOdbijanjeBusiness {
 	public boolean update(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
 		zalbaOdbijanje.setRazresen(true);
 		return zalbaOdbijanjeRepository.update(zalbaOdbijanjeId, zalbaOdbijanje);
+	}
+	
+	public boolean cekanjeTrue(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		zalbaOdbijanje.setCeka(true);
+		return zalbaOdbijanjeRepository.cekanjeTrue(zalbaOdbijanjeId, zalbaOdbijanje);
+	}
+	
+	public boolean izjasnjenjeTrue(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		zalbaOdbijanje.setIzjasnjen(true);
+		return zalbaOdbijanjeRepository.izjasnjenjeTrue(zalbaOdbijanjeId, zalbaOdbijanje);
 	}
 	
 	public boolean storeMetadata(ZalbaOdbijanje zalbaOdbijanje) {

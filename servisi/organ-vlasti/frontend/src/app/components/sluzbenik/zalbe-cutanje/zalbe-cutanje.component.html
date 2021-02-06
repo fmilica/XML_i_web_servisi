@@ -170,11 +170,17 @@
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="razresena">
+            <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
-                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.razresena}}
-                </td>
+                    <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row" [ngSwitch]="row.status">
+                        <div *ngSwitchCase="'izjasniSe'"><button (click) = "openDialog(row)">Изјасни се</button></div>
+                        <div *ngSwitchCase="'izjasnjen'">Изјашњен</div>
+                    </td>
+                    <!--
+                        <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                            <div *ngIf="row.razresena === 'true'; then tekst else dugme"></div>
+                    <ng-template #tekst>Разрешена</ng-template>
+                    <ng-template #dugme><button (click) = "openDialog(row)">Изјасни се</button></ng-template>-->
             </ng-container>
 
             <ng-container matColumnDef="preuzimanje">

@@ -54,8 +54,19 @@ public class Odgovor {
     @XmlID
     @XmlSchemaType(name = "ID")
     protected String idZalbe;
+    
+    
 
-    /**
+    public Odgovor() {
+	}
+
+	public Odgovor(String izjasnjenje, String idZalbe) {
+		super();
+		this.izjasnjenje = izjasnjenje;
+		this.idZalbe = idZalbe;
+	}
+
+	/**
      * Gets the value of the izjasnjenje property.
      * 
      * @return

@@ -6,6 +6,8 @@ import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje-service';
 import { ZalbaCutanjeNaprednaPretragaDto } from 'src/app/model/zalba-cutanje-napredna-pretraga-dto';
 import { ZahtevService } from 'src/app/services/zahtev.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-zalbe-cutanje',
@@ -24,7 +26,7 @@ export class ZalbeCutanjeComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'zalilac','adresa', 'kontaktTelefon', 
-                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje', 'preuzimanjeMeta']
+                                'datumZalbe', 'mestoZalbe', 'status', 'preuzimanje', 'preuzimanjeMeta']
 
 
   //formе za pretragu
@@ -43,7 +45,8 @@ export class ZalbeCutanjeComponent implements OnInit {
 
   constructor(
     private zalbaCutanjeService: ZalbaCutanjeService,
-    private zahtevService: ZahtevService
+    private zahtevService: ZahtevService,
+    private izjasnjenjeDialog: MatDialog,
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -75,13 +78,18 @@ export class ZalbeCutanjeComponent implements OnInit {
     allZalbe[1].children.map(zalba => {
       let zalbaPrikaz = {
         id: zalba.attributes.id.substring(20),
+        tipZalbe: 'zalbacutanje',
         organVlasti: zalba.children[1].children[1].children[0],
         razlogZalbe: zalba.children[1].children[2].children[0],
         datumZahteva: zalba.attributes.datum_podnosenja_zahteva,
         podaci: zalba.children[1].children[3].children[0],
         datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
         mestoZalbe: zalba.attributes.mesto,
-        razresena: 'Да',
+        razresena: zalba.attributes.razresen,
+        izjasnjena: zalba.attributes.izjasnjen,
+        prekinuta: zalba.attributes.prekinut,
+        ceka: zalba.attributes.ceka,
+        status: '',
         zalilac: '',
         adresa: '',
         kontaktTelefon: '',
@@ -122,6 +130,13 @@ export class ZalbeCutanjeComponent implements OnInit {
         zalbaPrikaz.brojTrazioc = zalba.children[1].children[4].children[1].children[2].children[0]
       
         zalbaPrikaz.kontaktTelefon = zalba.children[1].children[4].children[2].children[0]
+      }
+      if(zalbaPrikaz.razresena === 'true') {
+        zalbaPrikaz.status = 'razresena';
+      } else if (zalbaPrikaz.izjasnjena === 'false') {
+        zalbaPrikaz.status = 'izjasniSe'
+      } else if(zalbaPrikaz.izjasnjena === 'true') {
+        zalbaPrikaz.status = 'izjasnjen'
       }
       data.push(zalbaPrikaz);
     })
@@ -273,4 +288,20 @@ export class ZalbeCutanjeComponent implements OnInit {
       }
     )
   }
+  openDialog(row: any): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { zalbaId: row.id, tipZalbe: row.tipZalbe };
+    dialogConfig.width = '900px';
+    const dialogRef = this.izjasnjenjeDialog.open(DialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed().subscribe(value => {
+      this.zalbaCutanjeService.getAllZalbeCutanje()
+      .subscribe(
+        (response) => {
+          this.listaZalbiCutanje2Prikaz(response)
+        }
+      )
+    });
+  }
+
 }
