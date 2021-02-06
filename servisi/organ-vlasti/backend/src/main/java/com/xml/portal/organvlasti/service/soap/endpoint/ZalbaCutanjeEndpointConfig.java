@@ -12,12 +12,13 @@ import com.xml.portal.organvlasti.service.soap.zalba_cutanje.ZalbaCutanjeService
 
 @Configuration
 public class ZalbaCutanjeEndpointConfig {
+
 	@Autowired
 	private Bus bus;
-
+	
 	@Autowired
 	ZalbaCutanjeServiceSoapBindingImpl zalbaCutanjeServiceSoapBindingImpl;
-
+	
 	@Bean(name = "zalbaCutanjeEndpointBean")
 	public Endpoint zalbaCutanjeEndpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, zalbaCutanjeServiceSoapBindingImpl);

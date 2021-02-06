@@ -119,16 +119,6 @@
 									<wsdlLocation>classpath:wsdl/zahtev.wsdl</wsdlLocation>
 								</wsdlOption>
 
-
-								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/data/wsdl/poverenik-posta.wsdl</wsdl>
-									<extraargs>
-										<extraarg>-impl</extraarg>
-										<extraarg>-verbose</extraarg>
-									</extraargs>
-									<wsdlLocation>classpath:wsdl/poverenik-posta.wsdl</wsdlLocation>
-								</wsdlOption>
-
 								<wsdlOption>
 									<wsdl>${basedir}/src/main/resources/data/wsdl/zalba-cutanje.wsdl</wsdl>
 									<extraargs>
