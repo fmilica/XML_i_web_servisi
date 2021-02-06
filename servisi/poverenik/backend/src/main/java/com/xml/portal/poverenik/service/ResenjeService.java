@@ -2,6 +2,18 @@ package com.xml.portal.poverenik.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.xml.soap.MessageFactory;
+import javax.xml.soap.SOAPBody;
+import javax.xml.soap.SOAPConnection;
+import javax.xml.soap.SOAPConnectionFactory;
+import javax.xml.soap.SOAPEnvelope;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPMessage;
+import javax.xml.soap.SOAPPart;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +28,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
 
+import com.xml.portal.poverenik.data.dao.resenje.DOMParser;
 import com.xml.portal.poverenik.business.ResenjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
@@ -59,10 +73,40 @@ public class ResenjeService {
     public ResponseEntity<Object> addResenje(@RequestBody String resenje,
 								    		@RequestParam String zahtevId,
 								    		@RequestParam String zalbaId,
-											@RequestParam String userEmail) {
+											@RequestParam String userEmail) throws Exception {
     	String resenjeString = resenjeBusiness.create(resenje, zahtevId, zalbaId, userEmail);
     	String storedMetadata = resenjeBusiness.storeMetadata(resenjeString);
-    	
+    	String soapEndpointUrl = "http://localhost:8082/ws/resenje";
+		
+		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
+		SOAPConnection soapConnection = soapConnectionFactory.createConnection();
+
+		MessageFactory messageFactory = MessageFactory.newInstance();
+		SOAPMessage soapMessage = messageFactory.createMessage();
+
+		SOAPPart soapPart = soapMessage.getSOAPPart();
+
+		// SOAP Envelope
+		SOAPEnvelope envelope = soapPart.getEnvelope();
+		
+		SOAPBody soapBody = envelope.getBody();
+		soapBody.addDocument(this.stringToDocument(resenjeString));
+
+		System.out.println();
+		System.out.println(soapBody);
+
+		soapMessage.saveChanges();
+
+		/* Print the request message, just for debugging purposes */
+		System.out.println("Request SOAP Message:");
+		soapMessage.writeTo(System.out);
+		System.out.println("\n");
+		// Send SOAP Message to SOAP Server
+		SOAPMessage soapResponse = soapConnection.call(soapMessage, soapEndpointUrl);
+
+		System.out.println("Response SOAP Message:");
+		soapResponse.writeTo(System.out);
+		System.out.println();
     	if (resenjeString == null) {
     		Greska greska = new Greska("Greska u kreiranju Resenja.");
     		return ResponseEntity.status(500).body(greska);
@@ -170,6 +214,26 @@ public class ResenjeService {
 			return ResponseEntity.status(500).body(greska);
 		}
 	
+	}
+    
+    private Document stringToDocument(String xmlString) {
+		FileOutputStream outResenjeTemp = null;
+		try {
+			outResenjeTemp = new FileOutputStream(new File("src/main/resources/data/schema/resenje/temp_resenje.xml"));
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			outResenjeTemp.write(xmlString.getBytes());
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
+		DOMParser parser = new DOMParser();
+		parser.buildDocument("src/main/resources/data/schema/resenje/temp_resenje.xml");
+		Document resenje = parser.getDocument();
+		
+		return resenje;
 	}
 }
 

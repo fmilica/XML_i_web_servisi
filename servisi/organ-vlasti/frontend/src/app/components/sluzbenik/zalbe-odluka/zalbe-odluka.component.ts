@@ -58,6 +58,7 @@ export class ZalbeOdlukaComponent implements OnInit {
      let zalbaPrikaz = {
        naziv: '',
        adresa: '',
+       tipZalbe: 'zalbaodluka',
        id: zalba.attributes.id.substring(22),
        organVlasti: zalba.children[2].children[0].children[0],
        broj: zalba.children[2].attributes.broj_odluke,
@@ -234,7 +235,7 @@ export class ZalbeOdlukaComponent implements OnInit {
 
  openDialog(row: any): void {
   const dialogConfig = new MatDialogConfig();
-  dialogConfig.data = { zalbaId: row.id };
+  dialogConfig.data = { zalbaId: row.id, tipZalbe: row.tipZalbe };
   dialogConfig.width = '900px';
   const dialogRef = this.izjasnjenjeDialog.open(DialogComponent, dialogConfig);
 

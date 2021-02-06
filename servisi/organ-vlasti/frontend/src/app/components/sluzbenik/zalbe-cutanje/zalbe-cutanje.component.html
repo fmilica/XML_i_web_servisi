@@ -166,7 +166,9 @@
             <ng-container matColumnDef="razresena">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
                 <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.razresena}}
+                    <div *ngIf="row.razresena === 'true'; then tekst else dugme"></div>
+                    <ng-template #tekst>Разрешена</ng-template>
+                    <ng-template #dugme><button (click) = "openDialog(row)">Изјасни се</button></ng-template>
                 </td>
             </ng-container>
 
