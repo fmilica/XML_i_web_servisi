@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<res:Resenje xmlns:res="http://resenje"
+             xmlns="http://www.w3.org/ns/rdfa#"
+             xmlns:pred="http://www.xml.com/predicate/"
+             xmlns:tipovi="http://tipovi"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             about="http://resenje/c4161830-f4e9-42fc-a881-62830fc3bb87"
+             broj_resenja="11"
+             datum_resenja="2021-02-06"
+             href="http://korisnik/pera@pera.com"
+             id="http://resenje/c4161830-f4e9-42fc-a881-62830fc3bb87"
+             rel="pred:vezanGradjanin"
+             tip_odluke="основана"
+             vocab="http://www.xml.com/predicate/"
+             xsi:schemaLocation="http://resenje resenje.xsd">
+   <res:Opis_zalbe razlog_zalbe="непоступање">
+      <res:Ime_zalilac property="pred:zalilacIme">Lorem Ipsum is simpl</res:Ime_zalilac>y dummy text<res:Prezime_zalilac property="pred:zalilacPrezime"> of the printin</res:Prezime_zalilac>g and typesetting industry.<res:Naziv_organa_vlasti property="pred:optuzeniNaziv"> Lorem Ipsum</res:Naziv_organa_vlasti> has been the industry's standard dummy text ever si<res:Mesto_organa_vlasti>nce the 1500</res:Mesto_organa_vlasti>s, when an unk<res:Ulica_organa_vlasti>nown printer took a galley of</res:Ulica_organa_vlasti>type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into <res:Ulicni_broj_organa_vlasti>electroni</res:Ulicni_broj_organa_vlasti>c typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Opis_zalbe>
+   <res:Odluka>Lorem Ipsum is simply dummy text of t<res:Nalog rok_izvrsenja="2">he printing and typese</res:Nalog>tting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining esse<res:Nalog rok_izvrsenja="2">ntially</res:Nalog>unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Odluka>
+   <res:Obrazlozenje>
+      <res:Postupak_zalioca>
+         <res:Podnosenje_zalbe about="http://resenje/c4161830-f4e9-42fc-a881-62830fc3bb87"
+                               datum_zalbe="2020-01-01"
+                               href="http://zalbaodbijanje/38111d5e-29fe-4d7a-b529-72dfceb567d5"
+                               rel="pred:vezanaZalba"
+                               vocab="http://www.xml.com/predicate/">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Podnosenje_zalbe>
+         <res:Podnosenje_zahteva about="http://resenje/c4161830-f4e9-42fc-a881-62830fc3bb87"
+                                 datum_zahteva="2020-01-01"
+                                 href="http://zahtev/5f408717-0126-43c4-a232-d0bd6efc4d2b"
+                                 rel="pred:vezanZahtev"
+                                 vocab="http://www.xml.com/predicate/">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Podnosenje_zahteva>
+      </res:Postupak_zalioca>
+      <res:Prosledjivanje_zalbe datum_prosledjivanja="2021-02-04">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Prosledjivanje_zalbe>
+      <res:Izjasnjenje_o_zalbi datum_izjasnjenja="2021-02-04">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Izjasnjenje_o_zalbi>
+      <res:Razlozi_odluke>Lorem Ipsum is simply dummy <res:Detaljan_opis_podnetog_zahteva>text of the printing and ty</res:Detaljan_opis_podnetog_zahteva>pesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scramble<res:Detaljan_opis_odgovora_na_zahtev>d it to make a t</res:Detaljan_opis_odgovora_na_zahtev>ype specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the r<res:Detaljan_opis_odluke>elease of Le</res:Detaljan_opis_odluke>traset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Razlozi_odluke>
+      <res:Zalba_na_resenje rok_za_tuzbu="30"
+                            sud="Управни суд у Београду"
+                            taksa_tuzbe="390.0"
+                            zakon="Закон о управним споровима">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Zalba_na_resenje>
+   </res:Obrazlozenje>
+   <res:Poverenik>
+      <res:Ime property="pred:izdavacIme">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Ime>
+      <res:Prezime property="pred:izdavacPrezime">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum</res:Prezime>
+   </res:Poverenik>
+</res:Resenje>

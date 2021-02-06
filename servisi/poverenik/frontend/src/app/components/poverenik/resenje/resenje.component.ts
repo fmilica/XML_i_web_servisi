@@ -112,6 +112,10 @@ export class ResenjeComponent implements OnInit, OnDestroy {
         this.toastr.success('Успешно сте креирали решење! Можете да је видите у "Решења".')
         // IGOR HARDCODE
         //820e5622-56b0-4e5c-bc97-68bca0df2d37
+
+        // this.resenjeService.posaljiResenje().subscribe(()=>{console.log('poslao')})
+
+
         this.resenjeService.generisiPDF('820e5622-56b0-4e5c-bc97-68bca0df2d37').subscribe((response)=>{
           let bajtovi = response;
           let base64Bajtovi = arrayBufferToBase64(bajtovi);

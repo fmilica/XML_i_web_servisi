@@ -89,4 +89,11 @@ export class ResenjeService {
       headers: this.headers
     })
   }
+
+  posaljiResenje(xmlDocument: string){
+    return this.http.post(environment.apiEndpoint + 'soap/resenje/send-resenje', xmlDocument, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }

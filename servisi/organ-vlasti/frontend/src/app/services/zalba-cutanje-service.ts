@@ -71,4 +71,11 @@ import { AuthenticationService } from "./authentication.service";
         headers: this.headers
     })
     }
+
+    posaljiOdgovor(xmlDocument: string){
+        return this.http.post(environment.apiEndpoint + 'soap/zalba-cutanje/send-odgovor', xmlDocument, {
+            responseType: 'arraybuffer',
+            headers: this.headers
+        })
+    }
 }

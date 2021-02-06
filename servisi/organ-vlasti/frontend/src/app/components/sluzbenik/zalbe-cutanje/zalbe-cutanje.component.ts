@@ -6,6 +6,8 @@ import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje-service';
 import { ZalbaCutanjeNaprednaPretragaDto } from 'src/app/model/zalba-cutanje-napredna-pretraga-dto';
 import { ZahtevService } from 'src/app/services/zahtev.service';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DialogComponent } from '../dialog/dialog.component';
 
 @Component({
   selector: 'app-zalbe-cutanje',
@@ -43,7 +45,8 @@ export class ZalbeCutanjeComponent implements OnInit {
 
   constructor(
     private zalbaCutanjeService: ZalbaCutanjeService,
-    private zahtevService: ZahtevService
+    private zahtevService: ZahtevService,
+    private izjasnjenjeDialog: MatDialog,
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -75,6 +78,7 @@ export class ZalbeCutanjeComponent implements OnInit {
     allZalbe[1].children.map(zalba => {
       let zalbaPrikaz = {
         id: zalba.attributes.id.substring(20),
+        tipZalbe: 'zalbacutanje',
         organVlasti: zalba.children[1].children[1].children[0],
         razlogZalbe: zalba.children[1].children[2].children[0],
         datumZahteva: zalba.attributes.datum_podnosenja_zahteva,
@@ -273,4 +277,15 @@ export class ZalbeCutanjeComponent implements OnInit {
       }
     )
   }
+  openDialog(row: any): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.data = { zalbaId: row.id, tipZalbe: row.tipZalbe };
+    dialogConfig.width = '900px';
+    const dialogRef = this.izjasnjenjeDialog.open(DialogComponent, dialogConfig);
+  
+    dialogRef.afterClosed().subscribe(value => {
+      console.log("zatvorio se")
+    });
+  }
+
 }

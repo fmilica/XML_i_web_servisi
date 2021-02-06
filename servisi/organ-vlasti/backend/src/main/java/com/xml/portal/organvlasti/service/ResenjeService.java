@@ -2,6 +2,18 @@ package com.xml.portal.organvlasti.service;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+import javax.xml.soap.MessageFactory;
+import javax.xml.soap.SOAPBody;
+import javax.xml.soap.SOAPConnection;
+import javax.xml.soap.SOAPConnectionFactory;
+import javax.xml.soap.SOAPEnvelope;
+import javax.xml.soap.SOAPException;
+import javax.xml.soap.SOAPMessage;
+import javax.xml.soap.SOAPPart;
 
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.w3c.dom.Document;
 
 import com.xml.portal.organvlasti.business.ResenjeBusiness;
 import com.xml.portal.organvlasti.data.dao.exception.Greska;
@@ -23,6 +36,7 @@ import com.xml.portal.organvlasti.data.metadatadb.api.QueryMetadata;
 import com.xml.portal.organvlasti.data.metadatadb.api.StoreMetadata;
 import com.xml.portal.organvlasti.dto.ResenjeDTO;
 import com.xml.portal.organvlasti.dto.pretraga.ResenjePretraga;
+import com.xml.portal.organvlasti.data.dao.resenje.DOMParser;
 
 @RestController
 @RequestMapping(value = "organvlasti/resenje", produces = "application/xml;charset=utf-8")
@@ -60,7 +74,7 @@ public class ResenjeService {
     public ResponseEntity<Object> addResenje(@RequestBody String resenje,
 								    		@RequestParam String zahtevId,
 								    		@RequestParam String zalbaId,
-											@RequestParam String userEmail) {
+											@RequestParam String userEmail) throws Exception {
     	String resenjeString = resenjeBusiness.create(resenje, zahtevId, zalbaId, userEmail);
     	String storedMetadata = resenjeBusiness.storeMetadata(resenjeString);
     	
@@ -173,5 +187,6 @@ public class ResenjeService {
 		}
 	
 	}
+    
 }
 

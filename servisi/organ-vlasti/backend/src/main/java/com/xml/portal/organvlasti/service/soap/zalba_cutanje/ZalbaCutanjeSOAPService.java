@@ -27,6 +27,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 import com.xml.portal.organvlasti.data.dao.odgovor.Odgovor;
 import com.xml.portal.organvlasti.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.organvlasti.dto.OdgovorDTO;
 import com.xml.portal.organvlasti.data.dao.exception.Greska;
 
 @RestController
@@ -35,11 +36,13 @@ public class ZalbaCutanjeSOAPService {
 
 
 	@PostMapping(value = "/send-odgovor", consumes = MediaType.APPLICATION_XML_VALUE)
-	public ResponseEntity<Void> sendOdgovor(@RequestBody Odgovor odgovor) throws Exception {
+	public ResponseEntity<Void> sendOdgovor(@RequestBody OdgovorDTO odgovorDTO) throws Exception {
 		String soapEndpointUrl = "http://localhost:8081/ws/zalbacutanje";
 		SOAPConnectionFactory soapConnectionFactory = SOAPConnectionFactory.newInstance();
 		SOAPConnection soapConnection = soapConnectionFactory.createConnection();
 
+		Odgovor odgovor = new Odgovor(odgovorDTO.getIzjasnjenje(), odgovorDTO.getId_zalbe());
+		
 		MessageFactory messageFactory = MessageFactory.newInstance();
 		SOAPMessage soapMessage = messageFactory.createMessage();
 
