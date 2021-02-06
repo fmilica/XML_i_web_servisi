@@ -274,4 +274,9 @@ public class ZalbaCutanjeBusiness {
 			return null;
 		}
 	}
+
+	public String saveToDB(ZalbaCutanje zalbaCutanje) {
+		String documentId = zalbaCutanjeRepository.save(zalbaCutanje);
+		return documentId;
+	}
 }

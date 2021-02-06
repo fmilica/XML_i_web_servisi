@@ -64,7 +64,7 @@
     </wsdl:binding>
     <wsdl:service name="ZalbaCutanjeService">
         <wsdl:port name="ZalbaCutanjeServiceSoapBinding" binding="tns:ZalbaCutanjeSoapBinding">
-            <soap:address location="http://localhost:8081/zalbacutanjePort" />
+            <soap:address location="http://localhost:8082/zalbacutanjePort" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

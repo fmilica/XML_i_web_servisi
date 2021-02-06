@@ -13,8 +13,10 @@ import javax.jws.WebService;
 import javax.jws.soap.SOAPBinding;
 import javax.xml.bind.annotation.XmlSeeAlso;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.xml.portal.organvlasti.business.ZalbaOdbijanjeBusiness;
 import com.xml.portal.organvlasti.data.dao.odgovor.Odgovor;
 import com.xml.portal.organvlasti.data.dao.zalba_odbijanje.ZalbaOdbijanje;
 
@@ -37,6 +39,9 @@ public class ZalbaOdbijenServiceSoapBindingImpl implements ZalbaOdbijenServicePo
 
     private static final Logger LOG = Logger.getLogger(ZalbaOdbijenServiceSoapBindingImpl.class.getName());
 
+    @Autowired
+    private ZalbaOdbijanjeBusiness zalbaOdbijanjeBusiness;
+    
     /* (non-Javadoc)
      * @see zalbaodbijanje.ZalbaOdbijenServicePortType#sendOdgovor(odgovor.Odgovor odgovor)*
      */
@@ -57,6 +62,8 @@ public class ZalbaOdbijenServiceSoapBindingImpl implements ZalbaOdbijenServicePo
         LOG.info("Executing operation sendZalbaOdbijen");
         System.out.println(zalbaOdbijanje);
         try {
+        	String documentId = zalbaOdbijanjeBusiness.saveToDB(zalbaOdbijanje);
+        	System.out.println(documentId);
         } catch (java.lang.Exception ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);

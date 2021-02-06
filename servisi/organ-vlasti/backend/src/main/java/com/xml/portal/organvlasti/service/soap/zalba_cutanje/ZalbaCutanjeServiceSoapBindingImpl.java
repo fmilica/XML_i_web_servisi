@@ -15,6 +15,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.xml.portal.organvlasti.data.dao.odgovor.Odgovor;
@@ -48,7 +50,8 @@ public class ZalbaCutanjeServiceSoapBindingImpl implements ZalbaCutanjeServicePo
         LOG.info("Executing operation sendZalbaCutanje");
         System.out.println(zalbaCutanje);
         try {
-        	System.out.println("UPISATI U BAZU");
+        	String documentId = zalbaCutanjeBusiness.saveToDB(zalbaCutanje);
+        	System.out.println(documentId);
         } catch (java.lang.Exception ex) {
             ex.printStackTrace();
             throw new RuntimeException(ex);

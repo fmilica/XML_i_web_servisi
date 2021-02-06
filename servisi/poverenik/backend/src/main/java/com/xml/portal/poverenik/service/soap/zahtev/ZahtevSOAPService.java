@@ -1,11 +1,6 @@
 package com.xml.portal.poverenik.service.soap.zahtev;
 
-import java.io.ByteArrayOutputStream;
-import java.io.OutputStream;
-import java.io.StringWriter;
-
 import javax.xml.bind.JAXBContext;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.soap.MessageFactory;
 import javax.xml.soap.SOAPBody;
@@ -30,7 +25,6 @@ import org.w3c.dom.NodeList;
 import com.xml.portal.poverenik.business.ZahtevBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
 import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
-import com.xml.portal.poverenik.data.repository.ZahtevRepository;
 
 @RestController
 @RequestMapping(value = "poverenik/soap/zahtev")

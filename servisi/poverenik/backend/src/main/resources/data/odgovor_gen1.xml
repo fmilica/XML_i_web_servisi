@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<odg:Odgovor xmlns:odg="http://odgovor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://odgovor schema/odgovor/odgovor.xsd ">
+<odg:Odgovor xmlns:odg="http://odgovor" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://odgovor schema/odgovor/odgovor.xsd "
+  id_zalbe="1">
   <odg:Izjasnjenje>odg:Izjasnjenje</odg:Izjasnjenje>
 </odg:Odgovor>
