@@ -1,0 +1,26 @@
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/igi.l.1999@gmail.com"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:zalilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">dummy text of the prin</pred:zalilacIme>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:zalilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral"> industry. Lorem Ip</pred:zalilacPrezime>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:optuzeniNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ustry's standard dumm</pred:optuzeniNaziv>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:vezanaZalba xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zalbacutanje/3bb777af-0ace-4ca9-a73f-9921c089a1e4"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/063e9af2-d409-4d3d-9340-1fb18f0eb124"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:izdavacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Мика</pred:izdavacIme>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://resenje/b2fe25f8-abf3-4ea7-9727-1210afb795ba">
+    <pred:izdavacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Микић</pred:izdavacPrezime>
+  </rdf:Description>
+</rdf:RDF>

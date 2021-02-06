@@ -1,14 +1,17 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zahtev/ecc98243-41c7-4e93-9994-365e50b7ba59">
-    <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
+  <rdf:Description rdf:about="http://obavestenje/e175beca-6de3-488b-aba7-3617ff3f8ce9">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/063e9af2-d409-4d3d-9340-1fb18f0eb124"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/ecc98243-41c7-4e93-9994-365e50b7ba59">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:primalacNaziv>
+  <rdf:Description rdf:about="http://obavestenje/e175beca-6de3-488b-aba7-3617ff3f8ce9">
+    <pred:izdavacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:izdavacNaziv>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/ecc98243-41c7-4e93-9994-365e50b7ba59">
+  <rdf:Description rdf:about="http://obavestenje/e175beca-6de3-488b-aba7-3617ff3f8ce9">
+    <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/igi.l.1999@gmail.com"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://obavestenje/e175beca-6de3-488b-aba7-3617ff3f8ce9">
     <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Пера</pred:podnosilacIme>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/ecc98243-41c7-4e93-9994-365e50b7ba59">
+  <rdf:Description rdf:about="http://obavestenje/e175beca-6de3-488b-aba7-3617ff3f8ce9">
     <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Перић</pred:podnosilacPrezime>
   </rdf:Description>
 </rdf:RDF>
