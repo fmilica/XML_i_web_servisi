@@ -30,11 +30,6 @@
 
     <div id="user-btn-group" class="nav nav-pills mr-auto" *ngIf="role==='ROLE_SLUZBENIK'">
         <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
-            (click)="onClick('resenje')" (keyup.enter)="onClick('resenje')"
-            [ngClass]="{'active': activeLink==='resenje'}">
-            Креирање Решења
-        </a>
-        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
             (click)="onClick('zalbe-odluka')" (keyup.enter)="onClick('zalbe-odluka')"
             [ngClass]="{'active': activeLink==='zalbe-odluka'}">
             Жалбе на одлуку

@@ -215,7 +215,7 @@ public class ResenjeRepository {
 			podnosenjeZalbe.setAttribute("vocab", "http://www.xml.com/predicate/");
 			podnosenjeZalbe.setAttribute("about", TARGET_NAMESPACE + "/" + documentId);
 			podnosenjeZalbe.setAttribute("rel", "pred:vezanaZalba");
-			podnosenjeZalbe.setAttribute("href", "http://zalbacutanje/" + zalbaId);
+			podnosenjeZalbe.setAttribute("href", zalbaId);
 			// vezivanje ostalih metapodataka
 			// izdavac resenja ime i prezime
 			list = resenje.getElementsByTagNameNS("*", "Ime");

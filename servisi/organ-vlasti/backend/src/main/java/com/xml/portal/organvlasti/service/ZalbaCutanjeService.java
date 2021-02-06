@@ -56,7 +56,7 @@ public class ZalbaCutanjeService {
 		}
 	}
 	
-	/*
+	
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addZalbaCutanje(@RequestBody ZalbaCutanje zalbaCutanje,
 												@RequestParam String zahtevId,
@@ -77,7 +77,7 @@ public class ZalbaCutanjeService {
     		}
     	}
     }
-    */
+    
 	
     @GetMapping("/pretrazi")
     public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {

@@ -23,7 +23,6 @@ export class ResenjeComponent implements OnInit, OnDestroy {
   zalbaDto: ZalbaDto;
   zalbaSub: Subscription;
 
-
   constructor(
     private xonomyResenjeService: XonomyResenjeService,
     private resenjeService: ResenjeService,
@@ -34,11 +33,19 @@ export class ResenjeComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.zahtevSub = this.resenjeService.odabraniZahtev
       .subscribe(zahtevDto => {
-        this.zahtevDto = zahtevDto;
+        if(!zahtevDto) {
+          this.router.navigate(['zalbe-odluka'])
+        } else { 
+          this.zahtevDto = zahtevDto;
+        }
       })
     this.zalbaSub = this.resenjeService.odabranaZalba
       .subscribe(zalbaDto => {
-        this.zalbaDto = zalbaDto;
+        if(!zalbaDto) {
+          this.router.navigate(['zalbe-odluka'])
+        } else { 
+          this.zalbaDto = zalbaDto;
+        }
       })
   }
 
@@ -93,7 +100,7 @@ export class ResenjeComponent implements OnInit, OnDestroy {
     let resenjeDto : ResenjeDto = {
       sadrzaj: xmlDocument,
       zahtevId: this.zahtevDto.id,
-      zalbaId: this.zalbaDto.id,
+      zalbaId: this.zalbaDto.fullId,
       userEmail: this.zahtevDto.userEmail
     }
 

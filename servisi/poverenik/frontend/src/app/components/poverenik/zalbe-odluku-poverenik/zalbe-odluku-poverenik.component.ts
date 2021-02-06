@@ -126,6 +126,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   createResenje(row: any) {
     let zalbaDto: ZalbaDto = {
       id : row.id,
+      fullId: 'http://zalbaodbijanje/' + row.id,
       datumPodnosenja : row.datumZalbe
     }
     let zahtevDto : ZahtevDto = {
@@ -135,6 +136,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
     }
     this.resenjeService.odabraniZahtev.next(zahtevDto);
     this.resenjeService.odabranaZalba.next(zalbaDto);
+    this.resenjeService.novo_resenje.next(true)
     this.router.navigate(['resenje']);
   }
 

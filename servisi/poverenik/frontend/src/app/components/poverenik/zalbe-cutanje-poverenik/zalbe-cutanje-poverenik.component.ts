@@ -10,6 +10,7 @@ import { ZalbaDto } from 'src/app/model/zalba-dto.model';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { ResenjeService } from 'src/app/services/resenje.service';
 import { Router } from '@angular/router';
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Component({
   selector: 'app-zalbe-cutanje-poverenik',
@@ -139,6 +140,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   createResenje(row: any) {
     let zalbaDto: ZalbaDto = {
       id : row.id,
+      fullId: 'http://zalbacutanje/' + row.id,
       datumPodnosenja : row.datumZalbe
     }
     let zahtevDto : ZahtevDto = {
@@ -148,6 +150,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     }
     this.resenjeService.odabraniZahtev.next(zahtevDto);
     this.resenjeService.odabranaZalba.next(zalbaDto);
+    this.resenjeService.novo_resenje.next(true)
     this.router.navigate(['resenje']);
   }
 

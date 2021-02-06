@@ -12,17 +12,7 @@ import { AuthenticationService } from "./authentication.service";
 })
 export class ResenjeService {
 
-
-/*   zahtevDto: ZahtevDto = {
-      id: "1",
-      datumPodnosenja: "2020-05-08",
-      userEmail: "pera@pera.com"
-  }
-
-  zalbaDto: ZalbaDto = {
-      id: "1",
-      datumPodnosenja: "2020-06-09"
-  } */
+  public novo_resenje: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   public odabraniZahtev: BehaviorSubject<ZahtevDto> = new BehaviorSubject<ZahtevDto>(null);
   public odabranaZalba: BehaviorSubject<ZalbaDto> = new BehaviorSubject<ZalbaDto>(null);

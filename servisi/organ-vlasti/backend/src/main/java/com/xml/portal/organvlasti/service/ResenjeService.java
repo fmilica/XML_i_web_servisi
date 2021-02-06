@@ -55,7 +55,7 @@ public class ResenjeService {
 		}
 	}
 	
-	/*
+	
 	@PostMapping(consumes = MediaType.APPLICATION_XML_VALUE)
     public ResponseEntity<Object> addResenje(@RequestBody String resenje,
 								    		@RequestParam String zahtevId,
@@ -76,7 +76,7 @@ public class ResenjeService {
     		}
     	}
     }
-    */
+    
 	
     @GetMapping("/pretrazi")
     public ResponseEntity<Object> obicnaPretraga(@RequestParam("sadrzaj") String content) throws Exception {
