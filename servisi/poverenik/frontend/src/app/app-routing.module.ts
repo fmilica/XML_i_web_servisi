@@ -98,12 +98,6 @@ const routes: Routes = [
     data: { expectedRoles: 'ROLE_SLUZBENIK' }
   },
   {
-    path: 'izvestaj/:id',
-    component: IzvestajComponent,
-    canActivate: [RoleGuard],
-    data: { expectedRoles: 'ROLE_SLUZBENIK' }
-  },
-  {
     path: 'izvestaji',
     component: AllIzvestajiComponent,
     canActivate: [RoleGuard],

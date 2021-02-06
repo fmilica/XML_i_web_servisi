@@ -29,4 +29,11 @@ export class IzvestajService {
       headers: this.headers
     })
   }
+
+  generisiIzvestaj(): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'izvestaj/generisi', {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }

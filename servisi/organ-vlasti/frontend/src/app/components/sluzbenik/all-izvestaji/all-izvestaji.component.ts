@@ -48,4 +48,14 @@ export class AllIzvestajiComponent implements OnInit {
   pregledIzvestaja(id: string){
     this.router.navigate(['izvestaj/'+id]);
   }
+
+  generisiIzvistaj(){
+    this.izvestajService.generisiIzvestaj().subscribe(
+      (response) => {
+        //TODO salji soapom izvestaj povereniku
+        this.toastr.success('Успешно генерисан нов извештај! Погледати на дну табеле.')
+        this.getIzvestaji();
+      }
+    )
+  }
 }
