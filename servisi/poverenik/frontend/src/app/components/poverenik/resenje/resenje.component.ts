@@ -66,7 +66,7 @@ export class ResenjeComponent implements OnInit, OnDestroy {
                             `<res:Podnosenje_zahteva datum_zahteva="` + this.zahtevDto.datumPodnosenja + `">` +
                             `</res:Podnosenje_zahteva>` +
                           `</res:Postupak_zalioca>` +
-                          `<res:Prosledjivanje_zalbe datum_prosledjivanja="` + this.zalbaDto.datumProsledjivanja + `">` +
+                          `<res:Prosledjivanje_zalbe datum_prosledjivanja="">` +
                           `</res:Prosledjivanje_zalbe>` +
                           `<res:Izjasnjenje_o_zalbi datum_izjasnjenja="">` +
                           `</res:Izjasnjenje_o_zalbi>` +

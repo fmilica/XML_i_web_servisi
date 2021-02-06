@@ -1,1 +1,67 @@
-<p>resenja-gradjanin works!</p>
+<div class="ng-container row justify-content-md-center">
+    <div class="col-md-11">
+        <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+                class="example-element-row"
+                [class.example-expanded-row]="expandedElement === row"
+                (click)="expandedElement = expandedElement === row ? null : row; fetchDokumente(row.zahtevId, row.zalbaId, row.vrstaZalbe)">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+
+            <ng-container matColumnDef="zalilac">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Жалилац </th>
+                <td matTooltip="Жалилац који је упутио захтев и жалбу" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.zalilac}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="organVlasti">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Орган власти </th>
+                <td matTooltip="Орган власти који је добио захтев" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.organVlasti}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="ishod">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Исход </th>
+                <td matTooltip="Исход донетог решења" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.ishod}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="emailZalioca">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Елактронска пошта жалиоца </th>
+                <td matTooltip="Електронска пошта жалиоца" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.emailZalioca}}
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="datumResenja">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Датум креирања решења </th>
+                <td matTooltip="Датум креирања решења" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    {{row.datumResenja}}
+                </td>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let element" [attr.colspan]="displayedColumns.length">
+                <div class="example-element-detail"
+                    [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+                    <div class="example-element-description">
+                        <div class="row">
+                            Везан захтев: {{fetchedZahtev.nazivOrgana}}, {{fetchedZahtev.sedisteOrgana}}, {{fetchedZahtev.informacije}}, {{fetchedZahtev.mesto}}, {{fetchedZahtev.datum}}
+                        </div>
+                        <div class="row">
+                            Везана жалба: {{fetchedZalba.tip}}, креирана: {{fetchedZalba.datumZalbe}}, {{fetchedZalba.razresena}} 
+                        </div>
+                    </div>
+                </div>
+                </td>
+            </ng-container>
+
+        </table>
+        <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+    </div>
+</div>

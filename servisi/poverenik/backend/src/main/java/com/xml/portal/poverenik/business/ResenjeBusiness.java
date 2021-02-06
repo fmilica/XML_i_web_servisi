@@ -328,12 +328,6 @@ public class ResenjeBusiness {
 			}
 			resenjePrikaz.setZalilacNaziv(zalilac);	
 			
-			if(obavestenjeRepository.findByZahtevId(zahtevId)) {
-				resenjePrikaz.setImaObavestenje("true");
-			}else {
-				resenjePrikaz.setImaObavestenje("false");
-			}
-			
 			StringWriter sw = new StringWriter();
 			try {
 				ResenjeBusiness.marshaller.marshal(resenjePrikaz, sw);

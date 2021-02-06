@@ -1,3 +1,71 @@
+<form [formGroup]="obicnaForm">
+    <div class="row">
+        <div class="col-md-2.5 left top">
+            <mat-label>Основна претрага:</mat-label>
+        </div>
+        <!-- Sve -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по текстуалном садржају</mat-label>
+                    <input matInput formControlName="sve" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Pretraga -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="obicnaPretraga()">
+                Претрага решења
+            </button>
+        </div>
+    </div>
+</form>
+
+<form [formGroup]="metaDataForm">
+    <div class="row">
+        <div class="col-md-1.25 left top">
+            <mat-label matTooltip="Претрага по метаподацима" 
+            matTooltipPosition="above">Напредна претрага:</mat-label>
+        </div> 
+        <!-- Naziv organa vlasti kom je upucena zalba -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по називу органа против ког је жалба</mat-label>
+                    <input matInput formControlName="optuzeniNaziv" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Vezani gradjanin -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по везаном грађанину</mat-label>
+                    <input matInput formControlName="vezaniGradjanin" placeholder="Нпр. бео">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-1.5 left">
+            <mat-label>Начин напредне претраге:</mat-label>
+        </div>
+        <div class="col-md-7">
+            <mat-radio-group formControlName="operator" aria-label="Начин претраге">
+                <mat-radio-button value="AND" [checked] = 'true'>Решење мора да задовољи све параметре</mat-radio-button>
+                <mat-radio-button value="OR">Решење мора да задовољи бар један параметар</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <!-- Filter -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="metapodaciPretraga()">
+                Претрага решења
+            </button>
+        </div>
+    </div>
+</form>
+
 <div class="ng-container row justify-content-md-center">
     <div class="col-md-11">
         <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
@@ -50,6 +118,20 @@
                     <div *ngSwitchCase="1">/</div>
                     <div *ngSwitchCase="2"><button (click) = "kreirajObavestenje(row.zahtevId)">Креирај обавештење</button></div>
                     <div *ngSwitchCase="3">Обавештен</div>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="preuzimanje">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми </th>
+                <td matTooltip="Преузимање решења" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a (click)="generisiPDF(row.id)" class="link">PDF</a><a (click)="generisiHTML(row.id)" class="link">HTML</a>
+                </td>
+            </ng-container>
+
+            <ng-container matColumnDef="preuzimanjeMeta">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми метаподатке</th>
+                <td matTooltip="Преузимање метаподатака решења" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a (click)="generisiRDF(row.id)" class="link">RDF</a><a (click)="generisiJSON(row.id)" class="link">JSON</a>
                 </td>
             </ng-container>
 

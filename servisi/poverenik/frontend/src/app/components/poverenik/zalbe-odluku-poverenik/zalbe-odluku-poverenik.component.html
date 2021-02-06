@@ -99,13 +99,13 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;">
             </tr>
 
-            <!--<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"
                 class="example-element-row"
                 [class.example-expanded-row]="expandedElement === row"
-                (click)="expandedElement = expandedElement === row ? null : row; fetchZahtev(row.zahtevId)">
+                (click)="expandedElement = expandedElement === row ? null : row; fetchZahtev(row.zahtev)">
             </tr>
-            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>-->
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr> -->
 
             <ng-container matColumnDef="naziv">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Назив жалиоца </th>
@@ -187,7 +187,9 @@
             <ng-container matColumnDef="razresena">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Разрешена </th>
                 <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    {{row.razresena}}
+                    <div *ngIf="row.razresen === 'true'; then tekst else dugme"></div>
+                    <ng-template #tekst>Разрешена</ng-template>
+                    <ng-template #dugme><button (click) = "createResenje(row)">Креирај Решење</button></ng-template>
                 </td>
             </ng-container>
 
