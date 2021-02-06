@@ -11,9 +11,6 @@
             <xs:import namespace="http://zalbaodbijanje" 
                 schemaLocation= "../schema/zalba_odbijanje/zalba_odbijen.xsd"/>  
         </xs:schema>
-        <xs:schema>
-            <xs:import namespace="http://odgovor" schemaLocation="../schema/odgovor/odgovor.xsd"></xs:import>
-        </xs:schema>
     </wsdl:types>
     
     <wsdl:message name="sendZalbaOdbijenRequest">
@@ -22,20 +19,12 @@
     <wsdl:message name="sendZalbaOdbijenResponse">
     </wsdl:message>
     
-    <wsdl:message name="sendOdgovorRequest">
-        <wsdl:part name="Odgovor" element="odg:Odgovor"></wsdl:part>
-    </wsdl:message>
-    <wsdl:message name="sendOdgovorResponse" />
-    
     <wsdl:portType name="ZalbaOdbijenServicePortType">
         <wsdl:operation name="sendZalbaOdbijen">
             <wsdl:input message="tns:sendZalbaOdbijenRequest" />
             <wsdl:output message="tns:sendZalbaOdbijenResponse" />
         </wsdl:operation>
-        <wsdl:operation name="sendOdgovor">
-            <wsdl:input message="tns:sendOdgovorRequest" />
-            <wsdl:output message="tns:sendOdgovorResponse" />
-        </wsdl:operation>
+        
     </wsdl:portType>
     
     <wsdl:binding name="ZalbaOdbijenSoapBinding" type="tns:ZalbaOdbijenServicePortType">
@@ -49,19 +38,10 @@
                 <soap:body use="literal"/>
             </wsdl:output>
         </wsdl:operation>
-        <wsdl:operation name="sendOdgovor">
-            <soap:operation soapAction="http://zalbaodbijanje/ws/sendOdgovor" />
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
     </wsdl:binding>
     <wsdl:service name="ZalbaOdbijenService">
         <wsdl:port name="ZalbaOdbijenServiceSoapBinding" binding="tns:ZalbaOdbijenSoapBinding">
-            <soap:address location="http://localhost:8081/zalbaodbijanjePort" />
+            <soap:address location="http://localhost:8082/zalbaodbijanjePort" />
         </wsdl:port>
     </wsdl:service>
 </wsdl:definitions>

@@ -21,7 +21,6 @@ import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.xml.portal.poverenik.data.dao.izvestaj.Izvestaj;
-import com.xml.portal.poverenik.data.dao.obavestenje.Obavestenje;
 import com.xml.portal.poverenik.data.xmldb.api.ExistManager;
 
 @Repository
@@ -90,8 +89,24 @@ public class IzvestajRepository {
 			String documentId = UUID.randomUUID().toString();
 			izvestaj.setId(TARGET_NAMESPACE + "/" + documentId);
 			marshaller.marshal(izvestaj, sw);
-			String obavestenjeString = sw.toString();
-			this.existManager.storeFromText(collectionId, documentId, obavestenjeString);
+			String izvestajString = sw.toString();
+			this.existManager.storeFromText(collectionId, documentId, izvestajString);
+			return documentId;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public String copy(Izvestaj izvestaj) {
+		StringWriter sw = new StringWriter();
+		try {
+			String documentIdUri = izvestaj.getId();
+			String[] documentIdUriList = documentIdUri.split("/");
+			String documentId = documentIdUriList[documentIdUriList.length - 1];
+			marshaller.marshal(izvestaj, sw);
+			String izvestajString = sw.toString();
+			this.existManager.storeFromText(collectionId, documentId, izvestajString);
 			return documentId;
 		} catch (Exception e) {
 			e.printStackTrace();

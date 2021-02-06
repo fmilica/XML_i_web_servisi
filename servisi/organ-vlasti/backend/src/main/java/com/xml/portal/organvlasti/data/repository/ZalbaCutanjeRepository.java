@@ -204,6 +204,22 @@ public class ZalbaCutanjeRepository {
 		}
 	}
 	
+	public String copy(ZalbaCutanje zalbaCutanje) {
+		StringWriter sw = new StringWriter();
+		try {
+			String documentIdUri = zalbaCutanje.getId();
+			String[] documentIdUriList = documentIdUri.split("/");
+			String documentId = documentIdUriList[documentIdUriList.length - 1];
+			marshaller.marshal(zalbaCutanje, sw);
+			String zalbaCutanjeString = sw.toString();
+			this.existManager.storeFromText(collectionId, documentId, zalbaCutanjeString);
+			return documentId;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	//zalbe na cutanje po godini
 	public long findAllByYear() {
 		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";

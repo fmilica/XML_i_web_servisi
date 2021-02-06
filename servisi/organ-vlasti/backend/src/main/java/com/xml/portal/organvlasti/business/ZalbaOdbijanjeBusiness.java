@@ -285,7 +285,8 @@ public class ZalbaOdbijanjeBusiness {
 	}
 
 	public String saveToDB(ZalbaOdbijanje zalbaOdbijanje) {
-		String documentId = zalbaOdbijanjeRepository.save(zalbaOdbijanje);
+		String documentId = zalbaOdbijanjeRepository.copy(zalbaOdbijanje);
+		this.storeMetadata(zalbaOdbijanje);
 		return documentId;
 	}
 	

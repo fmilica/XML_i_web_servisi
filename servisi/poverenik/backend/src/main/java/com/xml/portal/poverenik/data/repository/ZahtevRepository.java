@@ -406,6 +406,22 @@ public class ZahtevRepository {
 		}
 	}
 	
+	public String copy(Zahtev zahtev) {
+		StringWriter sw = new StringWriter();
+		try {
+			String documentIdUri = zahtev.getId();
+			String[] documentIdUriList = documentIdUri.split("/");
+			String documentId = documentIdUriList[documentIdUriList.length - 1];
+			marshaller.marshal(zahtev, sw);
+			String zahtevString = sw.toString();
+			this.existManager.storeFromText(collectionId, documentId, zahtevString);
+			return documentId;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public boolean update(String zahtevId, Zahtev zahtev) {
 		String xPath = "/zahtev:Zahtev/@razresen";
 		try {

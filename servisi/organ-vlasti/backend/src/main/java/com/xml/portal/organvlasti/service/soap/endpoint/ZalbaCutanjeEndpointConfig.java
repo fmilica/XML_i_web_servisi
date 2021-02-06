@@ -14,11 +14,11 @@ import com.xml.portal.organvlasti.service.soap.zalba_cutanje.ZalbaCutanjeService
 public class ZalbaCutanjeEndpointConfig {
 	@Autowired
 	private Bus bus;
-
+	
 	@Autowired
 	ZalbaCutanjeServiceSoapBindingImpl zalbaCutanjeServiceSoapBindingImpl;
-
-	@Bean(name = "zalbaCutanjeEndpointBean")
+	
+	@Bean(name="zalbaCutanjeEndpointBean")
 	public Endpoint zalbaCutanjeEndpoint() {
 		EndpointImpl endpoint = new EndpointImpl(bus, zalbaCutanjeServiceSoapBindingImpl);
 		endpoint.publish("/zalbacutanje");

@@ -26,7 +26,7 @@ import com.xml.portal.organvlasti.dto.ResenjePrikazDTO;
 import com.xml.portal.organvlasti.dto.pretraga.ResenjePretraga;
 import com.xml.portal.organvlasti.transformator.DokumentiTransformator;
 
-import resenje.Resenje;
+//import resenje.Resenje;
 
 public class ResenjeBusiness {
 	
@@ -350,9 +350,9 @@ public class ResenjeBusiness {
 		return allResenja;
 	}
 
-	public String saveToDB(Resenje resenje) {
-//		String documentId = resenjeRepository.save(resenje);
-//		return documentId;
-		return "";
+	public String saveToDB(Document resenjeDoc) {
+		String resenjeString = resenjeRepository.copy(resenjeDoc);
+		String documentId = this.storeMetadata(resenjeString);
+		return documentId;
 	}
 }
