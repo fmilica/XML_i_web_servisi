@@ -12,12 +12,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 /**
@@ -50,10 +46,9 @@ public class Odgovor {
     @XmlElement(name = "Izjasnjenje", required = true)
     protected String izjasnjenje;
     @XmlAttribute(name = "id_zalbe")
-    @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
-    @XmlID
-    @XmlSchemaType(name = "ID")
     protected String idZalbe;
+    @XmlAttribute(name = "id")
+    protected String id;
 
     /**
      * Gets the value of the izjasnjenje property.
@@ -101,6 +96,14 @@ public class Odgovor {
      */
     public void setIdZalbe(String value) {
         this.idZalbe = value;
+    }
+    
+    public String getId() {
+    	return id;
+    }
+    
+    public void setId(String value) {
+    	this.id = value;
     }
 
 }

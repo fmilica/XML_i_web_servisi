@@ -113,4 +113,9 @@ public class IzvestajBusiness {
 		}
 		return loaded;
 	}
+
+	public String saveToDB(Izvestaj izvestaj) {
+		String documentId = izvestajRepository.save(izvestaj);
+		return documentId;
+	}
 }

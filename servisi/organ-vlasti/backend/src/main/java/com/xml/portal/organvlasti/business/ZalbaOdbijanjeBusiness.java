@@ -283,5 +283,10 @@ public class ZalbaOdbijanjeBusiness {
 			return null;
 		}
 	}
+
+	public String saveToDB(ZalbaOdbijanje zalbaOdbijanje) {
+		String documentId = zalbaOdbijanjeRepository.save(zalbaOdbijanje);
+		return documentId;
+	}
 	
 }

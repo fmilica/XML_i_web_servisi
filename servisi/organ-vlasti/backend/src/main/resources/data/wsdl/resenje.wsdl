@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ResenjeService"
+    targetNamespace="http://resenje"
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tns="http://resenje">
+    
+    <wsdl:types>
+        <xs:schema>
+            <xs:import namespace="http://resenje" schemaLocation="../schema/resenje/resenje.xsd"></xs:import>
+        </xs:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="receiveResenjeRequest">
+        <wsdl:part name="Resenje" element="tns:Resenje" />
+    </wsdl:message>
+    <wsdl:message name="receiveResenjeResponse" />
+    
+    <wsdl:portType name="ResenjeServicePortType">
+        <wsdl:operation name="receiveResenje">
+            <wsdl:input message="tns:receiveResenjeRequest" />
+            <wsdl:output message="tns:receiveResenjeResponse" />
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="ResenjeSoapBinding" type="tns:ResenjeServicePortType">
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <wsdl:operation name="receiveResenje">
+            <soap:operation soapAction="http://resenje/ws/receiveResenje" />
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        
+    </wsdl:binding>
+    <wsdl:service name="ResenjeService">
+        <wsdl:port name="ResenjeServiceSoapBinding" binding="tns:ResenjeSoapBinding">
+            <soap:address location="http://localhost:8082/resenjePort" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
