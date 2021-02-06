@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.xml.portal.poverenik.business.ZalbaCutanjeBusiness;
 import com.xml.portal.poverenik.data.dao.exception.Greska;
+import com.xml.portal.poverenik.data.dao.zahtev.Zahtev;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ListaZalbiCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
@@ -172,4 +174,24 @@ public class ZalbaCutanjeService {
 		}
 	
 	}
+    
+    
+    @PutMapping(path = "/odustani/{id}")
+    public ResponseEntity<Object> odustaniOdZalbe(@PathVariable("id") String id) {
+		ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(id);
+		if (zalbaCutanje == null) {
+			Greska greska = new Greska("Zalba na cutanje sa prosledjenim identifikatorom ne postoji.");
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(greska);
+		} else if (zalbaCutanje.getPrekinut() == true) {
+			Greska greska = new Greska("Zalba na cutanje sa prosledjenim identifikatorom je vec prekinuta.");
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
+		} else {
+			boolean updated = zalbaCutanjeBusiness.odustani(id, zalbaCutanje);
+			if (!updated) {
+				Greska greska = new Greska("Greska u izmeni Zalbe na cutanje.");
+				return ResponseEntity.status(500).body(greska);
+			}
+			return new ResponseEntity<>(zalbaCutanje, HttpStatus.OK);
+		}
+    }
 }

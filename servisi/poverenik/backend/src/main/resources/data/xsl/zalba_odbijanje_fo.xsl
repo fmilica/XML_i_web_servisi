@@ -23,7 +23,7 @@
                     <fo:block font-weight="bold" text-align="center">
                         <fo:inline text-decoration="underline">ODBIJEN ILI ODBACEN ZAHTEV</fo:inline> ZA PRISTUP INFORMACIJI
                     </fo:block>
-                    <fo:block font-weight="bold"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Naziv"/></fo:block>
+                    <fo:block font-weight="bold" margin-top="10px"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Naziv"/></fo:block>
                     <fo:block>
                         Adresa za postu: <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Mesto"/>, 
                         <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Ulica"/> br. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Ulicni_broj"/>
@@ -32,18 +32,18 @@
                     <fo:block text-align="center">
                         <xsl:choose>
                             <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv)">
-                                (<fo:block text-decoration="underline">
-                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv"/>
+                                <fo:block text-decoration="underline">
+                                    (<xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv"/>
                                 </fo:block>
                             </xsl:when>
                             <xsl:otherwise>
-                                (<fo:block text-decoration="underline">
-                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Prezime"/>
+                                <fo:block text-decoration="underline">
+                                    (<xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Prezime"/>
                                 </fo:block>
                             </xsl:otherwise>
                         </xsl:choose>
                     </fo:block>
-                    <fo:block>
+                    <fo:block text-align="center">
                         <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulica"/>
                             <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
                             <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Mesto"/></fo:inline>)
@@ -52,10 +52,10 @@
                     <fo:block text-align="center">protiv resenja-zakljucka</fo:block>
                     <fo:block text-decoration="underline" text-align="center"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/zoz:Naziv_donosioca_odluke"/></fo:block>
                     <fo:block text-align="center">(naziv organa koji je doneo odluku)</fo:block>
-                    <fo:block>
-                        Broj <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/@broj_odluke"/></fo:inline> od <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/@godina"/></fo:inline> godine.
+                    <fo:block margin-top="10px">
+                        Broj <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/@broj_odluke"/></fo:inline> od <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/@godina"/></fo:inline> godine.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         <xsl:variable name="zahtev" select="zoz:Zalba_odbijanje/@datum_podnosenja_zahteva"/>
                         <xsl:variable name="z" select="xs:string(concat(
                             substring($zahtev,9,2),'.',
@@ -68,20 +68,20 @@
                         celosti, odnosno u delu kojim <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Razlog_zalbe"/></fo:inline>
                         jer nije zasnovana na <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Zakon"/>.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Na osnovu iznetih razloga, predlazem da Poverenik uvazi moju zalbu, ponisti
                         odluka prvostepenog organa i omoguci mi pristup trazenoj/im informaciji/ma.
                     </fo:block>
-                    <fo:block text-indent="1rem">
+                    <fo:block text-indent="20px">
                         Zalbu podnosim blagovremeno, u zakonskom roku utvrdjenom u clanu <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Clan"/>. 
                         st. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Stav"/>. 
                         <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Zakon"/>
                     </fo:block>
                     <fo:block>
-                        <fo:table>
+                        <fo:table margin-top="20px" margin-bottom="10px">
                             <fo:table-body>
                                 <fo:table-row>
-                                    <fo:table-cell text-align="left">
+                                    <fo:table-cell text-align="left" margin-top="10px">
                                         <xsl:variable name="datum" select="zoz:Zalba_odbijanje/@datum_podnosenja_zalbe"/>
                                         <xsl:variable name="d" select="xs:string(concat(
                                             substring($datum,9,2),'.',
@@ -118,6 +118,7 @@
                                 </fo:table-row>
                             </fo:table-body>
                         </fo:table>
+						<fo:block font-weight="bold">Napomena:</fo:block>
                         <fo:list-block>
                             <fo:list-item>
                                 <fo:list-item-label end-indent="label-end()">
