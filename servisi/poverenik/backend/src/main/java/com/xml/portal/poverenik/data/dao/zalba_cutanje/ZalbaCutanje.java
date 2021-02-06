@@ -77,6 +77,8 @@ public class ZalbaCutanje implements GenericXML {
     protected boolean izjasnjen;
     @XmlAttribute(name = "razresen")
     protected boolean razresen;
+    @XmlAttribute(name = "prekinut")
+    protected boolean prekinut;
     @XmlAttribute(name = "vocab")
     protected String vocab;
     @XmlAttribute(name = "about")
@@ -242,6 +244,13 @@ public class ZalbaCutanje implements GenericXML {
     }
     public void setRazresen(boolean value) {
     	this.razresen = value;
+    }
+    
+    public boolean getPrekinut() {
+    	return prekinut;
+    }
+    public void setPrekinut(boolean value) {
+    	this.prekinut = value;
     }
     
     public String getVocab() {

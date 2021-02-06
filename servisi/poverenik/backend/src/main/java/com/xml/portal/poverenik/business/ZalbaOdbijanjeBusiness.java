@@ -215,6 +215,8 @@ public class ZalbaOdbijanjeBusiness {
 			zalbaOdbijanje.setRazresen(false);
 			// kada se kreira -> nije izjasnjena
 			zalbaOdbijanje.setIzjasnjen(false);
+			// kada se kreira -> nije prekinuta
+			zalbaOdbijanje.setPrekinut(false);
 			// cuvanje u bazama
 			documentId = zalbaOdbijanjeRepository.save(zalbaOdbijanje);
 		} catch (Exception e) {

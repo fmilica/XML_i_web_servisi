@@ -103,6 +103,8 @@ public class ZalbaOdbijanje implements GenericXML {
     protected boolean razresen;
     @XmlAttribute(name = "izjasnjen")
     protected boolean izjasnjen;
+    @XmlAttribute(name = "prekinut")
+    protected boolean prekinut;
     @XmlAttribute(name = "vocab")
     protected String vocab;
     @XmlAttribute(name = "about")
@@ -340,6 +342,13 @@ public class ZalbaOdbijanje implements GenericXML {
     }
     public void setIzjasnjen(boolean value) {
     	this.izjasnjen = value;
+    }
+    
+    public boolean getPrekinut() {
+    	return prekinut;
+    }
+    public void setPrekinut(boolean value) {
+    	this.prekinut = value;
     }
     
     public String getVocab() {

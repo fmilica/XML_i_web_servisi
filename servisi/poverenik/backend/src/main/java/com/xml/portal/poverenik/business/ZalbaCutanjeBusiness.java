@@ -206,6 +206,8 @@ public class ZalbaCutanjeBusiness {
 			zalbaCutanje.setRazresen(false);
 			// kada se kreira -> nije izjasnjena
 			zalbaCutanje.setIzjasnjen(false);
+			// kada se kreira -> nije prekinuta
+			zalbaCutanje.setPrekinut(false);
 			// cuvanje u bazama
 			documentId = zalbaCutanjeRepository.save(zalbaCutanje);
 		} catch (Exception e) {
