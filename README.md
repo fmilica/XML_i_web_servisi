@@ -1,12 +1,12 @@
 ### Sadrzaj
 
--   [Opis]
--   [Pokretanje]
--   [Informacije o autorima]
+-   Opis
+-   Pokretanje
+-   Informacije o autorima
 
 ---
 
-## Description
+## Opis
 Projektovana aplikacija informacionog sistema za pristup informacijama od javnog znacaja,
 koja podrzava poslovne procese podnosenja zahteva za pristup informacijama od javnog znacaja
 , koji podrzava poslovne procese podnosenja zahteva za pristup informacijama od javnog znacaja,
