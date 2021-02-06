@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
     targetNamespace="http://odgovor" xmlns:odg="http://odgovor"
-     xmlns:rdfa="http://www.w3.org/ns/rdfa#"
+    xmlns:rdfa="http://www.w3.org/ns/rdfa#"
     xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/">
     <xs:element name="Odgovor">
         <xs:complexType>
             <xs:sequence>
                 <xs:element name="Izjasnjenje" type="xs:string"/>
             </xs:sequence>
-            <xs:attribute name="id_zalbe" type="xs:ID"></xs:attribute>
+            <xs:attribute name="id_zalbe" type="xs:string"/>
+            <xs:attribute name="id" type="xs:string"/>
         </xs:complexType>
     </xs:element>
-    
+
 </xs:schema>

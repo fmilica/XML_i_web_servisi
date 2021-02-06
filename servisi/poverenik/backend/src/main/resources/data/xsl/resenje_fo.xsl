@@ -25,10 +25,10 @@
             
             <fo:page-sequence master-reference="resenje-page">
                 <fo:flow flow-name="xsl-region-body" font-family="Times New Roman">
-                    <fo:table>
+                    <fo:table width="100%" margin-bottom="10px">
                         <fo:table-body>
                             <fo:table-row>
-                                <fo:table-cell text-align="right" margin-bottom="10px">
+                                <fo:table-cell text-align="left" margin-bottom="10px">
                                     <fo:block>
                                         <xsl:value-of select="res:Resenje/@tip_odluke"/>
                                     </fo:block>
@@ -36,7 +36,7 @@
                                         <xsl:value-of select="res:Resenje/@broj_resenja"/>
                                     </fo:block>
                                 </fo:table-cell>
-                                <fo:table-cell text-align="left" margin-top="10px">
+                                <fo:table-cell text-align="right" margin-top="10px">
                                     <fo:block>
                                         <xsl:variable name="datum" select="res:Resenje/@datum_resenja"/>
                                         <xsl:variable name="dt" select="xs:string(concat(
@@ -50,7 +50,7 @@
                         </fo:table-body>
                     </fo:table>
                     <fo:block>
-                        <xsl:variable name="zahtevD" select="res:Resenje/res:Opis_zalbe/@datum_zahteva"/>
+                        <xsl:variable name="zahtevD" select="res:Resenje/res:Obrazlozenje/res:Postupak_zalioca/res:Podnosenje_zahteva/@datum_zahteva"/>
                         <xsl:variable name="z" select="xs:string(concat(
                             substring($zahtevD,9,2),'.',
                             substring($zahtevD,6,2),'.',
@@ -144,7 +144,7 @@
                             </xsl:when>
                         </xsl:choose>
                     </fo:block>
-                    <fo:block text-align="right">POVERENIK</fo:block>
+                    <fo:block text-align="right" margin-top="10px">POVERENIK</fo:block>
                     <fo:block text-align="right">
                         <xsl:value-of select="res:Resenje/res:Poverenik/res:Ime"/><xsl:value-of select="$space"/>
                         <xsl:value-of select="res:Resenje/res:Poverenik/res:Prezime"/>

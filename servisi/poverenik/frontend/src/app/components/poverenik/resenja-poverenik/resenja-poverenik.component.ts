@@ -48,7 +48,7 @@ export class ResenjaPoverenikComponent implements OnInit {
   dataSource = [
    ];
 
-  displayedColumns: string[] = ['zalilac', 'organVlasti', 'ishod', 'emailZalioca', 'datumResenja'];
+  displayedColumns: string[] = ['zalilac', 'organVlasti', 'ishod', 'emailZalioca', 'datumResenja', 'preuzimanje', 'preuzimanjeMeta'];
 
   fetchedZahtev = {
     nazivOrgana: "",
@@ -266,7 +266,7 @@ export class ResenjaPoverenikComponent implements OnInit {
     let url = window.URL.createObjectURL(blob);
     var link = document.createElement('a');
     link.href = url;
-    link.download = "zalba_cutanje_"+id+"."+tip;
+    link.download = "resenje_"+id+"."+tip;
     link.click();
   }
 }

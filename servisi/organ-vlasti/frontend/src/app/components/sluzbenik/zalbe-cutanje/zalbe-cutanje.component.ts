@@ -128,18 +128,18 @@ export class ZalbeCutanjeComponent implements OnInit {
     this.dataSource = data;
   }
 
-  generisiPDF(obavestenjeId: string) {
-    this.zalbaCutanjeService.generisiPDF(obavestenjeId).subscribe(
+  generisiPDF(zalbaCutanjeId: string) {
+    this.zalbaCutanjeService.generisiPDF(zalbaCutanjeId).subscribe(
       (response) => {
-        this.previewAndDownload(response, obavestenjeId, "pdf");
+        this.previewAndDownload(response, zalbaCutanjeId, "pdf");
       }
     );
   }
 
-  generisiHTML(obavestenjeId: string) {
-    this.zalbaCutanjeService.generisiHTML(obavestenjeId).subscribe(
+  generisiHTML(zalbaCutanjeId: string) {
+    this.zalbaCutanjeService.generisiHTML(zalbaCutanjeId).subscribe(
       (response) => {
-        this.previewAndDownload(response, obavestenjeId, "html");
+        this.previewAndDownload(response, zalbaCutanjeId, "html");
       }
     );
   }

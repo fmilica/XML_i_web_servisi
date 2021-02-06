@@ -76,7 +76,7 @@
                             </tr>
                         </table>
                         <div>
-                            <xsl:variable name="zahtevD" select="res:Resenje/res:Opis_zalbe/@datum_zahteva"/>
+                            <xsl:variable name="zahtevD" select="res:Resenje/res:Obrazlozenje/res:Postupak_zalioca/res:Podnosenje_zahteva/@datum_zahteva"/>
                             <xsl:variable name="z" select="xs:string(concat(
                                 substring($zahtevD,9,2),'.',
                                 substring($zahtevD,6,2),'.',
