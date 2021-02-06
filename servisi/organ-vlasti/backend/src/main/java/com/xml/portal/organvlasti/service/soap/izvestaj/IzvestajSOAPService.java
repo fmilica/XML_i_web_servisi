@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
 
 import com.xml.portal.organvlasti.data.dao.izvestaj.Izvestaj;
-import com.xml.portal.organvlasti.data.dao.zalba_cutanje.ZalbaCutanje;
 
 @RestController
 @RequestMapping(value = "organvlasti/soap/izvestaj")
