@@ -29,4 +29,11 @@ export class IzvestajService {
       headers: this.headers
     })
   }
+
+  obicnaPretraga(datum: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'izvestaj/pretrazi?sadrzaj=' + datum, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }

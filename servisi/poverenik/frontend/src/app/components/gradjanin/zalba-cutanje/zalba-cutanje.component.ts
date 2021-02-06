@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { XonomyZalbaCutanjeService } from 'src/app/services/xonomy/xonomy-zalba-cutanje.service';
 import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje.service';
 import * as txml from 'txml';
@@ -21,7 +22,8 @@ export class ZalbaCutanjeComponent implements OnInit {
   constructor(
     private xonomyZalbaCutanjeService: XonomyZalbaCutanjeService,
     private zalbaCutanjeService: ZalbaCutanjeService,
-    private toastr: ToastrService) {
+    private toastr: ToastrService,
+    private authService: AuthenticationService) {
       this.unetId = false;
       this.form = new FormGroup({
         id: new FormControl('', [Validators.required])
@@ -43,7 +45,10 @@ export class ZalbaCutanjeComponent implements OnInit {
         let zahtevDate = new Date(Number(zahtev.attributes.datum.split('-')[0]), Number(zahtev.attributes.datum.split('-')[1])-1, Number(zahtev.attributes.datum.slice(0, -1).split('-')[2]))
         let danasnjiDatum = new Date()
         danasnjiDatum.setDate(danasnjiDatum.getDate() - 15)
-        if(zahtev.attributes.odbijen === 'false\\' && zahtev.attributes.razresen === 'false\\' && danasnjiDatum >= zahtevDate) {
+        let emailPath = zahtev.attributes.href.split('/');
+        let korisnik = emailPath[3].slice(0, -1)
+        let ulogovani = this.authService.getLoggedInUserEmail()
+        if(zahtev.attributes.odbijen === 'false\\' && zahtev.attributes.razresen === 'false\\' && danasnjiDatum >= zahtevDate && korisnik === ulogovani) {
           this.unetId = true;
         }
         else{

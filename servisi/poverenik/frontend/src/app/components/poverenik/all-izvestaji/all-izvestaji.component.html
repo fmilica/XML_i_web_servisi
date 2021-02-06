@@ -1,3 +1,25 @@
+<form [formGroup]="form">
+    <div class="row">
+        <div class="col-md-2.5 left top">
+            <mat-label>Основна претрага:</mat-label>
+        </div>
+        <!-- Datum -->
+        <div class="col-md-2">
+            <div class="form-group">
+                <mat-form-field class="form-field">
+                    <mat-label>Претрага по датуму</mat-label>
+                    <input matInput formControlName="datum">
+                </mat-form-field>
+            </div>
+        </div>
+        <!-- Pretraga -->
+        <div class="col-md-2">
+            <button mat-raised-button class="align" class="btn-purple btn bottom" (click)="obicnaPretraga()">
+                Претрага обавештења
+            </button>
+        </div>
+    </div>
+</form>
 <div class="ng-container row justify-content-md-center">
     <div class="col-md-11">
         <table mat-table [dataSource]="dataSource">

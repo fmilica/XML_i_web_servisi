@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IzvestajService } from 'src/app/services/izvestaj.service';
@@ -13,12 +14,18 @@ export class AllIzvestajiComponent implements OnInit {
 
   dataSource = [];
 
+  form: FormGroup;
+
   displayedColumns: string[] = [ 'godisnjiIzvestaj', 'datumGenerisanja', 'pregled']
 
   constructor(
     private izvestajService: IzvestajService,
     private router: Router,
-    private toastr: ToastrService){}
+    private toastr: ToastrService){
+      this.form = new FormGroup({
+        datum: new FormControl()
+      })
+    }
 
   ngOnInit(){
     this.getIzvestaji();
@@ -27,7 +34,13 @@ export class AllIzvestajiComponent implements OnInit {
   getIzvestaji(){
     this.izvestajService.getAllIzvestaji().subscribe(
       (response) => {
-        let xmlResponse = response;
+        this.lista2Izvestaji(response);
+      }
+    )
+  }
+
+  lista2Izvestaji(response: string) {
+    let xmlResponse = response;
         let izvestaji: any = txml.parse(xmlResponse);
         let data = []
         izvestaji[1].children.map( izvestaj => {
@@ -41,8 +54,6 @@ export class AllIzvestajiComponent implements OnInit {
           data.push(izvestajPrikaz)
         })
         this.dataSource = data;
-      }
-    )
   }
 
   pregledIzvestaja(id: string){
@@ -52,10 +63,25 @@ export class AllIzvestajiComponent implements OnInit {
   generisiIzvistaj(){
     this.izvestajService.generisiIzvestaj().subscribe(
       (response) => {
-        //TODO salji soapom izvestaj povereniku
+        this.izvestajService.posaljiIzvestaj(response)
+          .subscribe()
+        
         this.toastr.success('Успешно генерисан нов извештај! Погледати на дну табеле.')
         this.getIzvestaji();
       }
     )
+  }
+
+  obicnaPretraga() {
+    let datum = this.form.get('datum').value
+    if (!datum) {
+      this.getIzvestaji()
+    }
+    this.izvestajService.obicnaPretraga(datum)
+      .subscribe(
+        response => {
+          this.lista2Izvestaji(response)
+        }
+      )
   }
 }

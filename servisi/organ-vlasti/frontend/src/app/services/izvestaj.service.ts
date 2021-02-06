@@ -36,4 +36,18 @@ export class IzvestajService {
       headers: this.headers
     })
   }
+
+  posaljiIzvestaj(xmlIzvestaj: string) {
+    return this.http.post(environment.apiEndpoint + 'soap/izvestaj/send-izvestaj', xmlIzvestaj, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
+
+  obicnaPretraga(datum: string): Observable<any> {
+    return this.http.get(environment.apiEndpoint + 'izvestaj/pretrazi?sadrzaj=' + datum, {
+      responseType: 'text',
+      headers: this.headers
+    })
+  }
 }

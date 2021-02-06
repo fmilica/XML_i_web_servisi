@@ -8,17 +8,19 @@ import java.util.UUID;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
+import javax.xml.bind.UnmarshalException;
 import javax.xml.bind.Unmarshaller;
 
 import org.exist.xupdate.XUpdateProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceIterator;
+import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
 import com.xml.portal.organvlasti.data.dao.izvestaj.Izvestaj;
-import com.xml.portal.organvlasti.data.dao.obavestenje.Obavestenje;
 import com.xml.portal.organvlasti.data.xmldb.api.ExistManager;
 
 @Repository
@@ -109,5 +111,29 @@ public class IzvestajRepository {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public List<Izvestaj> findAllByDatumContaining(String content) {
+		String xPath = "/Izvestaj[contains(@datum_podnosenja_izvestaja,'" + content + "')]";
+		List<Izvestaj> pronadjeniIzvestaji = new ArrayList<Izvestaj>();
+		try {
+			ResourceSet query = this.existManager.retrieve(collectionId, xPath, TARGET_NAMESPACE);
+			ResourceIterator iter = query.getIterator();
+			XMLResource res;
+			while(iter.hasMoreResources()) {
+				res = (XMLResource)iter.nextResource();
+				try {
+					pronadjeniIzvestaji.add((Izvestaj) unmarshaller.unmarshal(res.getContentAsDOM()));
+				} catch (ClassCastException | UnmarshalException e) {
+					// elementi ispod zahteva koji zadovoljavaju xpath
+					continue;
+				} catch (XMLDBException e) {
+					e.printStackTrace();
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pronadjeniIzvestaji;
 	}
 }

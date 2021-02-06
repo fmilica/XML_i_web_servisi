@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 import { XonomyZalbaOdlukaService } from 'src/app/services/xonomy/xonomy-zalba-odluka.service';
 import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
 import * as txml from 'txml';
@@ -21,7 +22,8 @@ export class ZalbaOdlukaComponent implements OnInit {
   constructor(
     private xonomyZalbaOdlukaService: XonomyZalbaOdlukaService,
     private zalbaOdlukaService: ZalbaOdlukaService,
-    private toastr: ToastrService) { 
+    private toastr: ToastrService,
+    private authService: AuthenticationService) { 
       this.unetId = false;
       this.form = new FormGroup({
         id: new FormControl('', [Validators.required])
@@ -40,7 +42,10 @@ export class ZalbaOdlukaComponent implements OnInit {
       response => {
         xmlResponse = txml.parse(response);
         zahtev = xmlResponse[3].children[0].children[0]
-        if(zahtev.attributes.razresen === 'true\\' && zahtev.attributes.odbijen === 'true\\') {
+        let emailPath = zahtev.attributes.href.split('/');
+        let korisnik = emailPath[3].slice(0, -1)
+        let ulogovani = this.authService.getLoggedInUserEmail()
+        if(zahtev.attributes.razresen === 'true\\' && zahtev.attributes.odbijen === 'true\\' && korisnik === ulogovani) {
           this.unetId = true;
         } else {
           this.toastr.error("Не можете да поднесете жалбу на одлуку за послат ID захтева")
