@@ -43,6 +43,11 @@
             [ngClass]="{'active': activeLink==='resenje'}">
             Преглед решења
         </a>
+        <a class="nav-item nav-link nav-btn btn" role="button" tabindex="0" 
+            (click)="onClick('izvestaji')" (keyup.enter)="onClick('izvestaji')"
+            [ngClass]="{'active': activeLink==='izvestaji'}">
+            Извештаји
+        </a>
     </div>
 
     <div class="ml-auto" *ngIf="role!==''">
