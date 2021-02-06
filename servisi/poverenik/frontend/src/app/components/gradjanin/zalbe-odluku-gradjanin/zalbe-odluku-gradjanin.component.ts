@@ -1,16 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { ZalbaOdlukaService } from 'src/app/services/zalba-odluka.service';
 import * as txml from 'txml';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ZahtevService } from 'src/app/services/zahtev.service';
 
 @Component({
   selector: 'app-zalbe-odluku-gradjanin',
   templateUrl: './zalbe-odluku-gradjanin.component.html',
-  styleUrls: ['./zalbe-odluku-gradjanin.component.sass']
+  styleUrls: ['./zalbe-odluku-gradjanin.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ZalbeOdlukuGradjaninComponent implements OnInit {
 
   constructor(
-    private zalbaOdlukaService: ZalbaOdlukaService
+    private zalbaOdlukaService: ZalbaOdlukaService,
+    private zahtevService: ZahtevService
   ) { }
 
   dataSource = [
@@ -27,6 +37,16 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
       razresena: 'Да'
     }*/
   ];
+
+  fetchedZahtev = {
+    nazivOrgana: "",
+    sedisteOrgana: "",
+    informacije: "",
+    mesto: "",
+    datum: ""
+  }
+
+  expandedElement: any | null;
 
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
                                 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
@@ -50,7 +70,8 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
               razlogZalbe: zalba.children[3].children[0].children[0],
               datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
               mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-              razresena: zalba.attributes.razresen
+              razresena: zalba.attributes.razresen,
+              zahtev: zalba.attributes.href.substring(14)
             }
             //podaci o zaliocu
             if (zalba.children[1].children.length === 3) {
@@ -115,5 +136,26 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
         this.previewAndDownload(response, zalbaOdlukaId, "json");
       }
     );
+  }
+
+  fetchZahtev(zahtevId: string){
+    //TODO dobaviti zahtev preko SOAP i odkomentarisati linije u html
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        let zahtev: any =  txml.parse(xmlResponse);
+        zahtev.map( z => {
+          let zahtevPrikaz = {
+            nazivOrgana: zahtev[1].children[0].children[0].children[0],
+            sedisteOrgana: zahtev[1].children[0].children[1].children[0],
+            dostava: 'false',
+            informacije: zahtev[1].children[1].children[2].children[0],
+            mesto: zahtev[1].attributes.mesto,
+            datum: zahtev[1].attributes.datum
+          }
+          this.fetchedZahtev = zahtevPrikaz
+        })
+      }
+    )
   }
 }

@@ -4,11 +4,20 @@ import * as JsonToXML from 'js2xmlparser';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ZalbaCutanjeService } from 'src/app/services/zalba-cutanje-service';
 import { ZalbaCutanjeNaprednaPretragaDto } from 'src/app/model/zalba-cutanje-napredna-pretraga-dto';
+import { ZahtevService } from 'src/app/services/zahtev.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-zalbe-cutanje',
   templateUrl: './zalbe-cutanje.component.html',
-  styleUrls: ['./zalbe-cutanje.component.sass']
+  styleUrls: ['./zalbe-cutanje.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ZalbeCutanjeComponent implements OnInit {
 
@@ -22,8 +31,19 @@ export class ZalbeCutanjeComponent implements OnInit {
   obicnaForm: FormGroup;
   metaDataForm: FormGroup;
 
+  fetchedZahtev = {
+    nazivOrgana: "",
+    sedisteOrgana: "",
+    informacije: "",
+    mesto: "",
+    datum: ""
+  }
+  
+  expandedElement: any | null;
+
   constructor(
-    private zalbaCutanjeService: ZalbaCutanjeService
+    private zalbaCutanjeService: ZalbaCutanjeService,
+    private zahtevService: ZahtevService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -72,7 +92,8 @@ export class ZalbeCutanjeComponent implements OnInit {
         //naziv i ime i prezime
         naziv: '',
         ime: '',
-        prezime: ''
+        prezime: '',
+        zahtev: zalba.attributes.href.substring(14)
       }
       if (zalba.children[1].children[4].children.length === 4) {
         // ima ime i prezime
@@ -233,4 +254,23 @@ export class ZalbeCutanjeComponent implements OnInit {
     );
   }
 
+  fetchZahtev(zahtevId: string){
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        let zahtev: any =  txml.parse(xmlResponse);
+        zahtev.map( z => {
+          let zahtevPrikaz = {
+            nazivOrgana: zahtev[1].children[0].children[0].children[0],
+            sedisteOrgana: zahtev[1].children[0].children[1].children[0],
+            dostava: 'false',
+            informacije: zahtev[1].children[1].children[2].children[0],
+            mesto: zahtev[1].attributes.mesto,
+            datum: zahtev[1].attributes.datum
+          }
+          this.fetchedZahtev = zahtevPrikaz
+        })
+      }
+    )
+  }
 }

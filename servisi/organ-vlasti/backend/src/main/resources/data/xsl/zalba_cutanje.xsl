@@ -91,7 +91,7 @@
                         </div>
                         <div class="centriran_text">( podvuci zbog cega se izjavljuje zalba)</div>
                         <div class="obican_tekst">
-                            <xsl:variable name="datum" select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Datum"/>
+                            <xsl:variable name="datum" select="zoc:Zalba_cutanje/zoc:Zalba/@datum_podnosenja_zahteva"/>
                             <xsl:variable name="d" select="xs:string(concat(
                                 substring($datum,9,2),'.',
                                 substring($datum,6,2),'.',
@@ -109,10 +109,19 @@
                         <div class="tekst">Kao dokaz, uz zalbu dostavljam kopiju zahteva sa dokazom o predaji organu vlasti.</div>
                         <div class="tekst"><b>Napomena:</b> Kod zalbe zbog nepostupanja po zahtevu u celosti, treba priloziti i dobijeni odgovor organa vlasti.</div>
                         <div class="desno">
-                            <div>
-                                <u><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Ime"/>
-                                    <xsl:value-of select="$space"/><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Prezime"/></u>
-                            </div>
+                            <xsl:choose>
+                                <xsl:when test="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Naziv">
+                                    <div>
+                                        <u><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Naziv"/></u>
+                                    </div>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <div>
+                                        <u><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Ime"/>
+                                            <xsl:value-of select="$space"/><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Prezime"/></u>
+                                    </div>
+                                </xsl:otherwise>
+                            </xsl:choose>
                             <div>Podnosilac zalbe/Ime i prezime</div>
                             <div>
                                 <u><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Adresa/tipovi:Ulica"/><xsl:value-of select="$space"/>
@@ -126,7 +135,7 @@
                             <div>drugi podaci za kontakt</div>
                         </div>
                         <div class="levo">
-                            <xsl:variable name="datum1" select="zoc:Zalba_cutanje/@datum"/>
+                            <xsl:variable name="datum1" select="zoc:Zalba_cutanje/@datum_podnosenja_zalbe"/>
                             <xsl:variable name="d1" select="xs:string(concat(
                                 substring($datum1,9,2),'.',
                                 substring($datum1,6,2),'.',

@@ -23,37 +23,37 @@
                     <fo:block font-weight="bold" text-align="center">
                         <fo:inline text-decoration="underline">ODBIJEN ILI ODBACEN ZAHTEV</fo:inline> ZA PRISTUP INFORMACIJI
                     </fo:block>
-                    <fo:block font-weight="bold"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Naziv"/></fo:block>
+                    <fo:block font-weight="bold"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Naziv"/></fo:block>
                     <fo:block>
-                        Adresa za postu: <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Sediste/tipovi:Mesto"/>, 
-                        <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Sediste/tipovi:Ulica"/> br. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_primaocu/tipovi:Sediste/tipovi:Ulicni_broj"/>
+                        Adresa za postu: <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Mesto"/>, 
+                        <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Ulica"/> br. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_primaocu/tipovi:Sediste/tipovi:Ulicni_broj"/>
                     </fo:block>
                     <fo:block font-weight="bold" text-align="center">Z A L B A</fo:block>
                     <fo:block text-align="center">
                         <xsl:choose>
-                            <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Naziv)">
+                            <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv)">
                                 (<fo:block text-decoration="underline">
-                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Naziv"/>
+                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Naziv"/>
                                 </fo:block>
                             </xsl:when>
                             <xsl:otherwise>
                                 (<fo:block text-decoration="underline">
-                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Prezime"/>
+                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Prezime"/>
                                 </fo:block>
                             </xsl:otherwise>
                         </xsl:choose>
                     </fo:block>
                     <fo:block>
-                        <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulica"/>
-                            <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
-                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_zaliocu/tipovi:Adresa/tipovi:Mesto"/></fo:inline>)
+                        <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulica"/>
+                            <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
+                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_zaliocu/tipovi:Adresa/tipovi:Mesto"/></fo:inline>)
                     </fo:block>
                     <fo:block text-align="center">Ime, prezime, odnosno naziv, adresa i sediste zalioca</fo:block>
                     <fo:block text-align="center">protiv resenja-zakljucka</fo:block>
-                    <fo:block text-decoration="underline" text-align="center"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/zoz:naziv_donosioca_odluke"/></fo:block>
+                    <fo:block text-decoration="underline" text-align="center"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/zoz:Naziv_donosioca_odluke"/></fo:block>
                     <fo:block text-align="center">(naziv organa koji je doneo odluku)</fo:block>
                     <fo:block>
-                        Broj <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/@broj_odluke"/></fo:inline> od <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/@godina"/></fo:inline> godine.
+                        Broj <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_odluci/@broj_odluke"/></fo:inline> od <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_odluci/@godina"/></fo:inline> godine.
                     </fo:block>
                     <fo:block text-indent="1rem">
                         <xsl:variable name="zahtev" select="zoz:Zalba_odbijanje/@datum_podnosenja_zahteva"/>
@@ -65,17 +65,17 @@
                         sa elementima odluke), suprotno zakonu, odbijen-odbacen je moj zahtev koji sam podneo/la-
                         uputio/la dana <fo:inline text-decoration="underline"><xsl:value-of select="$z"/></fo:inline> godine i tako mi uskraceno-onemoguceno ostvarivanje ustavnog i 
                         zakonskog prava na slobodan pristup informacijama od javnog znacaja. Odluku pobijam u 
-                        celosti, odnosno u delu kojim <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:razlog_zalbe"/></fo:inline>
-                        jer nije zasnovana na <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Zakon"/>.
+                        celosti, odnosno u delu kojim <fo:inline text-decoration="underline"><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Razlog_zalbe"/></fo:inline>
+                        jer nije zasnovana na <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Zakon"/>.
                     </fo:block>
                     <fo:block text-indent="1rem">
                         Na osnovu iznetih razloga, predlazem da Poverenik uvazi moju zalbu, ponisti
                         odluka prvostepenog organa i omoguci mi pristup trazenoj/im informaciji/ma.
                     </fo:block>
                     <fo:block text-indent="1rem">
-                        Zalbu podnosim blagovremeno, u zakonskom roku utvrdjenom u clanu <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Clan"/>. 
-                        st. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Stav"/>. 
-                        <xsl:value-of select="zoz:Zalba_odbijanje/zoz:telo_zalbe/zoz:osnova_zalbe/zoz:Zakon"/>
+                        Zalbu podnosim blagovremeno, u zakonskom roku utvrdjenom u clanu <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Clan"/>. 
+                        st. <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Stav"/>. 
+                        <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Telo_zalbe/zoz:Osnova_zalbe/zoz:Zakon"/>
                     </fo:block>
                     <fo:block>
                         <fo:table>
@@ -92,26 +92,26 @@
                                     </fo:table-cell>
                                     <fo:table-cell text-align="right">
                                         <xsl:choose>
-                                            <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Naziv)">
+                                            <xsl:when test="boolean(zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Naziv)">
                                                 <fo:block text-decoration="underline">
-                                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Naziv"/>
+                                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Naziv"/>
                                                 </fo:block>
                                             </xsl:when>
                                             <xsl:otherwise>
                                                 <fo:block text-decoration="underline">
-                                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Prezime"/>
+                                                    <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Ime"/><xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Prezime"/>
                                                 </fo:block>
                                             </xsl:otherwise>
                                         </xsl:choose>
                                         <fo:block>Podnosilac zalbe/Ime i prezime</fo:block>
                                         <fo:block text-decoration="underline">
-                                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulica"/>
-                                            <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
-                                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Mesto"/>
+                                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulica"/>
+                                            <xsl:value-of select="$space"/><xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Ulicni_broj"/>, 
+                                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Adresa/tipovi:Mesto"/>
                                         </fo:block>
                                         <fo:block>adresa</fo:block>
                                         <fo:block text-decoration="underline">
-                                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:podaci_o_podnosiocu_zalbe/tipovi:Kontakt_podaci"/>
+                                            <xsl:value-of select="zoz:Zalba_odbijanje/zoz:Podaci_o_podnosiocu_zalbe/tipovi:Kontakt_podaci"/>
                                         </fo:block>
                                         <fo:block>drugi podaci za kontakt</fo:block>
                                     </fo:table-cell>
