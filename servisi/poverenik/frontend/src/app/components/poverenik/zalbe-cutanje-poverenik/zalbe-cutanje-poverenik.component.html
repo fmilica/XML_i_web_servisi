@@ -171,12 +171,13 @@
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="razresena">
+            <ng-container matColumnDef="status">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Статус жалбе </th>
-                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row">
-                    <div *ngIf="row.razresena === 'true'; then tekst else dugme"></div>
-                    <ng-template #tekst>Разрешена</ng-template>
-                    <ng-template #dugme><button (click) = "createResenje(row)">Креирај Решење</button></ng-template>
+                <td matTooltip="Да ли је жалба разрешена" matTooltipPosition="above" mat-cell *matCellDef="let row" [ngSwitch]="row.status">
+                    <div *ngSwitchCase="'posaljiNaIzjasnjenje'"><button (click) = "posaljiNaIzjasnjenje(row)">Пошаљи на изјашњење</button></div>
+                    <div *ngSwitchCase="'kreirajResenje'"><button (click) = "createResenje(row)">Креирај Решење</button></div>
+                    <div *ngSwitchCase="'odustao'">Одустао</div>
+                    <div *ngSwitchCase="'razresena'">Разрешена</div>
                 </td>
             </ng-container>
 

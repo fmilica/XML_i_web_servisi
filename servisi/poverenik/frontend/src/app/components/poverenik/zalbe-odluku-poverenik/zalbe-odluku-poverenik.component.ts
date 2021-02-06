@@ -95,7 +95,9 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
         razresena: zalba.attributes.razresen,
         izjasnjena: zalba.attributes.izjasnjen,
-        zahtev: zalba.attributes.href.substring(14)
+        prekinuta: zalba.attributes.prekinut,
+        zahtev: zalba.attributes.href.substring(14),
+        status: 'razresena'
       }
       //podaci o zaliocu
       if (zalba.children[1].children.length === 3) {
@@ -129,9 +131,23 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         zalba.children[4].children[1].children[2].children[0] + ', ' + 
         zalba.children[4].children[1].children[0].children[0]
       }
+      // postavljanje akcije na osnovu atributa
+      if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.razresena === 'false') {
+        zalbaPrikaz.status = 'posaljiNaIzjasnjenje';
+      } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'false') {
+        zalbaPrikaz.status = 'kreirajResenje'
+      } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'true') {
+        zalbaPrikaz.status = 'razresena'
+      } else if(zalbaPrikaz.prekinuta === 'true') {
+        zalbaPrikaz.status = 'odustao'
+      }
       data.push(zalbaPrikaz);
     })
     this.dataSource = data;
+  }
+
+  posaljiNaIzjasnjenje(row: any) {
+    // soap poziv salje zalbu organu vlasti
   }
 
   createResenje(row: any) {

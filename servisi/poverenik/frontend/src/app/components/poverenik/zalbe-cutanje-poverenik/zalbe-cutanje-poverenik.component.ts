@@ -39,7 +39,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   expandedElement: any | null;
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'zalilac','adresa', 'kontaktTelefon', 
-                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje', 'preuzimanjeMeta']
+                                'datumZalbe', 'mestoZalbe', 'status', 'preuzimanje', 'preuzimanjeMeta']
 
 
   //formе za pretragu
@@ -92,6 +92,8 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         mestoZalbe: zalba.attributes.mesto,
         razresena: zalba.attributes.razresen,
         izjasnjena: zalba.attributes.izjasnjen,
+        prekinuta: zalba.attributes.prekinut,
+        status: 'razresena',
         zalilac: '',
         adresa: '',
         kontaktTelefon: '',
@@ -133,9 +135,23 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
       
         zalbaPrikaz.kontaktTelefon = zalba.children[1].children[4].children[2].children[0]
       }
+      // postavljanje akcije na osnovu atributa
+      if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.razresena === 'false') {
+        zalbaPrikaz.status = 'posaljiNaIzjasnjenje';
+      } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'false') {
+        zalbaPrikaz.status = 'kreirajResenje'
+      } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'true') {
+        zalbaPrikaz.status = 'razresena'
+      } else if(zalbaPrikaz.prekinuta === 'true') {
+        zalbaPrikaz.status = 'odustao'
+      }
       data.push(zalbaPrikaz);
     })
     this.dataSource = data;
+  }
+
+  posaljiNaIzjasnjenje(row: any) {
+    // soap poziv salje zalbu organu vlasti
   }
 
   createResenje(row: any) {
