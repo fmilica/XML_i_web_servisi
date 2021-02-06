@@ -24,6 +24,7 @@ import org.w3c.dom.Document;
 import com.xml.portal.organvlasti.business.ResenjeBusiness;
 import com.xml.portal.organvlasti.data.dao.odgovor.Odgovor;
 import com.xml.portal.organvlasti.data.dao.soap.resenje.Resenje;
+import com.xml.portal.organvlasti.data.repository.ObavestenjeRepository;
 
 
 
@@ -62,7 +63,11 @@ public class ResenjeServiceSoapBindingImpl implements ResenjeServicePortType {
 
     		// Marshal the Object to a Document
     		Marshaller marshaller = jc.createMarshaller();
+    		marshaller.setProperty(Marshaller.JAXB_SCHEMA_LOCATION, "http://resenje resenje.xsd");
+			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+			marshaller.setProperty(Marshaller.JAXB_FRAGMENT, Boolean.TRUE);
     		marshaller.marshal(resenje, document);
+    		marshaller.marshal(resenje, System.out);
 //    		System.out.println(document);
         	String documentId = resenjeBusiness.saveToDB(document);
         	System.out.println(documentId);

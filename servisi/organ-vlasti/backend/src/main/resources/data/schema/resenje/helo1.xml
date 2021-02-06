@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<res:Resenje xmlns:tipovi="http://tipovi"
+ xmlns:res="http://resenje"
+ xmlns="http://www.w3.org/ns/rdfa#"
+ xmlns:pred="http://www.ftn.uns.ac.rs/rdf/examples/predicate/"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="http://resenje file:/D:/Igor/Files/Fakultet/Semestar%207/XML/Projekat/Repository/XML_i_web_servisi/servisi/organ-vlasti/backend/src/main/resources/data/schema/resenje/resenje.xsd" broj_resenja="broj_resenja1" datum_resenja="2006-05-04" tip_odluke="основана">
+    <res:Opis_zalbe razlog_zalbe="непоступање">
+    </res:Opis_zalbe>
+    <res:Odluka/>
+    <res:Obrazlozenje/>
+    <res:Poverenik>
+        <res:Ime>Ime0</res:Ime>
+        <res:Prezime>Prezime0</res:Prezime>
+    </res:Poverenik>
+</res:Resenje>
