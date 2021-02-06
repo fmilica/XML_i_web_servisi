@@ -11,6 +11,7 @@ import { XonomyResenjeService } from 'src/app/services/xonomy/xonomy-resenje.ser
 import { arrayBufferToBase64 } from 'src/app/util/util';
 import * as JsonToXML from 'js2xmlparser';
 declare const Xonomy: any;
+import * as txml from 'txml';
 
 @Component({
   selector: 'app-resenje',
@@ -114,9 +115,10 @@ export class ResenjeComponent implements OnInit, OnDestroy {
         //820e5622-56b0-4e5c-bc97-68bca0df2d37
 
         // this.resenjeService.posaljiResenje().subscribe(()=>{console.log('poslao')})
+        let xmlResponse = response;
+        let resenje: any = txml.parse(xmlResponse);
 
-
-        this.resenjeService.generisiPDF('820e5622-56b0-4e5c-bc97-68bca0df2d37').subscribe((response)=>{
+        this.resenjeService.generisiPDF(resenje[1].attributes.id).subscribe((response)=>{
           let bajtovi = response;
           let base64Bajtovi = arrayBufferToBase64(bajtovi);
           let obj = {

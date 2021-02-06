@@ -7,6 +7,7 @@ import { EpostaService } from 'src/app/services/eposta.service';
 import { ObavestenjeService } from 'src/app/services/obavestenje.service';
 import { XonomyObavestenjeService } from 'src/app/services/xonomy/xonomy-obavestenje.service';
 import { ZahtevService } from 'src/app/services/zahtev.service';
+import * as txml from 'txml';
 
 import * as JsonToXML from 'js2xmlparser';
 import { arrayBufferToBase64 } from 'src/app/util/util';
@@ -104,8 +105,8 @@ export class NewObavestenjeComponent implements OnInit {
     this.subscription.unsubscribe()
   }
 
-  posalji(){
-    this.obavestenjeService.generisiPDF("9f58a067-cec5-4323-bba2-4ac8d1110ca0").subscribe((response)=>{
+  posalji(obavestenjeId: string){
+    this.obavestenjeService.generisiPDF(obavestenjeId).subscribe((response)=>{
       let bajtovi = response;
       let base64Bajtovi = arrayBufferToBase64(bajtovi)
       let obj = {
@@ -134,28 +135,9 @@ export class NewObavestenjeComponent implements OnInit {
     this.obavestenjeService.createObavestenje(xmlDocument, this.zahtevDto.id, this.zahtevDto.gradjaninEmail)
       .subscribe((response) => {
         this.toastr.success('Успешно сте креирали обавештење!')
-        
-        const options = {
-          declaration: {
-            include: false,
-          },
-        };
-        console.log(response)
-
-        
-  
-        let obj = {
-          "@": {
-            "tipPriloga": "",
-            "xmlns":"http://pismo"
-        },
-  
-        "primalac": 'igi.l.1999@gmail.com',//this.zahtevDto.gradjaninEmail
-        "naslov": "Obavestenje",
-        "sadrzaj": "Kreirano je ",
-        "prilog": ""
-        }
-        
+        let xmlResponse = response;
+        let obavestenje: any = txml.parse(xmlResponse);
+        this.posalji(obavestenje[1].attributes.id);
         // this.epostaService.posalji(JsonToXML.parse("pismo", obj)).subscribe((resp) => {console.log("Proslo")});
         this.router.navigate(['kreirana-obavestenja'])
         this.zahtevService.resiZahtev(this.zahtevDto.id)
@@ -164,7 +146,6 @@ export class NewObavestenjeComponent implements OnInit {
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')
-          this.posalji();
         });
   }
 }
