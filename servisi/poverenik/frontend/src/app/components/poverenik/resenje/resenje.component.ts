@@ -107,7 +107,7 @@ export class ResenjeComponent implements OnInit, OnDestroy {
     this.resenjeService.createResenje(resenjeDto)
       .subscribe((response) => {
         this.toastr.success('Успешно сте креирали решење! Можете да је видите у "Решења".')
-        this.router.navigate(['/resenje'])
+        this.router.navigate(['/resenja'])
       },
         err => {
           this.toastr.error('Молимо Вас да исправно попуните форму!')
