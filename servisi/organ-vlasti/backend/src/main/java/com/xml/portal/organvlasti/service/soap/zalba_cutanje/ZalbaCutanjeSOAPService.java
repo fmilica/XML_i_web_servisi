@@ -16,14 +16,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Marshaller;
-
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
 import com.xml.portal.organvlasti.data.dao.odgovor.Odgovor;
+import com.xml.portal.organvlasti.data.dao.zalba_cutanje.ZalbaCutanje;
+import com.xml.portal.organvlasti.data.dao.exception.Greska;
 
 @RestController
 @RequestMapping(value = "organvlasti/soap/zalba-cutanje")
@@ -72,5 +76,16 @@ public class ZalbaCutanjeSOAPService {
 		soapResponse.writeTo(System.out);
 		System.out.println();
 		return new ResponseEntity<Void>(HttpStatus.OK);
+		/*Unmarshaller unmarshaller = jc.createUnmarshaller();
+		SOAPBody respBody = soapResponse.getSOAPBody();
+		NodeList list = respBody.getElementsByTagNameNS("*", "Zalba_cutanje");
+		Element zalbaElem = (Element) list.item(0);
+		if(zalbaElem != null) {
+//			ZalbaCutanje zalba = (ZalbaCutanje) unmarshaller.unmarshal(zalbaElem);
+			return new ResponseEntity<Object>(HttpStatus.OK);
+		}
+		Greska greska = new Greska("Doslo je do greske.");
+		*/
+//		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(greska);
 	}
 }

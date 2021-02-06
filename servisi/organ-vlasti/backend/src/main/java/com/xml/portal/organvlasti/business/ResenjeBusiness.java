@@ -25,6 +25,8 @@ import com.xml.portal.organvlasti.dto.ResenjePrikazDTO;
 import com.xml.portal.organvlasti.dto.pretraga.ResenjePretraga;
 import com.xml.portal.organvlasti.transformator.DokumentiTransformator;
 
+import resenje.Resenje;
+
 public class ResenjeBusiness {
 	
 	public static final String XSL_FILE = "src/main/resources/data/xsl/resenje.xsl";
@@ -331,5 +333,11 @@ public class ResenjeBusiness {
 		}
 		allResenja += "</ListaResenja>";
 		return allResenja;
+	}
+
+	public String saveToDB(Resenje resenje) {
+//		String documentId = resenjeRepository.save(resenje);
+//		return documentId;
+		return "";
 	}
 }
