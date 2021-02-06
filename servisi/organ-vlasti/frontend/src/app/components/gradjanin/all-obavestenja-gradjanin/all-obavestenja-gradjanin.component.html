@@ -88,7 +88,7 @@
 
             <ng-container matColumnDef="preuzimanjeMeta">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Преузми метаподатке</th>
-                <td matTooltip="Преузимање метаподатака обавестења" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                <td matTooltip="Преузимање метаподатака обавештења" matTooltipPosition="above" mat-cell *matCellDef="let row">
                     <a (click)="generisiRDF(row.id)" class="link">RDF</a><a (click)="generisiJSON(row.id)" class="link">JSON</a>
                 </td>
             </ng-container>
@@ -109,5 +109,6 @@
 
         </table>
         <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
+        <mat-hint> Кликните на ред табеле да бисте видели линкован захтев.</mat-hint>
     </div>
 </div>

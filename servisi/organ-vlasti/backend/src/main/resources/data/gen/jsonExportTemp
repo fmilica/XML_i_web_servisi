@@ -1,0 +1,25 @@
+{
+  "head": {
+    "vars": [ "p" , "o" ]
+  } ,
+  "results": {
+    "bindings": [
+      {
+        "p": { "type": "uri" , "value": "http://www.xml.com/predicate/podnosilacPrezime" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "Перић" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.xml.com/predicate/podnosilacIme" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "Пера" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.xml.com/predicate/primalacNaziv" } ,
+        "o": { "type": "literal" , "datatype": "http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral" , "value": "ФТН" }
+      } ,
+      {
+        "p": { "type": "uri" , "value": "http://www.xml.com/predicate/vezanGradjanin" } ,
+        "o": { "type": "uri" , "value": "http://korisnik/pera@pera.com" }
+      }
+    ]
+  }
+}

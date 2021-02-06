@@ -1,14 +1,17 @@
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:h="http://www.w3.org/1999/xhtml">
-  <rdf:Description rdf:about="http://zahtev/6b09cb2e-8000-4f75-b6f4-b559c7350d08">
-    <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/zika@zika.com"/>
+  <rdf:Description rdf:about="http://obavestenje/cabba973-a6ca-4234-8d34-7e5872e56149">
+    <pred:vezanZahtev xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://zahtev/ecc98243-41c7-4e93-9994-365e50b7ba59"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/6b09cb2e-8000-4f75-b6f4-b559c7350d08">
-    <pred:primalacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Општина Радовашница</pred:primalacNaziv>
+  <rdf:Description rdf:about="http://obavestenje/cabba973-a6ca-4234-8d34-7e5872e56149">
+    <pred:izdavacNaziv xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">ФТН</pred:izdavacNaziv>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/6b09cb2e-8000-4f75-b6f4-b559c7350d08">
-    <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Марко</pred:podnosilacIme>
+  <rdf:Description rdf:about="http://obavestenje/cabba973-a6ca-4234-8d34-7e5872e56149">
+    <pred:vezanGradjanin xmlns:pred="http://www.xml.com/predicate/" rdf:resource="http://korisnik/pera@pera.com"/>
   </rdf:Description>
-  <rdf:Description rdf:about="http://zahtev/6b09cb2e-8000-4f75-b6f4-b559c7350d08">
-    <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Илић</pred:podnosilacPrezime>
+  <rdf:Description rdf:about="http://obavestenje/cabba973-a6ca-4234-8d34-7e5872e56149">
+    <pred:podnosilacIme xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Пера</pred:podnosilacIme>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://obavestenje/cabba973-a6ca-4234-8d34-7e5872e56149">
+    <pred:podnosilacPrezime xmlns:pred="http://www.xml.com/predicate/" rdf:datatype="http://www.w3.org/1999/02/22-rdf-syntax-ns#XMLLiteral">Перић</pred:podnosilacPrezime>
   </rdf:Description>
 </rdf:RDF>
