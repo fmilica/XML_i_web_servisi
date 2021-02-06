@@ -83,6 +83,13 @@ public class ZalbaCutanjeService {
 		return new ResponseEntity<>(filtriraneZalbeCutanje, HttpStatus.OK);
     }
     
+    @GetMapping("/ceka/{id}")
+    public ResponseEntity<Object> cekaIzjasnjenje(@PathVariable("id") String id) throws Exception {
+    	ZalbaCutanje zalbaCutanje = zalbaCutanjeBusiness.getById(id);
+    	zalbaCutanjeBusiness.cekanjeTrue(id, zalbaCutanje);
+    	return new ResponseEntity<>(HttpStatus.OK);
+    }
+    
     @PostMapping("/pretrazi-napredno")
     public ResponseEntity<Object> naprednaPretraga(@RequestBody ZalbaCutanjePretraga params) {
     	ListaZalbiCutanje filtriraneZalbeCutanje = zalbaCutanjeBusiness.getAllNapredna(params);

@@ -10,6 +10,7 @@ import { ResenjeService } from 'src/app/services/resenje.service';
 import { Router } from '@angular/router';
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ZahtevService } from 'src/app/services/zahtev.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-zalbe-odluku-poverenik',
@@ -43,7 +44,8 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
     private zalbaOdlukaService: ZalbaOdlukaService,
     private resenjeService: ResenjeService,
     private zahtevService: ZahtevService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -62,7 +64,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
-                                'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta', 'slanjeZalbe']
+                                'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   ngOnInit(): void {
     this.zalbaOdlukaService.getAllZalbeOdluka()
@@ -96,6 +98,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         razresena: zalba.attributes.razresen,
         izjasnjena: zalba.attributes.izjasnjen,
         prekinuta: zalba.attributes.prekinut,
+        ceka: zalba.attributes.ceka,
         zahtev: zalba.attributes.href.substring(14),
         status: 'razresena'
       }
@@ -132,8 +135,10 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         zalba.children[4].children[1].children[0].children[0]
       }
       // postavljanje akcije na osnovu atributa
-      if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.razresena === 'false') {
+      if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.razresena === 'false' && zalbaPrikaz.ceka === 'false') {
         zalbaPrikaz.status = 'posaljiNaIzjasnjenje';
+      } else if (zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.ceka === 'true') {
+        zalbaPrikaz.status = 'ceka'
       } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'false') {
         zalbaPrikaz.status = 'kreirajResenje'
       } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'true') {
@@ -147,7 +152,13 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   }
 
   posaljiNaIzjasnjenje(row: any) {
-    // soap poziv salje zalbu organu vlasti
+    this.zalbaOdlukaService.getById(row.id).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        this.zalbaOdlukaService.posaljiZalbu(xmlResponse).subscribe(()=>{
+          this.toastr.success("Успешно послата жалба на изјашњење.");
+        })
+      })
   }
 
   createResenje(row: any) {
@@ -292,14 +303,14 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
     );
   }
 
-  posaljiZalbu(zalbaId: string){
+/*   posaljiZalbu(zalbaId: string){
     this.zalbaOdlukaService.getById(zalbaId).subscribe(
       (response) => {
         let xmlResponse = response;
         this.zalbaOdlukaService.posaljiZalbu(xmlResponse).subscribe(()=>{console.log("poslao")})
         })
       
-  }
+  } */
 
   fetchZahtev(zahtevId: string){
     //TODO dobaviti zahtev preko SOAP i odkomentarisati linije u html

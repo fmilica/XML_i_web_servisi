@@ -56,7 +56,7 @@ import com.xml.portal.organvlasti.data.dao.tipovi.TPoverenik;
 @XmlRootElement(name = "Zalba_cutanje", namespace = "http://zalbacutanje")
 public class ZalbaCutanje implements GenericXML {
 
-    @XmlElement(name = "Primalac_zalbe", namespace = "http://zalbacutanje", required = true)
+	@XmlElement(name = "Primalac_zalbe", namespace = "http://zalbacutanje", required = true)
     protected TPoverenik primalacZalbe;
     @XmlElement(name = "Zalba", namespace = "http://zalbacutanje", required = true)
     protected Zalba zalba;
@@ -73,8 +73,14 @@ public class ZalbaCutanje implements GenericXML {
     protected XMLGregorianCalendar datumPodnosenjaZalbe;
     @XmlAttribute(name = "mesto")
     protected String mesto;
+    @XmlAttribute(name = "izjasnjen")
+    protected boolean izjasnjen;
     @XmlAttribute(name = "razresen")
     protected boolean razresen;
+    @XmlAttribute(name = "prekinut")
+    protected boolean prekinut;
+    @XmlAttribute(name = "ceka")
+    protected boolean ceka;
     @XmlAttribute(name = "vocab")
     protected String vocab;
     @XmlAttribute(name = "about")
@@ -228,11 +234,32 @@ public class ZalbaCutanje implements GenericXML {
         this.mesto = value;
     }
     
+    public boolean getIzjasnjen() {
+    	return izjasnjen;
+    }
+    public void setIzjasnjen(boolean value) {
+    	this.izjasnjen = value;
+    }
+    
     public boolean getRazresen() {
     	return razresen;
     }
     public void setRazresen(boolean value) {
     	this.razresen = value;
+    }
+    
+    public boolean getPrekinut() {
+    	return prekinut;
+    }
+    public void setPrekinut(boolean value) {
+    	this.prekinut = value;
+    }
+    
+    public boolean getCeka() {
+    	return ceka;
+    }
+    public void setCeka(boolean value) {
+    	this.ceka = value;
     }
     
     public String getVocab() {

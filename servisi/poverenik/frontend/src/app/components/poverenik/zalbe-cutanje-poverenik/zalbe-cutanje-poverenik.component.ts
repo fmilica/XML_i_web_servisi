@@ -11,6 +11,7 @@ import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { ResenjeService } from 'src/app/services/resenje.service';
 import { Router } from '@angular/router';
 import { identifierModuleUrl } from '@angular/compiler';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-zalbe-cutanje-poverenik',
@@ -50,7 +51,8 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     private zalbaCutanjeService: ZalbaCutanjeService,
     private zahtevService: ZahtevService,
     private resenjeService: ResenjeService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()
@@ -93,6 +95,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         razresena: zalba.attributes.razresen,
         izjasnjena: zalba.attributes.izjasnjen,
         prekinuta: zalba.attributes.prekinut,
+        ceka: zalba.attributes.ceka,
         status: 'razresena',
         zalilac: '',
         adresa: '',
@@ -136,8 +139,10 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         zalbaPrikaz.kontaktTelefon = zalba.children[1].children[4].children[2].children[0]
       }
       // postavljanje akcije na osnovu atributa
-      if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.razresena === 'false') {
+      if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.razresena === 'false' && zalbaPrikaz.ceka === 'false') {
         zalbaPrikaz.status = 'posaljiNaIzjasnjenje';
+      } else if (zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'false' && zalbaPrikaz.ceka === 'true') {
+        zalbaPrikaz.status = 'ceka'
       } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'false') {
         zalbaPrikaz.status = 'kreirajResenje'
       } else if(zalbaPrikaz.prekinuta === 'false' && zalbaPrikaz.izjasnjena === 'true' && zalbaPrikaz.razresena === 'true') {
@@ -151,7 +156,19 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   }
 
   posaljiNaIzjasnjenje(row: any) {
-    // soap poziv salje zalbu organu vlasti
+    this.zalbaCutanjeService.getById(row.id).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        this.zalbaCutanjeService.posaljiZalbu(xmlResponse).subscribe(()=>{
+          this.toastr.success("Успешно послата жалба на изјашњење.");
+          this.zalbaCutanjeService.getAllZalbeCutanje()
+            .subscribe(
+              (response) => {
+                this.listaZalbiCutanje2Prikaz(response)
+              }
+            )
+        })
+      })
   }
 
   createResenje(row: any) {
@@ -318,12 +335,11 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
     )
   } 
 
-  posaljiZalbu(zalbaId: string){
+/*   posaljiZalbu(zalbaId: string){
     this.zalbaCutanjeService.getById(zalbaId).subscribe(
       (response) => {
         let xmlResponse = response;
         this.zalbaCutanjeService.posaljiZalbu(xmlResponse).subscribe(()=>{console.log("poslao")})
         })
-      
-  }
+  } */
 }

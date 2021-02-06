@@ -104,4 +104,12 @@ export class ZalbaCutanjeService {
     }
     )
   }
+
+  cekanjeTrue(zalbaId: string){
+    return this.http.get(environment.apiEndpoint + 'ceka/' + zalbaId, {
+      responseType: 'text',
+      headers: this.headers
+    }
+    )
+  }
 }

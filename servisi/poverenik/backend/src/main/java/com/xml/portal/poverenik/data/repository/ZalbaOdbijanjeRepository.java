@@ -215,6 +215,28 @@ public class ZalbaOdbijanjeRepository {
 		}
 	}
 	
+	public boolean cekanjeTrue(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		String xPath = "/Zalba_odbijanje/@ceka";
+		try {
+			this.existManager.update(collectionId, zalbaOdbijanjeId, xPath, "true", UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	public boolean izjasnjenjeTrue(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		String xPath = "/Zalba_odbijanje/@izjasnjen";
+		try {
+			this.existManager.update(collectionId, zalbaOdbijanjeId, xPath, "true", UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	//zabla na odbijanje po godini
 	public long findAllByYear() {
 		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";
