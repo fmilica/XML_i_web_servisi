@@ -52,6 +52,10 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
                                 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
 
   ngOnInit(): void {
+    this.fetchZalbe();
+  } 
+
+  fetchZalbe(){
     this.zalbaOdlukaService.getAllGradjaninZalbeOdluka()
       .subscribe(
         (response) => {
@@ -59,6 +63,12 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
           let allZalbe: any = txml.parse(xmlResponse);
           let data = []
           allZalbe[1].children.map(zalba => {
+            let status = "razresena";
+            if(zalba.attributes.prekinut === "true"){
+              status = "prekinuta"
+            }else if(zalba.attributes.razresen === "false"){
+              status = "odustani"
+            }
             let zalbaPrikaz = {
               naziv: '',
               adresa: '',
@@ -70,7 +80,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
               razlogZalbe: zalba.children[3].children[0].children[0],
               datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
               mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-              razresena: zalba.attributes.razresen,
+              razresena: status,
               zahtev: zalba.attributes.href.substring(14)
             }
             //podaci o zaliocu
@@ -94,7 +104,7 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
           this.dataSource = data;
         }
       )
-  } 
+  }
 
   generisiPDF(zalbaOdlukaId: string) {
     this.zalbaOdlukaService.generisiPDF(zalbaOdlukaId).subscribe(
@@ -155,6 +165,17 @@ export class ZalbeOdlukuGradjaninComponent implements OnInit {
           }
           this.fetchedZahtev = zahtevPrikaz
         })
+      }
+    )
+  }
+
+  odustaniOdZalbe(row: any){
+    this.zalbaOdlukaService.odustaniOdZalbe(row.id).subscribe(
+      (response) => {
+        this.fetchZalbe();
+      },
+      (error) => {
+        this.fetchZalbe();
       }
     )
   }

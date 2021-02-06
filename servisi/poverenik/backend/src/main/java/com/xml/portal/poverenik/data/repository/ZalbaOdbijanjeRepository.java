@@ -21,6 +21,7 @@ import org.xmldb.api.base.ResourceSet;
 import org.xmldb.api.base.XMLDBException;
 import org.xmldb.api.modules.XMLResource;
 
+import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ZalbaOdbijanje;
 import com.xml.portal.poverenik.data.xmldb.api.ExistManager;
 
@@ -187,6 +188,17 @@ public class ZalbaOdbijanjeRepository {
 		return zalbeOdbijanje;
 	}
 	
+	public boolean odustanak(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		String xPath = "/Zalba_odbijanje/@prekinut";
+		try {
+			this.existManager.update(collectionId, zalbaOdbijanjeId, xPath, "true", UPDATE);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public String save(ZalbaOdbijanje zalbaOdbijanje) {
 		StringWriter sw = new StringWriter();
 		try {
@@ -266,5 +278,5 @@ public class ZalbaOdbijanjeRepository {
 		}
 	}
 	//zalba na odbijanje po godini gradjanin
-		
+	
 }

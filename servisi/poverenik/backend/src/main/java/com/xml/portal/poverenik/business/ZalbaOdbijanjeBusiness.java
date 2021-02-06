@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.xml.portal.poverenik.data.dao.zalba_cutanje.ZalbaCutanje;
 import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ListaZalbiOdbijanje;
 import com.xml.portal.poverenik.data.dao.zalba_odbijanje.ZalbaOdbijanje;
 import com.xml.portal.poverenik.data.metadatadb.api.QueryMetadata;
@@ -264,6 +265,11 @@ public class ZalbaOdbijanjeBusiness {
 			e.printStackTrace();
 			return null;
 		}
+	}
+	
+	public boolean odustani(String zalbaOdbijanjeId, ZalbaOdbijanje zalbaOdbijanje) {
+		zalbaOdbijanje.setPrekinut(true);
+		return zalbaOdbijanjeRepository.odustanak(zalbaOdbijanjeId, zalbaOdbijanje);
 	}
 	
 	public String generatePDF(String id) throws Exception {
