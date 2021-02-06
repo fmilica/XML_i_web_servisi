@@ -204,6 +204,22 @@ public class ZalbaOdbijanjeRepository {
 		}
 	}
 	
+	public String copy(ZalbaOdbijanje zalbaOdbijanje) {
+		StringWriter sw = new StringWriter();
+		try {
+			String documentIdUri = zalbaOdbijanje.getId();
+			String[] documentIdUriList = documentIdUri.split("/");
+			String documentId = documentIdUriList[documentIdUriList.length - 1];
+			marshaller.marshal(zalbaOdbijanje, sw);
+			String zalbaOdbijanjeString = sw.toString();
+			this.existManager.storeFromText(collectionId, documentId, zalbaOdbijanjeString);
+			return documentId;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	//zabla na odbijanje po godini
 	public long findAllByYear() {
 		String year = (Calendar.getInstance().get(Calendar.YEAR))+"";

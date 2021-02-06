@@ -115,7 +115,7 @@ public class IzvestajBusiness {
 	}
 
 	public String saveToDB(Izvestaj izvestaj) {
-		String documentId = izvestajRepository.save(izvestaj);
+		String documentId = izvestajRepository.copy(izvestaj);
 		return documentId;
 	}
 }

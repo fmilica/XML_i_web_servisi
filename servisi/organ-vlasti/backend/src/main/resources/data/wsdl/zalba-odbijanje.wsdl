@@ -28,7 +28,7 @@
     </wsdl:portType>
     
     <wsdl:binding name="ZalbaOdbijenSoapBinding" type="tns:ZalbaOdbijenServicePortType">
-        <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="sendZalbaOdbijen">
             <soap:operation soapAction="http://zalbaodbijanje/ws/sendZalbaOdbijen" />
             <wsdl:input>

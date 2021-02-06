@@ -334,10 +334,10 @@ public class ResenjeBusiness {
 		allResenja += "</ListaResenja>";
 		return allResenja;
 	}
-/*
-	public String saveToDB(Resenje resenje) {
-//		String documentId = resenjeRepository.save(resenje);
-//		return documentId;
-		return "";
-	}*/
+
+	public String saveToDB(Document resenjeDoc) {
+		String resenjeString = resenjeRepository.copy(resenjeDoc);
+		String documentId = this.storeMetadata(resenjeString);
+		return documentId;
+	}
 }

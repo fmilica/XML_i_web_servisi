@@ -276,7 +276,8 @@ public class ZalbaCutanjeBusiness {
 	}
 
 	public String saveToDB(ZalbaCutanje zalbaCutanje) {
-		String documentId = zalbaCutanjeRepository.save(zalbaCutanje);
+		String documentId = zalbaCutanjeRepository.copy(zalbaCutanje);
+		this.storeMetadata(zalbaCutanje);
 		return documentId;
 	}
 }

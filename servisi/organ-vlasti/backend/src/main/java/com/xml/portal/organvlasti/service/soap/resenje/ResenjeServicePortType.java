@@ -9,6 +9,8 @@ import javax.xml.bind.annotation.XmlSeeAlso;
 import org.w3c.dom.Document;
 
 import com.xml.portal.organvlasti.data.dao.resenje.DOMParser;
+import com.xml.portal.organvlasti.data.dao.soap.resenje.ObjectFactory;
+import com.xml.portal.organvlasti.data.dao.soap.resenje.Resenje;
 
 //import resenje.Resenje;
 
@@ -19,13 +21,13 @@ import com.xml.portal.organvlasti.data.dao.resenje.DOMParser;
  * 
  */
 @WebService(targetNamespace = "http://resenje", name = "ResenjeServicePortType")
-@XmlSeeAlso({DOMParser.class, com.xml.portal.organvlasti.data.dao.tipovi.ObjectFactory.class})
+@XmlSeeAlso({ObjectFactory.class, com.xml.portal.organvlasti.data.dao.tipovi.ObjectFactory.class})
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public interface ResenjeServicePortType {
 
     @WebMethod(action = "http://resenje/ws/receiveResenje")
     public void receiveResenje(
         @WebParam(partName = "Resenje", name = "Resenje")
-        Document resenje
+        Resenje resenje
     );
 }

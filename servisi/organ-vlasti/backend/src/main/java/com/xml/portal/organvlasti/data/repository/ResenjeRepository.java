@@ -259,4 +259,26 @@ public class ResenjeRepository {
 			return null;
 		}
 	}
+	
+	public String copy(Document resenjeDoc) {
+		StringWriter sw = new StringWriter();
+		try {
+			NodeList list = resenjeDoc.getElementsByTagNameNS("*", "Resenje");
+			Element resenje = (Element)list.item(0);
+			String documentIdUri = resenje.getAttribute("id");
+			String[] documentIdUriList = documentIdUri.split("/");
+			String documentId = documentIdUriList[documentIdUriList.length - 1];
+			
+			DOMSource source = new DOMSource(resenjeDoc);
+			StreamResult result = new StreamResult(sw);
+			transformer.transform(source, result);
+			
+			String resenjeString = sw.toString();
+			this.existManager.storeFromText(collectionId, documentId, resenjeString);
+			return resenjeString;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
