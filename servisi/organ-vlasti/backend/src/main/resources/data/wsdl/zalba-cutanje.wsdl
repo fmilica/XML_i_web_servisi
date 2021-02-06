@@ -28,7 +28,7 @@
     </wsdl:portType>
     
     <wsdl:binding name="ZalbaCutanjeSoapBinding" type="tns:ZalbaCutanjeServicePortType">
-        <soap:binding style="document"  transport="http://schemas.xmlsoap.org/soap/http" />
+        <soap:binding style="rpc"  transport="http://schemas.xmlsoap.org/soap/http" />
         <wsdl:operation name="sendZalbaCutanje">
             <soap:operation soapAction="http://zalbacutanje/ws/sendZalbaCutanje" />
             <wsdl:input>
