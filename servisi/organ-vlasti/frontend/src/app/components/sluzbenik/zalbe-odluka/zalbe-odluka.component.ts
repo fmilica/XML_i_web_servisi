@@ -6,11 +6,20 @@ import * as JsonToXML from 'js2xmlparser';
 import { ZalbaOdlukaNaprednaPretragaDto } from 'src/app/model/zalba-odluka-napredna-pretraga-dto';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
+import { ZahtevService } from 'src/app/services/zahtev.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-zalbe-odluka',
   templateUrl: './zalbe-odluka.component.html',
-  styleUrls: ['./zalbe-odluka.component.sass']
+  styleUrls: ['./zalbe-odluka.component.sass'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ],
 })
 export class ZalbeOdlukaComponent implements OnInit {
 
@@ -18,9 +27,20 @@ export class ZalbeOdlukaComponent implements OnInit {
   obicnaForm: FormGroup;
   metaDataForm: FormGroup;
 
+  fetchedZahtev = {
+    nazivOrgana: "",
+    sedisteOrgana: "",
+    informacije: "",
+    mesto: "",
+    datum: ""
+  }
+  
+  expandedElement: any | null;
+
  constructor(
    private zalbaOdlukaService: ZalbaOdlukaService,
    private izjasnjenjeDialog: MatDialog,
+   private zahtevService: ZahtevService
  ) { 
    this.obicnaForm = new FormGroup({
      sve: new FormControl()
@@ -68,7 +88,8 @@ export class ZalbeOdlukaComponent implements OnInit {
        adresaPodnosioca: '',
        datumZalbe: zalba.attributes.datum_podnosenja_zalbe,
        mestoZalbe: zalba.attributes.mesto_podnosenja_zalbe,
-       razresena: zalba.attributes.razresen
+       razresena: zalba.attributes.razresen,
+       zahtev: zalba.attributes.href.substring(14)
      }
      //podaci o zaliocu
      if (zalba.children[1].children.length === 3) {
@@ -241,6 +262,26 @@ export class ZalbeOdlukaComponent implements OnInit {
   dialogRef.afterClosed().subscribe(value => {
     console.log("zatvorio se")
   });
-}
+  }
+
+  fetchZahtev(zahtevId: string){
+    this.zahtevService.getZahtevById(zahtevId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        let zahtev: any =  txml.parse(xmlResponse);
+        zahtev.map( z => {
+          let zahtevPrikaz = {
+            nazivOrgana: zahtev[1].children[0].children[0].children[0],
+            sedisteOrgana: zahtev[1].children[0].children[1].children[0],
+            dostava: 'false',
+            informacije: zahtev[1].children[1].children[2].children[0],
+            mesto: zahtev[1].attributes.mesto,
+            datum: zahtev[1].attributes.datum
+          }
+          this.fetchedZahtev = zahtevPrikaz
+        })
+      }
+    )
+  }
 
 }

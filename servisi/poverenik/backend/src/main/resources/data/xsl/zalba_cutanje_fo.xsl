@@ -54,7 +54,7 @@
                     </fo:block>
                     <fo:block text-align="center">( podvuci zbog cega se izjavljuje zalba)</fo:block>
                     <fo:block margin-top="10px">
-                        <xsl:variable name="datum" select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Datum"/>
+                        <xsl:variable name="datum" select="zoc:Zalba_cutanje/zoc:Zalba/@datum_podnosenja_zahteva"/>
                         <xsl:variable name="d" select="xs:string(concat(
                             substring($datum,9,2),'.',
                             substring($datum,6,2),'.',
@@ -75,8 +75,15 @@
                     </fo:block>
                     <fo:block text-align="right">
                         <fo:block text-decoration="underline">
-                            <xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Ime"/>
-                            <xsl:value-of select="$space"/><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Prezime"/>
+                            <xsl:choose>
+                                <xsl:when test="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Naziv">
+                                    <xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Naziv"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Ime"/>
+                                    <xsl:value-of select="$space"/><xsl:value-of select="zoc:Zalba_cutanje/zoc:Zalba/zoc:Podnosilac_zalbe/tipovi:Prezime"/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </fo:block>
                         <fo:block>Podnosilac zalbe/Ime i prezime</fo:block>
                         <fo:block text-decoration="underline">
@@ -91,7 +98,7 @@
                         <fo:block>drugi podaci za kontakt</fo:block>
                     </fo:block>
                     <fo:block text-align="left">
-                        <xsl:variable name="datum1" select="zoc:Zalba_cutanje/@datum"/>
+                        <xsl:variable name="datum1" select="zoc:Zalba_cutanje/@datum_podnosenja_zalbe"/>
                         <xsl:variable name="d1" select="xs:string(concat(
                             substring($datum1,9,2),'.',
                             substring($datum1,6,2),'.',

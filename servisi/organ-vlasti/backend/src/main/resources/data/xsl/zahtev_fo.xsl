@@ -20,7 +20,7 @@
             <fo:page-sequence master-reference="zahtev-page">
                 <fo:flow flow-name="xsl-region-body" font-family="Times New Roman">
                     <fo:block text-decoration="underline" text-align="center">
-                        <xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Naziv"/>
+                        <xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Naziv"/>, <xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Sediste"/>
                     </fo:block>
                     <fo:block text-align="center" margin-bottom="50px">
                         naziv i sedište organa kojem se zahtev upućuje

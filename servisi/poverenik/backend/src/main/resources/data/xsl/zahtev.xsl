@@ -79,7 +79,7 @@
             <body>
 				<div class="a4">
 					<div class="sadrzaj">
-						<div class="organ"><u><xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Naziv"/></u></div>
+						<div class="organ"><u><xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Naziv"/>, <xsl:value-of select="zahtev:Zahtev/zahtev:Organ_vlasti/tipovi:Sediste"/></u></div>
 						<div class="organ_opis">naziv i sedište organa kojem se zahtev upućuje</div>
 						<div class="zahtev"><b>Z A H T E V</b></div>
 						<div class="Zahtev_opis"><b>za pristup informacijama od javnog znacaja</b></div>
