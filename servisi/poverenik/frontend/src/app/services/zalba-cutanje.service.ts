@@ -96,4 +96,12 @@ export class ZalbaCutanjeService {
       headers: this.headers
     })
   }
+
+  posaljiZalbu(xmlDocument: string){
+    return this.http.post(environment.apiEndpoint + 'soap/zalba-cutanje/send-zalba', xmlDocument,{
+      responseType: 'text',
+      headers: this.headers
+    }
+    )
+  }
 }

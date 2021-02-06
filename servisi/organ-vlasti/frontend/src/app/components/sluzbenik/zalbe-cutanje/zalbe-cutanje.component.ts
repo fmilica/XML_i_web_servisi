@@ -23,7 +23,7 @@ export class ZalbeCutanjeComponent implements OnInit {
   metaDataForm: FormGroup;
 
   constructor(
-    private zalbaCutanjeService: ZalbaCutanjeService
+    private zalbaCutanjeService: ZalbaCutanjeService,
   ) { 
     this.obicnaForm = new FormGroup({
       sve: new FormControl()

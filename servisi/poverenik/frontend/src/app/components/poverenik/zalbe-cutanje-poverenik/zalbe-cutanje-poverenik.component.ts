@@ -39,7 +39,7 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
   expandedElement: any | null;
 
   displayedColumns: string[] = ['organVlasti', 'razlogZalbe', 'datumZahteva', 'podaci', 'zalilac','adresa', 'kontaktTelefon', 
-                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje', 'preuzimanjeMeta']
+                                'datumZalbe', 'mestoZalbe', 'razresena', 'preuzimanje', 'preuzimanjeMeta', 'slanjeZalbe']
 
 
   //formе za pretragu
@@ -299,5 +299,14 @@ export class ZalbeCutanjePoverenikComponent implements OnInit {
         })
       }
     )
+  } 
+
+  posaljiZalbu(zalbaId: string){
+    this.zalbaCutanjeService.getById(zalbaId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        this.zalbaCutanjeService.posaljiZalbu(xmlResponse).subscribe(()=>{console.log("poslao")})
+        })
+      
   }
 }

@@ -52,7 +52,7 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
   dataSource = [ ];
 
   displayedColumns: string[] = ['naziv', 'adresa', 'organVlasti', 'broj', 'godina', 'datumZahteva', 'razlogZalbe',
-                                'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta']
+                                'nazivPodnosioca', 'adresaPodnosioca', 'datumZalbe', 'mestoZalbe','razresena', 'preuzimanje', 'preuzimanjeMeta', 'slanjeZalbe']
 
   ngOnInit(): void {
     this.zalbaOdlukaService.getAllZalbeOdluka()
@@ -263,6 +263,15 @@ export class ZalbeOdlukuPoverenikComponent implements OnInit {
         this.previewAndDownload(response, zalbaOdlukaId, "json");
       }
     );
+  }
+
+  posaljiZalbu(zalbaId: string){
+    this.zalbaOdlukaService.getById(zalbaId).subscribe(
+      (response) => {
+        let xmlResponse = response;
+        this.zalbaOdlukaService.posaljiZalbu(xmlResponse).subscribe(()=>{console.log("poslao")})
+        })
+      
   }
 
   fetchZahtev(zahtevId: string){

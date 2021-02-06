@@ -5,9 +5,11 @@ import { Subscription } from 'rxjs';
 import { ResenjeDto } from 'src/app/model/resenje-dto.model';
 import { ZahtevDto } from 'src/app/model/zahtev-dto.model';
 import { ZalbaDto } from 'src/app/model/zalba-dto.model';
+import { EpostaService } from 'src/app/services/eposta.service';
 import { ResenjeService } from 'src/app/services/resenje.service';
 import { XonomyResenjeService } from 'src/app/services/xonomy/xonomy-resenje.service';
-
+import { arrayBufferToBase64 } from 'src/app/util/util';
+import * as JsonToXML from 'js2xmlparser';
 declare const Xonomy: any;
 
 @Component({
@@ -27,7 +29,8 @@ export class ResenjeComponent implements OnInit, OnDestroy {
     private xonomyResenjeService: XonomyResenjeService,
     private resenjeService: ResenjeService,
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private epostaService: EpostaService
   ) { }
 
   ngOnInit(): void {
@@ -107,6 +110,25 @@ export class ResenjeComponent implements OnInit, OnDestroy {
     this.resenjeService.createResenje(resenjeDto)
       .subscribe((response) => {
         this.toastr.success('Успешно сте креирали решење! Можете да је видите у "Решења".')
+        //820e5622-56b0-4e5c-bc97-68bca0df2d37
+        this.resenjeService.generisiPDF('820e5622-56b0-4e5c-bc97-68bca0df2d37').subscribe((response)=>{
+          let bajtovi = response;
+          let base64Bajtovi = arrayBufferToBase64(bajtovi);
+          let obj = {
+            "@": {
+              "tipPriloga": "pdf",
+              "xmlns":"http://pismo"
+          },
+      
+          "primalac": 'igi.l.1999@gmail.com',
+          "naslov": "Решење",
+          "sadrzaj": "Креирано је решење",
+          "prilog": base64Bajtovi
+          }
+      
+          this.epostaService.posalji(JsonToXML.parse("pismo", obj)).subscribe((resp) => {console.log("Proslo")}); 
+        })
+        
         this.router.navigate(['/resenje'])
       },
         err => {

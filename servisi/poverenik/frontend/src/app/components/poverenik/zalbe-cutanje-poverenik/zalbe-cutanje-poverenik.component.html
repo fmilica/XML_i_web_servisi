@@ -207,6 +207,13 @@
                     </div>
                 </td>
             </ng-container>
+
+            <ng-container matColumnDef="slanjeZalbe">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Пошаљи жалбу</th>
+                <td matTooltip="Пошаљи жалбу" matTooltipPosition="above" mat-cell *matCellDef="let row">
+                    <a (click)="posaljiZalbu(row.id)" class="link">Пошаљи жалбу</a>
+                </td>
+            </ng-container>
         </table>
         <mat-hint>Пређите преко поља табеле за детаљнији опис.</mat-hint>
     </div>

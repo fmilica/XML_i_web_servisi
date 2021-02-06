@@ -2,6 +2,8 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+import * as JsonToXML from 'js2xmlparser';
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -29,6 +31,7 @@ export class DialogComponent {
         return;
     }
     console.log(this.data)
+    
     //TO-DO TREBA DA POSALJE MEJL ILI XML DOKUMENT ILI STA GOD OVDE
     this.dialogRef.close();
   }
