@@ -91,7 +91,7 @@
                         </div>
                         <div class="centriran_text">( podvuci zbog cega se izjavljuje zalba)</div>
                         <div class="obican_tekst">
-                            <xsl:variable name="datum" select="zoc:Zalba_cutanje/zoc:Zalba/@datum_podnosenja_zahteva"/>
+                            <xsl:variable name="datum" select="zoc:Zalba_cutanje/@datum_podnosenja_zahteva"/>
                             <xsl:variable name="d" select="xs:string(concat(
                                 substring($datum,9,2),'.',
                                 substring($datum,6,2),'.',

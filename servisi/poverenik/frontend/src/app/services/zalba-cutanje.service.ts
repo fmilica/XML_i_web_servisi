@@ -96,4 +96,11 @@ export class ZalbaCutanjeService {
       headers: this.headers
     })
   }
+
+  odustaniOdZalbe(zalbaId: string){
+    return this.http.put(environment.apiEndpoint + 'zalba-cutanje/odustani/' + zalbaId, {
+      responseType: 'arraybuffer',
+      headers: this.headers
+    })
+  }
 }
