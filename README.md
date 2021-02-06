@@ -1,8 +1,8 @@
 ### Sadrzaj
 
--   [Opis](#description)
--   [Pokretanje](#how-to-use)
--   [Informacije o autorima](#author-info)
+-   [Opis]
+-   [Pokretanje]
+-   [Informacije o autorima]
 
 ---
 
