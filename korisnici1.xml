@@ -1,0 +1,14 @@
+<Lista_korisnika xmlns="http://korisnik" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://korisnik schema/korisnik/korisnik.xsd">
+    <Korisnik uloga="ROLE_GRADJANIN">
+        <Ime>Pera</Ime>
+        <Prezime>Peric</Prezime>
+        <Email>igi.l.1999@gmail.com</Email>
+        <Lozinka>$2y$10$/Ms77vRZQGHI0a17OFP.qOJEQ7n/AjXFF1kMEOgmLgGZmjt/UVnFK</Lozinka>
+    </Korisnik>
+    <Korisnik uloga="ROLE_SLUZBENIK">
+        <Ime>Mika</Ime>
+        <Prezime>Mikic</Prezime>
+        <Email>ksenija.prcic1998@gmail.com</Email>
+        <Lozinka>$2y$10$xDjxJbzLbjtZeBRvJO8J0O2NBFvTKqVCSAS9V2ry58e.ps5bXlRqO</Lozinka>
+    </Korisnik>
+</Lista_korisnika>
